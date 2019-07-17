@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
-
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
+import ListView from './list_view';
 
 
 class TaxiList extends Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Taxi List Screen</Text>
+      <View style={{flex: 1}}>
+        <ListView />
       </View>
     );
   }

@@ -25,7 +25,7 @@ export default class List extends Component{
                     
                     
                     <View style={{flex:9,flexDirection:'column'}}>
-                        <View style={{flex:1,justifyContent:'flexStart',alignItems:'flexstart',}}>
+                        <View style={{flex:1,justifyContent:'flex-start',alignItems:'flex-start',}}>
                             <Text style={{marginTop:6,color:'gray',paddingTop:5}}>포항역</Text>
                         </View>
                         <View style={{flex:1,justifyContent:'flex-end',flexDirection:'row'}}>
@@ -62,13 +62,16 @@ export default class List extends Component{
   const styles=StyleSheet.create({
     container:{
         flex:1,
-        flexDirection:'column'
+        flexDirection:'column',
+        marginBottom: 10,
     },
     list:{
         padding:20,
-        height:130,
+        paddingLeft: 5,
+
        
         backgroundColor:'white',
+        elevation: 5,
        
         flexDirection:"row",
         shadowOffset:{width:6,height:6},
@@ -86,7 +89,7 @@ export default class List extends Component{
      carrier:{
         width:20,
         height:30,
-        margin:2
+        marginRight:2
 
      }
 

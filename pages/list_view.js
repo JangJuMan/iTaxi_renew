@@ -3,24 +3,30 @@ import{
     StyleSheet,
     Text,
     View,
+    ScrollView,
 } from 'react-native';
+
+import ListEntry from './firstList';
 
 export default class List_view extends Component{
     render(){
         return(
             // 생성된 방들 표시
-            <View style={styles.container}>
-                <View style={{flexDirection: 'row'}}>
-                    <Text style={styles.date_bar}>오늘</Text>
-                    <Text style={styles.hrizontal_date_bar}></Text>
+            <ScrollView>
+                <View style={styles.container}>
+                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                        <Text style={styles.date_bar}>오늘</Text>
+                        <View style={{height: 1, borderColor: "#0b0b0b25", borderWidth: 1, flexGrow: 1,}}></View>
+                    </View>
+                    <View style={styles.item_list}>
+                        <ListEntry />
+                        <ListEntry />
+                        <ListEntry />
+                        <ListEntry />
+                        <ListEntry />
+                    </View>
                 </View>
-                <View style={styles.item_list}>
-                    <Text style={styles.item}>HI Mr.</Text>
-                    <Text style={styles.item}>HI Mr.</Text>
-                    <Text style={styles.item}>HI Mr.</Text>
-                    <Text style={styles.item}>HI Mr.</Text>
-                </View>
-            </View>
+            </ScrollView>
         );
     }
 }
@@ -48,8 +54,11 @@ const styles = StyleSheet.create({
         height: 24,
     },
     item_list:{
-        marginRight: 34,
+        marginRight: 20,
         marginLeft: 10,
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
     },
     item: {
         padding: 10,
