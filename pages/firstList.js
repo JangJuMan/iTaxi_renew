@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import {AppRegistry, Text, View,StyleSheet,Image} from 'react-native';
+import { Text, View, StyleSheet, Image } from 'react-native';
+import { vw } from 'react-native-expo-viewport-units';
 
+/**
+ * @props   time    Time to leave
+ * @props   seats   Number of current seats
+ * @props   from    
+ * @props   to      
+ * @props   carrier Number of carriers
+ */
 export default class List extends Component{
     render(){
+        const { seats, carrier } = this.props;
+
+        // const seat_img = "./seat" + seats + ".png";
+        // const carrier_img = "./carrier" + carrier + ".png";
+        const seat_img = "./site.png";
+        const carrier_img = "./carrier.png";
+
         return(
-            <View style={styles.container}>
+            <View style={[styles.container, this.props.style]}>
                 <View style={styles.time_seat_location}>
                     <Text style={styles.time}>
-                        13:00
+                        {this.props.time}
                     </Text>
                     <Image 
                         style={styles.seat}
-                        source={require('./site.png')}  />
+                        source={require(seat_img)}  />
                 </View>
 
                 <View style={styles.destination_location}>
@@ -20,17 +35,17 @@ export default class List extends Component{
                         source = {require('./len.png')} />
                     <View style={styles.destination_text_location}>
                         <Text style={styles.destination_text}>
-                            한동대학교
+                            {this.props.from}
                         </Text>
                         <Text style={styles.destination_text}>
-                            커피유야
+                            {this.props.to}
                         </Text>
                     </View>
                 </View>
 
                 <Image 
                     style={styles.carrier}
-                    source={require('./carrier.png')} />
+                    source={require(carrier_img)} />
             </View>
         )
     }
@@ -49,9 +64,9 @@ const styles=StyleSheet.create({
         shadowOpacity:0.3,
         elevation: 3,
 
-        padding: 10,
+        padding: vw(2.4),
         paddingRight: 0,
-        paddingBottom: 15,
+        paddingBottom: vw(3.6),
     },
 
         time_seat_location: {
@@ -62,24 +77,25 @@ const styles=StyleSheet.create({
 
             time: {
                 color: 'gray',
-                fontSize: 25,
+                fontSize: vw(6),
             },
 
             seat: {
-                width: 40,
-                height: 40,
-                marginTop: 10,
+                width: vw(9.6),
+                height: vw(9.6),
+                marginTop: vw(2.4),
             },
 
         destination_location: {
             flex: 3,
-            marginLeft: 20,
+            marginLeft: vw(4.8),
             justifyContent: 'center',
             flexDirection: 'row',
         },
 
             destination_image: {
-                width: 30,
+                width: vw(7.2),
+                height: vw(19.2),
             },
 
             destination_text_location: {
@@ -90,7 +106,7 @@ const styles=StyleSheet.create({
 
                 destination_text: {
                     color: 'gray',
-                    margin: 10,
+                    margin: vw(2.4),
                 },
 
         carrier: {
@@ -98,5 +114,3 @@ const styles=StyleSheet.create({
             alignSelf: 'flex-end',
         },
 });
-
-AppRegistry.registerComponent('AwesomeProject', () =>list);
