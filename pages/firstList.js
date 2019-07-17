@@ -3,95 +3,100 @@ import {AppRegistry, Text, View,StyleSheet,Image} from 'react-native';
 
 export default class List extends Component{
     render(){
-      return(
-        <View style={styles.container}>
-            <View style={styles.list}>
-                
-                <View style={{flex:1,flexDirection:"column"}}>
-                    <View style={styles.time_location}>
-                        <Text style={{color:'gray',fontSize:20}}>13:00</Text>
-
-                    </View>
-                    <View style={styles.time_location}>
-                        <Image source ={require('./site.png')} style={{width:30,height:30}}/>
-                     </View>
+        return(
+            <View style={styles.container}>
+                <View style={styles.time_seat_location}>
+                    <Text style={styles.time}>
+                        13:00
+                    </Text>
+                    <Image 
+                        style={styles.seat}
+                        source={require('./site.png')}  />
                 </View>
 
-
-                <View style={{flex:3,flexDirection:'row'}}>
-                    <View style={{flex:2,justifyContent:'center',alignItems:'flex-end',}}>
-                        <Image source ={require('./len.png')} style={{width:20,height:80}}/>
+                <View style={styles.destination_location}>
+                    <Image
+                        style={styles.destination_image}
+                        source = {require('./len.png')} />
+                    <View style={styles.destination_text_location}>
+                        <Text style={styles.destination_text}>
+                            한동대학교
+                        </Text>
+                        <Text style={styles.destination_text}>
+                            커피유야
+                        </Text>
                     </View>
-                    
-                    
-                    <View style={{flex:9,flexDirection:'column'}}>
-                        <View style={{flex:1,justifyContent:'flexStart',alignItems:'flexstart',}}>
-                            <Text style={{marginTop:6,color:'gray',paddingTop:5}}>포항역</Text>
-                        </View>
-                        <View style={{flex:1,justifyContent:'flex-end',flexDirection:'row'}}>
-                            <View style={{flex:1}}>
-                                    <Text style={{marginTop:6,color:'gray',paddingBottom:10,}}>한동대학교</Text>
-                            </View>
-                            <View style={{flex:1,flexDirection:'row'}}>
-                                    <Image source ={require('./carrier.png')} style={styles.carrier}/>
-                                    <Image source ={require('./carrier.png')} style={styles.carrier}/>
-                                    <Image source ={require('./carrier.png')} style={styles.carrier}/>
-                                    <Image source ={require('./carrier.png')} style={styles.carrier}/>
-                            </View>
-                           
-
-                        </View>
-                    
-                    
-                    </View>
-
-
                 </View>
 
-
-                    
-            
+                <Image 
+                    style={styles.carrier}
+                    source={require('./carrier.png')} />
             </View>
-        </View>
-      )
-  
-  
+        )
     }
-  }
+}
 
-  const styles=StyleSheet.create({
-    container:{
-        flex:1,
-        flexDirection:'column'
+const styles=StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+
+        backgroundColor: 'white',
+        shadowOffset: {
+            width: 0,
+            height: 2
+        },
+        shadowColor:'gray',
+        shadowOpacity:0.3,
+        elevation: 3,
+
+        padding: 10,
+        paddingRight: 0,
+        paddingBottom: 15,
     },
-    list:{
-        padding:20,
-        height:130,
-       
-        backgroundColor:'white',
-       
-        flexDirection:"row",
-        shadowOffset:{width:6,height:6},
-        shadowColor:'black',
-        shadowOpacity:0.5,      
-      },
 
-     time_location:{
-        flex:1 , 
-        flexDirection: 'row', 
-        justifyContent:'flex-end',
-        alignItems:'center'
+        time_seat_location: {
+            flex: 1,
+            flexDirection: 'column',
+            alignItems: 'flex-end',
+        },
 
-    },
-     carrier:{
-        width:20,
-        height:30,
-        margin:2
+            time: {
+                color: 'gray',
+                fontSize: 25,
+            },
 
-     }
+            seat: {
+                width: 40,
+                height: 40,
+                marginTop: 10,
+            },
 
-    })
-  
-  
-  
-  AppRegistry.registerComponent('AwesomeProject', () =>list);
+        destination_location: {
+            flex: 3,
+            marginLeft: 20,
+            justifyContent: 'center',
+            flexDirection: 'row',
+        },
+
+            destination_image: {
+                width: 30,
+            },
+
+            destination_text_location: {
+                flex: 1,
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+            },
+
+                destination_text: {
+                    color: 'gray',
+                    margin: 10,
+                },
+
+        carrier: {
+            flexGrow: 1,
+            alignSelf: 'flex-end',
+        },
+});
+
+AppRegistry.registerComponent('AwesomeProject', () =>list);
