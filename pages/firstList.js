@@ -77,7 +77,7 @@ const styles=StyleSheet.create({
 
             time: {
                 color: 'gray',
-                fontSize: vw(6),
+                fontSize: vw(5),
             },
 
             seat: {

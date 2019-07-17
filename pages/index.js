@@ -4,6 +4,7 @@ import { createBottomTabNavigator, createAppContainer, createStackNavigator } fr
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ListView from './list_view';
+import RiderLog from './rider_log';
 
 
 class TaxiList extends Component {
@@ -43,14 +44,14 @@ const CarpoolTab = createStackNavigator({
 class RideHistory extends Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Ride History Screen</Text>
+      <View style={{ flex: 1,}}>
+        <RiderLog />
       </View>
     )
   }
 }
 const RideHistoryTab = createStackNavigator({
-    Home: CarpoolList,
+    Home: RideHistory,
   }, {
   defaultNavigationOptions: {
     title: "탑승 내역",

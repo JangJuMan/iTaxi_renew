@@ -11,22 +11,39 @@ import ListEntry from './firstList';
 export default class List_view extends Component{
     render(){
         return(
-            // 생성된 방들 표시
-            <ScrollView>
-                <View style={styles.container}>
-                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={styles.date_bar}>오늘</Text>
-                        <View style={{height: 1, borderColor: "#0b0b0b25", borderWidth: 1, flexGrow: 1,}}></View>
-                    </View>
-                    <View style={styles.item_list}>
-                        <ListEntry />
-                        <ListEntry />
-                        <ListEntry />
-                        <ListEntry />
-                        <ListEntry />
+            <View style={{flex:1, flexDirection: 'column'}}>
+                <View style={{flex:1}}>
+                    <View style={{flexGrow: 1, flex: 1}}>
+                        <View style={{flex: 1,paddingTop: 15,marginLeft : 24,}}>
+                            <View style={styles.item_list}>
+                                <Text>Something in here</Text>
+                            </View>
+                        </View>
                     </View>
                 </View>
-            </ScrollView>
+                <View style={styles.horizontal_bar} />
+                {/* 차량정보 나타내는 스크롤 뷰 */}
+                <View style={{flex:3}}>
+                    <ScrollView style={{flexGrow: 1, flex: 3}}>
+                        <View style={{flex: 3,paddingTop: 15,marginLeft : 24,}}>
+                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                <Text style={styles.date_bar}>OO월 OO일 O요일</Text>
+                                <View style={styles.horizontal_date_bar}></View>
+                            </View>
+                            <View style={styles.item_list}>
+                                <ListEntry style={{marginBottom:10}}time="13:20" from="한동대학교" to="포항역"/>
+                                <ListEntry style={{marginBottom:10}}time="13:20" from="한동대학교" to="포항역"/>
+                                <ListEntry style={{marginBottom:10}}time="13:20" from="한동대학교" to="포항역"/>
+                                <ListEntry style={{marginBottom:10}}time="13:20" from="한동대학교" to="포항역"/>
+                                <ListEntry style={{marginBottom:10}}time="13:20" from="한동대학교" to="포항역"/>
+                                <ListEntry style={{marginBottom:10}}time="13:20" from="한동대학교" to="포항역"/>
+                                <ListEntry style={{marginBottom:10}}time="13:20" from="한동대학교" to="포항역"/>
+                                <ListEntry style={{marginBottom:10}}time="13:20" from="한동대학교" to="포항역"/>
+                            </View>
+                        </View>
+                    </ScrollView>
+                </View>
+            </View>
         );
     }
 }
@@ -46,23 +63,27 @@ const styles = StyleSheet.create({
         fontSize: 18,
         padding: 10,
     },
-    hrizontal_date_bar:{
-        flexGrow: 1,
+    horizontal_bar:{
         borderBottomWidth: 1.0, 
-        borderBottomColor: '#bbb',
+        borderBottomColor: '#0b0b0b25',
         padding: 10,
         height: 24,
     },
+    horizontal_date_bar:{
+        borderColor: "#0b0b0b25", 
+        borderWidth: 1, 
+        flexGrow: 1,
+    },
+    horizontal_date_bar:{
+        borderBottomWidth: 1.0, 
+        borderBottomColor: '#0b0b0b25',
+        flexGrow: 1,
+    },
     item_list:{
-        marginRight: 20,
+        marginRight: 30,
         marginLeft: 10,
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-start',
-    },
-    item: {
-        padding: 10,
-        fontSize: 18,
-        height: 44,
     },
 })
