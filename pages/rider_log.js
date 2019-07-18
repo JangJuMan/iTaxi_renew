@@ -117,9 +117,4 @@ const styles = StyleSheet.create({
         borderBottomColor: '#0b0b0b25',
         flexGrow: 1,
     },
-    horizontal_past_date_bar:{
-        borderBottomWidth: 1.0, 
-        borderBottomColor: '#0b0b0b25',
-        flexGrow: 1,
-    },
 })
