@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import ListView from './list_view';
 import RiderLog from './rider_log';
+import Setting from './settingscreen';
 
 
 class TaxiList extends Component {
@@ -44,7 +45,7 @@ const CarpoolTab = createStackNavigator({
 class RideHistory extends Component {
   render() {
     return (
-      <View style={{ flex: 1,}}>
+      <View style={{ flex: 1,justifyContent:'center',alignContent:'center'}}>
         <RiderLog />
       </View>
     )
@@ -61,8 +62,8 @@ const RideHistoryTab = createStackNavigator({
 class MyPage extends Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>MyPage Screen</Text>
+      <View style={{ flex: 1 }}>
+        <Setting/>
       </View>
     )
   }

@@ -32,7 +32,9 @@ export default class Calender extends Component{
                     <Text style={{color:'#4dabf7',fontSize:13, }}>오늘</Text>
                 </View>
                 <View style={{flex:4,flexDirection:'row',}}>
-                    <View style={{flex:1,}}></View>
+                    <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                        <Text style={{color:'gray' }}>날짜</Text>
+                    </View>
                     <View style={{flex:5,}}>
                         <Swiper style={styles.wrapper} >
                             <View style={styles.slide}>
