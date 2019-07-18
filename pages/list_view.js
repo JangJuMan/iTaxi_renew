@@ -10,20 +10,17 @@ import{
 } from 'react-native';
 
 import ListEntry from './firstList';
+import Calendar from './calender';
 
 export default class List_view extends Component{
     render(){
         return(
             <View style={{flex:1}}>
-                {/* 조회조건 */}
-                <Text style={styles.top_title}>출발 -> 도착</Text>
-                <View style={styles.top_highlighted_log}>
-                    <Text>Something in here</Text>
-                </View>
                 {/* 중단 수평선 */}
-                <View style={styles.horizontal_divider}>
-                    
+                <View style={[styles.horizontal_divider]}>
+                    <Calendar />
                 </View>
+
                 {/* 조회된 기록들 */}
                 <ScrollView>
                     <View style={styles.log_container}>
@@ -73,7 +70,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1.0, 
         borderBottomColor: '#0b0b0b25', 
         padding: 5,
-        marginTop: 5,
+        // marginTop: 5,
     },
     past_log_title:{
         fontSize: 16, 

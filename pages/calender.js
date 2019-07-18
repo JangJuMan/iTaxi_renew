@@ -1,22 +1,10 @@
 import React, { Component } from 'react';
-import {AppRegistry,StyleSheet,Image,Modal,Text,TouchableHighlight,View,Alert} from 'react-native';
+import {StyleSheet,Image,Modal,Text,TouchableHighlight,View,Alert, TouchableOpacity} from 'react-native';
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import {LocaleConfig} from 'react-native-calendars';
 import Swiper from 'react-native-swiper'
-
-// LocaleConfig.locales['fr'] = {
-//     monthNames: ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
-//     monthNamesShort: ['Janv.','Févr.','Mars','Avril','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Déc.'],
-//     dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
-//     dayNamesShort: ['Dim.','Lun.','Mar.','Mer.','Jeu.','Ven.','Sam.'],
-//     today: 'Aujourd\'hui'
-//   };
-//   LocaleConfig.defaultLocale = 'fr';
 
 
 export default class Calender extends Component{
-    
-    
     state={
         date: String("0" + new Date().getDate()).slice(-2),
         tomorrow: String("0" + (new Date().getDate()+1)).slice(-2),
@@ -27,15 +15,13 @@ export default class Calender extends Component{
         modalVisible: false,
         minmaxmonth:String("0" + (new Date().getMonth() + 3)).slice(-2)
     }
-       
         setModalVisible(visible) {
             this.setState({modalVisible: visible});
-          }
+        }
     
     render(){
-      return(
-        <View style={styles.container}>
-            <View style={{height:40}}></View>
+        return(
+        <View style={[styles.container, this.props.style]}>
             <View style={styles.calender}>
                 <View style={{flex:3.5,flexDirection:'row',justifyContent:'center',alignItems:'center',}}>
                     <Image source ={require('./locatebutton.png')} style={{width:100,height:30,margin:20}}/>
@@ -49,8 +35,8 @@ export default class Calender extends Component{
                     <View style={{flex:1,}}></View>
                     <View style={{flex:5,}}>
                         <Swiper style={styles.wrapper} >
-                             <View style={styles.slide}>
-                                 <Text style={styles.text}>{this.state.month}-{this.state.date}</Text>
+                            <View style={styles.slide}>
+                                <Text style={styles.text}>{this.state.month}-{this.state.date}</Text>
                             </View>
                             <View style={styles.slide}>
                                 <Text style={styles.text}>{this.state.month}-{this.state.tomorrow}</Text>
@@ -109,56 +95,40 @@ export default class Calender extends Component{
                                         // Handler which gets executed when press arrow icon left. It receive a callback can go next month
                                         onPressArrowRight={addMonth => addMonth()}
                                     />
-
-
-
-                                    <TouchableHighlight
+                                    <TouchableOpacity
                                         onPress={() => {
                                         this.setModalVisible(!this.state.modalVisible);
                                         }}>
                                         <Text>Hide Modal</Text>
-                                    </TouchableHighlight>
+                                    </TouchableOpacity>
                                 </View>
                             </View>
-                        </Modal>
-
-                        
+                        </Modal>                        
                     </View>
                 </View>
             </View>
         </View>
-      )
-  
-  
+        )
     }
-  }
+}
 
-   
-   
-
-  const styles=StyleSheet.create({
+const styles=StyleSheet.create({
     container:{
         flex:1,
         flexDirection:'column',   
     },
     calender:{
         height:110,
-        borderWidth:0.5
     },
     slide: {
         flex: 1,
         justifyContent: 'flex-end',
         alignItems: 'center',
         backgroundColor: 'white'
-      },
-      
-      text: {
+    },
+    text: {
         color: '#4dabf7',
         fontSize: 14,
         fontWeight: 'bold'
-      }
-  
-    
-    
-
-    })
+    }
+})
