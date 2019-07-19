@@ -5,8 +5,8 @@ import { vw } from 'react-native-expo-viewport-units';
 /**
  * @props   time    Time to leave
  * @props   seats   Number of current seats
- * @props   from    
- * @props   to      
+ * @props   from
+ * @props   to
  * @props   carrier Number of carriers
  */
 export default class List extends Component{
