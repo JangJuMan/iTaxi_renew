@@ -4,11 +4,10 @@ module.exports = function(api) {
     presets: ['babel-preset-expo'],
     plugins: [
       [
-        "@babel/plugin-proposal-decorators",
-        {
+        "@babel/plugin-proposal-decorators", {
           "legacy": true
         }
-      ]
+      ],
     ]
   };
 };
