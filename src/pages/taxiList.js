@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView } from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
@@ -18,20 +18,33 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     <View style={styles.log_contents}>
-                        <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        <TouchableOpacity onPress={() => console.log(1)}>
+                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        </TouchableOpacity>
                     </View>
                     <View style={styles.log_container}>
                         <Text style={styles.date_of_logs}>OO월 OO일 O요일</Text>
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     <View style={styles.log_contents}>
-                        <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        <TouchableOpacity>
+                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
+                        </TouchableOpacity>
                     </View>
                 </ScrollView>
             </View>
