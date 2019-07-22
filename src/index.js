@@ -3,9 +3,11 @@ import { View, Text } from 'react-native';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import ListView from './list_view';
-import RiderLog from './rider_log';
-import Setting from './settingscreen';
+
+import ListView from './pages/taxiList';
+import RiderLog from './pages/rideLog';
+import Setting from './pages/settingscreen';
+
 
 
 class TaxiList extends Component {

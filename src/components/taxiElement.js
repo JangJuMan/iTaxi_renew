@@ -1,22 +1,21 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
+import { carrierImgs, seatImgs, fromToImg } from '../variable/assets';
 
 /**
  * @props   time    Time to leave
  * @props   seats   Number of current seats
- * @props   from    
- * @props   to      
+ * @props   from    Departure
+ * @props   to      Destination
  * @props   carrier Number of carriers
  */
-export default class List extends Component{
+export default class TaxiElement extends Component{
     render(){
-        const { seats, carrier } = this.props;
-
-        // const seat_img = "./seat" + seats + ".png";
-        // const carrier_img = "./carrier" + carrier + ".png";
-        const seat_img = "./site.png";
-        const carrier_img = "./carrier.png";
+        const { seat, carrier } = this.props;
+        // const seat_img = "/assets/seat" + seats + ".png";
+        const seat_img = (seat !== undefined) ? seatImgs[seat] : undefined;
+        const carrier_img = (carrier !== undefined) ? carrierImgs[carrier] : undefined;
 
         return(
             <View style={[styles.container, this.props.style]}>
@@ -26,13 +25,13 @@ export default class List extends Component{
                     </Text>
                     <Image 
                         style={styles.seat}
-                        source={require(seat_img)}  />
+                        source={seat_img}  />
                 </View>
 
                 <View style={styles.destination_location}>
                     <Image
                         style={styles.destination_image}
-                        source = {require('./len.png')} />
+                        source={fromToImg} />
                     <View style={styles.destination_text_location}>
                         <Text style={styles.destination_text}>
                             {this.props.from}
@@ -45,7 +44,7 @@ export default class List extends Component{
 
                 <Image 
                     style={styles.carrier}
-                    source={require(carrier_img)} />
+                    source={carrier_img} />
             </View>
         )
     }
