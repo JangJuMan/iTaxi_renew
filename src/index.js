@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import ListView from './pages/taxiList';
 import RiderLog from './pages/rideLog';
 import Setting from './pages/settingscreen';
-
+import Carpool from './pages/carpoolList'
 
 
 class TaxiList extends Component {
@@ -30,8 +30,8 @@ const TaxiTab = createStackNavigator({
 class CarpoolList extends Component {
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Carpool List Screen</Text>
+      <View style={{ flex: 1,}}>
+        <Carpool />
       </View>
     )
   }
