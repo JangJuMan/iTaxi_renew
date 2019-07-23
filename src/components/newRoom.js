@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
-import {seatImgs} from '../variable/assets';
+import {plusImg} from '../variable/assets';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 export default class NewRoom extends Component{
     render(){
-        const seat_img = seatImgs[0];
+        const plus_img = plusImg;
         return(
-            <View style={[styles.container, this.props.style]}>
-                <Image
-                    source={seat_img} />
+            <View style={[styles.container]}>
+                <Icon name="ios-add" size={30} color="#4dabf7"/>
+
                     <Text style={styles.font_style}>새로 모집하기</Text>
             </View>
         );
@@ -19,6 +21,7 @@ export default class NewRoom extends Component{
 const styles=StyleSheet.create({
     container: {
         alignItems:'center',
+        justifyContent:'center',
         backgroundColor: 'white',
         shadowOffset: {
             width: 0,
@@ -27,11 +30,8 @@ const styles=StyleSheet.create({
         shadowColor:'gray',
         shadowOpacity:0.3,
         elevation: 3,
-
         padding: vw(2.4),
-        paddingRight: 0,
         paddingBottom: vw(3.6),
-
         borderRadius: 5,
         padding:30,
     },
