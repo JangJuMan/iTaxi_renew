@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native'
 import { observer, inject, asyncAction, observable } from 'mobx-react';
-import axios from 'axios';
 
 @inject('userStore')
 @observer
