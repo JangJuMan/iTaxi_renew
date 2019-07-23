@@ -8,13 +8,15 @@ import ListView from './pages/taxiList';
 import RiderLog from './pages/rideLog';
 import Setting from './pages/settingscreen';
 import Carpool from './pages/carpoolList'
+import ChatRoom from './pages/chatRoom';
 
 
 class TaxiList extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <ListView />
+        {/* <ListView /> */}
+        <ChatRoom />
       </View>
     );
   }
