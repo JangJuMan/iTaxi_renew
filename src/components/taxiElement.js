@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
-import { carrierImgs, seatImgs, fromToImg } from '../variable/assets';
+import { carrierImgs, seatImg, fromtoImg, carrImg } from '../variable/assets';
 
 /**
  * @props   time    Time to leave
@@ -14,8 +14,7 @@ export default class TaxiElement extends Component{
     render(){
         const { seat, carrier } = this.props;
         // const seat_img = "/assets/seat" + seats + ".png";
-        const seat_img = (seat !== undefined) ? seatImgs[seat] : undefined;
-        const carrier_img = (carrier !== undefined) ? carrierImgs[carrier] : undefined;
+        //const carrier_img = (carrier !== undefined) ? carrierImgs[carrier] : undefined;
 
         return(
             <View style={[styles.container, this.props.style]}>
@@ -25,13 +24,13 @@ export default class TaxiElement extends Component{
                     </Text>
                     <Image 
                         style={styles.seat}
-                        source={seat_img}  />
+                        source={seatImg}  />
                 </View>
 
                 <View style={styles.destination_location}>
                     <Image
                         style={styles.destination_image}
-                        source={fromToImg} />
+                        source={fromtoImg} />
                     <View style={styles.destination_text_location}>
                         <Text style={styles.destination_text}>
                             {this.props.from}
@@ -44,7 +43,7 @@ export default class TaxiElement extends Component{
 
                 <Image 
                     style={styles.carrier}
-                    source={carrier_img} />
+                    source={carrImg} />
             </View>
         )
     }
@@ -111,5 +110,7 @@ const styles=StyleSheet.create({
         carrier: {
             flexGrow: 1,
             alignSelf: 'flex-end',
+            width: 30,
+            height:60,
         },
 });
