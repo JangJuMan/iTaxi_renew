@@ -13,8 +13,14 @@ export default class ChatRoom extends Component{
 
     render(){
         return(
-            <View>
-                <ChatRoomInfo/>
+            <View style={{flex:1 }}>
+                <View style={{flex:1}}>
+                    <ChatRoomInfo style={{}}/>    
+                </View>
+                <View style={{flex:3}}>
+                    <Chatting style={{}}/>
+                </View>
+                
             </View>
         );
     }
