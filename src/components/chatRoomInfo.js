@@ -11,7 +11,7 @@ export default class ChatRoom extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <View style={{height:175,borderWidth:0.5}}>
+                <View style={{flex:1,borderWidth:0.5}}>
                     <View style={{flex:5,flexDirection:'row',borderWidth:0.5}}>
                         <View style={{flex:4,borderWidth:0.5}}>
                             <View style={{flex:1,justifyContent:'center',alignItems:'center',borderWidth:0.5}}>
@@ -39,19 +39,19 @@ export default class ChatRoom extends Component{
                             <TouchableOpacity style = {styles.button}>
                                 
                                 <Button
-                                     title="Learn More"
-                                     color="#4D8ECF"
-                                     onPress={userinfo()}
+                                    title="Learn More"
+                                    color="#4D8ECF"
+                                    onPress={userinfo()}
                                 />
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.button}>
-                                <Text style={{color:'#4D8ECF',margin:5}}>방나가기</Text>
+                                <Text style={{color:'#4D8ECF',margin:5}}>팀원2</Text>
                             </TouchableOpacity>
                             <TouchableOpacity style = {styles.button}>
-                                <Text style={{color:'#4D8ECF',margin:5}}>방나가기</Text>
+                                <Text style={{color:'#4D8ECF',margin:5}}>팀원3</Text>
                             </TouchableOpacity>
                             
-                          
+                        
                         </ScrollView>
                     </View>
                 </View>
