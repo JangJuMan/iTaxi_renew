@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import { Calendar } from 'react-native-calendars';
+import {days} from '../variable/date';
 
 export default class MyCalendar extends Component {
-  state={
-    date: String("0" + new Date().getDate()).slice(-2),
-    tomorrow: String("0" + (new Date().getDate()+1)).slice(-2),
-    thedayafter: String("0" + (new Date().getDate()+2)).slice(-2),
-
-    month : String("0" + (new Date().getMonth() + 1)).slice(-2),
-    year : new Date().getFullYear(),
-    minmaxmonth:String("0" + (new Date().getMonth() + 3)).slice(-2)
-  }
-
   render() {
     return (
       <Calendar
         // Initially visible month. Default = Date()
-        current={`${this.state.year}-${this.state.month}-${this.state.date}`}
+        current={`${days.year}-${days.month}-${days.date}`}
         // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-        minDate={`${this.state.year}-${this.state.minmaxmonth}`-10}
+        minDate={`${days.year}-${days.minmaxmonth}`-10}
         // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-        maxDate={`${this.state.year}-${this.state.minmaxmonth}`-30}
+        maxDate={`${days.year}-${days.minmaxmonth}`-30}
         // Handler which gets executed on day press. Default = undefined
         onDayPress={(day) => {console.log('selected day', day)}}
         // Handler which gets executed on day long press. Default = undefined

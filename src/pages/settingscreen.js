@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image } from 'react-native';
 import SearchMenu from '../components/searchMenu';
-import {seatImgs} from '../variable/assets';
-
+import {seatImg} from '../variable/assets';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default class setting extends Component{
     render(){
-        const seat1 = seatImgs[0];
-        const seat2 = seatImgs[1];
-        const seat3 = seatImgs[2];
+        const seat_img=seatImg;
         return(
             
             <View style={styles.list}>
@@ -31,10 +29,10 @@ export default class setting extends Component{
                     <View style={styles.flexone}>
                         <Text style={{color:'gray' }}>인원</Text>
                     </View>
-                    <View style={{flex:5,justifyContent:'center',alignItems:'center',flexDirection:'row',}}>
-                        <Image source ={seat1} style={styles.site}/>
-                        <Image source ={seat2} style={styles.site}/>
-                        <Image source ={seat3} style={styles.site}/>
+                    <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
+                        <Icon name="numeric-1-circle-outline" size={30} color="#4dabf7"/>
+                        <Icon name="numeric-2-circle-outline" size={30} color="#4dabf7"/>
+                        <Icon name="numeric-3-circle-outline" size={30} color="#4dabf7"/>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
