@@ -14,7 +14,7 @@ export default class ChatRoom extends Component{
     render(){
         return(
             <View>
-                
+                <ChatRoomInfo/>
             </View>
         );
     }
