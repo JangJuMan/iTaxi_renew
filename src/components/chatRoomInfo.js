@@ -5,10 +5,7 @@ export default class ChatRoom extends Component{
 
     render(){
         return(
-            <View style={{justifyContent:'center'}}>
-                <View style={{ }}>
-                    <Text style={{borderWidth:1, }}>[this is chat room infomation]</Text>
-                </View>
+            <View style={{justifyContent:'center', flex:1, backgroundColor:'gray'}}>
             </View>
             
         );
