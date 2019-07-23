@@ -18,6 +18,7 @@
     "react-dom": "^16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
     "react-native-calendars": "^1.198.0",
+    "react-native-carousel-control": "^2.0.1",
     "react-native-expo-viewport-units": "0.0.8",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-swiper": "^1.5.14",
