@@ -20,7 +20,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/taxi/<taxi_date>");
+            let result = yield axios.get("http://203.252.99.145:8080" + "/taxi/190724");
             this.taxiList = result.data;
             console.log(this.taxiList);
             this.state = "done";
@@ -38,7 +38,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/carpoollist/<carpool_date>");
+            let result = yield axios.get("http://203.252.99.145:8080" + "/carpoollist/190724");
             this.carpoolList = result.data;
             console.log(this.carpoolList);
             this.state = "done";
@@ -55,7 +55,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/taxi/<taxi_id>");
+            let result = yield axios.get("http://203.252.99.145:8080" + "/taxi/123");
             this.taxiId = result.data;
             console.log(this.taxiId);
             this.state = "done";
@@ -72,7 +72,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/carpool/<carpool_id>");
+            let result = yield axios.get("http://203.252.99.145:8080" + "/carpool/123");
             this.carpoolId = result.data;
             console.log(this.carpoolId);
             this.state = "done";
@@ -89,7 +89,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/user/<user_id>");
+            let result = yield axios.get("http://203.252.99.145:8080" + "/user/123");
             this.userId = result.data;
             console.log(this.userId);
             this.state = "done";
@@ -106,7 +106,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/log/<id>/<month>");
+            let result = yield axios.get("http://203.252.99.145:8080" + "/log/123/7");
             this.log = result.data;
             console.log(this.log);
             this.state = "done";
