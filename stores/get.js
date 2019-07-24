@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native'
-import { observer, inject, asyncAction, observable } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 
 @inject('userStore')
 @observer

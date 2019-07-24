@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MainPage from './stores/get';
+import MainPage from './src/index';
 import { Provider } from 'mobx-react';
 import UserStore from './stores/user';
 
