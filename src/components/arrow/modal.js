@@ -30,7 +30,7 @@ export default class Search extends Component {
                     <View style={styles.choose}>
 
                         <First />
-                      
+                    
                         
                         <Third />
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>

@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
 
 import ListView from './pages/taxiList';
 import RiderLog from './pages/rideLog';
 import Setting from './pages/settingscreen';
 import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
-import GoToRoom from './pages/going _into_room';
-
+import EnteringRoom from './pages/going _into_room';
 
 class TaxiList extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
         <ListView />
-        {/* <ChatRoom /> */}
       </View>
     );
   }
 }
 
 const TaxiTab = createStackNavigator({
-    Home: TaxiList,
-    RoomDoor: GoToRoom,
+    Home: ListView,
+    RoomDoor: EnteringRoom,
+    TaxiRoom: ChatRoom,
   }, {
   defaultNavigationOptions: {
     title: "조회 / 모집",
@@ -140,5 +138,6 @@ const TabNavigator = createBottomTabNavigator({
   },
 });
 
-//const taxiTab = 
+// const TaxiContainer = createAppContainer(TaxiTab);
+
 export default createAppContainer(TabNavigator);

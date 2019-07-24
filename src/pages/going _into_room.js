@@ -4,7 +4,7 @@ import TaxiElement from '../components/taxiElement';
 import {seatImg} from '../variable/assets';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import taxiList from '../pages/taxiList';
+// import taxiList from '../pages/taxiList';
 
 
 export default class intoRoom extends Component{

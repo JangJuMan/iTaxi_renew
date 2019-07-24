@@ -7,6 +7,10 @@ import ListEntry from '../components/taxiElement';
 import intoRoom from './going _into_room';
 
 export default class TaxiList extends Component{
+    constructor(props) {
+        super(props);
+        console.log(this.props);
+    }
     
     render(){
         return(
@@ -33,7 +37,7 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     <View style={styles.log_contents}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('TaxiRoom')}>
                             <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
                         </TouchableOpacity>
                         <TouchableOpacity>
