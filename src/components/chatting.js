@@ -13,7 +13,7 @@ export default class ChatRoom extends Component{
         return(
             //TODO: text input 입력시 화면 가리는 문제 해결
             // <View style={styles.container}>
-            <KeyboardAvoidingView style={styles.container} behavior='height' >
+            <KeyboardAvoidingView style={styles.container} behavior='padding' >
                 <View style={{backgroundColor:'#EEEEEE', flex:10,}}>
                 {/* <KeyboardAvoidingView style={styles.chatting_container} behavior='padding'> */}
 

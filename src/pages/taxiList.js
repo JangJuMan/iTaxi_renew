@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
+import intoRoom from './going _into_room';
 
 export default class TaxiList extends Component{
+    
     render(){
         return(
             <View style={styles.conatiner}>
@@ -18,7 +21,7 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     <View style={styles.log_contents}>
-                        <TouchableOpacity onPress={() => console.log(1)}>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
                             <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
                         </TouchableOpacity>
                         <TouchableOpacity>
@@ -87,3 +90,7 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
 })
+
+
+
+

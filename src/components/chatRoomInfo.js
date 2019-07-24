@@ -11,32 +11,32 @@ export default class ChatRoom extends Component{
     render(){
         return(
             <View style={styles.container}>
-                <View style={{flex:1,borderWidth:0.5}}>
-                    <View style={{flex:5,flexDirection:'row',borderWidth:0.5}}>
-                        <View style={{flex:4,borderWidth:0.5}}>
-                            <View style={{flex:1,justifyContent:'center',alignItems:'center',borderWidth:0.5}}>
+                <View style={{flex:1,}}>
+                    <View style={styles.taxiinfo_twoButton}>
+                        <View style={styles.taxiinfo}>
+                            <View style={styles.day}>
                                 <Text style={{ color: 'gray'}}>5월 30일</Text>
                             </View>
-                            <View style={{flex:4, borderWidth:0.5}}>
+                            <View style={styles.taxi_element}>
                                 <TaxiElement time="13:20" from="한동대학교" to="포항역"/>
                             </View>
                         </View>
-                        <View style={{flex:1,borderWidth:0.5}}>
-                            <View style={{flex:1,borderWidth:0.5}}>
+                        <View style={styles.twoButton}>
+                            <View style={styles.roomExit_button}>
                                 <TouchableOpacity style = {styles.button}>
                                     <Text style={{color:'#4D8ECF'}}>방나가기</Text>
                                 </TouchableOpacity>     
                             </View>
-                            <View style={{flex:1,borderWidth:0.5}}>
+                            <View style={styles.charge_button}>
                                 <TouchableOpacity style = {styles.button}>
                                     <Text style={{color:'#4D8ECF'}}>정산하기</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
                     </View>
-                    <View style={{flex:2,borderWidth:0.5,flexDirection:'row'}}>
+                    <View style={styles.roommates}>
                         <ScrollView horizontal={true}>
-                            <TouchableOpacity style = {styles.button}>
+                            <TouchableOpacity style = {styles.mates}>
                                 
                                 <Button
                                     title="Learn More"
@@ -44,10 +44,10 @@ export default class ChatRoom extends Component{
                                     onPress={userinfo()}
                                 />
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.button}>
+                            <TouchableOpacity style = {styles.mates}>
                                 <Text style={{color:'#4D8ECF',margin:5}}>팀원2</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = {styles.button}>
+                            <TouchableOpacity style = {styles.mates}>
                                 <Text style={{color:'#4D8ECF',margin:5}}>팀원3</Text>
                             </TouchableOpacity>
                             
@@ -66,22 +66,45 @@ const styles=StyleSheet.create({
         flex:1,
         flexDirection:'column', 
     },
-    button: {
-        fontSize:10,
-        justifyContent:'center',
-        alignItems:'center',
-        flex:1,
+    
+    taxiinfo_twoButton:{
+        flex:5,
+        flexDirection:'row',
+    },
+        taxiinfo:{
+            flex:4,
+        },
+            day:{
+                flex:1,
+                justifyContent:'center',
+                alignItems:'center',
+            },
+            taxi_element:{
+                flex:4, 
+            },
+        twoButton:{
+            flex:1,
+        },
+            roomExit_button:{
+                flex:1,
+                justifyContent:'center',
+                alignItems:'center',
+            },
+            charge_button:{
+                flex:1,
+                justifyContent:'center',
+                alignItems:'center',
+            },
+    roommates:{
+        flex:2,
         flexDirection:'row'
     },
-    slide: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        backgroundColor: 'white',
-    },
-        text: {
-            color: '#4dabf7',
-            fontSize: 14,
-            fontWeight: 'bold'
+        mates: {
+            fontSize:10,
+            justifyContent:'center',
+            alignItems:'center',
+            flex:1,
+            flexDirection:'row'
         },
+    
 })

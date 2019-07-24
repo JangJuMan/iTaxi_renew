@@ -40,13 +40,13 @@ export default class SearchMenu extends Component {
                         {/* 선택한 Date에 따라 유동적으로 변경될 수 있도록 변경 필요 */}
                         <Swiper>    
                             <View style={styles.slide}>
-                                <Text style={styles.text}>오늘{'\n'}{days.month}-{days.date}</Text>
+                                <Text style={styles.text}>   오늘{'\n'}{days.month}-{days.date}</Text>
                             </View>
                             <View style={styles.slide}>
-                                <Text style={styles.text}>내일{'\n'}{days.month}-{days.tomorrow}</Text>
+                                <Text style={styles.text}>   내일{'\n'}{days.month}-{days.tomorrow}</Text>
                             </View>
                             <View style={styles.slide}>
-                                <Text style={styles.text}>모레{'\n'}{days.month}-{days.thedayafter}</Text>
+                                <Text style={styles.text}>   모레{'\n'}{days.month}-{days.thedayafter}</Text>
                             </View>
                         </Swiper>
                     </View>

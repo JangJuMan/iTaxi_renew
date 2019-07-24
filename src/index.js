@@ -9,20 +9,23 @@ import RiderLog from './pages/rideLog';
 import Setting from './pages/settingscreen';
 import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
+import GoToRoom from './pages/going _into_room';
 
 
 class TaxiList extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        {/* <ListView /> */}
-        <ChatRoom />
+        <ListView />
+        {/* <ChatRoom /> */}
       </View>
     );
   }
 }
+
 const TaxiTab = createStackNavigator({
     Home: TaxiList,
+    RoomDoor: GoToRoom,
   }, {
   defaultNavigationOptions: {
     title: "조회 / 모집",
@@ -104,6 +107,7 @@ const TabNavigator = createBottomTabNavigator({
     navigationOptions: {
       title: "설정",
     },
+
   },
 }, {
   defaultNavigationOptions: ({ navigation }) => ({
@@ -136,4 +140,5 @@ const TabNavigator = createBottomTabNavigator({
   },
 });
 
+//const taxiTab = 
 export default createAppContainer(TabNavigator);

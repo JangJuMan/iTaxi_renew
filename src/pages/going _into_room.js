@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image } from 'react-native';
-import SearchMenu from '../components/searchMenu';
+import TaxiElement from '../components/taxiElement';
 import {seatImg} from '../variable/assets';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import taxiList from '../pages/taxiList';
 
-export default class setting extends Component{
+
+export default class intoRoom extends Component{
     render(){
         const seat_img=seatImg;
         return(
             
             <View style={styles.list}>
                 <View style={styles.top}>
-                    <Text style={{color:'gray',fontSize:15 }}>모집</Text>
+                    <Text style={{color:'gray',fontSize:15 }}>방들어가기</Text>
                 </View>
                 <View style={styles.calendar}>
-                    <SearchMenu/>
+                    <TaxiElement time="13:20" from="한동대학교" to="포항역"/>
                 </View>
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
@@ -22,17 +25,6 @@ export default class setting extends Component{
                     </View>
                     <View style={{flex:5,justifyContent:'center',alignItems:'center',}}>
                         <Text style={{color:'#4dabf7',fontSize:25,}}>16:25</Text>
-                    </View>
-                    <View style={{flex:1,}}></View>
-                </View>
-                <View style={styles.time_person_bag}>
-                    <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>추가인원</Text>
-                    </View>
-                    <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
-                        <Icon name="numeric-1-circle-outline" size={30} color="#4dabf7"/>
-                        <Icon name="numeric-2-circle-outline" size={30} color="#4dabf7"/>
-                        <Icon name="numeric-3-circle-outline" size={30} color="#4dabf7"/>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
@@ -48,7 +40,7 @@ export default class setting extends Component{
                     <View style={{flex:1,}}></View>
                 </View>
                 <View style={styles.button}>
-                    <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
+                    <Text style={{color:'#4dabf7',fontSize:17 }}>확인</Text>
                 </View>
             </View>
         )
@@ -59,7 +51,7 @@ export default class setting extends Component{
   
   const styles=StyleSheet.create({
     list:{
-        height:490,
+        height:400,
         backgroundColor:'white',
         width:300,
         margin:20,
@@ -98,3 +90,6 @@ export default class setting extends Component{
         alignItems:'center'
       }
     })
+
+
+
