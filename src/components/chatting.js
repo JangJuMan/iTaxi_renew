@@ -12,9 +12,10 @@ export default class ChatRoom extends Component{
     render(){
         return(
             //TODO: text input 입력시 화면 가리는 문제 해결
-            <View style={styles.container}>
-                {/* <View style={{backgroundColor:'#EEEEEE', flex:10,}}> */}
-                <KeyboardAvoidingView style={styles.chatting_container} behavior='padding'>
+            // <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container} behavior='height' >
+                <View style={{backgroundColor:'#EEEEEE', flex:10,}}>
+                {/* <KeyboardAvoidingView style={styles.chatting_container} behavior='padding'> */}
 
                     <ScrollView style={styles.chatting_scroll}>
                         <View style={styles.new_member_bar}>  
@@ -29,7 +30,7 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                             </View>
                         </View>
 
@@ -40,7 +41,7 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -52,7 +53,7 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                             </View>
                         </View>
 
@@ -60,7 +61,7 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -72,14 +73,14 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                             </View>
                         </View>
 
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -91,7 +92,7 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                             </View>
                         </View>
 
@@ -99,7 +100,7 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -111,7 +112,7 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                             </View>
                         </View>
 
@@ -123,7 +124,7 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -135,7 +136,7 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                             </View>
                         </View>
 
@@ -143,16 +144,19 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.i_say_text}>{this.state.text}</Text>
+                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
 
 
                     </ScrollView>
-                </KeyboardAvoidingView>
+                {/* </KeyboardAvoidingView> */}
+                </View>
                 <View style={styles.message_container}>
+                {/* <KeyboardAvoidingView style={styles.message_container}> */}
                     <View style={styles.input_text} behavior="padding">
+                    {/* <KeyboardAvoidingView style={styles.input_text} behavior='padding'> */}
                         <TextInput
                             style = {styles.input_text_line}
                             placeholderTextColor = 'gray'
@@ -160,18 +164,21 @@ export default class ChatRoom extends Component{
                             value={this.state.text}
                             placeholder = '메시지를 입력해주세요' />
                     </View>
+                    {/* </KeyboardAvoidingView> */}
                     
                     <TouchableOpacity style={styles.send_btn }
                         onPress = {() => {
-                            console.log(this.state.text);
-                            this.state.text='';
-                            value='';
+                            this.setState({sendingMsg:this.state.text});
+                            this.setState({text:''});
+                            console.log(this.state.sendingMsg);
                         }}
                         >
                         <Icon style={ styles.send_icon} name="ios-paper-plane" size={27} color="skyblue"/>
                     </TouchableOpacity>
                 </View>
-            </View>
+                {/* </KeyboardAvoidingView> */}
+            {/* </View> */}
+            </KeyboardAvoidingView>
         );
     }
 }
@@ -260,9 +267,12 @@ const styles=StyleSheet.create({
         padding: 5, 
         paddingLeft: 10, 
         flex:2 ,
+        borderLeftColor: '#bbb',
+        borderLeftWidth: 0.5,
     },
     send_icon:{
         alignItems:'center', 
-        marginLeft:20
+        marginLeft:20, 
+        // borderWidth:1,
     }
 })
