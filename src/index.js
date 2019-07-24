@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import ListView from './pages/taxiList';
 import RiderLog from './pages/rideLog';
 import Setting from './pages/settingscreen';
-import Carpool from './pages/carpoolList'
+import Carpool from './pages/carpoolList';
 
 
 class TaxiList extends Component {
