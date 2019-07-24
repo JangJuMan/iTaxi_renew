@@ -15,8 +15,8 @@ class TaxiList extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        {/* <ListView /> */}
-        <ChatRoom />
+        <ListView />
+        {/* <ChatRoom /> */}
       </View>
     );
   }
