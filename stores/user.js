@@ -20,7 +20,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/taxi/190724");
+            let result = yield axios.get("http://203.252.99.145:8080" + "/taxilist/190724");
             this.taxiList = result.data;
             console.log(this.taxiList);
             this.state = "done";

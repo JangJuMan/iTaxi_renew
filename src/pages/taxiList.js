@@ -12,12 +12,13 @@ import ListEntry from '../components/taxiElement';
 export default class TaxiList extends Component{
    constructor(props) {
        super(props);
+       
    }
     componentDidMount() {
         const { userStore } = this.props;
-        //userStore.getTaxiList();
-        
-        console.log(userStore.taxiList);
+        userStore.getTaxiList()
+        .then(() =>
+        console.log(userStore.taxiList))
       }
 
     render(){
@@ -36,12 +37,19 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     <View style={styles.log_contents}>
-                        <TouchableOpacity onPress={() => console.log(1)}>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
+                    <FlatList
+                            data = {userStore.taxiList}
+                            
+                            renderItem = {({item}) => 
+                            <View>
+                            <TouchableOpacity>
+                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                            </TouchableOpacity>
+                            
+                            </View>
+                        
+                        }/>
+
                     </View>
                     
                     <View style={styles.log_container}>
@@ -51,19 +59,15 @@ export default class TaxiList extends Component{
                     
                     
                     <View style={styles.log_contents}>
-                        
                         <FlatList
                             data = {userStore.taxiList}
                             
                             renderItem = {({item}) => 
                             <View>
-                            {/* <TouchableOpacity>
-                                <ListEntry style = {{marginBottom: 20}}time = {item.taxi_id} from = {item.departure_place} to = {item.arrival_place}/>
-                            </TouchableOpacity> */}
-                            <Text style = {{fontSize: 16}}>from: {item.departure_place}</Text>
-                            <Text style = {{fontSize: 16}}>to: {item.arrival_place}</Text>
+                            <TouchableOpacity>
+                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                            </TouchableOpacity>
                             </View>
-                        
                         }/>
 
                     </View>
