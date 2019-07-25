@@ -4,6 +4,7 @@ import axios from 'axios';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
+import intoRoom from './going _into_room';
 
 
 @inject('userStore')
@@ -42,7 +43,7 @@ export default class TaxiList extends Component{
                             
                             renderItem = {({item}) => 
                             <View>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
                                 <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
                             </TouchableOpacity>
                             
@@ -64,7 +65,7 @@ export default class TaxiList extends Component{
                             
                             renderItem = {({item}) => 
                             <View>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('TaxiRoom')}>
                                 <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
                             </TouchableOpacity>
                             </View>
@@ -114,3 +115,7 @@ const styles = StyleSheet.create({
         paddingTop: 10
     },
 })
+
+
+
+
