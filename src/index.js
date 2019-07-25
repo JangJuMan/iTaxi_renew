@@ -10,6 +10,7 @@ import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
 import EnteringRoom from './pages/going _into_room';
 
+
 class TaxiList extends Component {
   render() {
     return (
@@ -19,6 +20,8 @@ class TaxiList extends Component {
     );
   }
 }
+
+
 
 const TaxiTab = createStackNavigator({
     Home: ListView,

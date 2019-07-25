@@ -2,31 +2,83 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, Modal, Text, TouchableHighlight, View, Alert, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper'
 import CustomCalendar from '../elements/calendar';
-import { arrowImg, calendarImg, locateButtonImg, startImg,endImg } from '../variable/assets';
+import { arrowImg, calendarImg, locateButtonImg, startImg, endImg } from '../variable/assets';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {days} from '../variable/date';
+import { days } from '../variable/date';
+import First from './arrow/first';
+import Third from './arrow/third';
 
 
+import { vw, vh }  from 'react-native-expo-viewport-units';
 
 export default class SearchMenu extends Component {
-   
-    state={
+
+    state = {
         modalVisible: false,
+        arrowmodal: false,
     }
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
-    
-    render(){
-        return(
+    setArrowModal(visible) {
+        this.setState({ arrowmodal: visible });
+    }
+
+
+    render() {
+        return (
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.search_from_to}>
                     {/* It should be spinner */}
-                    <Image source={startImg} style={styles.spinner} />
-                    <Icon name="arrowright" size={35} color="gray"/>
+                    <TouchableOpacity onPress={() => this.setArrowModal(true)}>
+                        <Image source={startImg} style={styles.spinner} />
+                    </TouchableOpacity>
+                    <Modal
+                        transparent={false}
+                        visible={this.state.arrowmodal}
+                    >
+                        
+                        <View style = {styles.pad}>
+                        
+                        <View style={{height: 100}}></View>
+                        <View style={styles.choose}>
+                            <First />
+                            <Third />
+                            <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
+                                <TouchableOpacity
+                                    onPress={() => this.setArrowModal(!this.state.arrowmodal)}>
+                                    <Text style={{ color: '#4D8ECF', fontSize: 15 }}>확인</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        </View>
+                    </Modal>
+
+                    <Icon name="arrowright" size={35} color="gray" />
+
                     {/* It should be spinner */}
-                    <Image source={endImg} style={styles.spinner} />
+                    <TouchableOpacity onPress={() => this.setArrowModal(true)}>
+                        <Image source={endImg} style={styles.spinner} />
+                    </TouchableOpacity>
+                    <Modal
+                        transparent={false}
+                        visible={this.state.arrowmodal}
+                    >
+                        <View style = {styles.pad}>
+                        <View style={{ height: 100 }}></View>
+                        <View style={styles.choose}>
+                            <First />
+                            <Third />
+                            <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
+                                <TouchableOpacity
+                                    onPress={() => this.setArrowModal(!this.state.arrowmodal)}>
+                                    <Text style={{ color: '#4D8ECF', fontSize: 15 }}>확인</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        </View>
+                    </Modal>
                 </View>
 
                 {/* 오늘이 아니면 숨기거나 하는 기능이 필요할듯. 근데 디자인이 오늘이 아니면 없어지는게 맞는걸까?
@@ -36,9 +88,9 @@ export default class SearchMenu extends Component {
 
                 <View style={styles.search_date}>
                     <View style={{ flex: 1 }}></View>
-                    <View style={{ flex: 5,flexDirection:'column',alignContent:"space-between",justifyContent:'center'}}>
+                    <View style={{ flex: 5, flexDirection: 'column', alignContent: "space-between", justifyContent: 'center' }}>
                         {/* 선택한 Date에 따라 유동적으로 변경될 수 있도록 변경 필요 */}
-                        <Swiper>    
+                        <Swiper>
                             <View style={styles.slide}>
                                 <Text style={styles.text}>   오늘{'\n'}{days.month}-{days.date}</Text>
                             </View>
@@ -52,7 +104,7 @@ export default class SearchMenu extends Component {
                     </View>
 
                     <View style={styles.calendar}>
-                        <TouchableHighlight onPress={()=> this.setModalVisible(true)}>
+                        <TouchableHighlight onPress={() => this.setModalVisible(true)}>
                             <Icon name="calendar" color="#4dabf7" size={30} />
                         </TouchableHighlight>
                     </View>
@@ -63,7 +115,7 @@ export default class SearchMenu extends Component {
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}>
-                    <View style={{marginTop: 22}}>
+                    <View style={{ marginTop: 22 }}>
                         <View>
                             <CustomCalendar />
                             <TouchableOpacity onPress={() => this.setModalVisible(!this.state.modalVisible)}>
@@ -77,64 +129,80 @@ export default class SearchMenu extends Component {
     }
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
-        flex:1,
-        flexDirection:'column',
+        flex: 1,
+        flexDirection: 'column',
         height: 110,
+        
     },
-        search_from_to: {
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
+    search_from_to: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
 
-            flex: 3.5,
-        },
-            spinner: {
-                width: 100,
-                height: 30,
-                margin: 20,
-            },
-            arrow: {
-                width: 30,
-                height: 30,
-            },
+        flex: 3.5,
+    },
+    spinner: {
+        width: 100,
+        height: 30,
+        margin: 20,
+    },
+    arrow: {
+        width: 30,
+        height: 30,
+    },
 
-        today: {
-            justifyContent: 'center',
-            alignItems: 'center',
+    today: {
+        justifyContent: 'center',
+        alignItems: 'center',
 
-            flex: 1.5,
-        },
-            today_font: {
-                color: '#4dabf7',
-                fontSize: 13,
-            },
+        flex: 1.5,
+    },
+    today_font: {
+        color: '#4dabf7',
+        fontSize: 13,
+    },
 
-        search_date: {
-            flexDirection: 'row',
+    search_date: {
+        flexDirection: 'row',
 
-            flex: 5.5,
-        },
-            slide: {
-                flex: 1,
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                backgroundColor: 'white',
-            },
-                text: {
-                    color: '#4dabf7',
-                    fontSize: 14,
-                    fontWeight: 'bold'
-                },
-            
-            calendar: {
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            },
-                calendar_img: {
-                    width: 30,
-                    height: 30,
-                },
+        flex: 5.5,
+    },
+    slide: {
+        flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: 'white',
+    },
+    text: {
+        color: '#4dabf7',
+        fontSize: 14,
+        fontWeight: 'bold'
+    },
+
+    calendar: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    calendar_img: {
+        width: 30,
+        height: 30,
+    },
+    choose: {
+        height: vh(55),
+ 
+ 
+    },
+    pad: {
+        
+        padding: vw(2.4),
+        paddingBottom: vw(3.6),
+        borderRadius: 5,
+        padding:30,
+    },
+    
 });
+
+
