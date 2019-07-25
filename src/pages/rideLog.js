@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList } from 'react-native';
+import { inject, observer } from 'mobx-react';
 
 import ListEntry from '../components/taxiElement';
 
+@inject('userStore')
+@observer
 export default class RiderLog extends Component{
+    constructor(props) {
+        super(props);
+
+    }
+
+    componentDidMount() {
+        const { userStore } = this.props;
+        userStore.getLog();
+    }
     render(){
+        const { userStore } = this.props;
         return(
             <View style={{flex:1}}>
                 {/*  곧 탑승예정 */}
@@ -33,33 +46,36 @@ export default class RiderLog extends Component{
                         <View style={styles.horizontal_past_date_bar}></View>
                     </View>
                     <View style={styles.past_log_contents}>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
+                    <FlatList
+                            data = {userStore.taxiList}
+                            keyExtractor={(item, index) => item.taxi_id.toString()}
+                            renderItem = {({item}) => 
+                            <View>
+                            <TouchableOpacity>
+                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                            </TouchableOpacity>
+                            
+                            </View>
+                        
+                        }/>
                     </View>
                     <View style={styles.past_log_container}>
                         <Text style={styles.past_date_bar}>OO월 OO일 O요일</Text>
                         <View style={styles.horizontal_past_date_bar}></View>
                     </View>
                     <View style={styles.past_log_contents}>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
+                    <FlatList
+                            data = {userStore.taxiList}
+                            keyExtractor = {(item, index) => item.taxi_id.toString()}
+                            renderItem = {({item}) => 
+                            <View>
+                            <TouchableOpacity>
+                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                            </TouchableOpacity>
+                            
+                            </View>
+                        
+                        }/>
                     </View>
                 </ScrollView>
             </View>
