@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image } from 'react-native';
 import SearchMenu from '../components/searchMenu';
 import {seatImg} from '../variable/assets';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class setting extends Component{
     render(){

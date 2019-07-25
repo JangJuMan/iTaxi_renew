@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, FlatList, Image,Modal,TouchableHighlight,TouchableOpacity,ScrollView} from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button, } from 'react-native';
 import axios from 'axios';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import intoRoom from './going _into_room';
 import MakeRoom from '../pages/settingscreen';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 @inject('userStore')
 
@@ -13,20 +15,27 @@ import MakeRoom from '../pages/settingscreen';
 export default class TaxiList extends Component{
     constructor(props) {
         super(props);
-
     }
+
     componentDidMount() {
         const { userStore } = this.props;
         userStore.getTaxiList()
         .then(() =>
         console.log(userStore.taxiList))
     }
+    static navigationOptions = ({ navigation }) => {
+        return {
+            headerRight: (
+                <TouchableOpacity onPress={() => navigation.navigate('createTaxiRoomInfo')}>
+                    <Icon style={{marginRight:10, color:'dodgerblue'}}name="ios-add-circle-outline" size={30}/>
+                </TouchableOpacity>
+            ),
+        };
+    };
 
     render(){
         const {userStore} = this.props;
-
         return(
-            
             <View style={styles.conatiner}>
                 <View style={styles.horizontal_divider}>
                     <SearchMenu />
@@ -38,19 +47,16 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     <View style={styles.log_contents}>
-                    <FlatList
+                        <FlatList
                             data = {userStore.taxiList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
-                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
-                            </TouchableOpacity>
-                            
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                </TouchableOpacity>
                             </View>
-                        
                         }/>
-
                     </View>
                     
                     <View style={styles.log_container}>
@@ -58,21 +64,18 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     
-                    
                     <View style={styles.log_contents}>
                         <FlatList
                             data = {userStore.taxiList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
-                            <View>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
-                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
-                            </TouchableOpacity>
-                            </View>
+                                <View>
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
+                                        <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                    </TouchableOpacity>
+                                </View>
                         }/>
-
                     </View>
-                    
                 </ScrollView>
             </View>
         );
