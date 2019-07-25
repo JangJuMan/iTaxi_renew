@@ -14,7 +14,7 @@ export default class RiderLog extends Component{
 
     componentDidMount() {
         const { userStore } = this.props;
-        userStore.getLog();
+        userStore.getTaxiList();
     }
     render(){
         const { userStore } = this.props;
@@ -52,7 +52,7 @@ export default class RiderLog extends Component{
                             renderItem = {({item}) => 
                             <View>
                             <TouchableOpacity>
-                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                             </TouchableOpacity>
                             
                             </View>
@@ -70,7 +70,7 @@ export default class RiderLog extends Component{
                             renderItem = {({item}) => 
                             <View>
                             <TouchableOpacity>
-                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                             </TouchableOpacity>
                             
                             </View>

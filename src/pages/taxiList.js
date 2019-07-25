@@ -67,7 +67,6 @@ export default class TaxiList extends Component{
                                 <TouchableOpacity onPress={() => this.setModalVisible(true)}>
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
-                                
                             </View>
                         }/>
                     </View>
@@ -101,11 +100,11 @@ export default class TaxiList extends Component{
                             data = {userStore.taxiList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
-                                <View>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
-                                        <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
-                                    </TouchableOpacity>
-                                </View>
+                            <View>
+                                <TouchableOpacity onPress={() => this.setModalVisible(true)}>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                </TouchableOpacity>
+                            </View>
                         }/>
                     </View>
                 </ScrollView>

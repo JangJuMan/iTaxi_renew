@@ -49,7 +49,6 @@ export default class third extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
