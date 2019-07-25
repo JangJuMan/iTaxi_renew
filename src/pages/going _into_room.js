@@ -4,6 +4,7 @@ import TaxiElement from '../components/taxiElement';
 import {seatImg} from '../variable/assets';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 // import taxiList from '../pages/taxiList';
 
 
@@ -40,7 +41,9 @@ export default class intoRoom extends Component{
                     <View style={{flex:1,}}></View>
                 </View>
                 <View style={styles.button}>
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('TaxiRoom')}>
                     <Text style={{color:'#4dabf7',fontSize:17 }}>확인</Text>
+                  </TouchableOpacity>
                 </View>
             </View>
         )

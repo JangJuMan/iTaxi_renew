@@ -27,6 +27,7 @@ const TaxiTab = createStackNavigator({
     Home: ListView,
     RoomDoor: EnteringRoom,
     TaxiRoom: ChatRoom,
+    createTaxiRoomInfo: Setting,
   }, {
   defaultNavigationOptions: {
     title: "조회 / 모집",
@@ -43,7 +44,9 @@ class CarpoolList extends Component {
   }
 }
 const CarpoolTab = createStackNavigator({
-    Home: CarpoolList,
+    // Home: CarpoolList,
+    Home: Carpool,
+    createCarpoolRoomInfo: Setting,
   }, {
   defaultNavigationOptions: {
     title: "조회 / 모집",
