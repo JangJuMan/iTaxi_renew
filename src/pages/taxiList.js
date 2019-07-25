@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image,Modal,TouchableHighlight,TouchableOpacity} from 'react-native';
+import { Text, View, StyleSheet, FlatList, Image,Modal,TouchableHighlight,TouchableOpacity,ScrollView} from 'react-native';
 import axios from 'axios';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
@@ -11,16 +11,16 @@ import MakeRoom from '../pages/settingscreen';
 
 @observer
 export default class TaxiList extends Component{
-   constructor(props) {
-       super(props);
-       
-   }
+    constructor(props) {
+        super(props);
+
+    }
     componentDidMount() {
         const { userStore } = this.props;
         userStore.getTaxiList()
         .then(() =>
         console.log(userStore.taxiList))
-      }
+    }
 
     render(){
         const {userStore} = this.props;
