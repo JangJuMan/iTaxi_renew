@@ -40,7 +40,7 @@ export default class TaxiList extends Component{
                     <View style={styles.log_contents}>
                     <FlatList
                             data = {userStore.taxiList}
-                            
+                            keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
@@ -62,7 +62,7 @@ export default class TaxiList extends Component{
                     <View style={styles.log_contents}>
                         <FlatList
                             data = {userStore.taxiList}
-                            
+                            keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('TaxiRoom')}>

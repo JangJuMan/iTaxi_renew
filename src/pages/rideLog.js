@@ -48,7 +48,7 @@ export default class RiderLog extends Component{
                     <View style={styles.past_log_contents}>
                     <FlatList
                             data = {userStore.taxiList}
-                            
+                            keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
                             <TouchableOpacity>
@@ -66,7 +66,7 @@ export default class RiderLog extends Component{
                     <View style={styles.past_log_contents}>
                     <FlatList
                             data = {userStore.taxiList}
-                            
+                            keyExtractor = {(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
                             <TouchableOpacity>
