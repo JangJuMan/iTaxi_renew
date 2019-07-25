@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Image,Modal,TouchableHighlight,TouchableOpacity} from 'react-native';
 import axios from 'axios';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import intoRoom from './going _into_room';
-
+import MakeRoom from '../pages/settingscreen';
 
 @inject('userStore')
 
@@ -65,7 +65,7 @@ export default class TaxiList extends Component{
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('TaxiRoom')}>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
                                 <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
                             </TouchableOpacity>
                             </View>
