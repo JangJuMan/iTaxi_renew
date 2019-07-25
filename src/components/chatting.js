@@ -184,7 +184,6 @@ const styles=StyleSheet.create({
     },
     new_member_bar:{
         alignItems: 'center', 
-        borderWidth:0, 
         backgroundColor: '#50bcdf', 
         borderRadius: 20, 
         margin:10, 
@@ -218,7 +217,8 @@ const styles=StyleSheet.create({
         borderWidth:0, 
         padding:10, 
         borderRadius: 20, 
-        backgroundColor:'powderblue'
+        backgroundColor:'powderblue',
+        // borderWidth:1,
     },
     they_say:{
         alignItems: 'flex-start', 

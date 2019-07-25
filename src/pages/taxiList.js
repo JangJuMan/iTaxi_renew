@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button, } from 'react-native';
 import axios from 'axios';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import intoRoom from './going _into_room';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 @inject('userStore')
 
 @observer
 export default class TaxiList extends Component{
-   constructor(props) {
-       super(props);
-       
-   }
+    constructor(props) {
+        super(props);
+    }
+
     componentDidMount() {
         const { userStore } = this.props;
         userStore.getTaxiList()
         .then(() =>
         console.log(userStore.taxiList))
-      }
+    }
+
+    static navigationOptions = ({ navigation }) => {
+        return {
+            headerRight: (
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('createTaxiRoomInfo')}>
+                    <Icon style={{marginRight:10, color:'dodgerblue'}}name="ios-add-circle-outline" size={30}/>
+                </TouchableOpacity>
+            ),
+        };
+    };
 
     render(){
         const {userStore} = this.props;
