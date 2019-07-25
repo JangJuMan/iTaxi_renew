@@ -7,6 +7,7 @@ import MakeRoom from '../pages/settingscreen';
 
 
 export default class NewRoom extends Component{
+    
     state={
         modalVisible: false,
     }
@@ -72,3 +73,4 @@ const styles=StyleSheet.create({
         fontSize: 16,
     }
 });
+

@@ -5,10 +5,15 @@ import {seatImg} from '../variable/assets';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-// import taxiList from '../pages/taxiList';
+// import TaxiList from '../pages/taxiList';
+import ModalControl from '../variable/modalControl';
 
 
 export default class intoRoom extends Component{
+  constructor(props){
+      super(props);
+  }
+
     render(){
         const seat_img=seatImg;
         return(
@@ -41,14 +46,21 @@ export default class intoRoom extends Component{
                     <View style={{flex:1,}}></View>
                 </View>
                 <View style={styles.button}>
-                  <TouchableOpacity onPress={() => this.props.navigation.navigate('TaxiRoom')}>
+                  <TouchableOpacity onPress={() => {
+                      ModalControl.modalVisible=false;
+                      this.props.navigation.navigate('TaxiRoom')
+                    }}>
                     <Text style={{color:'#4dabf7',fontSize:17 }}>확인</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity onPress={() => {
+                      ModalControl.modalVisible=false;
+                      this.props.navigation.goBack();
+                    }}>
+                    <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
                   </TouchableOpacity>
                 </View>
             </View>
         )
-  
-  
     }
   }
   
@@ -89,8 +101,10 @@ export default class intoRoom extends Component{
       },
       button:{
         flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'center',
+        marginHorizontal: 50,
       }
     })
 

@@ -1,18 +1,29 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button, } from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button,Modal } from 'react-native';
 import axios from 'axios';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import intoRoom from './going _into_room';
-import MakeRoom from '../pages/settingscreen';
+import MakeRoom from '../pages/going _into_room';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ModlaControl from '../variable/modalControl';
+
 
 
 @inject('userStore')
 
 @observer
 export default class TaxiList extends Component{
+    state={
+        modalVisible: false,
+    }
+
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+        ModlaControl.modalVisible = visible;
+    }
+
     constructor(props) {
         super(props);
     }
@@ -23,6 +34,7 @@ export default class TaxiList extends Component{
         .then(() =>
         console.log(userStore.taxiList))
     }
+
     static navigationOptions = ({ navigation }) => {
         return {
             headerRight: (
@@ -52,11 +64,31 @@ export default class TaxiList extends Component{
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
+                                <TouchableOpacity onPress={() => this.setModalVisible(true)}>
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
+                                
                             </View>
                         }/>
+                    </View>
+
+                    <View>
+                        <Modal
+                            transparent={false}
+                            // visible={this.state.modalVisible}
+                            visible={ModlaControl.modalVisible}
+                            onRequestClose={() => this.setModalVisible(false)}>
+                            <View style={{marginTop: 22}}>
+                                <View>
+                                    <MakeRoom 
+                                        navigation={this.props.navigation}
+                                    />
+                                    <TouchableOpacity onPress={() => this.setModalVisible(false)}>
+                                        <Text>Hide Modal</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </Modal>
                     </View>
                     
                     <View style={styles.log_container}>
