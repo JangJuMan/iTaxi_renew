@@ -1,12 +1,31 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
-
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import axios from 'axios';
+import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 
+
+@inject('userStore')
+
+@observer
 export default class TaxiList extends Component{
+   constructor(props) {
+       super(props);
+       
+   }
+    componentDidMount() {
+        const { userStore } = this.props;
+        userStore.getTaxiList()
+        .then(() =>
+        console.log(userStore.taxiList))
+      }
+
     render(){
+        const {userStore} = this.props;
+
         return(
+            
             <View style={styles.conatiner}>
                 <View style={styles.horizontal_divider}>
                     <SearchMenu />
@@ -18,39 +37,47 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     <View style={styles.log_contents}>
-                        <TouchableOpacity onPress={() => console.log(1)}>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
+                    <FlatList
+                            data = {userStore.taxiList}
+                            
+                            renderItem = {({item}) => 
+                            <View>
+                            <TouchableOpacity>
+                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                            </TouchableOpacity>
+                            
+                            </View>
+                        
+                        }/>
+
                     </View>
+                    
                     <View style={styles.log_container}>
                         <Text style={styles.date_of_logs}>OO월 OO일 O요일</Text>
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
+                    
+                    
                     <View style={styles.log_contents}>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <ListEntry style={{marginBottom:20}}time="13:20" from="한동대학교" to="포항역"/>
-                        </TouchableOpacity>
+                        <FlatList
+                            data = {userStore.taxiList}
+                            
+                            renderItem = {({item}) => 
+                            <View>
+                            <TouchableOpacity>
+                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                            </TouchableOpacity>
+                            </View>
+                        }/>
+
                     </View>
+                    
                 </ScrollView>
             </View>
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     conatiner: {
