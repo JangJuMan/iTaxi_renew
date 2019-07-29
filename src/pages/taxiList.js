@@ -65,7 +65,7 @@ export default class TaxiList extends Component{
                             renderItem = {({item}) => 
                             <View>
                                 <TouchableOpacity onPress={() => this.setModalVisible(true)}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
                             </View>
                         }/>
@@ -102,7 +102,7 @@ export default class TaxiList extends Component{
                             renderItem = {({item}) => 
                             <View>
                                 <TouchableOpacity onPress={() => this.setModalVisible(true)}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
                             </View>
                         }/>

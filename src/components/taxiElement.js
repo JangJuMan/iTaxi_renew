@@ -2,19 +2,31 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import { carrierImgs, seatImg, fromtoImg, carrImg } from '../variable/assets';
+import { observer, inject } from 'mobx-react';
+
 
 /**
  * @props   time    Time to leave
- * @props   seats   Number of current seats
+ * @props   seat   Number of current seats
  * @props   from    Departure
  * @props   to      Destination
  * @props   carrier Number of carriers
  */
+
+@inject('userStore')
+
+@observer
 export default class TaxiElement extends Component{
+    componentDidMount() {
+        const { userStore } = this.props;
+        userStore.getTaxiList();
+    }
+
     render(){
-        const { seat, carrier } = this.props;
-        // const seat_img = "/assets/seat" + seats + ".png";
-        //const carrier_img = (carrier !== undefined) ? carrierImgs[carrier] : undefined;
+        const { userStore } = this.props;
+        const { seats, carrier } = this.props;
+        const seat_img = "/assets/seat" + seats + ".png";
+        const carrier_img = (carrier !== undefined) ? carrierImgs[carrier] : undefined;
 
         return(
             <View style={[styles.container, this.props.style]}>
@@ -22,6 +34,7 @@ export default class TaxiElement extends Component{
                     <Text style={styles.time}>
                         {this.props.time}
                     </Text>
+                    
                     <Image 
                         style={styles.seat}
                         source={seatImg}  />
@@ -110,7 +123,7 @@ const styles=StyleSheet.create({
         carrier: {
             flexGrow: 1,
             alignSelf: 'flex-end',
-            width: 30,
+            width: 40,
             height:60,
         },
 });

@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable,  } from 'mobx';
 
 class ModalControl {
     @observable modalVisible = false;
