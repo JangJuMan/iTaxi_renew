@@ -1,33 +1,20 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList } from 'react-native';
-=======
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button,Modal } from 'react-native';
->>>>>>> afdd4ed873ca82216d455b8694fbb6b0309fb41f
 import axios from 'axios';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import intoRoom from './going _into_room';
-<<<<<<< HEAD
-=======
 import MakeRoom from '../pages/going _into_room';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModlaControl from '../variable/modalControl';
 
->>>>>>> afdd4ed873ca82216d455b8694fbb6b0309fb41f
 
 
 @inject('userStore')
 
 @observer
 export default class TaxiList extends Component{
-<<<<<<< HEAD
-   constructor(props) {
-       super(props);
-       
-   }
-=======
     state={
         modalVisible: false,
     }
@@ -41,15 +28,11 @@ export default class TaxiList extends Component{
         super(props);
     }
 
->>>>>>> afdd4ed873ca82216d455b8694fbb6b0309fb41f
     componentDidMount() {
         const { userStore } = this.props;
         userStore.getTaxiList()
         .then(() =>
         console.log(userStore.taxiList))
-<<<<<<< HEAD
-      }
-=======
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -61,7 +44,6 @@ export default class TaxiList extends Component{
             ),
         };
     };
->>>>>>> afdd4ed873ca82216d455b8694fbb6b0309fb41f
 
     render(){
         const {userStore} = this.props;
@@ -84,16 +66,9 @@ export default class TaxiList extends Component{
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
-<<<<<<< HEAD
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('RoomDoor')}>
-                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
-                            </TouchableOpacity>
-                            
-=======
                                 <TouchableOpacity onPress={() => this.setModalVisible(true)}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
->>>>>>> afdd4ed873ca82216d455b8694fbb6b0309fb41f
                             </View>
                         
                         }/>
@@ -132,7 +107,7 @@ export default class TaxiList extends Component{
                             renderItem = {({item}) => 
                             <View>
                                 <TouchableOpacity onPress={() => this.setModalVisible(true)}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
                             </View>
                         }/>
