@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, Modal, Text, TouchableHighlight, View, Alert, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper'
 import CustomCalendar from '../elements/calendar';
+import SearchStartModal from './modal/searchStartmodal';
+import SearchEndModal from './modal/searchEndmodal';
 import { arrowImg, calendarImg, locateButtonImg, startImg, endImg } from '../variable/assets';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { days } from '../variable/date';
-import First from './arrow/first';
-import Third from './arrow/third';
+
 
 
 import { vw, vh }  from 'react-native-expo-viewport-units';
@@ -15,15 +16,12 @@ export default class SearchMenu extends Component {
 
     state = {
         modalVisible: false,
-        arrowmodal: false,
     }
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
-    setArrowModal(visible) {
-        this.setState({ arrowmodal: visible });
-    }
+ 
 
 
     render() {
@@ -31,54 +29,12 @@ export default class SearchMenu extends Component {
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.search_from_to}>
                     {/* It should be spinner */}
-                    <TouchableOpacity onPress={() => this.setArrowModal(true)}>
-                        <Image source={startImg} style={styles.spinner} />
-                    </TouchableOpacity>
-                    <Modal
-                        transparent={false}
-                        visible={this.state.arrowmodal}
-                    >
-                        
-                        <View style = {styles.pad}>
-                        
-                        <View style={{height: 100}}></View>
-                        <View style={styles.choose}>
-                            <First />
-                            <Third />
-                            <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
-                                <TouchableOpacity
-                                    onPress={() => this.setArrowModal(!this.state.arrowmodal)}>
-                                    <Text style={{ color: '#4D8ECF', fontSize: 15 }}>확인</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        </View>
-                    </Modal>
+                    <SearchStartModal />
 
                     <Icon name="arrowright" size={35} color="gray" />
 
                     {/* It should be spinner */}
-                    <TouchableOpacity onPress={() => this.setArrowModal(true)}>
-                        <Image source={endImg} style={styles.spinner} />
-                    </TouchableOpacity>
-                    <Modal
-                        transparent={false}
-                        visible={this.state.arrowmodal}
-                    >
-                        <View style = {styles.pad}>
-                        <View style={{ height: 100 }}></View>
-                        <View style={styles.choose}>
-                            <First />
-                            <Third />
-                            <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
-                                <TouchableOpacity
-                                    onPress={() => this.setArrowModal(!this.state.arrowmodal)}>
-                                    <Text style={{ color: '#4D8ECF', fontSize: 15 }}>확인</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        </View>
-                    </Modal>
+                    <SearchEndModal />
                 </View>
 
                 {/* 오늘이 아니면 숨기거나 하는 기능이 필요할듯. 근데 디자인이 오늘이 아니면 없어지는게 맞는걸까?

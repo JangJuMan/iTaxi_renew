@@ -60,27 +60,51 @@ export default class first extends Component<{}>{
 
                 <View style = {{height: 100}}>
                  <View style={{ height: 30, flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center' }}>
+                        <TouchableOpacity>
                             <Text style={styles.text}>한동대학교</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
                             <Text style={styles.text}>포항역</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
                             <Text style={styles.text}>고속버스터미널</Text>
+                        </TouchableOpacity>
                         </View>
 
                         <View style={{ height: 30, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <TouchableOpacity>
                             <Text style={styles.text}>하나로마트</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
                             <Text style={styles.text}>커피유야</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
                             <Text style={styles.text}>세차장</Text>
+                        </TouchableOpacity>
                         </View>
                     
 
                     <View style = {{height: this.state.updateHeight, overflow: 'hidden'}}>
                         <View style = {{flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center'}}>
                             {/* 여기에 text추가! */}
+                            <TouchableOpacity>
                             <Text style = {{padding: 20,  paddingTop: 10, fontSize: 14, color: '#888C90',  marginBottom: 2}}
                                 onLayout = {(value) => this.getHeight(value.nativeEvent.layout.height)}>E1</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
                             <Text style = {{padding: 20,  paddingTop: 10, fontSize: 14, color: '#888C90',  marginBottom: 2}}
                                 onLayout = {(value) => this.getHeight(value.nativeEvent.layout.height)}>영일대</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity>
                             <Text style = {{padding: 20,  paddingTop: 10, fontSize: 14, color: '#888C90',  marginBottom: 2}}
                                 onLayout = {(value) => this.getHeight(value.nativeEvent.layout.height)}>포항공대</Text>
+                            </TouchableOpacity>
 
                         </View>
                     </View>
