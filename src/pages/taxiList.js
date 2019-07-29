@@ -47,7 +47,9 @@ export default class TaxiList extends Component{
 
     render(){
         const {userStore} = this.props;
+
         return(
+            
             <View style={styles.conatiner}>
                 <View style={styles.horizontal_divider}>
                     <SearchMenu />
@@ -59,7 +61,7 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     <View style={styles.log_contents}>
-                        <FlatList
+                    <FlatList
                             data = {userStore.taxiList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
@@ -68,7 +70,9 @@ export default class TaxiList extends Component{
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
                             </View>
+                        
                         }/>
+
                     </View>
 
                     <View>
@@ -95,6 +99,7 @@ export default class TaxiList extends Component{
                         <View style={styles.horizontal_date_bar}></View>
                     </View>
                     
+                    
                     <View style={styles.log_contents}>
                         <FlatList
                             data = {userStore.taxiList}
@@ -107,6 +112,7 @@ export default class TaxiList extends Component{
                             </View>
                         }/>
                     </View>
+                    
                 </ScrollView>
             </View>
         );
