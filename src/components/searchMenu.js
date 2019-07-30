@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Image, Modal, Text, TouchableHighlight, View, Alert, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper'
 import CustomCalendar from '../elements/calendar';
-import SearchStartModal from './modal/searchStartmodal';
-import SearchEndModal from './modal/searchEndmodal';
+import SearchModal from './searchModal';
 import { arrowImg, calendarImg, locateButtonImg, startImg, endImg } from '../variable/assets';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { days } from '../variable/date';
@@ -28,13 +27,9 @@ export default class SearchMenu extends Component {
         return (
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.search_from_to}>
-                    {/* It should be spinner */}
-                    <SearchStartModal />
-
+                    <SearchModal />
                     <Icon name="arrowright" size={35} color="gray" />
-
-                    {/* It should be spinner */}
-                    <SearchEndModal />
+                    <SearchModal />
                 </View>
 
                 {/* 오늘이 아니면 숨기거나 하는 기능이 필요할듯. 근데 디자인이 오늘이 아니면 없어지는게 맞는걸까?
