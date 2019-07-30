@@ -75,24 +75,22 @@ export default class TaxiList extends Component{
 
                     </View>
 
-                    <View>
+                    
                         <Modal
-                            transparent={false}
+                            transparent={true}
                             // visible={this.state.modalVisible}
                             visible={ModlaControl.modalVisible}
                             onRequestClose={() => this.setModalVisible(false)}>
-                            <View style={{marginTop: 22}}>
-                                <View>
+                            <View style={styles.modalBackground}> 
+                                    <View style={styles.activityIndicatorWrapper}>
                                     <MakeRoom 
                                         navigation={this.props.navigation}
                                     />
-                                    <TouchableOpacity onPress={() => this.setModalVisible(false)}>
-                                        <Text>Hide Modal</Text>
-                                    </TouchableOpacity>
+                                    
                                 </View>
                             </View>
                         </Modal>
-                    </View>
+                    
                     
                     <View style={styles.log_container}>
                         <Text style={styles.date_of_logs}>OO월 OO일 O요일</Text>
@@ -138,22 +136,33 @@ const styles = StyleSheet.create({
         marginLeft: 24, 
         marginRight: 24, 
     },
-        date_of_logs:{
-            color: '#bbb',
-            fontSize: 18,
-            padding: 10,
-        },
-        horizontal_date_bar:{
-            borderBottomWidth: 1.0, 
-            borderBottomColor: '#0b0b0b25',
-            flexGrow: 1,
-        },
+    date_of_logs:{
+        color: '#bbb',
+        fontSize: 18,
+        padding: 10,
+    },
+    horizontal_date_bar:{
+        borderBottomWidth: 1.0, 
+        borderBottomColor: '#0b0b0b25',
+        flexGrow: 1,
+    },
     
     log_container:{
         flexDirection: 'row', 
         alignItems: 'center', 
         paddingTop: 10
     },
+    modalBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    activityIndicatorWrapper: {
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
 })
 
 

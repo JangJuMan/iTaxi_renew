@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image,Modal,TouchableHighlight,TouchableOpacity
 import { vw } from 'react-native-expo-viewport-units';
 import {plusImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MakeRoom from '../pages/settingscreen';
+import MakeRoom from '../pages/ex_setting';
 
 
 export default class NewRoom extends Component{
@@ -28,11 +28,11 @@ export default class NewRoom extends Component{
                 </TouchableHighlight>
                         
                 <Modal
-                    transparent={false}
+                    transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}>
-                    <View style={{marginTop: 22}}>
-                        <View>
+                    <View style={styles.modalBackground}>
+                        <View style={styles.activityIndicatorWrapper}>
                             <MakeRoom />
                             <TouchableOpacity onPress={() => this.setModalVisible(!this.state.modalVisible)}>
                                 <Text>Hide Modal</Text>
@@ -71,6 +71,17 @@ const styles=StyleSheet.create({
         color: '#777',
         marginTop: 10,
         fontSize: 16,
+    },
+    modalBackground: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    activityIndicatorWrapper: {
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
 
