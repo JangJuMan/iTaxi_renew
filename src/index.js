@@ -8,7 +8,7 @@ import RiderLog from './pages/rideLog';
 import Setting from './pages/settingscreen';
 import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
-import EnteringRoom from './pages/going _into_room';
+import EnteringRoom from './pages/going_into_room';
 
 
 
