@@ -221,6 +221,9 @@ const stylesBottom = StyleSheet.create({
             }
 });
 
+/**
+ * @props onSubmit  Callback function after press OK button
+ */
 export default class SelectModal extends Component {
     render() {
         return (
