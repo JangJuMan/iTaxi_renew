@@ -47,6 +47,7 @@ class CarpoolList extends Component {
 const CarpoolTab = createStackNavigator({
     // Home: CarpoolList,
     Home: Carpool,
+    CarpoolRoom: ChatRoom,
     createCarpoolRoomInfo: Setting,
   }, {
   defaultNavigationOptions: {
@@ -64,7 +65,8 @@ class RideHistory extends Component {
   }
 }
 const RideHistoryTab = createStackNavigator({
-    Home: RideHistory,
+    Home: RiderLog,
+    pastRoom: ChatRoom,
   }, {
   defaultNavigationOptions: {
     title: "탑승 내역",

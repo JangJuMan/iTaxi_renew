@@ -26,7 +26,9 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.i_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                             </View>
                         </View>
 
@@ -37,7 +39,9 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.they_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.they_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -49,7 +53,9 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.i_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                             </View>
                         </View>
 
@@ -57,7 +63,9 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.they_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.they_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -69,14 +77,18 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.i_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                             </View>
                         </View>
 
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.they_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.they_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -88,7 +100,9 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.i_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                             </View>
                         </View>
 
@@ -96,7 +110,9 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.they_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.they_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -108,7 +124,9 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.i_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                             </View>
                         </View>
 
@@ -119,7 +137,9 @@ export default class ChatRoom extends Component{
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.they_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.they_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -131,14 +151,18 @@ export default class ChatRoom extends Component{
                             </View>
                             <View style={styles.flex_row}>
                                 <Text style={styles.mytime}>오후 3:17</Text>
-                                <Text style={styles.i_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.i_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                             </View>
                         </View>
 
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.flex_row}>
-                                <Text style={styles.they_say_text}>{this.state.sendingMsg}</Text>
+                                <View style={styles.they_say_text}>
+                                    <Text>{this.state.sendingMsg}</Text>
+                                </View>
                                 <Text style={styles.they_time}>오후 3:17</Text>
                             </View>
                         </View>
@@ -214,23 +238,22 @@ const styles=StyleSheet.create({
         marginRight:10
     },
     i_say_text:{
-        borderWidth:0, 
         padding:10, 
         borderRadius: 20, 
         backgroundColor:'powderblue',
-        // borderWidth:1,
+        borderWidth:0.5,
+        borderColor:'#bbb'
     },
     they_say:{
         alignItems: 'flex-start', 
         marginLeft:10
     },
     they_say_text:{
-        borderWidth:0, 
         padding:10, 
         borderRadius: 20, 
-        backgroundColor:'white',
         borderColor: '#bbb',
         borderWidth: 0.5,
+        backgroundColor:'white',
     },
     their_name_text:{
         fontWeight:'bold', 

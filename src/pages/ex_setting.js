@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text,StyleSheet,Image } from 'react-native';
+import { View, Text,StyleSheet,Image, TouchableOpacity } from 'react-native';
 import SearchMenu from '../components/searchMenu';
 import {seatImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
+import ModalControl from '../variable/modalControl';
 
+/** 
+*   @props onOkButton        press make room button (ok button)
+*   @props onCancelButton    press cancel button
+*/
 export default class setting extends Component{
     render(){
         const seat_img=seatImg;
@@ -48,7 +54,19 @@ export default class setting extends Component{
                     <View style={{flex:1,}}></View>
                 </View>
                 <View style={styles.button}>
-                    <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
+                    <TouchableOpacity onPress={() => {
+                        // ModalControl.modalVisible=false
+                        this.props.onOkButton();
+                        this.props.navigation.navigate('CarpoolRoom')}}
+                        >
+                        <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        // ModalControl.modalVisible=false
+                        this.props.onCancelButton();
+                        this.props.navigation.goBack()}}>
+                        <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
@@ -91,7 +109,8 @@ const styles=StyleSheet.create({
     },
     button:{
         flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'center',
     }
-    })
+})

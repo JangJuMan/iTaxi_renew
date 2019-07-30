@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import Swiper from 'react-native-swiper'
 
 import ListEntry from '../components/taxiElement';
 
@@ -9,7 +10,6 @@ import ListEntry from '../components/taxiElement';
 export default class RiderLog extends Component{
     constructor(props) {
         super(props);
-
     }
 
     componentDidMount() {
@@ -20,13 +20,17 @@ export default class RiderLog extends Component{
         const { userStore } = this.props;
         return(
             <View style={{flex:1}}>
-                {/*  곧 탑승예정 */}
+                {/* 곧 탑승예정 */}
                 <Text style={styles.top_title}>곧 탑승 예정</Text>
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress = {() => {
+                        this.props.navigation.navigate('pastRoom');
+                    }}>
                     <View style={styles.top_highlighted_log}>
                         <ListEntry time="13:20" from="한동대학교" to="포항역"/>
                     </View>
                 </TouchableOpacity>
+
                 {/* 중단 수평선 */}
                 <View style={styles.past_log}>
                     <Text style={styles.past_log_title}>지난탑승내역</Text>
@@ -46,15 +50,17 @@ export default class RiderLog extends Component{
                         <View style={styles.horizontal_past_date_bar}></View>
                     </View>
                     <View style={styles.past_log_contents}>
-                    <FlatList
+                        <FlatList
                             data = {userStore.taxiList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
-                            <TouchableOpacity>
-                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
-                            </TouchableOpacity>
-                            
+                                <TouchableOpacity
+                                    onPress = {() => {
+                                        this.props.navigation.navigate('pastRoom');
+                                    }}>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
+                                </TouchableOpacity>
                             </View>
                         
                         }/>
@@ -64,15 +70,17 @@ export default class RiderLog extends Component{
                         <View style={styles.horizontal_past_date_bar}></View>
                     </View>
                     <View style={styles.past_log_contents}>
-                    <FlatList
+                        <FlatList
                             data = {userStore.taxiList}
                             keyExtractor = {(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
-                            <TouchableOpacity>
-                                <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
-                            </TouchableOpacity>
-                            
+                                <TouchableOpacity
+                                    onPress = {() => {
+                                        this.props.navigation.navigate('pastRoom');
+                                    }}>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
+                                </TouchableOpacity>
                             </View>
                         
                         }/>
