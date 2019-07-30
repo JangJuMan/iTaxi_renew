@@ -20,14 +20,14 @@ export default class NewRoom extends Component{
         const plus_img = plusImg;
         return(
             <View style={[styles.container]}>
-                <TouchableHighlight onPress={()=> this.setModalVisible(true)}>
+                {/* <TouchableHighlight onPress={()=> this.setModalVisible(true)}> */}
                     <View style={styles.Icon_text}>
                         <Icon name="ios-add" size={30} color="#4dabf7"/>
                         <Text style={styles.font_style}>새로 모집하기</Text>
                     </View>
-                </TouchableHighlight>
+                {/* </TouchableHighlight> */}
                         
-                <Modal
+                {/* <Modal
                     transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}>
@@ -39,7 +39,7 @@ export default class NewRoom extends Component{
                             </TouchableOpacity>
                         </View>
                     </View>
-                </Modal>
+                </Modal> */}
             </View>
         );
     }
