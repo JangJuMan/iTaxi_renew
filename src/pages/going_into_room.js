@@ -4,15 +4,12 @@ import TaxiElement from '../components/taxiElement';
 import {seatImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ModalControl from '../variable/modalControl';
-<<<<<<< HEAD
 import { vw, vh }  from 'react-native-expo-viewport-units';
-=======
 
 /**
  * @props onOkButton      press enter room button (ok button)
  * @props onCancelButton  press cancel button
  */
->>>>>>> 3f00300219bb8ee8b40bfadfea3d238fc82d22eb
 
 export default class intoRoom extends Component{
   constructor(props){
