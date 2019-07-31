@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image, TouchableOpacity } from 'react-native';
-import SearchMenu from '../components/searchMenu';
 import {seatImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
-import ModalControl from '../variable/modalControl';
-
+import OC from 'open-color';
+import { vw }  from 'react-native-expo-viewport-units';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
+        출발,도착지도
 */
 export default class setting extends Component{
     render(){
-        const seat_img=seatImg;
         return(
             
             <View style={styles.list}>
                 <View style={styles.top}>
-                    <Text style={{color:'gray',fontSize:15 }}>모집</Text>
+                    <Text style={{color:'black',fontSize:15 }}>모집</Text>
                 </View>
-                <View style={styles.calendar}>
-                    <SearchMenu/>
+                <View style={styles.fromTo}>
+                    <View style={styles.location}>
+                  {/* 출발지,도착지는 props로 받기 */}
+                        <Text style={styles.locationText}>출발지</Text>
+                    </View>
+                    <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
+                    <View style={styles.location}>
+                        <Text style={styles.locationText}>도착지</Text>
+                    </View>
                 </View>
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
@@ -44,7 +49,7 @@ export default class setting extends Component{
                 </View>
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>나의 캐리어</Text>
+                        <Text style={{color:'gray' }}>나의캐리어</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
                         <Icon name="numeric-1-circle-outline" size={30} color="#4dabf7"/>
@@ -57,14 +62,15 @@ export default class setting extends Component{
                     <TouchableOpacity onPress={() => {
                         // ModalControl.modalVisible=false
                         this.props.onOkButton();
-                        this.props.navigation.navigate('CarpoolRoom')}}
-                        >
+                        // this.props.navigation.navigate('CarpoolRoom')}}
+                        }}>
                         <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         // ModalControl.modalVisible=false
                         this.props.onCancelButton();
-                        this.props.navigation.goBack()}}>
+                        // this.props.navigation.goBack()}
+                        }}>
                         <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
                 </View>
@@ -74,11 +80,9 @@ export default class setting extends Component{
 }
 const styles=StyleSheet.create({
     list:{
-        height:490,
+        height:vw(110),
         backgroundColor:'white',
-        width:300,
-        margin:20,
-        marginLeft:37,
+        width:vw(80),
         shadowColor:'gray',
         shadowOpacity:0.3,
         elevation: 3,
@@ -89,16 +93,30 @@ const styles=StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
     },
-    site:{
-        width:30,
-        height:30,
-        margin:10
-    },
     top:{
         flex:1,
         justifyContent:'center',
         alignItems:'center'
     },
+    fromTo:{
+        flexDirection: 'row',
+        padding: 10,
+    },
+            location: {
+            borderRadius: 50,
+            borderWidth: 1,
+            borderColor: OC.gray[4],
+            paddingLeft: 10,
+            paddingRight: 10,
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+        },
+            locationText: {
+                color: '#3FA9F5',
+                fontSize:16
+            },
     calendar:{
         flex:3,
         margin:5

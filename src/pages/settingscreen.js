@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image,ScrollView,AppRegistry,Button,Alert,Switch} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { vw } from 'react-native-expo-viewport-units';
+import { observer, inject } from 'mobx-react';
 
 
-// profile 아래부분
 class Profile_info extends Component {
   render() {
     return (
@@ -25,6 +25,8 @@ class Profile_my extends Component {
   }
 }
 
+@inject('userStore')
+@observer
 export default class Setting extends Component{
   constructor(props){
     super(props);
@@ -38,9 +40,16 @@ export default class Setting extends Component{
   toggleSwitch=(value)=>{
     this.setState({switchValue: value})
   }
+  componentDidMount() {
+    const { userStore } = this.props;
+    userStore.getUserId();
+  }
   
-    render(){  
+    render(){ 
+      const { userStore } = this.props; 
+      const data = userStore.userId;
         return(
+          
           <ScrollView>
                 <View style={styles.profileTop}>
                     <Text style={{fontSize:15,color:'#3FA9F5'}}>Profile</Text>
@@ -50,18 +59,19 @@ export default class Setting extends Component{
                     <View style={{flex:3}}>
                       <Profile_info info='학번'/>
                       <Profile_info info='한글이름'/>
-                      <Profile_info info='영어이름'/>
+                      <Profile_info info='닉네임'/>
                       <Profile_info info='휴대폰 번호'/>
                       <Profile_info info='Email'/>
                       <Profile_info info='계좌 은행'/>
                       <Profile_info info='계좌 번호'/>
                     </View>
+                    
                     <View style={{flex:5}}>
-                      <Profile_my info='21900398'/>
-                      <Profile_my info='신영현'/>
-                      <Profile_my info='shin'/>
-                      <Profile_my info='010-5480-9072'/>
-                      <Profile_my info='21900398@handong.edu'/>
+                      <Profile_my info={data.student_id}/>
+                      <Profile_my info={data.name}/>
+                      <Profile_my info={data.user_id}/>
+                      <Profile_my info={data.phone}/>
+                      <Profile_my info={data.student_id + '@handong.edu'}/>
                       <Profile_my info='기업'/>
                       <Profile_my info='01054809072'/>
                     </View>

@@ -13,17 +13,17 @@ import { observer, inject } from 'mobx-react';
  * @props   carrier Number of carriers
  */
 
-@inject('userStore')
+@inject('taxiStore')
 
 @observer
 export default class TaxiElement extends Component{
     componentDidMount() {
-        const { userStore } = this.props;
-        userStore.getTaxiList();
+        const { taxiStore } = this.props;
+        taxiStore.getTaxiList();
     }
 
     render(){
-        const { userStore } = this.props;
+        const { taxiStore } = this.props;
         const { seats, carrier } = this.props;
         const seat_img = "/assets/seat" + seats + ".png";
         const carrier_img = (carrier !== undefined) ? carrierImgs[carrier] : undefined;

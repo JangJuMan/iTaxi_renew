@@ -20,7 +20,7 @@ export default class SearchModal extends Component {
         return (
             <View style={[styles.container, this.props.style]}>
                 <TouchableOpacity style={styles.location_button} onPress={() => this.setModalVisiable(true)}>
-                    <Text>출발지</Text>
+                    <Text>선택</Text>
                     <Icon name="md-arrow-dropdown" size={vw(5)} color={OpenColor.gray[6]} />
                 </TouchableOpacity>
 
