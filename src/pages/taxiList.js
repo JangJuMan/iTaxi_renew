@@ -10,8 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ModlaControl from '../variable/modalControl';
 
 
-
-@inject('userStore')
+@inject('taxiStore')
 
 @observer
 export default class TaxiList extends Component{
@@ -29,10 +28,10 @@ export default class TaxiList extends Component{
     }
 
     componentDidMount() {
-        const { userStore } = this.props;
-        userStore.getTaxiList()
+        const { taxiStore } = this.props;
+        taxiStore.getTaxiList()
         .then(() =>
-        console.log(userStore.taxiList))
+        console.log(taxiStore.taxiList))
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -46,7 +45,7 @@ export default class TaxiList extends Component{
     };
 
     render(){
-        const {userStore} = this.props;
+        const {taxiStore} = this.props;
 
         return(
             
@@ -62,7 +61,7 @@ export default class TaxiList extends Component{
                     </View>
                     <View style={styles.log_contents}>
                     <FlatList
-                            data = {userStore.taxiList}
+                            data = {taxiStore.taxiList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
@@ -100,7 +99,7 @@ export default class TaxiList extends Component{
                     
                     <View style={styles.log_contents}>
                         <FlatList
-                            data = {userStore.taxiList}
+                            data = {taxiStore.taxiList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>

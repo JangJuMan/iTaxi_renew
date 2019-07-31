@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 
 import ListEntry from '../components/taxiElement';
 
-@inject('userStore')
+@inject('taxiStore')
 @observer
 export default class RiderLog extends Component{
     constructor(props) {
@@ -13,11 +13,11 @@ export default class RiderLog extends Component{
     }
 
     componentDidMount() {
-        const { userStore } = this.props;
-        userStore.getTaxiList();
+        const { taxiStore } = this.props;
+        taxiStore.getTaxiList();
     }
     render(){
-        const { userStore } = this.props;
+        const { taxiStore } = this.props;
         return(
             <View style={{flex:1}}>
                 {/*  곧 탑승예정 */}
@@ -47,7 +47,7 @@ export default class RiderLog extends Component{
                     </View>
                     <View style={styles.past_log_contents}>
                     <FlatList
-                            data = {userStore.taxiList}
+                            data = {taxiStore.taxiList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
@@ -65,7 +65,7 @@ export default class RiderLog extends Component{
                     </View>
                     <View style={styles.past_log_contents}>
                     <FlatList
-                            data = {userStore.taxiList}
+                            data = {taxiStore.taxiList}
                             keyExtractor = {(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>

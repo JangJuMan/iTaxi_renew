@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 // import TaxiList from '../pages/taxiList';
 import ModalControl from '../variable/modalControl';
-
+import { vw, vh }  from 'react-native-expo-viewport-units';
 
 export default class intoRoom extends Component{
   constructor(props){
@@ -66,11 +66,10 @@ export default class intoRoom extends Component{
   
   const styles=StyleSheet.create({
     list:{
-        height:400,
+        height:vh(70),
         backgroundColor:'white',
-        width:300,
+        width:vw(85),
         margin:20,
-        marginLeft:37,
         shadowColor:'gray',
         shadowOpacity:0.3,
         elevation: 3,
