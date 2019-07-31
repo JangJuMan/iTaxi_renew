@@ -5,7 +5,7 @@ import axios from 'axios';
 export default class TaxiStore {
 
     @observable taxiList = [];
-    @observable taxiId = [];
+    @observable taxiId;
 
     @observable state = "pending";
     errorData = "";

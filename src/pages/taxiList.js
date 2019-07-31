@@ -64,7 +64,10 @@ export default class TaxiList extends Component{
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
-                                <TouchableOpacity onPress={() => this.setModalVisible(true)}>
+                                <TouchableOpacity onPress={() => {
+                                    taxiStore.taxiId = item;
+                                    this.setModalVisible(true);
+                                }}>
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
                             </View>
@@ -101,7 +104,11 @@ export default class TaxiList extends Component{
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
-                                <TouchableOpacity onPress={() => this.setModalVisible(true)}>
+                                <TouchableOpacity 
+                                    onPress={() => {
+                                        this.setModalVisible(true);
+                                        taxiStore.taxiId = item;
+                                    }}>
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
                             </View>
