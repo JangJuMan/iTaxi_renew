@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image,Modal,TouchableHighlight,TouchableOpacity
 import { vw } from 'react-native-expo-viewport-units';
 import {plusImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MakeRoom from '../pages/ex_setting';
+//import MakeRoom from '../pages/MakeRoom';
 
 
 export default class NewRoom extends Component{

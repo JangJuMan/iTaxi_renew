@@ -6,7 +6,7 @@ import ListEntry from '../components/taxiElement';
 import MakeRoom from './going_into_room';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModlaControl from '../variable/modalControl';
-
+import { vw }  from 'react-native-expo-viewport-units';
 
 
 @inject('userStore')
@@ -79,7 +79,7 @@ export default class TaxiList extends Component{
                             visible={ModlaControl.modalVisible}
                             onRequestClose={() => this.setModalVisible(false)}>
                             <View style={styles.modalBackground}> 
-                                    <View style={styles.activityIndicatorWrapper}>
+                                    <View style={styles.realModal}>
                                     <MakeRoom 
                                         navigation={this.props.navigation}
                                     />
@@ -154,9 +154,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    activityIndicatorWrapper: {
-        width: 60,
-        height: 60,
+    realModal: {
         justifyContent: 'center',
         alignItems: 'center',
     }

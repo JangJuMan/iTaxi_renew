@@ -4,7 +4,7 @@ import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal } from 'reac
 import SearchMenu from './searchMenu';
 import NewRoom from './newRoom';
 import Icon from 'react-native-vector-icons/Ionicons';
-import MakeRoom from '../pages/ex_setting';
+import MakeRoom from '../pages/MakeRoom';
 
 
 export default class EmptyList extends Component{
@@ -51,7 +51,7 @@ export default class EmptyList extends Component{
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}>
                     <View style={styles.modalBackground}>
-                        <View style={styles.activityIndicatorWrapper}>
+                        <View style={styles.realModal}>
                             <MakeRoom 
                                 navigation={this.props.navigation}
                                 onOkButton = {() => this.setModalVisible(false)}
@@ -134,9 +134,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    activityIndicatorWrapper: {
-        width: 60,
-        height: 60,
+    realModal: {
         justifyContent: 'center',
         alignItems: 'center',
     }
