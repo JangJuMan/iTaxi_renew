@@ -19,7 +19,6 @@ export default class EmptyList extends Component{
     //     };
     // };
 
-     
     state={
         modalVisible: false,
     }
@@ -54,7 +53,10 @@ export default class EmptyList extends Component{
                         <View style={styles.activityIndicatorWrapper}>
                             <MakeRoom 
                                 navigation={this.props.navigation}
-                                onOkButton = {() => this.setModalVisible(false)}
+                                onOkButton = {() => {
+                                    this.setModalVisible(false),
+                                    this.props.navigation.navigate('CarpoolRoom')
+                                }}
                                 onCancelButton = {() => this.setModalVisible(false)}/>
                         </View>
                     </View>
