@@ -2,24 +2,14 @@ import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ModalControl from '../variable/modalControl';
-<<<<<<< HEAD
-
 import OC from 'open-color';
 import { vw, vh }  from 'react-native-expo-viewport-units';
 
-=======
-import { vw, vh }  from 'react-native-expo-viewport-units';
->>>>>>> d96fb0bd8d238c58e3f6c90a554d948897f9cacc
 
 /**
  * @props onOkButton      press enter room button (ok button)
  * @props onCancelButton  press cancel button
  */
-<<<<<<< HEAD
-
-=======
->>>>>>> d96fb0bd8d238c58e3f6c90a554d948897f9cacc
-
 export default class intoRoom extends Component{
   constructor(props){
       super(props);
