@@ -2,23 +2,23 @@ import { observable, action } from 'mobx';
 import { asyncAction } from 'mobx-utils';
 import axios from 'axios';
 
-export default class UserStore {
+export default class CarpoolStore {
 
-    @observable userId = [];
-    @observable log = [];
+    @observable carpoolList = [];
+    @observable carpoolId = [];
 
     @observable state = "pending";
     errorData = "";
 
-   
+
     @asyncAction
-    * getUserId() {
+    * getCarpoolList() {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/user/cra");
-            this.userId = result.data;
-            console.log(this.userId);
+            let result = yield axios.get("http://203.252.99.145:8080" + "/carpoollist/190724");
+            this.carpoolList = result.data;
+            console.log(this.carpoolList);
             this.state = "done";
           }
           catch (error) {
@@ -28,14 +28,15 @@ export default class UserStore {
           }
     }
 
+
     @asyncAction
-    * getLog() {
+    * getCarpoolId() {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/log/123/7");
-            this.log = result.data;
-            console.log(this.log);
+            let result = yield axios.get("http://203.252.99.145:8080" + "/carpool/123");
+            this.carpoolId = result.data;
+            console.log(this.carpoolId);
             this.state = "done";
           }
           catch (error) {
@@ -45,7 +46,7 @@ export default class UserStore {
           }
     }
 
-    
+
 
 
 }
