@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Modal, Text, View, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { vw, vh }  from 'react-native-expo-viewport-units';
 import OpenColor from 'open-color';
-
-import SelectDestination from './destinationSelect'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import SelectDestination from './destinationSelect';
+import Modal from '../elements/modal';
 
 
 export default class SearchModal extends Component {
@@ -28,16 +27,10 @@ export default class SearchModal extends Component {
                 <Modal
                     transparent={true}
                     visible={this.state.modalVisiable}
-                    onRequestClose={() => this.setModalVisiable(false)}>
-                    <TouchableWithoutFeedback 
-                        style={styles.modalBackground}
-                        onPress={() => this.setModalVisiable(false)} >
-                    </TouchableWithoutFeedback>
-                    <View style={styles.modalContent}>
-                        <SelectDestination
-                            onSubmit={() => this.setModalVisiable(false)} />
-                    </View>
-                </Modal>
+                    onRequestClose={() => this.setModalVisiable(false)}
+                    render={
+                        <SelectDestination onSubmit={() => this.setModalVisiable(false)} />
+                    } />
             </View>
         )
     }

@@ -1,28 +1,14 @@
 import React, { Component } from 'react';
 import { StyleSheet, Image, Modal, Text, TouchableHighlight, View, Alert, TouchableOpacity } from 'react-native';
 import Swiper from 'react-native-swiper'
-import CustomCalendar from '../elements/calendar';
+import Calendar from '../elements/calendar';
 import SearchModal from './searchModal';
-import { arrowImg, calendarImg, locateButtonImg, startImg, endImg } from '../variable/assets';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { days } from '../variable/date';
-
-
 
 import { vw, vh }  from 'react-native-expo-viewport-units';
 
 export default class SearchMenu extends Component {
-
-    state = {
-        modalVisible: false,
-    }
-
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
- 
-
-
     render() {
         return (
             <View style={[styles.container, this.props.style]}>
@@ -55,14 +41,15 @@ export default class SearchMenu extends Component {
                     </View>
 
                     <View style={styles.calendar}>
-                        <TouchableHighlight onPress={() => this.setModalVisible(true)}>
-                            <Icon name="calendar" color="#4dabf7" size={30} />
-                        </TouchableHighlight>
+                        <Calendar
+                            render={
+                                <Icon name="calendar" color="#4dabf7" size={30} />
+                            } />
                     </View>
                 </View>
 
                 {/* Modal 사용하기 불편한 점들 수정 필요 */}
-                <Modal
+                {/* <Modal
                     transparent={false}
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}>
@@ -74,7 +61,7 @@ export default class SearchMenu extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                </Modal>
+                </Modal> */}
             </View>
         )
     }
