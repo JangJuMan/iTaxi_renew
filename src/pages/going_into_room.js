@@ -4,31 +4,42 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ModalControl from '../variable/modalControl';
 import OC from 'open-color';
 import { vw, vh }  from 'react-native-expo-viewport-units';
-
+import { observer, inject } from 'mobx-react';
 
 /**
  * @props onOkButton      press enter room button (ok button)
  * @props onCancelButton  press cancel button
  */
+@inject('taxiStore')
+
+@observer
 export default class intoRoom extends Component{
   constructor(props){
       super(props);
   }
 
+  componentDidMount() {
+    const { taxiStore } = this.props;
+    taxiStore.getTaxiList();
+  }
     render(){
+      const { taxiStore }  = this.props;
+      const data = taxiStore.taxiId;
         return(
             <View style={styles.list}>
                 <View style={styles.top}>
                     <Text style={{color:'black',fontSize:15 }}>방들어가기</Text>
                 </View>
+               
                 <View style={styles.fromTo}>
                   <View style={styles.location}>
                   {/* 출발지,도착지는 props로 받기 */}
-                      <Text style={styles.locationText}>출발지</Text>
+                      <Text style={styles.locationText}>{data.departure_place}</Text>
+                      
                   </View>
                       <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
                   <View style={styles.location}>
-                            <Text style={styles.locationText}>도착지</Text>
+                            <Text style={styles.locationText}>{data.arrival_place}</Text>
                   </View>
                 </View>
                 <View style={styles.time_person_bag}>
@@ -36,10 +47,12 @@ export default class intoRoom extends Component{
                         <Text style={{color:'gray' }}>시간</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'center',alignItems:'center',}}>
-                        <Text style={{color:'#3FA9F5',fontSize:25,}}>16:25</Text>
+                        <Text style={{color:'#3FA9F5',fontSize:25,}}>{data.departure_time.substring(7)}</Text>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
+
+         
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
                         <Text style={{color:'gray' }}>캐리어</Text>
@@ -105,7 +118,7 @@ export default class intoRoom extends Component{
         },
             locationText: {
                 color: '#3FA9F5',
-                fontSize:16
+                fontSize:14
             },
       top:{
         flex:1,
