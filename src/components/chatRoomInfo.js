@@ -1,110 +1,210 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,Button, TouchableOpacity,ScrollView } from 'react-native';
+import { StyleSheet, Text, View,Button, TouchableOpacity,ScrollView,Image} from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 import TaxiElement from '../components/taxiElement';
+import { vw } from 'react-native-expo-viewport-units';
+import { Directions } from 'react-native-gesture-handler';
+import { carrierImgs, seatImg, fromtoImg, carrImg } from '../variable/assets';
+import { observer, inject } from 'mobx-react';
 
+// @inject('taxiStore')
 
-function userinfo(){
-    <Text style={{color:'#4D8ECF',margin:5}}>방나가기</Text>
-};
+// @observer
 export default class ChatRoom extends Component{
 
+    // componentDidMount() {
+    //     const { taxiStore } = this.props;
+    //     taxiStore.getTaxiList();
+    // }
     render(){
         return(
-            <View style={styles.container}>
-                <View style={{flex:1,}}>
-                    <View style={styles.taxiinfo_twoButton}>
-                        <View style={styles.taxiinfo}>
-                            <View style={styles.day}>
-                                <Text style={{ color: 'gray'}}>5월 30일</Text>
-                            </View>
-                            <View style={styles.taxi_element}>
-                                <TaxiElement time="13:20" from="한동대학교" to="포항역"/>
-                            </View>
+        <View>
+            <View style={styles.chatInfo_Top}>
+                <View style={styles.chatInfo_Left}>
+                    <View style={styles.chat_leftTop}>
+                        <View style={styles.calendar}>
+                            <Icon name="calendar" color='#3FA9F5' size={20}></Icon>
+                            <Text>   2019 / 07 / 31</Text>
                         </View>
-                        <View style={styles.twoButton}>
-                            <View style={styles.roomExit_button}>
-                                <TouchableOpacity style = {styles.button}>
-                                    <Text style={{color:'#4D8ECF'}}>방나가기</Text>
-                                </TouchableOpacity>     
-                            </View>
-                            <View style={styles.charge_button}>
-                                <TouchableOpacity style = {styles.button}>
-                                    <Text style={{color:'#4D8ECF'}}>정산하기</Text>
-                                </TouchableOpacity>
-                            </View>
+                        <View style={styles.clock}>
+                            <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
+                            <Text>  15:20</Text>
                         </View>
                     </View>
-                    <View style={styles.roommates}>
-                        <ScrollView horizontal={true}>
-                            <TouchableOpacity style = {styles.mates}>
-                                
-                                <Button
-                                    title="Learn More"
-                                    color="#4D8ECF"
-                                    onPress={userinfo()}
-                                />
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.mates}>
-                                <Text style={{color:'#4D8ECF',margin:5}}>팀원2</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style = {styles.mates}>
-                                <Text style={{color:'#4D8ECF',margin:5}}>팀원3</Text>
-                            </TouchableOpacity>
-                            
-                        
-                        </ScrollView>
+                    <View style={styles.chat_leftButt}>
+                        <View style={styles.fromto}>
+                            <View style={styles.destination_location}>
+                                <Image
+                                    style={styles.destination_image}
+                                    source={fromtoImg} />
+                                <View style={styles.destination_text_location}>
+                                    <Text style={styles.destination_text}>
+                                        {/* {this.props.from} */}
+                                        한동대학교
+                                    </Text>
+                                    <Text style={styles.destination_text}>
+                                        {/* {this.props.to} */}
+                                        포항역
+                                    </Text>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.chat_leftButt_carrier}></View>
+                    </View>
+                </View>
+                <View style={styles.chatInfo_Right}>
+                    <View style={styles.Button}>
+                        <TouchableOpacity style={{backgroundColor: '#3FA9F5',borderRadius: 10}}>
+                            <View style={styles.ButtonInfo}>
+                            <Text style={styles.ButtonText}>방나가기</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.Button}>
+                        <TouchableOpacity style={{backgroundColor: '#3FA9F5',borderRadius: 10}}>
+                            <View style={styles.ButtonInfo}>
+                            <Text style={styles.ButtonText}>정산하기</Text>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
-            
-        );
+            <ScrollView horizontal={true}>
+                <View style={styles.profileButton}>
+                    <TouchableOpacity style={{paddingRight:10}}>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>송민석    </Text>
+                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                        </View>
+                    </TouchableOpacity >
+                    <TouchableOpacity style={{paddingRight:10}}>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>장주만    </Text>
+                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{paddingRight:10}}>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>최진아    </Text>
+                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={{paddingRight:10}}>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>신영현    </Text>
+                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+        </View>
+        )
     }
 }
 
 const styles=StyleSheet.create({
-    container: {
-        flex:1,
-        flexDirection:'column', 
-    },
-    
-    taxiinfo_twoButton:{
-        flex:5,
+    chatInfo_Top: {
+        height:vw(34),
         flexDirection:'row',
     },
-        taxiinfo:{
-            flex:4,
+        chatInfo_Left:{
+            flex:3,
+            borderColor:'gray',
+            borderWidth:0.5,
         },
-            day:{
+            chat_leftTop:{
                 flex:1,
+                flexDirection:'row',
                 justifyContent:'center',
                 alignItems:'center',
             },
-            taxi_element:{
-                flex:4, 
+                calendar:{
+                    flex:7,
+                    flexDirection:'row',
+                    justifyContent:'center'
+                },
+                clock:{
+                    flex:4,
+                    flexDirection:'row',
+                    justifyContent:'flex-start'
+                },
+            chat_leftButt:{
+                flex:2,
+                flexDirection:'row'
             },
-        twoButton:{
-            flex:1,
+                fromto:{
+                    flex:1,
+                },
+                    destination_location: {
+                        flex: 3,
+                        marginLeft: vw(3),
+                        justifyContent: 'center',
+                        flexDirection: 'row',
+                    },
+            
+                        destination_image: {
+                            width: vw(6),
+                            height: vw(19.2),
+                        },
+            
+                        destination_text_location: {
+                            flex: 1,
+                            flexDirection: 'column',
+                            justifyContent: 'space-evenly',
+                        },
+            
+                            destination_text: {
+                                color: 'gray',
+                                margin: vw(2.4),
+                            },
+                chat_leftButt_carrier:{
+                    flex:1,
+                    borderWidth:0.5,
+                },
+        chatInfo_Right:{
+            flex:1.5,
+            flexDirection:'column',
+            borderColor:'gray',
+            borderWidth:0.5,
+            justifyContent:'space-around'
         },
-            roomExit_button:{
-                flex:1,
+            Button:{
+                height:vw(12),
                 justifyContent:'center',
                 alignItems:'center',
             },
-            charge_button:{
-                flex:1,
-                justifyContent:'center',
-                alignItems:'center',
+            ButtonInfo: {
+                paddingHorizontal: 20,
+                padding:10,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
             },
-    roommates:{
-        flex:2,
+                ButtonText: {
+                    color: 'white',
+                    fontSize:15,
+                },
+    profileButton:{
+        height:vw(13),
+        justifyContent:'center',
+        alignItems:'center',
+        paddingLeft:10,
         flexDirection:'row'
     },
-        mates: {
-            fontSize:10,
-            justifyContent:'center',
-            alignItems:'center',
-            flex:1,
-            flexDirection:'row'
+    profileInfo: {
+        borderRadius: 30,
+        borderWidth: 2,
+        borderColor: '#3FA9F5',
+        padding: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
+        profileText: {
+            color: '#3FA9F5',
         },
-    
 })
