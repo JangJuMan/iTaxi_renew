@@ -57,14 +57,15 @@ export default class setting extends Component{
                     <TouchableOpacity onPress={() => {
                         // ModalControl.modalVisible=false
                         this.props.onOkButton();
-                        this.props.navigation.navigate('CarpoolRoom')}}
-                        >
+                        // this.props.navigation.navigate('CarpoolRoom')}}
+                        }}>
                         <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         // ModalControl.modalVisible=false
                         this.props.onCancelButton();
-                        this.props.navigation.goBack()}}>
+                        // this.props.navigation.goBack()}
+                        }}>
                         <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
                 </View>

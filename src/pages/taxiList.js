@@ -3,9 +3,10 @@ import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button,M
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
-import MakeRoom from './going_into_room';
+import EnterRoom from './going_into_room';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ModlaControl from '../variable/modalControl';
+import ModalControl from '../variable/modalControl';
+import MakeRoom from './ex_setting';
 
 
 
@@ -19,7 +20,7 @@ export default class TaxiList extends Component{
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
-        ModlaControl.modalVisible = visible;
+        // ModlaControl.modalVisible = visible;
     }
 
     constructor(props) {
@@ -36,7 +37,8 @@ export default class TaxiList extends Component{
     static navigationOptions = ({ navigation }) => {
         return {
             headerRight: (
-                <TouchableOpacity onPress={() => navigation.navigate('createTaxiRoomInfo')}>
+                <TouchableOpacity
+                    onPress={() => ModalControl.modalVisible_carpool=true}>
                     <Icon style={{marginRight:10, color:'dodgerblue'}}name="ios-add-circle-outline" size={30}/>
                 </TouchableOpacity>
             ),
@@ -75,15 +77,14 @@ export default class TaxiList extends Component{
                     
                         <Modal
                             transparent={true}
-                            // visible={this.state.modalVisible}
-                            visible={ModlaControl.modalVisible}
+                            visible={this.state.modalVisible}
                             onRequestClose={() => this.setModalVisible(false)}>
                             <View style={styles.modalBackground}> 
                                     <View style={styles.activityIndicatorWrapper}>
-                                    <MakeRoom 
+                                    <EnterRoom 
                                         navigation={this.props.navigation}
-                                    />
-                                    
+                                        onOkButton = {() => this.setModalVisible(false)}
+                                        onCancelButton = {() => this.setModalVisible(false)}/>
                                 </View>
                             </View>
                         </Modal>
@@ -109,6 +110,23 @@ export default class TaxiList extends Component{
                     </View>
                     
                 </ScrollView>
+
+                <Modal
+                    transparent={true}
+                    visible={ModalControl.modalVisible_carpool}
+                    onRequestClose={() => ModalControl.modalVisible_carpool=false}>
+                    <View style={styles.modalBackground}>
+                        <View style={styles.activityIndicatorWrapper}>
+                            <MakeRoom 
+                                navigation={this.props.navigation}
+                                onOkButton = {() => {
+                                    ModalControl.modalVisible_carpool=false, 
+                                    this.props.navigation.navigate('TaxiRoom');
+                                }}
+                                onCancelButton = {() => ModalControl.modalVisible_carpool=false}/>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         );
     }
@@ -159,7 +177,7 @@ const styles = StyleSheet.create({
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
-    }
+    },
 })
 
 
