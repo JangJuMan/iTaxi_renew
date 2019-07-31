@@ -8,7 +8,7 @@ import RiderLog from './pages/rideLog';
 import Setting from './pages/settingscreen';
 import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
-import EnteringRoom from './pages/going _into_room';
+import EnteringRoom from './pages/going_into_room';
 
 
 
@@ -47,6 +47,7 @@ class CarpoolList extends Component {
 const CarpoolTab = createStackNavigator({
     // Home: CarpoolList,
     Home: Carpool,
+    CarpoolRoom: ChatRoom,
     createCarpoolRoomInfo: Setting,
   }, {
   defaultNavigationOptions: {
@@ -64,7 +65,8 @@ class RideHistory extends Component {
   }
 }
 const RideHistoryTab = createStackNavigator({
-    Home: RideHistory,
+    Home: RiderLog,
+    pastRoom: ChatRoom,
   }, {
   defaultNavigationOptions: {
     title: "탑승 내역",

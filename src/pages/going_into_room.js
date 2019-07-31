@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text,StyleSheet,Image } from 'react-native';
+import { View, Text,StyleSheet,Image, TouchableOpacity } from 'react-native';
 import TaxiElement from '../components/taxiElement';
 import {seatImg} from '../variable/assets';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-// import TaxiList from '../pages/taxiList';
 import ModalControl from '../variable/modalControl';
 import { vw, vh }  from 'react-native-expo-viewport-units';
 
@@ -17,7 +14,6 @@ export default class intoRoom extends Component{
     render(){
         const seat_img=seatImg;
         return(
-            
             <View style={styles.list}>
                 <View style={styles.top}>
                     <Text style={{color:'gray',fontSize:15 }}>방들어가기</Text>

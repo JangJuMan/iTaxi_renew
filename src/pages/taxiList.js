@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button,Modal } from 'react-native';
-import axios from 'axios';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
-import intoRoom from './going _into_room';
-import MakeRoom from '../pages/going _into_room';
+import MakeRoom from './going_into_room';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModlaControl from '../variable/modalControl';
 
@@ -29,9 +27,7 @@ export default class TaxiList extends Component{
 
     componentDidMount() {
         const { taxiStore } = this.props;
-        taxiStore.getTaxiList()
-        .then(() =>
-        console.log(taxiStore.taxiList))
+        taxiStore.getTaxiList();
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -69,7 +65,6 @@ export default class TaxiList extends Component{
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
                                 </TouchableOpacity>
                             </View>
-                        
                         }/>
 
                     </View>
