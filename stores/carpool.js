@@ -1,11 +1,11 @@
-import { observable, action } from 'mobx';
+import { observable, computed } from 'mobx';
 import { asyncAction } from 'mobx-utils';
 import axios from 'axios';
 
 export default class CarpoolStore {
 
     @observable carpoolList = [];
-    @observable carpoolId = [];
+    @observable carpoolId;
 
     @observable state = "pending";
     errorData = "";
@@ -28,6 +28,9 @@ export default class CarpoolStore {
           }
     }
 
+    @computed get carpool() {
+      return this.carpoolList;
+    }
 
     @asyncAction
     * getCarpoolId() {

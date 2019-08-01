@@ -6,6 +6,8 @@ import Swiper from 'react-native-swiper'
 import ListEntry from '../components/taxiElement';
 
 @inject('taxiStore')
+@inject('carpoolStore')
+
 @observer
 export default class RiderLog extends Component{
     constructor(props) {
@@ -14,10 +16,13 @@ export default class RiderLog extends Component{
 
     componentDidMount() {
         const { taxiStore } = this.props;
+        const { carpoolStore } = this.props;
         taxiStore.getTaxiList();
+        carpoolStore.getCarpoolList();
     }
     render(){
         const { taxiStore } = this.props;
+        const { carpoolStore } = this.props;
         return(
             <View style={{flex:1}}>
                 {/* 곧 탑승예정 */}
@@ -35,10 +40,22 @@ export default class RiderLog extends Component{
                 <View style={styles.past_log}>
                     <Text style={styles.past_log_title}>지난탑승내역</Text>
                     <View style={{flexDirection: 'row'}}>
-                        <TouchableOpacity style={{marginRight:10}}>
+                        <TouchableOpacity 
+                            style={{marginRight:10}}
+                            // onPress = {() => {
+                            //     data = taxiStore.taxi(),
+                            //     taxiStore.taxiId = item}
+                            //     }
+                        >
                             <Text style={styles.taxi_carpool_font}>택시</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={{marginRight:10}}>
+                        <TouchableOpacity 
+                            style={{marginRight:10}}
+                            // onPress = {() => {
+                            //     data = carpoolStore.carpool(),
+                            //     carpoolStore.carpoolId = item}
+                            //     }
+                        >
                             <Text style={styles.taxi_carpool_font}>카풀</Text>
                         </TouchableOpacity>   
                     </View>
@@ -57,6 +74,7 @@ export default class RiderLog extends Component{
                             <View>
                                 <TouchableOpacity
                                     onPress = {() => {
+                                        taxiStore.taxiId = item;
                                         this.props.navigation.navigate('pastRoom');
                                     }}>
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
@@ -65,26 +83,7 @@ export default class RiderLog extends Component{
                         
                         }/>
                     </View>
-                    <View style={styles.past_log_container}>
-                        <Text style={styles.past_date_bar}>OO월 OO일 O요일</Text>
-                        <View style={styles.horizontal_past_date_bar}></View>
-                    </View>
-                    <View style={styles.past_log_contents}>
-                    <FlatList
-                            data = {taxiStore.taxiList}
-                            keyExtractor = {(item, index) => item.taxi_id.toString()}
-                            renderItem = {({item}) => 
-                            <View>
-                                <TouchableOpacity
-                                    onPress = {() => {
-                                        this.props.navigation.navigate('pastRoom');
-                                    }}>
-                                    <ListEntry style = {{marginBottom: 20}} time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
-                                </TouchableOpacity>
-                            </View>
-                        
-                        }/>
-                    </View>
+                    
                 </ScrollView>
             </View>
         );
