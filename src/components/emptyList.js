@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal } from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, } from 'react-native';
 
 import SearchMenu from './searchMenu';
 import NewRoom from './newRoom';
 import Icon from 'react-native-vector-icons/Ionicons';
 import MakeRoom from '../pages/MakeRoom';
+import Modal from '../elements/modal';
 
 
 export default class EmptyList extends Component{
@@ -47,7 +48,8 @@ export default class EmptyList extends Component{
                 <Modal
                     transparent={true}
                     visible={this.state.modalVisible}
-                    onRequestClose={() => this.setModalVisible(false)}>
+                    onRequestClose={() => this.setModalVisible(false)}
+                    render={
                     <View style={styles.modalBackground}>
                         <View style={styles.realModal}>
                             <MakeRoom 
@@ -59,7 +61,7 @@ export default class EmptyList extends Component{
                                 onCancelButton = {() => this.setModalVisible(false)}/>
                         </View>
                     </View>
-                </Modal>
+                }/>
 
             </View>
         );

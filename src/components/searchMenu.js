@@ -18,11 +18,6 @@ export default class SearchMenu extends Component {
                     <SearchModal />
                 </View>
 
-                {/* 오늘이 아니면 숨기거나 하는 기능이 필요할듯. 근데 디자인이 오늘이 아니면 없어지는게 맞는걸까?
-                <View style={styles.today}>
-                    <Text style={styles.today_font}>오늘</Text>
-                </View> */}
-
                 <View style={styles.search_date}>
                     <View style={{ flex: 1 }}></View>
                     <View style={{ flex: 5, flexDirection: 'column', alignContent: "space-between", justifyContent: 'center' }}>
@@ -47,21 +42,6 @@ export default class SearchMenu extends Component {
                             } />
                     </View>
                 </View>
-
-                {/* Modal 사용하기 불편한 점들 수정 필요 */}
-                {/* <Modal
-                    transparent={false}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => this.setModalVisible(false)}>
-                    <View style={{ marginTop: 22 }}>
-                        <View>
-                            <CustomCalendar />
-                            <TouchableOpacity onPress={() => this.setModalVisible(!this.state.modalVisible)}>
-                                <Text>Hide Modal</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </Modal> */}
             </View>
         )
     }

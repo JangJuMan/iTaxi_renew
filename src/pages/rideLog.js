@@ -32,7 +32,7 @@ export default class RiderLog extends Component{
                         this.props.navigation.navigate('pastRoom');
                     }}>
                     <View style={styles.top_highlighted_log}>
-                        <ListEntry time="13:20" from="한동대학교" to="포항역"/>
+                        <ListEntry time = '13:00' from="한동대학교" to="포항역"/>
                     </View>
                 </TouchableOpacity>
 
@@ -70,7 +70,7 @@ export default class RiderLog extends Component{
                                     onPress = {() => {
                                         this.props.navigation.navigate('pastRoom');
                                     }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         
@@ -90,7 +90,7 @@ export default class RiderLog extends Component{
                                     onPress = {() => {
                                         this.props.navigation.navigate('pastRoom');
                                     }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
+                                    <ListEntry style = {{marginBottom: 20}} time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         

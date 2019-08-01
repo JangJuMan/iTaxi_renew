@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button,Modal } from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button,} from 'react-native';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ModalControl from '../variable/modalControl';
 import { vw }  from 'react-native-expo-viewport-units';
 import MakeRoom from '../pages/MakeRoom';
+import Modal from '../elements/modal'
 
 
 @inject('taxiStore')
@@ -68,7 +69,7 @@ export default class TaxiList extends Component{
                                     taxiStore.taxiId = item;
                                     this.setModalVisible(true);
                                 }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         }/>
@@ -79,7 +80,8 @@ export default class TaxiList extends Component{
                         <Modal
                             transparent={true}
                             visible={this.state.modalVisible}
-                            onRequestClose={() => this.setModalVisible(false)}>
+                            onRequestClose={() => this.setModalVisible(false)}
+                            render={
                             <View style={styles.modalBackground}> 
 
                                 <View style={styles.realModal}>
@@ -89,7 +91,7 @@ export default class TaxiList extends Component{
                                         onCancelButton = {() => this.setModalVisible(false)}/>
                                 </View>
                             </View>
-                        </Modal>
+                            }/>
                     
                     
                     <View style={styles.log_container}>
@@ -109,7 +111,7 @@ export default class TaxiList extends Component{
                                         this.setModalVisible(true);
                                         taxiStore.taxiId = item;
                                     }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}  seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         }/>
@@ -120,7 +122,8 @@ export default class TaxiList extends Component{
                 <Modal
                     transparent={true}
                     visible={ModalControl.modalVisible_carpool}
-                    onRequestClose={() => ModalControl.modalVisible_carpool=false}>
+                    onRequestClose={() => ModalControl.modalVisible_carpool=false}
+                    render={
                     <View style={styles.modalBackground}>
                         <View style={styles.activityIndicatorWrapper}>
                             <MakeRoom 
@@ -132,7 +135,7 @@ export default class TaxiList extends Component{
                                 onCancelButton = {() => ModalControl.modalVisible_carpool=false}/>
                         </View>
                     </View>
-                </Modal>
+                    }/>
             </View>
         );
     }
