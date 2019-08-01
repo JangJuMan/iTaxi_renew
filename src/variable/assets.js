@@ -1,6 +1,4 @@
 const ASSET_DIR = "../../assets/";
-
-const undefined = require('../../assets/Final-gray.png');
 const seat1 = require('../../assets/Final-oneblue.png');
 const seat2 = require('../../assets/Final-twoblue.png');
 const seat3 = require('../../assets/Final-threeblue.png');
@@ -25,3 +23,7 @@ export const startImg = require(ASSET_DIR + "start.png");
 export const arrowImg = require(ASSET_DIR + "arrow.png");
 export const calendarImg = require(ASSET_DIR + "calendar.png");
 
+export const carrIcon = require(ASSET_DIR + "Final_carrier_outline_blue.gif");
+export const emptycarrImg = require(ASSET_DIR + "Final_carrier_outline_gray.gif");
+export const fullcarrImg = require(ASSET_DIR + "Final_carrier_gray.gif");
+export const  fromtoIcon= require(ASSET_DIR + "Final-fromtoBlue.gif");

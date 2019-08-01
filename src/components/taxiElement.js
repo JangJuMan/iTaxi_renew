@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
-import { carrierImgs, seatImg, fromtoImg, carrImg } from '../variable/assets';
+import { carrierImgs, seatImgs, fromtoImg, } from '../variable/assets';
 import { observer, inject } from 'mobx-react';
 
 
@@ -23,9 +23,8 @@ export default class TaxiElement extends Component{
     }
 
     render(){
-        const { taxiStore } = this.props;
-        const { seats, carrier } = this.props;
-        const seat_img = "/assets/seat" + seats + ".png";
+        const { seat, carrier } = this.props;
+        const seat_img = (seat !== undefined) ? seatImgs[seat] : undefined;
         const carrier_img = (carrier !== undefined) ? carrierImgs[carrier] : undefined;
 
         return(
@@ -37,7 +36,7 @@ export default class TaxiElement extends Component{
                     
                     <Image 
                         style={styles.seat}
-                        source={seatImg}  />
+                        source={seat_img}  />
                 </View>
 
                 <View style={styles.destination_location}>
@@ -56,7 +55,7 @@ export default class TaxiElement extends Component{
 
                 <Image 
                     style={styles.carrier}
-                    source={carrImg} />
+                    source={carrier_img} />
             </View>
         )
     }
@@ -106,7 +105,7 @@ const styles=StyleSheet.create({
 
             destination_image: {
                 width: vw(7.2),
-                height: vw(19.2),
+                height: vw(20),
             },
 
             destination_text_location: {

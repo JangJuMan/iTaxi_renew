@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal } from 'react-native';
-
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, } from 'react-native';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import NewRoom from '../components/newRoom';
@@ -9,6 +8,7 @@ import EmptyList from '../components/emptyList';
 import MakeRoom from '../pages/MakeRoom';
 import ModalControl from '../variable/modalControl';
 import { observer } from 'mobx-react';
+import Modal from '../elements/modal';
 
 @observer
 export default class ListView extends Component{
@@ -35,7 +35,8 @@ export default class ListView extends Component{
                 <Modal
                     transparent={true}
                     visible={ModalControl.modalVisible_carpool}
-                    onRequestClose={() => ModalControl.modalVisible_carpool=false}>
+                    onRequestClose={() => ModalControl.modalVisible_carpool=false}
+                    render={
                     <View style={styles.modalBackground}>
                         <View style={styles.activityIndicatorWrapper}>
                             <MakeRoom 
@@ -47,7 +48,7 @@ export default class ListView extends Component{
                                 onCancelButton = {() => ModalControl.modalVisible_carpool=false}/>
                         </View>
                     </View>
-                </Modal>
+                    }/>
             </View>
         );
     }

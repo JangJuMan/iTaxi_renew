@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import TaxiElement from '../components/taxiElement';
 import { vw } from 'react-native-expo-viewport-units';
 import { Directions } from 'react-native-gesture-handler';
-import { carrierImgs, seatImg, fromtoImg, carrImg } from '../variable/assets';
+import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../variable/assets';
 import { observer, inject } from 'mobx-react';
 
 // @inject('taxiStore')
@@ -36,7 +36,7 @@ export default class ChatRoom extends Component{
                             <View style={styles.destination_location}>
                                 <Image
                                     style={styles.destination_image}
-                                    source={fromtoImg} />
+                                    source={fromtoIcon} />
                                 <View style={styles.destination_text_location}>
                                     <Text style={styles.destination_text}>
                                         {/* {this.props.from} */}
@@ -49,7 +49,18 @@ export default class ChatRoom extends Component{
                                 </View>
                             </View>
                         </View>
-                        <View style={styles.chat_leftButt_carrier}></View>
+                        <View style={styles.chat_leftButt_carrier}>
+                            <View style={{flexDirection:'row',padding:3}}>
+                                <Image style={styles.carrIcon} source={carrIcon} />
+                                <Text style={{padding:5}}>캐리어</Text>
+                            </View>
+                            <View style={{flexDirection:'row',margin:5}}>
+                                <Image style={styles.carrImg} source={emptycarrImg} />
+                                <Image style={styles.carrImg} source={emptycarrImg} />
+                                <Image style={styles.carrImg} source={fullcarrImg} />
+                                <Image style={styles.carrImg} source={fullcarrImg} />
+                            </View>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.chatInfo_Right}>
@@ -148,7 +159,7 @@ const styles=StyleSheet.create({
             
                         destination_image: {
                             width: vw(6),
-                            height: vw(19.2),
+                            height: vw(22),
                         },
             
                         destination_text_location: {
@@ -163,8 +174,17 @@ const styles=StyleSheet.create({
                             },
                 chat_leftButt_carrier:{
                     flex:1,
-                    borderWidth:0.5,
+                    flexDirection:'column',
                 },
+                    carrIcon:{
+                        width: vw(7),
+                        height: vw(7),
+                    },
+                    carrImg:{
+                        width: vw(5),
+                        height: vw(10),
+                        padding:10
+                    },
         chatInfo_Right:{
             flex:1.5,
             flexDirection:'column',

@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Image,Modal,TouchableHighlight,TouchableOpacity
 import { vw } from 'react-native-expo-viewport-units';
 import {plusImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/Ionicons';
-//import MakeRoom from '../pages/MakeRoom';
 
 
 export default class NewRoom extends Component{
@@ -26,20 +25,6 @@ export default class NewRoom extends Component{
                         <Text style={styles.font_style}>새로 모집하기</Text>
                     </View>
                 {/* </TouchableHighlight> */}
-                        
-                {/* <Modal
-                    transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => this.setModalVisible(false)}>
-                    <View style={styles.modalBackground}>
-                        <View style={styles.activityIndicatorWrapper}>
-                            <MakeRoom />
-                            <TouchableOpacity onPress={() => this.setModalVisible(!this.state.modalVisible)}>
-                                <Text>Hide Modal</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </Modal> */}
             </View>
         );
     }
@@ -72,16 +57,5 @@ const styles=StyleSheet.create({
         marginTop: 10,
         fontSize: 16,
     },
-    modalBackground: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    activityIndicatorWrapper: {
-        width: 60,
-        height: 60,
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
 });
 
