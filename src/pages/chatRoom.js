@@ -16,22 +16,8 @@ export default class ChatRoom extends Component{
         return(
             <View style={{flex:1}}>
                 <ChatRoomInfo />
-                {/* <KeyboardAvoidingView style={{ }} behavior='position' contentContainerStyle={{}} keyboardVerticalOffset='80'> */}
-                    <Chatting style={{}}/>
-                {/* </KeyboardAvoidingView> */}
+                <Chatting />
             </View>
-            // <View style={{flex:1 }}>
-
-            //     <View style={{flex:3}}>
-            //         <ChatRoomInfo style={{}}/>    
-            //     </View> 
-
-                // <KeyboardAvoidingView style={{ flex:6.5 }} behavior='position' contentContainerStyle={{flex:1}} keyboardVerticalOffset='80'>
-                //     <Chatting style={{flex:1}}/>
-                // </KeyboardAvoidingView>
-
-                
-            // </View>
         );
     }
 }
