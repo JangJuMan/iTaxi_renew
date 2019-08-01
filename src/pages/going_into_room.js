@@ -30,7 +30,7 @@ export default class intoRoom extends Component{
                 <View style={styles.top}>
                     <Text style={{color:'black',fontSize:15 }}>방들어가기</Text>
                 </View>
-               
+              
                 <View style={styles.fromTo}>
                   <View style={styles.location}>
                   {/* 출발지,도착지는 props로 받기 */}
