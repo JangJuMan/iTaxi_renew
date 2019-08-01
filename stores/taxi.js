@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, computed } from 'mobx';
 import { asyncAction } from 'mobx-utils';
 import axios from 'axios';
 
@@ -26,6 +26,10 @@ export default class TaxiStore {
             this.state = "error";
           }
 
+    }
+
+    @computed get taxi() {
+      return this.taxiList;
     }
 
 

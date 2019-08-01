@@ -58,9 +58,15 @@ export default class intoRoom extends Component{
                         <Text style={{color:'gray' }}>캐리어</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
+                      <TouchableOpacity>
                         <Icon name="numeric-1-circle-outline" size={30} color="#3FA9F5"/>
+                      </TouchableOpacity>
+                      <TouchableOpacity>
                         <Icon name="numeric-2-circle-outline" size={30} color="#3FA9F5"/>
+                      </TouchableOpacity>
+                      <TouchableOpacity>
                         <Icon name="numeric-3-circle-outline" size={30} color="#3FA9F5"/>
+                      </TouchableOpacity>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
