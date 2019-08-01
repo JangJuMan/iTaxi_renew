@@ -7,16 +7,24 @@ import { Directions } from 'react-native-gesture-handler';
 import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../variable/assets';
 import { observer, inject } from 'mobx-react';
 
-// @inject('taxiStore')
+@inject('taxiStore')
+@inject('carpoolStore')
 
-// @observer
+@observer
 export default class ChatRoom extends Component{
 
-    // componentDidMount() {
-    //     const { taxiStore } = this.props;
-    //     taxiStore.getTaxiList();
-    // }
+    componentDidMount() {
+        const { taxiStore } = this.props;
+        const { carpoolStore } = this.props;
+        taxiStore.getTaxiList();
+        carpoolStore.getCarpoolList();
+    }
     render(){
+        const { taxiStore } = this.props;
+        const { carpoolStore } = this.props;
+        const t_data = taxiStore.taxiId;
+        const c_data = carpoolStore.carpoolId;
+
         return(
         <View>
             <View style={styles.chatInfo_Top}>
@@ -28,7 +36,7 @@ export default class ChatRoom extends Component{
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
-                            <Text>  15:20</Text>
+                            <Text>  {t_data.departure_time.substring(7)}</Text>
                         </View>
                     </View>
                     <View style={styles.chat_leftButt}>
@@ -39,12 +47,10 @@ export default class ChatRoom extends Component{
                                     source={fromtoIcon} />
                                 <View style={styles.destination_text_location}>
                                     <Text style={styles.destination_text}>
-                                        {/* {this.props.from} */}
-                                        한동대학교
+                                        {t_data.departure_place}
                                     </Text>
                                     <Text style={styles.destination_text}>
-                                        {/* {this.props.to} */}
-                                        포항역
+                                        {t_data.arrival_place}
                                     </Text>
                                 </View>
                             </View>

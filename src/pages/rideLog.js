@@ -42,14 +42,20 @@ export default class RiderLog extends Component{
                     <View style={{flexDirection: 'row'}}>
                         <TouchableOpacity 
                             style={{marginRight:10}}
-                            // onPress = {() => taxiStore.taxi()}
-                            >
+                            // onPress = {() => {
+                            //     data = taxiStore.taxi(),
+                            //     taxiStore.taxiId = item}
+                            //     }
+                        >
                             <Text style={styles.taxi_carpool_font}>택시</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={{marginRight:10}}
-                            // onPress = {() => carpoolStore.carpool()}
-                            >
+                            // onPress = {() => {
+                            //     data = carpoolStore.carpool(),
+                            //     carpoolStore.carpoolId = item}
+                            //     }
+                        >
                             <Text style={styles.taxi_carpool_font}>카풀</Text>
                         </TouchableOpacity>   
                     </View>
@@ -68,6 +74,7 @@ export default class RiderLog extends Component{
                             <View>
                                 <TouchableOpacity
                                     onPress = {() => {
+                                        taxiStore.taxiId = item;
                                         this.props.navigation.navigate('pastRoom');
                                     }}>
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
@@ -76,26 +83,7 @@ export default class RiderLog extends Component{
                         
                         }/>
                     </View>
-                    <View style={styles.past_log_container}>
-                        <Text style={styles.past_date_bar}>OO월 OO일 O요일</Text>
-                        <View style={styles.horizontal_past_date_bar}></View>
-                    </View>
-                    <View style={styles.past_log_contents}>
-                    <FlatList
-                            data = {carpoolStore.carpoolList}
-                            keyExtractor = {(item, index) => item.carpool_id.toString()}
-                            renderItem = {({item}) => 
-                            <View>
-                                <TouchableOpacity
-                                    onPress = {() => {
-                                        this.props.navigation.navigate('pastRoom');
-                                    }}>
-                                    <ListEntry style = {{marginBottom: 20}} time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
-                                </TouchableOpacity>
-                            </View>
-                        
-                        }/>
-                    </View>
+                    
                 </ScrollView>
             </View>
         );
