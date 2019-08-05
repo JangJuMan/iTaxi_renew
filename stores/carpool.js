@@ -10,7 +10,6 @@ export default class CarpoolStore {
     @observable state = "pending";
     errorData = "";
 
-
     @asyncAction
     * getCarpoolList() {
         this.state = "pending";

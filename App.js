@@ -20,12 +20,7 @@ export default class App extends Component {
 			carpoolStore={carpoolStore}
 			>
 				<MainPage />
-				{/* <Text>hihihihihihi
-				hihihihihihihih
-				h
-				ih
-				</Text> */}
-			</Provider>
+			</Provider>	
 		)
 	}
 }

@@ -236,10 +236,7 @@ export default class ChatRoom extends Component {
                         onChangeText={(input) => this.setState({ text: input })}
                         multiline={true}
 
-                        numberOfLines={5}
-                        // clearButtonMode='always'
-                        // editable ={true}
-                        // numberOfLines = {4}
+                        // numberOfLines={5}
                         ref={ref => {
                             this.textInput = ref;
                         }}
@@ -254,16 +251,12 @@ export default class ChatRoom extends Component {
                         }}
                         underlineColorAndroid='transparent'
 
-                        // onContentSizeChange={(event) => {
-                        //     this.setState({height: event.nativeEvent.contentSize.height})
-                        // }}
-
                         placeholder='메시지를 입력해주세요' />
                     <TouchableOpacity
                         style={styles.send_btn}
                         onPress={() => {
                             this.textInput.clear();
-                            //TODO: 임시방편임. textinput 자체가 빠르게 이어쓰면 이전에 있던 결과값에서 이어붙여지는 거 같아. 너무 계륵임.. 더 좋은 방법이 필요함...
+                            //TODO: 임시방편임. textinput 자체가 빠르게 이어쓰면 이전에 있던 결과값에서 이어붙여지는 거 같아. 너무 에바임.. 더 좋은 방법이 필요함...
                             Keyboard.dismiss();
                             this.onSubmitEdit();
                         }}>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import OC from 'open-color';
 import Swiper from 'react-native-swiper'
 
 import ListEntry from '../components/taxiElement';
@@ -14,12 +15,21 @@ export default class RiderLog extends Component{
         super(props);
     }
 
+    state = {
+        isTaxi : true
+    }
+
     componentDidMount() {
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
         taxiStore.getTaxiList();
         carpoolStore.getCarpoolList();
     }
+
+    changeColor = (value) => {
+        this.setState({isTaxi: value});
+    }
+
     render(){
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
@@ -42,21 +52,19 @@ export default class RiderLog extends Component{
                     <View style={{flexDirection: 'row'}}>
                         <TouchableOpacity 
                             style={{marginRight:10}}
-                            // onPress = {() => {
-                            //     data = taxiStore.taxi(),
-                            //     taxiStore.taxiId = item}
-                            //     }
+                            onPress = {() => {
+                                this.changeColor(true)
+                            }}
                         >
-                            <Text style={styles.taxi_carpool_font}>택시</Text>
+                            <Text style={this.state.isTaxi ? styles.taxi_carpool_highlight_font : styles.taxi_carpool_font}>택시</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={{marginRight:10}}
-                            // onPress = {() => {
-                            //     data = carpoolStore.carpool(),
-                            //     carpoolStore.carpoolId = item}
-                            //     }
+                            onPress = {() => {
+                                this.changeColor(false);
+                            }}
                         >
-                            <Text style={styles.taxi_carpool_font}>카풀</Text>
+                            <Text style={this.state.isTaxi ? styles.taxi_carpool_font : styles.taxi_carpool_highlight_font}>카풀</Text>
                         </TouchableOpacity>   
                     </View>
                 </View>
@@ -67,8 +75,8 @@ export default class RiderLog extends Component{
                         <View style={styles.horizontal_past_date_bar}></View>
                     </View>
                     <View style={styles.past_log_contents}>
-                    <FlatList
-                            data = {taxiStore.taxiList}
+                        <FlatList
+                            data = {this.state.isTaxi ? taxiStore.taxiList : carpoolStore.carpoolList}
                             keyExtractor={(item, index) => item.taxi_id.toString()}
                             renderItem = {({item}) => 
                             <View>
@@ -120,11 +128,22 @@ const styles = StyleSheet.create({
         marginLeft:14,
     },
     taxi_carpool_font:{
-        color:'#89B2E9', 
+        // color:'#89B2E9', 
+        color:OC.blue[3], 
         fontSize:16, 
         padding:5,
         paddingRight:15,
         paddingLeft:15,
+    },
+    taxi_carpool_highlight_font:{
+        color:OC.blue[5], 
+        fontSize:16, 
+        padding:5,
+        paddingRight:15,
+        paddingLeft:15,
+        borderWidth:0.5,
+        borderColor:OC.cyan[3],
+        borderRadius: 7,
     },
     past_log_container:{
         flexDirection: 'row', 
