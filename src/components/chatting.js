@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Platform, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Keyboard, Platform, ScrollView, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import OC from 'open-color';
+
+const iosTextHeight = 13.5
+const androidTextHeight = 13.5
+const textHeight = Platform.OS === 'ios' ? iosTextHeight : androidTextHeight;
 
 export default class ChatRoom extends Component {
     state = {
         text: '',
         sendingMsg: '',
-        height: 0,
+        height: textHeight * 2,
+        line : 1,
     }
 
+    componentWillReceiveProps(nextProps){
+        if(nextProps.value === ''){ 
+            this.setState({height: textHeight*2 , lines:1})
+        }
+    }
     onSubmitEdit = () => {
         this.setState({ sendingMsg: this.state.text })
         this.setState({ text: '' })
@@ -17,7 +27,6 @@ export default class ChatRoom extends Component {
 
     render() {
         return (
-            //TODO: 채팅 연속으로 입력할 시 이전 문자들이 나오는 오류 수정하기
             <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 1 }} keyboardVerticalOffset='80'>
                 <View style={{ backgroundColor: '#EEEEEE', flex: 10, }}>
                     <ScrollView style={styles.chatting_scroll}>
@@ -223,34 +232,40 @@ export default class ChatRoom extends Component {
                 <View style={styles.message_container}>
                     <TextInput
                         {...this.props}
-                        style={styles.input_text_line}
-                        onChangeText={(text) => this.setState({ text })}
-                        value={this.state.text}
-                        // blurOnSubmit={true}
-                        // caretHidden = {true}
-                        // contextMenuHidden = {false}
-                        // defaultValue ={'hihih'}
-                        // multiline={true}
+                        style={[styles.input_text_line, {height: this.state.height}]}
+                        onChangeText={(input) => this.setState({ text: input })}
                         multiline={true}
-                        // numberOfLines={3}
+
+                        numberOfLines={5}
+                        // clearButtonMode='always'
+                        // editable ={true}
+                        // numberOfLines = {4}
+                        ref={ref => {
+                            this.textInput = ref;
+                        }}
+                        onContentSizeChange = {(event) =>{
+                            const height = Platform.OS === 'ios'
+                                ? event.nativeEvent.contentSize.height
+                                : event.nativeEvent.contentSize.height - androidTextHeight
+                            const lines = Math.round(height / textHeight)
+                            const visibleLines = lines < 5 ? lines : 5
+                            const visibleHeight = textHeight * (visibleLines + 1)
+                            this.setState({height: visibleHeight, lines:visibleLines})
+                        }}
+                        underlineColorAndroid='transparent'
+
                         // onContentSizeChange={(event) => {
                         //     this.setState({height: event.nativeEvent.contentSize.height})
                         // }}
-                        // returnKeyType = {'send'}
-                        // selectTextOnFocus = {true}
-                        // onContentSizeChange = {(event) => event.nativeEvent.contentSize.height}
-                        // onSubmitEditing={ this.onSubmitEdit }
-                        //TODO:  엔터를 눌러도 안꺼지게 하기 
-                        //TODO:  연속적으로 입력할때 를 위해서 한번 화살표 버튼 누르면 메시지란을 초기화해야해
 
-                        // multiline={true}
-                        // maxLength = {80}
-                        placeholder='메시지를 입력해주세요123' />
+                        placeholder='메시지를 입력해주세요' />
                     <TouchableOpacity
                         style={styles.send_btn}
                         onPress={() => {
+                            this.textInput.clear();
+                            //TODO: 임시방편임. textinput 자체가 빠르게 이어쓰면 이전에 있던 결과값에서 이어붙여지는 거 같아. 너무 계륵임.. 더 좋은 방법이 필요함...
+                            Keyboard.dismiss();
                             this.onSubmitEdit();
-                            console.log(`text: ${this.state.text} / sendingMsg: ${this.state.sendingMsg} / Textinput.text: ${TextInput.text}`);
                         }}>
                         <Icon style={{}} name="ios-paper-plane" size={27} color="skyblue" />
                     </TouchableOpacity>
@@ -362,6 +377,8 @@ const styles = StyleSheet.create({
     send_btn: {
         alignItems: 'center',
         flex: 2,
+        // borderWidth:1,
+        padding:5,
     },
     send_icon: {
         alignItems: 'center',
