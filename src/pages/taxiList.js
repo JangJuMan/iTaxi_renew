@@ -21,7 +21,6 @@ export default class TaxiList extends Component{
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
-        // ModlaControl.modalVisible = visible;
     }
 
     constructor(props) {
@@ -37,7 +36,7 @@ export default class TaxiList extends Component{
         return {
             headerRight: (
                 <TouchableOpacity
-                    onPress={() => ModalControl.modalVisible_carpool=true}>
+                    onPress={() => ModalControl.modalVisible_taxi=true}>
                     <Icon style={{marginRight:10, color:'dodgerblue'}}name="ios-add-circle-outline" size={30}/>
                 </TouchableOpacity>
             ),
@@ -62,14 +61,14 @@ export default class TaxiList extends Component{
                     <View style={styles.log_contents}>
                     <FlatList
                             data = {taxiStore.taxiList}
-                            keyExtractor={(item, index) => item.taxi_id.toString()}
+                            keyExtractor={(item, index) => item._id.toString()}
                             renderItem = {({item}) => 
                             <View>
                                 <TouchableOpacity onPress={() => {
                                     taxiStore.taxiId = item;
                                     this.setModalVisible(true);
                                 }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         }/>
@@ -103,7 +102,7 @@ export default class TaxiList extends Component{
                     <View style={styles.log_contents}>
                         <FlatList
                             data = {taxiStore.taxiList}
-                            keyExtractor={(item, index) => item.taxi_id.toString()}
+                            keyExtractor={(item, index) => item._id.toString()}
                             renderItem = {({item}) => 
                             <View>
                                 <TouchableOpacity 
@@ -111,7 +110,7 @@ export default class TaxiList extends Component{
                                         this.setModalVisible(true);
                                         taxiStore.taxiId = item;
                                     }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}  seat={item.num_people} carrier={item.num_carrier}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}  seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         }/>
@@ -121,18 +120,18 @@ export default class TaxiList extends Component{
 
                 <Modal
                     transparent={true}
-                    visible={ModalControl.modalVisible_carpool}
-                    onRequestClose={() => ModalControl.modalVisible_carpool=false}
+                    visible={ModalControl.modalVisible_taxi}
+                    onRequestClose={() => ModalControl.modalVisible_taxi=false}
                     render={
                     <View style={styles.modalBackground}>
-                        <View style={styles.activityIndicatorWrapper}>
+                        <View style={styles.realModal}>
                             <MakeRoom 
                                 navigation={this.props.navigation}
                                 onOkButton = {() => {
-                                    ModalControl.modalVisible_carpool=false, 
+                                    ModalControl.modalVisible_taxi=false, 
                                     this.props.navigation.navigate('TaxiRoom');
                                 }}
-                                onCancelButton = {() => ModalControl.modalVisible_carpool=false}/>
+                                onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>
                         </View>
                     </View>
                     }/>
@@ -186,7 +185,3 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 })
-
-
-
-

@@ -35,7 +35,7 @@ export default class ChatRoom extends Component{
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
-                            <Text>  {data.departure_time.substring(7)}</Text>
+                            <Text>  {data.departure_time}</Text>
                         </View>
                     </View>
                     <View style={styles.chat_leftButt}>

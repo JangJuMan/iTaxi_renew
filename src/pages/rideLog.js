@@ -3,9 +3,9 @@ import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList, Button } 
 import { inject, observer } from 'mobx-react';
 import { observable, computed } from 'mobx';
 import Swiper from 'react-native-swiper'
-import List from '../components/list';
 
 import ListEntry from '../components/taxiElement';
+import ThreeAxisSensor from 'expo-sensors/build/ThreeAxisSensor';
 
 @inject('taxiStore')
 @inject('carpoolStore')
@@ -16,30 +16,37 @@ export default class RiderLog extends Component{
         super(props);
     }
 
-    state = {
-        check : 'taxi'
-    }
 
     componentDidMount() {
         const { taxiStore } = this.props;
-        const { carpoolStore } = this.props;
         taxiStore.getTaxiList();
-        carpoolStore.getCarpoolList();
     }
 
-
     checkTaxi = () => {
-        check = 'taxi';
-        console.log(check);
+        isTaxi = true;
+        console.log(isTaxi);
     }
     
     checkCarpool = () => {
-        check = 'carpool';
-        console.log(check);
+        isTaxi = false;
+        console.log(isTaxi);
+    }
+    
+    getList(isTaxi) {
+        const { taxiStore } = this.props;
+        const { carpoolStore } = this.props;
+        if (isTaxi) {
+            return taxiStore.taxi;
+        }
+        else {
+            return carpoolStore.carpool;
+        }
     }
 
     render(){
-        // const check = 'taxi';
+        const {taxiStore} = this.props;
+        const {carpoolStore} = this.props;
+        const isTaxi = true;
             return (
                 <View style={{flex:1}}>
                 {/* 곧 탑승예정 */}
@@ -80,8 +87,26 @@ export default class RiderLog extends Component{
                         <View style={styles.horizontal_past_date_bar}></View>
                     </View>
                     <View style={styles.past_log_contents}>
-                        <List check={this.state.check}/>
+                    <FlatList
+                                data = {this.getList(isTaxi)}
+                                
+                                keyExtractor={(item, index) => item._id.toString()}
+                                renderItem = {({item}) => 
+                                <View>
+                                    <TouchableOpacity
+                                        onPress = {() => {
+                                            taxiStore.taxiId = item;
+                                            this.props.navigation.navigate('pastRoom');
+                                        }}>
+                                        <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
+                                    </TouchableOpacity>
+                                </View>
+                            
+                            }
+                        />
+
                     </View>
+
                     
                 </ScrollView>
             </View>

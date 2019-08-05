@@ -47,7 +47,7 @@ export default class intoRoom extends Component{
                         <Text style={{color:'gray' }}>시간</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'center',alignItems:'center',}}>
-                        <Text style={{color:'#3FA9F5',fontSize:25,}}>{data.departure_time.substring(7)}</Text>
+                        <Text style={{color:'#3FA9F5',fontSize:25,}}>{data.departure_time}</Text>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
