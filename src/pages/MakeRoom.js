@@ -4,6 +4,7 @@ import {seatImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw }  from 'react-native-expo-viewport-units';
+import SearchModal from '../components/searchModal';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
@@ -20,11 +21,11 @@ export default class setting extends Component{
                 <View style={styles.fromTo}>
                     <View style={styles.location}>
                   {/* 출발지,도착지는 props로 받기 */}
-                        <Text style={styles.locationText}>출발지</Text>
+                    <SearchModal />
                     </View>
                     <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
                     <View style={styles.location}>
-                        <Text style={styles.locationText}>도착지</Text>
+                    <SearchModal />
                     </View>
                 </View>
                 <View style={styles.time_person_bag}>
@@ -103,15 +104,13 @@ const styles=StyleSheet.create({
         padding: 10,
     },
             location: {
-            borderRadius: 50,
-            borderWidth: 1,
-            borderColor: OC.gray[4],
-            paddingLeft: 10,
-            paddingRight: 10,
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
+                borderRadius: 50,
+                borderWidth: 1,
+                borderColor: OC.gray[4],
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
         },
             locationText: {
                 color: '#3FA9F5',

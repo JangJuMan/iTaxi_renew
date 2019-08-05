@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, computed } from 'mobx';
 import { asyncAction } from 'mobx-utils';
 import axios from 'axios';
 
@@ -45,7 +45,5 @@ export default class UserStore {
           }
     }
 
-    
-
-
+  
 }

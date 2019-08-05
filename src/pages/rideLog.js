@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList } from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList, Button } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import { observable, computed } from 'mobx';
 import Swiper from 'react-native-swiper'
+import List from '../components/list';
 
 import ListEntry from '../components/taxiElement';
 
@@ -14,17 +16,32 @@ export default class RiderLog extends Component{
         super(props);
     }
 
+    state = {
+        check : 'taxi'
+    }
+
     componentDidMount() {
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
         taxiStore.getTaxiList();
         carpoolStore.getCarpoolList();
     }
+
+
+    checkTaxi = () => {
+        check = 'taxi';
+        console.log(check);
+    }
+    
+    checkCarpool = () => {
+        check = 'carpool';
+        console.log(check);
+    }
+
     render(){
-        const { taxiStore } = this.props;
-        const { carpoolStore } = this.props;
-        return(
-            <View style={{flex:1}}>
+        // const check = 'taxi';
+            return (
+                <View style={{flex:1}}>
                 {/* 곧 탑승예정 */}
                 <Text style={styles.top_title}>곧 탑승 예정</Text>
                 <TouchableOpacity
@@ -42,51 +59,35 @@ export default class RiderLog extends Component{
                     <View style={{flexDirection: 'row'}}>
                         <TouchableOpacity 
                             style={{marginRight:10}}
-                            // onPress = {() => {
-                            //     data = taxiStore.taxi(),
-                            //     taxiStore.taxiId = item}
-                            //     }
+                            onPress = {
+                                this.checkTaxi}
                         >
                             <Text style={styles.taxi_carpool_font}>택시</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={{marginRight:10}}
-                            // onPress = {() => {
-                            //     data = carpoolStore.carpool(),
-                            //     carpoolStore.carpoolId = item}
-                            //     }
+                            onPress = {
+                                this.checkCarpool}
                         >
                             <Text style={styles.taxi_carpool_font}>카풀</Text>
                         </TouchableOpacity>   
                     </View>
                 </View>
-                {/* 지난 탑승 내역들 */}
+                {/* 지난 탑승 내역들 */}                
                 <ScrollView>
                     <View style={styles.past_log_container}>
                         <Text style={styles.past_date_bar}>OO월 OO일 O요일</Text>
                         <View style={styles.horizontal_past_date_bar}></View>
                     </View>
                     <View style={styles.past_log_contents}>
-                    <FlatList
-                            data = {taxiStore.taxiList}
-                            keyExtractor={(item, index) => item.taxi_id.toString()}
-                            renderItem = {({item}) => 
-                            <View>
-                                <TouchableOpacity
-                                    onPress = {() => {
-                                        taxiStore.taxiId = item;
-                                        this.props.navigation.navigate('pastRoom');
-                                    }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
-                                </TouchableOpacity>
-                            </View>
-                        
-                        }/>
+                        <List check={this.state.check}/>
                     </View>
                     
                 </ScrollView>
             </View>
-        );
+
+            )
+       
     }
 }
 

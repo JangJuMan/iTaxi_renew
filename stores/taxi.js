@@ -17,7 +17,6 @@ export default class TaxiStore {
         try {
             let result = yield axios.get("http://203.252.99.145:8080" + "/taxilist/190724");
             this.taxiList = result.data;
-            console.log(this.taxiList);
             this.state = "done";
           }
           catch (error) {
@@ -28,9 +27,6 @@ export default class TaxiStore {
 
     }
 
-    @computed get taxi() {
-      return this.taxiList;
-    }
 
 
     @asyncAction
@@ -40,7 +36,6 @@ export default class TaxiStore {
         try {
             let result = yield axios.get("http://203.252.99.145:8080" + "/taxi/123");
             this.taxiId = result.data;
-            console.log(this.taxiId);
             this.state = "done";
           }
           catch (error) {
@@ -50,6 +45,8 @@ export default class TaxiStore {
           }
     }
 
-  
+    @computed get taxi() {
+      return this.taxiList;
+    }
 
 }
