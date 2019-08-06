@@ -16,6 +16,7 @@ export default class SearchModal extends Component {
         this.setState({ modalVisiable: visible });
     }
 
+
     render() {
         return (
             <View style={[styles.container, this.props.style]}>

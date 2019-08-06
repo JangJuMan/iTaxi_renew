@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { vh } from 'react-native-expo-viewport-units';
+import { getVersion } from 'expo/build/AR';
 
 class Top extends Component {
     constructor(props) {
@@ -48,6 +49,7 @@ class Top extends Component {
         else
             return null;
     }
+   
 
     render() {
         const rotateAnimate = this.rotateAnimation.interpolate({
@@ -220,6 +222,7 @@ const stylesBottom = StyleSheet.create({
                 borderTopColor: 'gray',
             }
 });
+
 
 /**
  * @props onSubmit  Callback function after press OK button
