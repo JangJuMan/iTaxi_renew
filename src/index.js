@@ -9,6 +9,7 @@ import Setting from './pages/settingscreen';
 import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
 import EnteringRoom from './pages/going_into_room';
+import UpdateInfo from '../src/pages/updateInfo';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
@@ -42,6 +43,7 @@ const RideHistoryTab = createStackNavigator({
 
 const MyPageTab = createStackNavigator({
     Home: Setting,
+    Update: UpdateInfo,
   }, {
   defaultNavigationOptions: {
     title: "설정",
@@ -176,10 +178,5 @@ const TabNavigator = createMaterialTopTabNavigator({
   },
   tabBarPosition:'bottom',
 });
-
-const navigator = createStackNavigator({
-  Home: TabNavigator,
-  Chat: ChatRoom
-})
 
 export default createAppContainer(TabNavigator);
