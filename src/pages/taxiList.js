@@ -21,7 +21,6 @@ export default class TaxiList extends Component{
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
-        // ModlaControl.modalVisible = visible;
     }
 
     constructor(props) {
@@ -62,14 +61,14 @@ export default class TaxiList extends Component{
                     <View style={styles.log_contents}>
                     <FlatList
                             data = {taxiStore.taxiList}
-                            keyExtractor={(item, index) => item.taxi_id.toString()}
+                            keyExtractor={(item, index) => item._id.toString()}
                             renderItem = {({item}) => 
                             <View>
                                 <TouchableOpacity onPress={() => {
                                     taxiStore.taxiId = item;
                                     this.setModalVisible(true);
                                 }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         }/>
@@ -103,7 +102,7 @@ export default class TaxiList extends Component{
                     <View style={styles.log_contents}>
                         <FlatList
                             data = {taxiStore.taxiList}
-                            keyExtractor={(item, index) => item.taxi_id.toString()}
+                            keyExtractor={(item, index) => item._id.toString()}
                             renderItem = {({item}) => 
                             <View>
                                 <TouchableOpacity 
@@ -111,7 +110,7 @@ export default class TaxiList extends Component{
                                         this.setModalVisible(true);
                                         taxiStore.taxiId = item;
                                     }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place}  seat={item.num_people} carrier={item.num_carrier}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}  seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         }/>

@@ -12,10 +12,24 @@ import { observer, inject } from 'mobx-react';
  */
 @inject('taxiStore')
 
+
 @observer
 export default class intoRoom extends Component{
   constructor(props){
       super(props);
+  }
+
+  state={
+    carrier:0,
+  }
+
+  carrier_clicked(value){
+      if(value === this.state.carrier){
+          this.setState({carrier:0})
+      }
+      else{
+          this.setState({carrier:value})
+      }
   }
 
   componentDidMount() {
@@ -25,6 +39,8 @@ export default class intoRoom extends Component{
     render(){
       const { taxiStore }  = this.props;
       const data = taxiStore.taxiId;
+      const heightColor = 'blue'
+      const unheightColor = '#4dabf7'
         return(
             <View style={styles.list}>
                 <View style={styles.top}>
@@ -47,35 +63,44 @@ export default class intoRoom extends Component{
                         <Text style={{color:'gray' }}>시간</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'center',alignItems:'center',}}>
-                        <Text style={{color:'#3FA9F5',fontSize:25,}}>{data.departure_time.substring(7)}</Text>
+                        <Text style={{color:'#3FA9F5',fontSize:25,}}>{data.departure_time}</Text>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
 
-         
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
                         <Text style={{color:'gray' }}>캐리어</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
-                      <TouchableOpacity>
-                        <Icon name="numeric-1-circle-outline" size={30} color="#3FA9F5"/>
-                      </TouchableOpacity>
-                      <TouchableOpacity>
-                        <Icon name="numeric-2-circle-outline" size={30} color="#3FA9F5"/>
-                      </TouchableOpacity>
-                      <TouchableOpacity>
-                        <Icon name="numeric-3-circle-outline" size={30} color="#3FA9F5"/>
-                      </TouchableOpacity>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.carrier_clicked(1);
+                            }}
+                        >
+                            <Icon name="numeric-1-circle-outline" size={30} color={this.state.carrier === 1 ? heightColor : unheightColor } />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.carrier_clicked(2);
+                            }}
+                        >
+                            <Icon name="numeric-2-circle-outline" size={30} color={this.state.carrier === 2 ? heightColor : unheightColor } />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.carrier_clicked(3);
+                            }}
+                        >
+                            <Icon name="numeric-3-circle-outline" size={30} color={this.state.carrier === 3 ? heightColor : unheightColor } />
+                        </TouchableOpacity>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
                 <View style={styles.button}>
                   <TouchableOpacity onPress={() => {
-                      // ModalControl.modalVisible=false;
                       this.props.onOkButton();
                       this.props.navigation.navigate('TaxiRoom');
-
                     }}>
                     <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
                   </TouchableOpacity>

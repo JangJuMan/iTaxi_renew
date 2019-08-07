@@ -10,9 +10,34 @@ import { vw }  from 'react-native-expo-viewport-units';
         출발,도착지도
 */
 export default class setting extends Component{
+    state={
+        person:0,
+        carrier:0,
+    }
+
+    person_clicked(value){
+        if(value === this.state.person){
+            this.setState({person:0})
+        }
+        else{
+            this.setState({person:value})
+        }
+    }
+
+    carrier_clicked(value){
+        if(value === this.state.carrier){
+            this.setState({carrier:0})
+        }
+        else{
+            this.setState({carrier:value})
+        }
+    }
+
     render(){
+        const heightColor = 'blue'
+        const unheightColor = '#4dabf7'
+
         return(
-            
             <View style={styles.list}>
                 <View style={styles.top}>
                     <Text style={{color:'black',fontSize:15 }}>모집</Text>
@@ -41,9 +66,27 @@ export default class setting extends Component{
                         <Text style={{color:'gray' }}>추가인원</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
-                        <Icon name="numeric-1-circle-outline" size={30} color="#4dabf7"/>
-                        <Icon name="numeric-2-circle-outline" size={30} color="#4dabf7"/>
-                        <Icon name="numeric-3-circle-outline" size={30} color="#4dabf7"/>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.person_clicked(1);
+                            }}
+                        >
+                            <Icon name="numeric-1-circle-outline" size={30} color={this.state.person === 1 ? heightColor : unheightColor } />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.person_clicked(2);
+                            }}
+                        >
+                            <Icon name="numeric-2-circle-outline" size={30} color={this.state.person === 2 ? heightColor : unheightColor } />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.person_clicked(3);
+                            }}
+                        >
+                            <Icon name="numeric-3-circle-outline" size={30} color={this.state.person === 3 ? heightColor : unheightColor } />
+                        </TouchableOpacity>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
@@ -52,9 +95,27 @@ export default class setting extends Component{
                         <Text style={{color:'gray' }}>나의캐리어</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
-                        <Icon name="numeric-1-circle-outline" size={30} color="#4dabf7"/>
-                        <Icon name="numeric-2-circle-outline" size={30} color="#4dabf7"/>
-                        <Icon name="numeric-3-circle-outline" size={30} color="#4dabf7"/>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.carrier_clicked(1);
+                            }}
+                        >
+                            <Icon name="numeric-1-circle-outline" size={30} color={this.state.carrier === 1 ? 'blue' : '#4dabf7' } />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.carrier_clicked(2);
+                            }}
+                        >
+                            <Icon name="numeric-2-circle-outline" size={30} color={this.state.carrier === 2 ? 'blue' : '#4dabf7' } />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.carrier_clicked(3);
+                            }}
+                        >
+                            <Icon name="numeric-3-circle-outline" size={30} color={this.state.carrier === 3 ? 'blue' : '#4dabf7' } />
+                        </TouchableOpacity>
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
