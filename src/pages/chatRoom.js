@@ -13,8 +13,7 @@ export default class ChatRoom extends Component{
     render(){
         return(
             <View style={{flex:1}}>
-                {/* TODO: 서버에러? 나서 지금 안들어가짐;; */}
-                {/* <ChatRoomInfo /> */}
+                <ChatRoomInfo />
                 <Chatting />
             </View>
         );

@@ -12,9 +12,9 @@ import EnteringRoom from './pages/going_into_room';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
-    RoomDoor: EnteringRoom,
-    TaxiRoom: ChatRoom,
-    createTaxiRoomInfo: Setting,
+    // TaxiRoomDoor: EnteringRoom,
+    // TaxiRoom: ChatRoom,
+    // createTaxiRoomInfo: Setting,
   }, {
   defaultNavigationOptions: {
     title: "조회 / 모집",
@@ -23,17 +23,19 @@ const TaxiTab = createStackNavigator({
 
 const CarpoolTab = createStackNavigator({
     Home: Carpool,
-    CarpoolRoom: ChatRoom,
-    createCarpoolRoomInfo: Setting,
+    CarpoolRoomDoor: EnteringRoom,
+    // CarpoolRoom: ChatRoom,
+    // createCarpoolRoomInfo: Setting,
   }, {
   defaultNavigationOptions: {
     title: "조회 / 모집",
+    // headerTitleStyle:{flexDirection:'column', justifyContent:'center', alignItems:'center',  color:'blue', borderWidth:1},
   }
 });
 
 const RideHistoryTab = createStackNavigator({
     Home: RiderLog,
-    pastRoom: ChatRoom,
+    // pastRoom: ChatRoom,
   }, {
   defaultNavigationOptions: {
     title: "탑승 내역",
@@ -131,9 +133,11 @@ const TabNavigator = createMaterialTopTabNavigator({
     navigationOptions: {
       title: "설정",
     },
-
   },
-}, {
+  
+}, 
+{
+  initialRouteName: 'RideHistory',
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
       const { routeName } = navigation.state;
@@ -177,9 +181,21 @@ const TabNavigator = createMaterialTopTabNavigator({
   tabBarPosition:'bottom',
 });
 
-const navigator = createStackNavigator({
-  Home: TabNavigator,
-  Chat: ChatRoom
-})
+const navigator = createStackNavigator(
+  {
+    Home:{
+      screen: TabNavigator,
+      navigationOptions:{
+        header:null,
+      }
+    },
+    Chat: {
+      screen: ChatRoom,
+    }
+  },
+  {
+    initialRouteName: 'Home', 
+  }
+)
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(navigator);

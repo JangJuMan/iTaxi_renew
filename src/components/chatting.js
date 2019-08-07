@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Keyboard, Platform, ScrollView, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import OC from 'open-color';
+import vw from 'react-native-expo-viewport-units';
 
 const iosTextHeight = 13.5
 const androidTextHeight = 13.5
@@ -26,8 +27,9 @@ export default class ChatRoom extends Component {
     }
 
     render() {
+        const keyboardHeight = 80
         return (
-            <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 1 }} keyboardVerticalOffset='80'>
+            <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 2 }} keyboardVerticalOffset={keyboardHeight}>  
                 <View style={{ backgroundColor: '#EEEEEE', flex: 10, }}>
                     <ScrollView style={styles.chatting_scroll}>
                         <View style={styles.new_member_bar}>
@@ -44,7 +46,7 @@ export default class ChatRoom extends Component {
                                     <Text style={styles.mytime}>오후 3:17</Text>
                                 </View>
                                 <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg}</Text>
+                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                             </View>
                         </View>
@@ -57,7 +59,7 @@ export default class ChatRoom extends Component {
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.they_say_msg_container}>
                                 <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg}</Text>
+                                    <Text>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                                 <View style={styles.they_time_container}>
                                     <Text style={styles.they_time}>오후 3:17</Text>
@@ -76,7 +78,7 @@ export default class ChatRoom extends Component {
                                     <Text style={styles.mytime}>오후 3:17</Text>
                                 </View>
                                 <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg}</Text>
+                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                             </View>
                         </View>
@@ -86,7 +88,7 @@ export default class ChatRoom extends Component {
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.they_say_msg_container}>
                                 <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg}</Text>
+                                    <Text>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                                 <View style={styles.they_time_container}>
                                     <Text style={styles.they_time}>오후 3:17</Text>
@@ -105,7 +107,7 @@ export default class ChatRoom extends Component {
                                     <Text style={styles.mytime}>오후 3:17</Text>
                                 </View>
                                 <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg}</Text>
+                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                             </View>
                         </View>
@@ -114,7 +116,7 @@ export default class ChatRoom extends Component {
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.they_say_msg_container}>
                                 <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg}</Text>
+                                    <Text>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                                 <View style={styles.they_time_container}>
                                     <Text style={styles.they_time}>오후 3:17</Text>
@@ -133,7 +135,7 @@ export default class ChatRoom extends Component {
                                     <Text style={styles.mytime}>오후 3:17</Text>
                                 </View>
                                 <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg}</Text>
+                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                             </View>
                         </View>
@@ -143,7 +145,7 @@ export default class ChatRoom extends Component {
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.they_say_msg_container}>
                                 <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg}</Text>
+                                    <Text>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                                 <View style={styles.they_time_container}>
                                     <Text style={styles.they_time}>오후 3:17</Text>
@@ -162,7 +164,7 @@ export default class ChatRoom extends Component {
                                     <Text style={styles.mytime}>오후 3:17</Text>
                                 </View>
                                 <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg}</Text>
+                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                             </View>
                         </View>
@@ -175,7 +177,7 @@ export default class ChatRoom extends Component {
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.they_say_msg_container}>
                                 <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg}</Text>
+                                    <Text>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                                 <View style={styles.they_time_container}>
                                     <Text style={styles.they_time}>오후 3:17</Text>
@@ -194,7 +196,7 @@ export default class ChatRoom extends Component {
                                     <Text style={styles.mytime}>오후 3:17</Text>
                                 </View>
                                 <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg}</Text>
+                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                             </View>
                         </View>
@@ -203,7 +205,7 @@ export default class ChatRoom extends Component {
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.they_say_msg_container}>
                                 <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg}</Text>
+                                    <Text>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                                 <View style={styles.they_time_container}>
                                     <Text style={styles.they_time}>오후 3:17</Text>
@@ -222,7 +224,7 @@ export default class ChatRoom extends Component {
                                     <Text style={styles.mytime}>오후 3:17</Text>
                                 </View>
                                 <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg}</Text>
+                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
                                 </View>
                             </View>
                         </View>
