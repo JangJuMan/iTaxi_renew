@@ -77,7 +77,7 @@ export default class RiderLog extends Component{
                     <View style={styles.past_log_contents}>
                         <FlatList
                             data = {this.state.isTaxi ? taxiStore.taxiList : carpoolStore.carpoolList}
-                            keyExtractor={(item, index) => item.taxi_id.toString()}
+                            keyExtractor={(item, index) => item._id.toString()}
                             renderItem = {({item}) => 
                             <View>
                                 <TouchableOpacity
@@ -85,7 +85,7 @@ export default class RiderLog extends Component{
                                         taxiStore.taxiId = item;
                                         this.props.navigation.navigate('pastRoom');
                                     }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time.substring(7)} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         
