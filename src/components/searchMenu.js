@@ -22,7 +22,11 @@ export default class SearchMenu extends Component {
                     <View style={{ flex: 1 }}></View>
                     <View style={{ flex: 5, flexDirection: 'column', alignContent: "space-between", justifyContent: 'center' }}>
                         {/* 선택한 Date에 따라 유동적으로 변경될 수 있도록 변경 필요 */}
-                        <Swiper>
+                        <Swiper
+                            style={styles.swiper}
+                            loop={false}
+                            showsButtons={true}
+                            renderPagination={() => undefined} >
                             <View style={styles.slide}>
                                 <Text style={styles.text}>   오늘{'\n'}{days.month}-{days.date}</Text>
                             </View>
@@ -87,9 +91,12 @@ const styles = StyleSheet.create({
 
         flex: 5.5,
     },
+    swiper:{
+        flexGrow:1,
+    },
     slide: {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'white',
     },
@@ -110,8 +117,6 @@ const styles = StyleSheet.create({
     },
     choose: {
         height: vh(55),
- 
- 
     },
     pad: {
         
