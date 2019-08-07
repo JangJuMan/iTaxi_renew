@@ -129,7 +129,7 @@ export default class TaxiList extends Component{
                                 navigation={this.props.navigation}
                                 onOkButton = {() => {
                                     ModalControl.modalVisible_taxi=false, 
-                                    this.props.navigation.navigate('TaxiRoom');
+                                    this.props.navigation.navigate('Chat');
                                 }}
                                 onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>
                         </View>

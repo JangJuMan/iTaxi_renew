@@ -43,7 +43,7 @@ export default class ListView extends Component{
                                 navigation={this.props.navigation}
                                 onOkButton = {() => {
                                     ModalControl.modalVisible_carpool=false,
-                                    this.props.navigation.navigate('CarpoolRoom');
+                                    this.props.navigation.navigate('Chat');
                                 }}
                                 onCancelButton = {() => ModalControl.modalVisible_carpool=false}/>
                         </View>
