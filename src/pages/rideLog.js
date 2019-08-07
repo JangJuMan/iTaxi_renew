@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList, Button } from 'react-native';
 import { inject, observer } from 'mobx-react';
-import { observable, computed } from 'mobx';
+import OC from 'open-color';
 import Swiper from 'react-native-swiper'
-import List from '../components/list';
 
 import ListEntry from '../components/taxiElement';
 
@@ -17,7 +16,7 @@ export default class RiderLog extends Component{
     }
 
     state = {
-        check : 'taxi'
+        isTaxi : true
     }
 
     componentDidMount() {
@@ -27,19 +26,14 @@ export default class RiderLog extends Component{
         carpoolStore.getCarpoolList();
     }
 
-
-    checkTaxi = () => {
-        check = 'taxi';
-        console.log(check);
-    }
-    
-    checkCarpool = () => {
-        check = 'carpool';
-        console.log(check);
+    changeColor = (value) => {
+        this.setState({isTaxi: value});
     }
 
     render(){
         // const check = 'taxi';
+        const { taxiStore } = this.props;
+        const { carpoolStore } = this.props;
             return (
                 <View style={{flex:1}}>
                 {/* 곧 탑승예정 */}
@@ -59,17 +53,19 @@ export default class RiderLog extends Component{
                     <View style={{flexDirection: 'row'}}>
                         <TouchableOpacity 
                             style={{marginRight:10}}
-                            onPress = {
-                                this.checkTaxi}
+                            onPress = {() => {
+                                this.changeColor(true)
+                            }}
                         >
-                            <Text style={styles.taxi_carpool_font}>택시</Text>
+                            <Text style={this.state.isTaxi ? styles.taxi_carpool_highlight_font : styles.taxi_carpool_font}>택시</Text>
                         </TouchableOpacity>
                         <TouchableOpacity 
                             style={{marginRight:10}}
-                            onPress = {
-                                this.checkCarpool}
+                            onPress = {() => {
+                                this.changeColor(false);
+                            }}
                         >
-                            <Text style={styles.taxi_carpool_font}>카풀</Text>
+                            <Text style={this.state.isTaxi ? styles.taxi_carpool_font : styles.taxi_carpool_highlight_font}>카풀</Text>
                         </TouchableOpacity>   
                     </View>
                 </View>
@@ -80,7 +76,21 @@ export default class RiderLog extends Component{
                         <View style={styles.horizontal_past_date_bar}></View>
                     </View>
                     <View style={styles.past_log_contents}>
-                        <List check={this.state.check}/>
+                        <FlatList
+                            data = {this.state.isTaxi ? taxiStore.taxiList : carpoolStore.carpoolList}
+                            keyExtractor={(item, index) => item._id.toString()}
+                            renderItem = {({item}) => 
+                            <View>
+                                <TouchableOpacity
+                                    onPress = {() => {
+                                        taxiStore.taxiId = item;
+                                        this.props.navigation.navigate('pastRoom');
+                                    }}>
+                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
+                                </TouchableOpacity>
+                            </View>
+                        
+                        }/>
                     </View>
                     
                 </ScrollView>
@@ -121,11 +131,22 @@ const styles = StyleSheet.create({
         marginLeft:14,
     },
     taxi_carpool_font:{
-        color:'#89B2E9', 
+        // color:'#89B2E9', 
+        color:OC.blue[3], 
         fontSize:16, 
         padding:5,
         paddingRight:15,
         paddingLeft:15,
+    },
+    taxi_carpool_highlight_font:{
+        color:OC.blue[5], 
+        fontSize:16, 
+        padding:5,
+        paddingRight:15,
+        paddingLeft:15,
+        borderWidth:0.5,
+        borderColor:OC.cyan[3],
+        borderRadius: 7,
     },
     past_log_container:{
         flexDirection: 'row', 

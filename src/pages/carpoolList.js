@@ -38,7 +38,7 @@ export default class ListView extends Component{
                     onRequestClose={() => ModalControl.modalVisible_carpool=false}
                     render={
                     <View style={styles.modalBackground}>
-                        <View style={styles.activityIndicatorWrapper}>
+                        <View style={styles.realModal}>
                             <MakeRoom 
                                 navigation={this.props.navigation}
                                 onOkButton = {() => {
@@ -63,10 +63,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    activityIndicatorWrapper: {
-        width: 60,
-        height: 60,
+    realModal: {
         justifyContent: 'center',
         alignItems: 'center',
-    }
+    },
 })

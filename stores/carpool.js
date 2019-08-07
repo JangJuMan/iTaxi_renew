@@ -10,13 +10,12 @@ export default class CarpoolStore {
     @observable state = "pending";
     errorData = "";
 
-
     @asyncAction
     * getCarpoolList() {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/carpoollist/190724");
+            let result = yield axios.get("http://203.252.99.145:8282" + "/carpoollist/20190801");
             this.carpoolList = result.data;
             this.state = "done";
           }
@@ -32,7 +31,7 @@ export default class CarpoolStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/carpool/123");
+            let result = yield axios.get("http://203.252.99.145:8282" + "/carpool/20190801");
             this.carpoolId = result.data;
             this.state = "done";
           }
@@ -43,8 +42,5 @@ export default class CarpoolStore {
           }
     }
 
-    @computed get carpool() {
-      return this.carpoolList;
-    }
 
 }
