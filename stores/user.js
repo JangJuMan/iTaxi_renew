@@ -16,7 +16,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/user/cra");
+            let result = yield axios.get("http://203.252.99.145:8282" + "/user/cra");
             this.userId = result.data;
             console.log(this.userId);
             this.state = "done";
@@ -33,7 +33,7 @@ export default class UserStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8080" + "/log/123/7");
+            let result = yield axios.get("http://203.252.99.145:8282" + "/log/123/7");
             this.log = result.data;
             console.log(this.log);
             this.state = "done";

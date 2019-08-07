@@ -20,8 +20,10 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-34.0.0.tar.gz",
     "react-native-calendar": "^0.13.1",
     "react-native-calendars": "^1.204.0",
+    "react-native-date-picker": "^2.6.1",
     "react-native-expo-viewport-units": "0.0.8",
     "react-native-swiper": "^1.5.14",
+    "react-native-ui-xg": "0.0.6",
     "react-native-web": "^0.11.4",
     "react-navigation": "^3.11.1"
   },

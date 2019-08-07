@@ -73,7 +73,7 @@ export default class Setting extends Component{
                       <Profile_my info={data.phone}/>
                       <Profile_my info={data.student_id + '@handong.edu'}/>
                       <Profile_my info='기업'/>
-                      <Profile_my info='01054809072'/>
+                      <Profile_my info={data.phone}/>
                     </View>
                 </View>
                 <View style={styles.profileButton}>
