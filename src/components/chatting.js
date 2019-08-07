@@ -26,7 +26,7 @@ export default class ChatRoom extends Component {
 
     keyboardDidShow(e){
         let newSize = e.endCoordinates.height
-        console.log(`keyboard size : ${newSize}`);
+        // console.log(`keyboard size : ${newSize}`);
         this.setState({
             visibleHeight: newSize,
         })
@@ -44,7 +44,7 @@ export default class ChatRoom extends Component {
 
     render() {
         const keyboardHeight = Platform.OS === 'ios' ? this.state.visibleHeight*0.3 : this.state.visibleHeight*0.28
-        console.log(`${keyboardHeight} = ${this.state.visibleHeight} - ${Dimensions.get('screen').height*0.45}`);
+        // console.log(`${keyboardHeight} = ${this.state.visibleHeight} - ${Dimensions.get('screen').height*0.45}`);
         return (
             <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 1 }} keyboardVerticalOffset={keyboardHeight} >  
                 <View style={{ backgroundColor: '#EEEEEE', flex: 10, }}>
