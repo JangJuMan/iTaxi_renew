@@ -77,7 +77,7 @@ export default class Setting extends Component{
                     </View>
                 </View>
                 <View style={styles.profileButton}>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('Update')}>
                     <View style={styles.changeInfo}>
                       <Text style={styles.changeInfoText}>개인정보 수정</Text>
                     </View>
