@@ -49,6 +49,15 @@ export default class Info extends Component{
                     //value={'${this.phone}'}
                     keyboardType={'numeric'}
                 />
+                <View style={styles.profileButton}>
+                    <TouchableOpacity onPress={() => {
+                        this.submit();
+                    }}>
+                    <View style={styles.changeInfo}>
+                        <Text style={styles.changeInfoText}>변경하기</Text>
+                    </View>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
