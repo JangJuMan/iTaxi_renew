@@ -25,6 +25,47 @@ export default class ChatRoom extends Component{
         const t_data = taxiStore.taxiId;
         const c_data = carpoolStore.carpoolId;
 
+        // <View style={styles.calendar}>
+        //                     <Icon name="calendar" color='#3FA9F5' size={20}></Icon>
+        //                     <Text>   2019 / 07 / 31</Text>
+        //                 </View>
+
+
+        // <View style={styles.clock}>
+        //                     <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
+        //                     <Text>  {t_data.departure_time.substring(7)}</Text>
+        //                 </View>
+
+
+    //     <View style={styles.destination_location}>
+    //     <Image
+    //         style={styles.destination_image}
+    //         source={fromtoIcon} />
+    //     <View style={styles.destination_text_location}>
+    //         <Text style={styles.destination_text}>
+    //             {t_data.departure_place}
+    //         </Text>
+    //         <Text style={styles.destination_text}>
+    //             {t_data.arrival_place}
+    //         </Text>
+    //     </View>
+    // </View>
+
+    
+    // <View style={styles.chat_leftButt_carrier}>
+    //                         <View style={{flexDirection:'row',padding:3}}>
+    //                             <Image style={styles.carrIcon} source={carrIcon} />
+    //                             <Text style={{padding:5}}>캐리어</Text>
+    //                         </View>
+    //                         <View style={{flexDirection:'row',margin:5}}>
+    //                             <Image style={styles.carrImg} source={emptycarrImg} />
+    //                             <Image style={styles.carrImg} source={emptycarrImg} />
+    //                             <Image style={styles.carrImg} source={fullcarrImg} />
+    //                             <Image style={styles.carrImg} source={fullcarrImg} />
+    //                         </View>
+    //                     </View>
+
+
         return(
         <View>
             <View style={styles.chatInfo_Top}>
