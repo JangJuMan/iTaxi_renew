@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text,StyleSheet,Image, TouchableOpacity } from 'react-native';
+import { View, Text,StyleSheet,Image, TouchableOpacity} from 'react-native';
 import {seatImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw }  from 'react-native-expo-viewport-units';
-import FromTo from '../components/searchModal';
-import IconArrow from 'react-native-vector-icons/AntDesign';
+import SearchModal from '../components/searchModal';
+import DatePicker from 'react-native-datepicker';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
@@ -13,13 +13,15 @@ import IconArrow from 'react-native-vector-icons/AntDesign';
 */
 export default class setting extends Component{
     state={
-        person:0,
-        carrier:0,
+        person:-1,
+        carrier:-1,
+        date: '2019-08-07',
+        time: '20:00',
     }
 
     person_clicked(value){
         if(value === this.state.person){
-            this.setState({person:0})
+            this.setState({person:-1})
         }
         else{
             this.setState({person:value})
@@ -28,7 +30,7 @@ export default class setting extends Component{
 
     carrier_clicked(value){
         if(value === this.state.carrier){
-            this.setState({carrier:0})
+            this.setState({carrier:-1})
         }
         else{
             this.setState({carrier:value})
@@ -45,25 +47,78 @@ export default class setting extends Component{
                     <Text style={{color:'black',fontSize:15 }}>모집</Text>
                 </View>
                 <View style={styles.fromTo}>
-                    <FromTo />
-                    <IconArrow name="arrowright" size={35} color="gray" />
-                    <FromTo />
+                    <View style={styles.location}>
+                  {/* 출발지,도착지는 props로 받기 */}
+                        <SearchModal />
+                    </View>
+                        <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
+                    <View style={styles.location}>
+                        <SearchModal />
+                    </View>
                 </View>
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>시간</Text>
+                        <Text style={{color:'gray', }}>출발날짜 :</Text>
                     </View>
-                    <View style={{flex:5,justifyContent:'center',alignItems:'center',}}>
-                        <Text style={{color:'#4dabf7',fontSize:25,}}>16:25</Text>
+                    <View style={{flex:6,justifyContent:'center',alignItems:'center',}}>
+                        <DatePicker
+                            date = {this.state.date}
+                            mode = "date"
+                            format = "YYYY-MM-DD"
+                            confirmBtnText = "확인"
+                            cancelBtnText = "취소"
+                            showIcon = {false}
+                            onDateChange = {(date) => {this.setState({date: date});}}
+                            androidMode = "spinner"
+                            customStyles = {{
+                                dateInput: {
+                                    borderWidth: 0,
+                                },
+                                dateText : {
+                                    color: '#4dabf7',
+                                    fontSize: 23,
+                                }
+                            }}
+                        />
                     </View>
-                    <View style={{flex:1,}}></View>
                 </View>
+
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>추가인원</Text>
+                        <Text style={{color:'gray' }}>출발시간 :</Text>
                     </View>
-                    <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
+                    <View style={{flex: 6,justifyContent: 'center',alignItems:'center',}}>
+                        <DatePicker
+                            // style = {{margin: 10}}
+                            customStyles = {{
+                                dateInput: {
+                                    borderWidth: 0,
+                                },
+                                dateText : {
+                                    color: '#4dabf7',
+                                    fontSize: 23,
+                                }
+                            }}
+                            date = {this.state.time}
+                            hideText = {false}
+                            mode = "time"
+                            format = "HH:mm"
+                            confirmBtnText = "확인"
+                            cancelBtnText = "취소"
+                            minuteInterval = {1}
+                            onDateChange = {(time) => {this.setState({time: time});}}
+                            showIcon = {false}
+                            androidMode = "spinner"
+                        />
+                    </View>
+                </View>
+
+                <View style={styles.time_person_bag}>
+                    <View style={styles.flextwo}>
+                        <Text style={{color:'gray' }}>추가인원 :</Text>
+                    </View>
+                    <View style={{flex: 6,justifyContent: 'space-evenly',alignItems:'center', flexDirection:'row'}}>
                         <TouchableOpacity style={{padding:5}}
                             onPress = {() => {
                                 this.person_clicked(1);
@@ -86,13 +141,20 @@ export default class setting extends Component{
                             <Icon name="numeric-3-circle-outline" size={30} color={this.state.person === 3 ? heightColor : unheightColor } />
                         </TouchableOpacity>
                     </View>
-                    <View style={{flex:1,}}></View>
                 </View>
+
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>나의캐리어</Text>
+                        <Text style={{color:'gray' }}>나의캐리어 :</Text>
                     </View>
-                    <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
+                    <View style={{flex: 6,justifyContent: 'space-evenly',alignItems:'center', flexDirection:'row'}}>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
+                                this.carrier_clicked(0);
+                            }}
+                        >
+                            <Icon name="numeric-0-circle-outline" size={30} color={this.state.carrier === 0 ? 'blue' : '#4dabf7' } />
+                        </TouchableOpacity>
                         <TouchableOpacity style={{padding:5}}
                             onPress = {() => {
                                 this.carrier_clicked(1);
@@ -115,20 +177,16 @@ export default class setting extends Component{
                             <Icon name="numeric-3-circle-outline" size={30} color={this.state.carrier === 3 ? 'blue' : '#4dabf7' } />
                         </TouchableOpacity>
                     </View>
-                    <View style={{flex:1,}}></View>
                 </View>
+
                 <View style={styles.button}>
                     <TouchableOpacity onPress={() => {
-                        // ModalControl.modalVisible=false
                         this.props.onOkButton();
-                        // this.props.navigation.navigate('CarpoolRoom')}}
                         }}>
                         <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                        // ModalControl.modalVisible=false
                         this.props.onCancelButton();
-                        // this.props.navigation.goBack()}
                         }}>
                         <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
@@ -150,7 +208,7 @@ const styles=StyleSheet.create({
     flextwo:{
         flex:2,
         justifyContent:'center',
-        alignItems:'center',
+        alignItems:'flex-end',
     },
     top:{
         flex:1,
@@ -161,21 +219,19 @@ const styles=StyleSheet.create({
         flexDirection: 'row',
         padding: 10,
     },
-            location: {
-            borderRadius: 50,
-            borderWidth: 1,
-            borderColor: OC.gray[4],
-            paddingLeft: 10,
-            paddingRight: 10,
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-        },
-            locationText: {
-                color: '#3FA9F5',
-                fontSize:16
-            },
+    location: {
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: OC.gray[4],
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
+    locationText: {
+        color: '#3FA9F5',
+        fontSize:16
+    },
     calendar:{
         flex:3,
         margin:5
@@ -183,6 +239,7 @@ const styles=StyleSheet.create({
     time_person_bag:{
         flex:2,
         flexDirection:'row',
+        justifyContent:'space-between',
     },
     button:{
         flex:1,

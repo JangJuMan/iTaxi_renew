@@ -4,7 +4,6 @@ import Swiper from 'react-native-swiper'
 import Calendar from '../elements/calendar';
 import SearchModal from './searchModal';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { days } from '../variable/date';
 
 export default class SearchMenu extends Component {
     state = {

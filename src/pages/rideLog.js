@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList } from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList, Button } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import OC from 'open-color';
 import Swiper from 'react-native-swiper'
@@ -31,10 +31,11 @@ export default class RiderLog extends Component{
     }
 
     render(){
+        // const check = 'taxi';
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
-        return(
-            <View style={{flex:1}}>
+            return (
+                <View style={{flex:1}}>
                 {/* 곧 탑승예정 */}
                 <Text style={styles.top_title}>곧 탑승 예정</Text>
                 <TouchableOpacity
@@ -68,7 +69,7 @@ export default class RiderLog extends Component{
                         </TouchableOpacity>   
                     </View>
                 </View>
-                {/* 지난 탑승 내역들 */}
+                {/* 지난 탑승 내역들 */}                
                 <ScrollView>
                     <View style={styles.past_log_container}>
                         <Text style={styles.past_date_bar}>OO월 OO일 O요일</Text>
@@ -94,7 +95,9 @@ export default class RiderLog extends Component{
                     
                 </ScrollView>
             </View>
-        );
+
+            )
+       
     }
 }
 

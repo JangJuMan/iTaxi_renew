@@ -20,12 +20,12 @@ export default class intoRoom extends Component{
   }
 
   state={
-    carrier:0,
+    carrier:-1,
   }
 
   carrier_clicked(value){
       if(value === this.state.carrier){
-          this.setState({carrier:0})
+          this.setState({carrier:-1})
       }
       else{
           this.setState({carrier:value})
@@ -75,6 +75,13 @@ export default class intoRoom extends Component{
                     <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
                         <TouchableOpacity style={{padding:5}}
                             onPress = {() => {
+                                this.carrier_clicked(0);
+                            }}
+                        >
+                            <Icon name="numeric-0-circle-outline" size={30} color={this.state.carrier === 0 ? heightColor : unheightColor } />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{padding:5}}
+                            onPress = {() => {
                                 this.carrier_clicked(1);
                             }}
                         >
@@ -100,7 +107,7 @@ export default class intoRoom extends Component{
                 <View style={styles.button}>
                   <TouchableOpacity onPress={() => {
                       this.props.onOkButton();
-                      this.props.navigation.navigate('Chat');
+                      this.props.navigation.navigate('Chat', carrier=this.state.carrier);
                     }}>
                     <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
                   </TouchableOpacity>

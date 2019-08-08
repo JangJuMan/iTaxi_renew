@@ -22,8 +22,7 @@ export default class ChatRoom extends Component{
     render(){
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
-        const t_data = taxiStore.taxiId;
-        const c_data = carpoolStore.carpoolId;
+        const data = taxiStore.taxiId;
 
         // <View style={styles.calendar}>
         //                     <Icon name="calendar" color='#3FA9F5' size={20}></Icon>
@@ -77,7 +76,7 @@ export default class ChatRoom extends Component{
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
-                            <Text>  {t_data.departure_time.substring(7)}</Text>
+                            <Text>  {data.departure_time.substring(7)}</Text>
                         </View>
                     </View>
                     <View style={styles.chat_leftButt}>
@@ -88,10 +87,10 @@ export default class ChatRoom extends Component{
                                     source={fromtoIcon} />
                                 <View style={styles.destination_text_location}>
                                     <Text style={styles.destination_text}>
-                                        {t_data.departure_place}
+                                        {data.departure_place}
                                     </Text>
                                     <Text style={styles.destination_text}>
-                                        {t_data.arrival_place}
+                                        {data.arrival_place}
                                     </Text>
                                 </View>
                             </View>
