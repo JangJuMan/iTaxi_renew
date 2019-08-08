@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Keyboard, Platform, ScrollView, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import OC from 'open-color';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 const iosTextHeight = 13.5
 const androidTextHeight = 13.5
@@ -12,8 +13,6 @@ export default class ChatRoom extends Component {
         text: '',
         sendingMsg: '',
         height: textHeight * 2,
-        // TODO: 아이폰(민우꺼)에서 랜더링이 느려 얘만그런가? 더 실험해봐야 할듯 다른 폰들도 더 표본들이 필요해
-        visibleHeight: 216,
     }
 
     componentWillMount(){
@@ -25,11 +24,7 @@ export default class ChatRoom extends Component {
     }
 
     keyboardDidShow(e){
-        let newSize = e.endCoordinates.height
-        // console.log(`keyboard size : ${newSize}`);
-        this.setState({
-            visibleHeight: newSize,
-        })
+        this.scrollToBottom();
     }
 
     componentWillReceiveProps(nextProps){
@@ -42,13 +37,26 @@ export default class ChatRoom extends Component {
         this.setState({ text: '' })
     }
 
+    scrollToBottom(){
+        this.refs.scrollView.scrollToEnd({duration: 2000});
+    }
+
     render() {
-        const keyboardHeight = Platform.OS === 'ios' ? this.state.visibleHeight*0.3 : this.state.visibleHeight*0.28
-        // console.log(`${keyboardHeight} = ${this.state.visibleHeight} - ${Dimensions.get('screen').height*0.45}`);
+        contentHeight = 0
+        scrollViewHeight = 0
+
         return (
-            <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 1 }} keyboardVerticalOffset={keyboardHeight} >  
+            <View style={styles.container}>
+            {/* <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 1 }}  >   */}
                 <View style={{ backgroundColor: '#EEEEEE', flex: 10, }}>
-                    <ScrollView style={styles.chatting_scroll}>
+                    <ScrollView 
+                        style={styles.chatting_scroll}
+                        ref = 'scrollView'
+                        //TODO: 나중에 대화가 새로 들어오면 onContentSizeChange로 바닥으로 정렬하기 + refreshControl
+                        onContentSizeChange={(w,h) => this.contentHeight = h}
+                        onLayout={ev => this.scrollViewHeight}
+                    >
+
                         <View style={styles.new_member_bar}>
                             <Text style={styles.new_member_text}>장주만 (님)이 입장하셨습니다.</Text>
                         </View>
@@ -267,7 +275,7 @@ export default class ChatRoom extends Component {
                         }}
                         underlineColorAndroid='transparent'
 
-                        placeholder='메시지를 입력해주세요' />
+                        placeholder='메시지를 입력해주세요' />                        
                     <TouchableOpacity
                         style={styles.send_btn}
                         onPress={() => {
@@ -279,11 +287,12 @@ export default class ChatRoom extends Component {
                         <Icon style={{}} name="ios-paper-plane" size={27} color="skyblue" />
                     </TouchableOpacity>
                 </View>
-            </KeyboardAvoidingView>
+                <KeyboardSpacer topSpacing={0}/>
+            {/* </KeyboardAvoidingView> */}
+            </View>
         );
     }
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -369,6 +378,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         margin: 5,
+        borderWidth:0.5,
+        borderColor:'#bbb',
         marginHorizontal: 20,
         borderRadius: 12,
     },

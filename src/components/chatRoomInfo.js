@@ -86,7 +86,7 @@ export default class ChatRoom extends Component{
                     </View>
                 </View>
             </View>
-            <ScrollView horizontal={true}>
+            <ScrollView horizontal={true} >
                 <View style={styles.profileButton}>
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
