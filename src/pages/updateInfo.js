@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, Button,StyleSheet,ScrollView,TouchableOpacity,Input,TextInput} from 'react-native';
+import { View, Text, Button,StyleSheet,ScrollView,TouchableOpacity,Input,TextInput, KeyboardAvoidingView, Keyboard, Platform} from 'react-native';
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { vw, vh }  from 'react-native-expo-viewport-units';
+import KeyboardSpaceView from 'react-native-keyboard-spacer-view';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 class Info extends Component{
     constructor(props) {
@@ -15,20 +17,40 @@ class Info extends Component{
             <View style={styles.info}>
                 <Text style={{fontSize:14,marginLeft:9,color:'gray'}}>{this.props.info}{'\n'}</Text>
                 <TextInput
-                    style={{height: 40}}
+                    style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1}}
                     placeholder="정보를 입력하시오"
                     onChangeText={(text) => this.setState({text})}
                     value={this.state.text}
                 />
-
-                <View style={{borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1}}></View>
             </View>
         )
     }
 }
 export default class changeInfo extends Component {
+    state={
+        visibleHeight : 216,
+    }
+
+    componentWillMount(){
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
+    }
+
+    componentWillUnmount () {
+        this.keyboardDidShowListener.remove()
+    }
+
+    keyboardDidShow(e){
+        let newSize = e.endCoordinates.height
+        console.log(`keyboard size : ${newSize}`);
+        this.setState({
+            visibleHeight: newSize,
+        })
+    }
+
     render() {
+        const keyboardHeight = Platform.OS === 'ios' ? this.state.visibleHeight*0.33 : this.state.visibleHeight*0.31
         return (
+<KeyboardAvoidingView style={styles.container} behavior='padding' contentContainerStyle={{ flex: 1 }} keyboardVerticalOffset={keyboardHeight} >  
         <ScrollView>
             <View>
                 <Info info='학번' private='21900398'/>
@@ -46,6 +68,7 @@ export default class changeInfo extends Component {
                 </TouchableOpacity>
             </View>
         </ScrollView>
+</KeyboardAvoidingView>
         )
     }
 }

@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
             position: 'absolute',
             alignSelf: 'center',
             top: vh(20),
-            maxWidth: vw(80),
             maxHeight: vh(80),
             backgroundColor: '#FFFFFF',
 

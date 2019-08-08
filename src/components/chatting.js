@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Keyboard, Platform, ScrollView, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import OC from 'open-color';
-import vw from 'react-native-expo-viewport-units';
 
 const iosTextHeight = 13.5
 const androidTextHeight = 13.5
@@ -13,7 +12,24 @@ export default class ChatRoom extends Component {
         text: '',
         sendingMsg: '',
         height: textHeight * 2,
-        line : 1,
+        // TODO: 아이폰(민우꺼)에서 랜더링이 느려 얘만그런가? 더 실험해봐야 할듯 다른 폰들도 더 표본들이 필요해
+        visibleHeight: 216,
+    }
+
+    componentWillMount(){
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
+    }
+
+    componentWillUnmount () {
+        this.keyboardDidShowListener.remove()
+    }
+
+    keyboardDidShow(e){
+        let newSize = e.endCoordinates.height
+        // console.log(`keyboard size : ${newSize}`);
+        this.setState({
+            visibleHeight: newSize,
+        })
     }
 
     componentWillReceiveProps(nextProps){
@@ -27,9 +43,10 @@ export default class ChatRoom extends Component {
     }
 
     render() {
-        const keyboardHeight = 80
+        const keyboardHeight = Platform.OS === 'ios' ? this.state.visibleHeight*0.3 : this.state.visibleHeight*0.28
+        // console.log(`${keyboardHeight} = ${this.state.visibleHeight} - ${Dimensions.get('screen').height*0.45}`);
         return (
-            <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 2 }} keyboardVerticalOffset={keyboardHeight}>  
+            <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 1 }} keyboardVerticalOffset={keyboardHeight} >  
                 <View style={{ backgroundColor: '#EEEEEE', flex: 10, }}>
                     <ScrollView style={styles.chatting_scroll}>
                         <View style={styles.new_member_bar}>
@@ -230,15 +247,12 @@ export default class ChatRoom extends Component {
                         </View>
                     </ScrollView>
                 </View>
-
                 <View style={styles.message_container}>
                     <TextInput
                         {...this.props}
                         style={[styles.input_text_line, {height: this.state.height}]}
                         onChangeText={(input) => this.setState({ text: input })}
                         multiline={true}
-
-                        // numberOfLines={5}
                         ref={ref => {
                             this.textInput = ref;
                         }}
@@ -274,7 +288,7 @@ export default class ChatRoom extends Component {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#EEEEEE',
-        flex: 1
+        flex: 1,
     },
     chatting_container: {
         backgroundColor: '#EEEEEE',
@@ -372,7 +386,6 @@ const styles = StyleSheet.create({
     send_btn: {
         alignItems: 'center',
         flex: 2,
-        // borderWidth:1,
         padding:5,
     },
     send_icon: {
