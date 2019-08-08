@@ -56,7 +56,7 @@ export default class EmptyList extends Component{
                                 navigation={this.props.navigation}
                                 onOkButton = {() => {
                                     this.setModalVisible(false),
-                                    this.props.navigation.navigate('CarpoolRoom')
+                                    this.props.navigation.navigate('Chat')
                                 }}                                
                                 onCancelButton = {() => this.setModalVisible(false)}/>
                         </View>
