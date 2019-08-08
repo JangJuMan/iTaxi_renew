@@ -19,7 +19,7 @@ export default class ChatRoom extends Component{
         console.log(carrierNum);
         return(
             <View style={{flex:1}}>
-                <ChatRoomInfo />
+                <ChatRoomInfo navigation={this.props.navigation}/>
                 <Chatting />
             </View>
         );

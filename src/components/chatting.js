@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import OC from 'open-color';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
+
 const iosTextHeight = 13.5
 const androidTextHeight = 13.5
 const textHeight = Platform.OS === 'ios' ? iosTextHeight : androidTextHeight;
