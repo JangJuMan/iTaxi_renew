@@ -63,34 +63,32 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
     },
-        search_from_to: {
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
+    search_from_to: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    search_date: {
+        marginTop: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    slide: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+        text: {
+            color: '#4dabf7',
+            fontSize: 14,
+            fontWeight: 'bold',
         },
-
-        search_date: {
-            marginTop: 10,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-        },
-            slide: {
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            },
-                text: {
-                    color: '#4dabf7',
-                    fontSize: 14,
-                    fontWeight: 'bold',
-                },
-
-            calendar: {
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-            },
+    calendar: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 

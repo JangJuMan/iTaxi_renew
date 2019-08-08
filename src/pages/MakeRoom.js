@@ -4,6 +4,8 @@ import {seatImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw }  from 'react-native-expo-viewport-units';
+import FromTo from '../components/searchModal';
+import IconArrow from 'react-native-vector-icons/AntDesign';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
@@ -43,15 +45,11 @@ export default class setting extends Component{
                     <Text style={{color:'black',fontSize:15 }}>모집</Text>
                 </View>
                 <View style={styles.fromTo}>
-                    <View style={styles.location}>
-                  {/* 출발지,도착지는 props로 받기 */}
-                        <Text style={styles.locationText}>출발지</Text>
-                    </View>
-                    <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
-                    <View style={styles.location}>
-                        <Text style={styles.locationText}>도착지</Text>
-                    </View>
+                    <FromTo />
+                    <IconArrow name="arrowright" size={35} color="gray" />
+                    <FromTo />
                 </View>
+
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
                         <Text style={{color:'gray' }}>시간</Text>
