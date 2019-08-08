@@ -2,16 +2,28 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View,Button, TouchableOpacity,ScrollView,Image} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import TaxiElement from '../components/taxiElement';
-import { vw } from 'react-native-expo-viewport-units';
+import { vw, vh } from 'react-native-expo-viewport-units';
 import { Directions } from 'react-native-gesture-handler';
 import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../variable/assets';
 import { observer, inject } from 'mobx-react';
+import CalculModal from '../components/calculModal';
+import Modal from '../elements/modal';
 
 @inject('taxiStore')
 @inject('carpoolStore')
 
 @observer
 export default class ChatRoom extends Component{
+    constructor(props) {
+        super(props);
+    }
+    state={
+        modalVisible: false,
+    }
+
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
 
     componentDidMount() {
         const { taxiStore } = this.props;
@@ -21,7 +33,6 @@ export default class ChatRoom extends Component{
     }
     render(){
         const { taxiStore } = this.props;
-        const { carpoolStore } = this.props;
         const data = taxiStore.taxiId;
 
         // <View style={styles.calendar}>
@@ -76,7 +87,7 @@ export default class ChatRoom extends Component{
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
-                            <Text>  {data.departure_time.substring(7)}</Text>
+                            <Text>  {data.departure_time}</Text>
                         </View>
                     </View>
                     <View style={styles.chat_leftButt}>
@@ -111,18 +122,37 @@ export default class ChatRoom extends Component{
                 </View>
                 <View style={styles.chatInfo_Right}>
                     <View style={styles.Button}>
-                        <TouchableOpacity style={{backgroundColor: '#3FA9F5',borderRadius: 10}}>
+                        <TouchableOpacity  
+                            onPress = {() => this.props.navigation.goBack()}
+                            style={{backgroundColor: '#3FA9F5',borderRadius: 10}}>
                             <View style={styles.ButtonInfo}>
                             <Text style={styles.ButtonText}>방나가기</Text>
                             </View>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.Button}>
-                        <TouchableOpacity style={{backgroundColor: '#3FA9F5',borderRadius: 10}}>
+                        <TouchableOpacity 
+                            onPress = {() => this.setModalVisible(true)}
+                            style={{backgroundColor: '#3FA9F5',borderRadius: 10}}>
+
                             <View style={styles.ButtonInfo}>
-                            <Text style={styles.ButtonText}>정산하기</Text>
+                            <Text style={styles.ButtonText}>더치페이</Text>
                             </View>
                         </TouchableOpacity>
+                        <Modal 
+                            transparent={true}
+                            visible={this.state.modalVisible}
+                            onRequestClose={() => this.setModalVisible(false)}
+                            render={
+                            <View style={styles.modalBackground}>
+                                <View style={styles.realModal}>
+                                    <CalculModal 
+                                        navigation={this.props.navigation}
+                                        onOkButton = {() => this.setModalVisible(false)}
+                                        onCancelButton = {() => this.setModalVisible(false)}/>
+                                </View>
+                             </View>
+            }/>
                     </View>
                 </View>
             </View>
@@ -272,5 +302,11 @@ const styles=StyleSheet.create({
     },
         profileText: {
             color: '#3FA9F5',
+        },
+
+        realModal: {
+            borderRadius: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
         },
 })

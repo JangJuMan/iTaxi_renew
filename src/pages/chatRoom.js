@@ -13,7 +13,7 @@ export default class ChatRoom extends Component{
     render(){
         return(
             <View style={{flex:1}}>
-                <ChatRoomInfo />
+                <ChatRoomInfo navigation={this.props.navigation}/>
                 <Chatting />
             </View>
         );

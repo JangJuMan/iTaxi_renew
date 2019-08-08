@@ -59,9 +59,8 @@ export default class Setting extends Component{
                     <View style={{flex:3}}>
                       <Profile_info info='학번'/>
                       <Profile_info info='한글이름'/>
-                      <Profile_info info='닉네임'/>
-                      <Profile_info info='휴대폰 번호'/>
                       <Profile_info info='Email'/>
+                      <Profile_info info='휴대폰 번호'/>
                       <Profile_info info='계좌 은행'/>
                       <Profile_info info='계좌 번호'/>
                     </View>
@@ -69,15 +68,23 @@ export default class Setting extends Component{
                     <View style={{flex:5}}>
                       <Profile_my info={data.student_id}/>
                       <Profile_my info={data.name}/>
-                      <Profile_my info={data.user_id}/>
-                      <Profile_my info={data.phone}/>
                       <Profile_my info={data.student_id + '@handong.edu'}/>
+                      <Profile_my info={data.phone}/>
                       <Profile_my info='기업'/>
                       <Profile_my info={data.phone}/>
                     </View>
+                    
                 </View>
                 <View style={styles.profileButton}>
-                  <TouchableOpacity onPress={() => this.props.navigation.navigate('Update')}>
+                  <TouchableOpacity onPress={() => {
+                    this.props.navigation.navigate('Update', 
+                      {
+                        student_id: data.student_id,
+                        // name: data.name,
+                        // user_id: data.user_id,
+                        // phone: data.phone
+                    })
+                  }}>
                     <View style={styles.changeInfo}>
                       <Text style={styles.changeInfoText}>개인정보 수정</Text>
                     </View>

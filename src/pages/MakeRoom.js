@@ -15,8 +15,8 @@ export default class setting extends Component{
     state={
         person:0,
         carrier:0,
-        date: '2019-08-07',
-        time: '20:00',
+        date: '',
+        time: '',
     }
 
     person_clicked(value){

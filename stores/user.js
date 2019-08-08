@@ -6,11 +6,36 @@ export default class UserStore {
 
     @observable userId = [];
     @observable log = [];
+    @observable user;
 
     @observable state = "pending";
     errorData = "";
 
-   
+    @asyncAction
+    * updateUser(phone) {
+      this.state = 'pending';
+  
+      try {
+        let result = yield axios.patch("http://203.252.99.145:8282" + '/user/cra' , {
+          // student_id: student_id,
+          // name: name,
+          // user_id: user_id,
+          phone: phone,
+        });
+        // this.userId.student_id = student_id;
+        // this.userId.name = name;
+        // this.userId.user_id = user_id;
+        this.userId.phone = phone;
+        this.state = 'done';
+      }
+      catch (error) {
+        console.log(error);
+        this.errorData = error.message;
+        this.state = 'error';
+      }
+    }
+
+
     @asyncAction
     * getUserId() {
         this.state = "pending";
