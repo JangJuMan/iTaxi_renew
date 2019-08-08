@@ -49,9 +49,9 @@ export default class TaxiList extends Component{
         return(
             
             <View style={styles.conatiner}>
-                <View style={styles.horizontal_divider}>
-                    <SearchMenu />
-                </View>
+                <SearchMenu
+                    style={{marginTop: 10, marginBottom: 10,}} />
+                <View style={styles.horizontal_divider} />
 
                 <ScrollView>
                     <View style={styles.log_container}>
@@ -147,12 +147,8 @@ const styles = StyleSheet.create({
     },
     
     horizontal_divider:{
-        flexDirection: 'row', 
-        alignItems: 'center', 
-        justifyContent: 'space-between',
         borderBottomWidth: 1.0, 
-        borderBottomColor: '#0b0b0b25', 
-        padding: 5,
+        borderBottomColor: '#0b0b0b25',
     },
 
     log_contents:{
