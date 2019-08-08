@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text,StyleSheet,Image, TouchableOpacity } from 'react-native';
+import { View, Text,StyleSheet,Image, TouchableOpacity} from 'react-native';
 import {seatImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw }  from 'react-native-expo-viewport-units';
+import SearchModal from '../components/searchModal';
+import DatePicker from 'react-native-datepicker';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
@@ -13,6 +15,8 @@ export default class setting extends Component{
     state={
         person:0,
         carrier:0,
+        date: '2019-08-07',
+        time: '20:00',
     }
 
     person_clicked(value){
@@ -45,19 +49,71 @@ export default class setting extends Component{
                 <View style={styles.fromTo}>
                     <View style={styles.location}>
                   {/* 출발지,도착지는 props로 받기 */}
-                        <Text style={styles.locationText}>출발지</Text>
+                    <SearchModal />
                     </View>
                     <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
                     <View style={styles.location}>
-                        <Text style={styles.locationText}>도착지</Text>
+                    <SearchModal />
                     </View>
                 </View>
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>시간</Text>
+                        <Text style={{color:'gray' }}>출발날짜</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'center',alignItems:'center',}}>
-                        <Text style={{color:'#4dabf7',fontSize:25,}}>16:25</Text>
+                        <DatePicker
+                            date = {this.state.date}
+                            mode = "date"
+                            format = "YYYY-MM-DD"
+                            confirmBtnText = "확인"
+                            cancelBtnText = "취소"
+                            showIcon = {false}
+                            onDateChange = {(date) => {this.setState({date: date});}}
+                            androidMode = "spinner"
+                            customStyles = {{
+                                dateInput: {
+                                    borderWidth: 0,
+                                },
+                                dateText : {
+                                    color: '#4dabf7',
+                                    fontSize: 23,
+                                }
+                            }}
+                        />
+                    </View>
+                </View>
+                <View style={styles.time_person_bag}>
+                    <View style={styles.flextwo}>
+                        <Text style={{color:'gray' }}>출발시간</Text>
+                        
+                    </View>
+                    <View style={{flex: 5,justifyContent: 'space-evenly',alignItems:'flex-end', flexDirection: 'row'}}>
+
+                        <DatePicker
+                            style = {{margin: 10}}
+                            customStyles = {{
+                                dateInput: {
+                                    borderWidth: 0,
+                                },
+                                dateText : {
+                                    color: '#4dabf7',
+                                    fontSize: 23,
+                                }
+                            }}
+                            date = {this.state.time}
+                            hideText = {false}
+                            mode = "time"
+                            format = "HH:mm"
+                            confirmBtnText = "확인"
+                            cancelBtnText = "취소"
+                            minuteInterval = {1}
+                            onDateChange = {(time) => {this.setState({time: time});}}
+                            showIcon = {false}
+                  
+                            androidMode = "spinner"
+
+                        />
+                        
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
@@ -164,15 +220,13 @@ const styles=StyleSheet.create({
         padding: 10,
     },
             location: {
-            borderRadius: 50,
-            borderWidth: 1,
-            borderColor: OC.gray[4],
-            paddingLeft: 10,
-            paddingRight: 10,
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
+                borderRadius: 50,
+                borderWidth: 1,
+                borderColor: OC.gray[4],
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
         },
             locationText: {
                 color: '#3FA9F5',

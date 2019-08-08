@@ -19,7 +19,9 @@ const TaxiTab = createStackNavigator({
   headerLayoutPreset:'center',
   defaultNavigationOptions: {
     title: "조회 / 모집",
-  }
+  },
+  
+  
 });
 
 const CarpoolTab = createStackNavigator({

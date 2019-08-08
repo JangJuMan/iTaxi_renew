@@ -22,8 +22,7 @@ export default class ChatRoom extends Component{
     render(){
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
-        const t_data = taxiStore.taxiId;
-        const c_data = carpoolStore.carpoolId;
+        const data = taxiStore.taxiId;
 
        
 
@@ -44,7 +43,7 @@ export default class ChatRoom extends Component{
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:15}}>  {t_data.departure_time}</Text>
+                            <Text style={{fontSize:15}}>  {data.departure_time}</Text>
                         </View>
                     </View>
                     <View style={styles.destination}>
@@ -54,10 +53,10 @@ export default class ChatRoom extends Component{
                                 source={fromtoIcon} />
                             <View style={styles.destination_text_location}>
                                 <Text style={styles.destination_text}>
-                                    {t_data.departure_place}
+                                    {data.departure_place}
                                 </Text>
                                 <Text style={styles.destination_text}>
-                                    {t_data.arrival_place}
+                                    {data.arrival_place}
                                 </Text>
                             </View>
                         </View>
@@ -92,7 +91,7 @@ export default class ChatRoom extends Component{
                     </View>
                 </View>
             </View>
-            <ScrollView horizontal={true}>
+            <ScrollView horizontal={true} >
                 <View style={styles.profileButton}>
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
