@@ -1,48 +1,57 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
-import { createBottomTabNavigator, createAppContainer, createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createAppContainer, createStackNavigator, createMaterialTopTabNavigator} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
 import ListView from './pages/taxiList';
 import RiderLog from './pages/rideLog';
 import Setting from './pages/settingscreen';
 import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
 import EnteringRoom from './pages/going_into_room';
+import UpdateInfo from '../src/pages/updateInfo';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
-    RoomDoor: EnteringRoom,
-    TaxiRoom: ChatRoom,
-    createTaxiRoomInfo: Setting,
+    // TaxiRoomDoor: EnteringRoom,
+    // TaxiRoom: ChatRoom,
+    // createTaxiRoomInfo: Setting,
   }, {
+  headerLayoutPreset:'center',
   defaultNavigationOptions: {
     title: "조회 / 모집",
-  }
+  },
+  
+  
 });
 
 const CarpoolTab = createStackNavigator({
     Home: Carpool,
-    CarpoolRoom: ChatRoom,
-    createCarpoolRoomInfo: Setting,
+    CarpoolRoomDoor: EnteringRoom,
+
+    // CarpoolRoom: ChatRoom,
+    // createCarpoolRoomInfo: Setting,
   }, {
-  defaultNavigationOptions: {
-    title: "조회 / 모집",
+    headerLayoutPreset:'center',
+    defaultNavigationOptions:{
+      title: "조회 / 모집",
   }
 });
 
 const RideHistoryTab = createStackNavigator({
     Home: RiderLog,
-    pastRoom: ChatRoom,
+    // pastRoom: ChatRoom,
   }, {
-  defaultNavigationOptions: {
-    title: "탑승 내역",
+    headerLayoutPreset:'center',
+    defaultNavigationOptions: {
+      title: "탑승 내역",
   }
 });
 
 const MyPageTab = createStackNavigator({
     Home: Setting,
+    Update: UpdateInfo,
   }, {
+  headerLayoutPreset:'center',
   defaultNavigationOptions: {
     title: "설정",
   }
@@ -108,6 +117,7 @@ const MyPageTab = createStackNavigator({
 
 // 새로운 것
 const TabNavigator = createMaterialTopTabNavigator({
+
   TaxiList: {
     screen: TaxiTab,
     navigationOptions: {
@@ -131,9 +141,12 @@ const TabNavigator = createMaterialTopTabNavigator({
     navigationOptions: {
       title: "설정",
     },
-
   },
-}, {
+  
+}, 
+{
+  initialRouteName: 'RideHistory',
+  
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
       const { routeName } = navigation.state;
@@ -177,9 +190,21 @@ const TabNavigator = createMaterialTopTabNavigator({
   tabBarPosition:'bottom',
 });
 
-const navigator = createStackNavigator({
-  Home: TabNavigator,
-  Chat: ChatRoom
-})
+const navigator = createStackNavigator(
+  {
+    Home:{
+      screen: TabNavigator,
+      navigationOptions:{
+        header:null,
+      }
+    },
+    Chat: {
+      screen: ChatRoom,
+    }
+  },
+  {
+    initialRouteName: 'Home', 
+  }
+)
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(navigator);

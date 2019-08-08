@@ -100,7 +100,7 @@ export default class intoRoom extends Component{
                 <View style={styles.button}>
                   <TouchableOpacity onPress={() => {
                       this.props.onOkButton();
-                      this.props.navigation.navigate('TaxiRoom');
+                      this.props.navigation.navigate('Chat');
                     }}>
                     <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
                   </TouchableOpacity>

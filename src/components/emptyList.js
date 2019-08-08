@@ -31,8 +31,10 @@ export default class EmptyList extends Component{
         return(
             <View style={styles.container}>
                 {/* 중단 수평선 */}
+                <SearchMenu 
+                    style={{marginTop: 10, marginBottom: 10}}/>
                 <View style={[styles.horizontal_divider]}>
-                    <SearchMenu />
+                    
                 </View>
 
                 {/* 조회된 기록들 */}
@@ -56,7 +58,7 @@ export default class EmptyList extends Component{
                                 navigation={this.props.navigation}
                                 onOkButton = {() => {
                                     this.setModalVisible(false),
-                                    this.props.navigation.navigate('CarpoolRoom')
+                                    this.props.navigation.navigate('Chat')
                                 }}                                
                                 onCancelButton = {() => this.setModalVisible(false)}/>
                         </View>
@@ -86,12 +88,8 @@ const styles = StyleSheet.create({
         borderColor: '#00BFFF',
     },
     horizontal_divider:{
-        flexDirection: 'row', 
-        alignItems:'center', 
-        justifyContent:'space-between',
         borderBottomWidth: 1.0, 
         borderBottomColor: '#0b0b0b25', 
-        padding: 5,
     },
     past_log_title:{
         fontSize: 16, 

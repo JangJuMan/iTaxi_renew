@@ -40,7 +40,7 @@ export default class RiderLog extends Component{
                 <Text style={styles.top_title}>곧 탑승 예정</Text>
                 <TouchableOpacity
                     onPress = {() => {
-                        this.props.navigation.navigate('pastRoom');
+                        this.props.navigation.navigate('Chat');
                     }}>
                     <View style={styles.top_highlighted_log}>
                         <ListEntry time = '13:00' from="한동대학교" to="포항역"/>
@@ -84,7 +84,7 @@ export default class RiderLog extends Component{
                                 <TouchableOpacity
                                     onPress = {() => {
                                         taxiStore.taxiId = item;
-                                        this.props.navigation.navigate('pastRoom');
+                                        this.props.navigation.navigate('Chat');
                                     }}>
                                     <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>

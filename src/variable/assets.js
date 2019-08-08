@@ -27,3 +27,4 @@ export const carrIcon = require(ASSET_DIR + "Final_carrier_outline_blue.gif");
 export const emptycarrImg = require(ASSET_DIR + "Final_carrier_outline_gray.gif");
 export const fullcarrImg = require(ASSET_DIR + "Final_carrier_gray.gif");
 export const  fromtoIcon= require(ASSET_DIR + "Final-fromtoBlue.gif");
+export const mainLogo=require(ASSET_DIR+ "FinalMainLogo.png");
