@@ -68,7 +68,13 @@ export default class TaxiList extends Component{
                                     taxiStore.taxiId = item;
                                     this.setModalVisible(true);
                                 }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
+                                    <ListEntry
+                                        style={[styles.list_entry, item.curr_people == item.num_people ? {backgroundColor: '#E6E6E6'} : null]}
+                                        time={item.departure_time}
+                                        from={item.departure_place}
+                                        to={item.arrival_place}
+                                        seat={item.num_people}
+                                        carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         }/>
@@ -164,6 +170,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1.0, 
         borderBottomColor: '#0b0b0b25',
         flexGrow: 1,
+    },
+
+    list_entry: {
+        marginBottom: 20,
     },
     
     log_container:{
