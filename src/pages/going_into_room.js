@@ -114,7 +114,7 @@ componentDidMount() {
                     <TouchableOpacity onPress={() => {
                         this.props.onOkButton();
                         this.props.navigation.navigate('Chat', carrier=this.state.carrier);
-                    }}>
+                    }}> 
                     <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
                     </TouchableOpacity>
                 </View>
