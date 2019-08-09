@@ -31,6 +31,32 @@ export default class ChatRoom extends Component{
         taxiStore.getTaxiList();
         carpoolStore.getCarpoolList();
     }
+
+    getCarrier() {
+        const { taxiStore } = this.props;
+        const data = taxiStore.taxiId;
+        const full = data.num_carrier;
+        let empty = 4 - full;
+        const list = [];
+        
+        for(let i = 0; i < full ; i++) {
+            list.push(
+                <View>
+                    <Image style={styles.carrImg} source={fullcarrImg} />
+                </View>
+            )
+        }
+        for(let j = 0; j < empty ; j++) {
+            list.push(
+                <View>
+                    <Image style={styles.carrImg} source={emptycarrImg} />
+                </View>
+            )
+        }
+        return list;
+    }
+
+
     render(){
         const { taxiStore } = this.props;
         const data = taxiStore.taxiId;
@@ -70,10 +96,7 @@ export default class ChatRoom extends Component{
                             <Text style={{padding:5}}>캐리어</Text>
                         </View>
                         <View style={{flexDirection:'row',margin:5}}>
-                            <Image style={styles.carrImg} source={emptycarrImg} />
-                            <Image style={styles.carrImg} source={emptycarrImg} />
-                            <Image style={styles.carrImg} source={fullcarrImg} />
-                            <Image style={styles.carrImg} source={fullcarrImg} />
+                            {this.getCarrier()}
                         </View>
                     </View>
                 </View>
@@ -118,29 +141,29 @@ export default class ChatRoom extends Component{
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>송민석    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                         </View>
                     </TouchableOpacity >
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>장주만    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>최진아    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>신영현    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                         </View>
                     </TouchableOpacity>
                 </View>
