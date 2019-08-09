@@ -42,7 +42,7 @@ export default class ChatRoom extends Component{
                     <View style={styles.calendar_time}>
                         <View style={styles.calendar}>
                             <Icon name="calendar" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:15}}>  07 / 31</Text>
+                            <Text style={{fontSize:15}}>  {data.departure_date.substring(5)}</Text>
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
