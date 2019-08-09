@@ -9,7 +9,6 @@ import DatePicker from 'react-native-datepicker';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
-        출발,도착지도
 */
 export default class setting extends Component{
     state={
@@ -181,14 +180,14 @@ export default class setting extends Component{
 
                 <View style={styles.button}>
                     <TouchableOpacity onPress={() => {
-                        this.props.onOkButton();
-                        }}>
-                        <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
                         this.props.onCancelButton();
                         }}>
                         <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.props.onOkButton();
+                        }}>
+                        <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
                     </TouchableOpacity>
                 </View>
             </View>
