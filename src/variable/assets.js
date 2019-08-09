@@ -28,3 +28,8 @@ export const emptycarrImg = require(ASSET_DIR + "Final_carrier_outline_gray.gif"
 export const fullcarrImg = require(ASSET_DIR + "Final_carrier_gray.gif");
 export const  fromtoIcon= require(ASSET_DIR + "Final-fromtoBlue.gif");
 export const mainLogo=require(ASSET_DIR+ "FinalMainLogo.png");
+
+export const CircleZero=require(ASSET_DIR+"Final-circleZero.png");
+export const CircleOne=require(ASSET_DIR+"Final-circleOne.png");
+export const Circletwo=require(ASSET_DIR+"Final-circleTwo.png");
+export const CircleThree=require(ASSET_DIR+"Final-circleThree.png");
