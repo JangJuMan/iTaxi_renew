@@ -9,7 +9,6 @@ import DatePicker from 'react-native-datepicker';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
-        출발,도착지도
 */
 export default class setting extends Component{
     state={

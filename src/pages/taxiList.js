@@ -17,11 +17,32 @@ import Modal from '../elements/modal'
 export default class TaxiList extends Component{
     state={
         modalVisible: false,
+        carrierNum : -1,
+        personNum : -1,
     }
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
+
+    // setCarrier(value){
+    //     if(value === -1){
+    //         this.state.carrierNum = 0;
+    //     }
+    //     else{
+    //         this.state.carrierNum = value;
+    //         // this.setState({carrierNum: value})
+    //     }
+    // }
+
+    // setPerson(value){
+    //     if(value === -1){
+    //         this.state.personNum = 0;
+    //     }
+    //     else{
+    //         this.state.personNum = value;
+    //     }
+    // }
 
     constructor(props) {
         super(props);
@@ -75,26 +96,7 @@ export default class TaxiList extends Component{
                             </View>
                         }/>
                     </View>
-                    
-                        <Modal
-                            transparent={true}
-                            visible={this.state.modalVisible}
-                            onRequestClose={() => this.setModalVisible(false)}
-                            render={
-                            <View style={styles.modalBackground}> 
-                                <View style={styles.realModal}>
-                                    <EnterRoom 
-                                        navigation={this.props.navigation}
-                                        onOkButton = {() => this.setModalVisible(false)}
-                                        onCancelButton = {() => this.setModalVisible(false)}/>
-                                </View>
-                            </View>
-                            }/>
-                    
-                    
-                    
-                    
-                    
+
                     <View style={styles.log_contents}>
                         <FlatList
                             data = {taxiStore.taxiList}
@@ -111,10 +113,32 @@ export default class TaxiList extends Component{
                             </View>
                         }/>
                     </View>
-                    
                 </ScrollView>
 
+                {/* going in to room */}
                 <Modal
+                    animationType = {'fade'}
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => this.setModalVisible(false)}
+                    render={
+                    <View style={styles.modalBackground}> 
+                        <View style={styles.realModal}>
+                            <EnterRoom 
+                                onOkButton = {(CarrierInputFromGoingIntoRoom) => {
+                                    // console.log(`CarrierInputFromGoingIntoRoom = ${CarrierInputFromGoingIntoRoom}`)
+                                    // this.setCarrier(CarrierInputFromGoingIntoRoom)
+                                    this.setModalVisible(false)
+                                    this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromGoingIntoRoom})
+                                }}
+                                onCancelButton = {() => this.setModalVisible(false)}/>
+                        </View>
+                    </View>
+                }/>
+
+                {/* make new room */}
+                <Modal
+                    animationType = {'fade'}
                     transparent={true}
                     visible={ModalControl.modalVisible_taxi}
                     onRequestClose={() => ModalControl.modalVisible_taxi=false}
@@ -123,14 +147,18 @@ export default class TaxiList extends Component{
                         <View style={styles.realModal}>
                             <MakeRoom 
                                 navigation={this.props.navigation}
-                                onOkButton = {() => {
-                                    ModalControl.modalVisible_taxi=false, 
-                                    this.props.navigation.navigate('Chat');
+                                onOkButton = {(CarrierInputFromMakeRoom, PersonInputFromMakeRoom) => {
+                                    // console.log(`CarrierInputFromMakeRoom = ${CarrierInputFromMakeRoom} / ${PersonInputFromMakeRoom}`)
+                                    // this.setCarrier(CarrierInputFromMakeRoom)
+                                    // this.setPerson(PersonInputFromMakeRoom)
+                                    ModalControl.modalVisible_taxi=false
+                                    // console.log(`===== ${CarrierInputFromMakeRoom} / ${PersonInputFromMakeRoom}`)
+                                    this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromMakeRoom, Person: PersonInputFromMakeRoom});
                                 }}
                                 onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>
                         </View>
                     </View>
-                    }/>
+                }/>
             </View>
         );
     }

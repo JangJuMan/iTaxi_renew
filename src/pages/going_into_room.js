@@ -11,51 +11,51 @@ import {CircleZero,CircleOne,CircleTwo,CircleThree} from '../variable/assets';
  * @props onOkButton      press enter room button (ok button)
  * @props onCancelButton  press cancel button
  */
+
 @inject('taxiStore')
-
-
 @observer
 export default class intoRoom extends Component{
     constructor(props){
-    super(props);
-}
-
-state={
-    carrier:-1,
-}
-
-carrier_clicked(value){
-    if(value === this.state.carrier){
-        this.setState({carrier:-1})
+        super(props);
     }
-    else{
-        this.setState({carrier:value})
-    }
-}
 
-componentDidMount() {
-    const { taxiStore } = this.props;
-    taxiStore.getTaxiList();
-}
+    state={
+        carrier:-1,
+    }
+
+    carrier_clicked(value){
+        if(value === this.state.carrier){
+            this.setState({carrier:-1})
+        }
+        else{
+            this.setState({carrier:value})
+        }
+    }
+
+    componentDidMount() {
+        const { taxiStore } = this.props;
+        taxiStore.getTaxiList();
+    }
     render(){
-    const { taxiStore }  = this.props;
-    const data = taxiStore.taxiId;
-    const heightColor = 'blue'
-    const unheightColor = '#4dabf7'
+        const { taxiStore }  = this.props;
+        const data = taxiStore.taxiId;
+        const heightColor = 'blue'
+        const unheightColor = '#4dabf7'
         return(
             <View style={styles.list}>
                 <View style={styles.top}>
                     <Text style={{color:'black',fontSize:15 }}>방들어가기</Text>
                 </View>
+
                 <View style={styles.fromTo}>
                     <View style={styles.location}>
-                  {/* 출발지,도착지는 props로 받기 */}
-                    <Text style={styles.locationText}>{data.departure_place}</Text>
+                        <Text style={styles.locationText}>{data.departure_place}</Text>
+                        
                     </View>
-                    <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
+                        <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
                     <View style={styles.location}>
-                            <Text style={styles.locationText}>{data.arrival_place}</Text>
-                </View>
+                        <Text style={styles.locationText}>{data.arrival_place}</Text>
+                    </View>
                 </View>
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
@@ -106,9 +106,9 @@ componentDidMount() {
                 <View style={styles.button}>
                     <TouchableOpacity onPress={() => {
                         this.props.onCancelButton();
-                      // ModalControl.modalVisible=false;
-                      // this.props.navigation.goBack();
-                    }}>
+                        // ModalControl.modalVisible=false;
+                        // this.props.navigation.goBack();
+                        }}>
                     <Text style={{color:'#3FA9F5',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
@@ -142,20 +142,20 @@ const styles=StyleSheet.create({
         padding: 10,
     },
     location: {
-            borderRadius: 50,
-            borderWidth: 1,
-            borderColor: OC.gray[4],
-            paddingLeft: 10,
-            paddingRight: 10,
-            flex: 1,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-        },
-            locationText: {
-                color: '#3FA9F5',
-                fontSize:14
-            },
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: OC.gray[4],
+        paddingLeft: 10,
+        paddingRight: 10,
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
+    locationText: {
+        color: '#3FA9F5',
+        fontSize:14
+    },
     top:{
         flex:1,
         justifyContent:'center',
@@ -172,7 +172,7 @@ const styles=StyleSheet.create({
         alignItems:'center',
         marginHorizontal: 50,
     }
-    })
+})
 
 
 

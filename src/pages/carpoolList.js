@@ -33,6 +33,7 @@ export default class ListView extends Component{
                 <EmptyList 
                     navigation={this.props.navigation}/>
                 <Modal
+                    animationType = {'fade'}
                     transparent={true}
                     visible={ModalControl.modalVisible_carpool}
                     onRequestClose={() => ModalControl.modalVisible_carpool=false}

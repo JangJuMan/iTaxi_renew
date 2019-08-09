@@ -48,6 +48,7 @@ export default class EmptyList extends Component{
                 </View>
 
                 <Modal
+                    animationType = {'fade'}
                     transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}
