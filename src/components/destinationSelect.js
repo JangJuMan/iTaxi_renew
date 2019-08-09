@@ -11,6 +11,13 @@ class Top extends Component {
         this.rotateAnimation = new Animated.Value(1);
     }
 
+    locations = [
+        ['한동대학교', '포항역', '고속버스터미널'],
+        ['하나로마트', '커피유야', '세차장'],
+        ['시외버스터미널', '영일대', '포항공대'],
+        ['E1', '육거리', '그할마'],
+    ]
+
     componentDidMount() {
         this.expand_collapse_Function();
     }
@@ -28,41 +35,28 @@ class Top extends Component {
         this.animating();
     }
 
-    _renderAppend() {
-        if (this.state.expand)
-            return (
-                <View>
+    renderLocations() {
+        let list = [];
+        
+        this.locations.map((rows, index) => {
+            if (!this.state.expand && index >= 2) return null;
+
+            let temp_row = [];
+            rows.map(location => {
+                temp_row.push(
+                    <TouchableOpacity>
+                        <Text style={stylesTop.text}>{location}</Text>
+                    </TouchableOpacity>
+                )
+            });
+            list.push(
                 <View style={stylesTop.location_row}>
-                    <TouchableOpacity>
-                        <Text style={stylesTop.text}>시외버스터미널</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Text style={stylesTop.text}>영일대</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Text style={stylesTop.text}>포항공대</Text>
-                    </TouchableOpacity>
+                    {temp_row}
                 </View>
-
-                <View style={stylesTop.location_row}>
-                <TouchableOpacity>
-                    <Text style={stylesTop.text}>E1</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity>
-                    <Text style={stylesTop.text}>육거리</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity>
-                    <Text style={stylesTop.text}>그랜드할인마트</Text>
-                </TouchableOpacity>
-                </View>
-            </View>
             )
-        else
-            return null;
+        });
+
+        return list;
     }
 
     render() {
@@ -89,35 +83,7 @@ class Top extends Component {
                 </View>
 
                 <View style={stylesTop.location_table}>
-                    <View style={stylesTop.location_row}>
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>한동대학교</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>포항역</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>고속버스터미널</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={stylesTop.location_row}>
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>하나로마트</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>커피유야</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>세차장</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    {this._renderAppend()}
+                    {this.renderLocations()}
 
                     <TouchableOpacity 
                         activeOpacity = {0.7}

@@ -26,9 +26,9 @@ export default class SearchMenu extends Component {
         return (
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.search_from_to}>
-                    <SearchModal />
+                    <SearchModal style={styles.search_modal} />
                     <Icon name="arrowright" size={35} color="gray" />
-                    <SearchModal />
+                    <SearchModal style={styles.search_modal} />
                 </View>
 
                 <View style={styles.search_date}>
@@ -66,6 +66,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    search_modal: {
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     search_date: {
         marginTop: 10,
