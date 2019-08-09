@@ -18,24 +18,25 @@ export default class Info extends Component{
 
     
         this.state = { loading: false, phone: navigation.getParam('phone', 0)};
-      }
+    }
 
-      submit() {
-                const { userStore } = this.props;
-                this.setState({ loading: true });
+    submit() {
+        const { userStore } = this.props;
+        this.setState({ loading: true });
                 
-                userStore.updateUser(this.state.phone)
-                  .then(result => {
-                    if (userStore.state == "error") {
-                      alert("Error: ", userStore.errorData);
-                    }
-                    else 
-                    Alert.alert('개인 정보 수정','성공적으로 변경되었습니다.');
-                      this.props.navigation.goBack();
-                  })
-                  .finally(() => {
-                    this.setState({ loading: false });
-                  });
+        userStore.updateUser(this.state.phone)
+        .then(result => {
+            if (userStore.state == "error") {
+                alert("Error: ", userStore.errorData);
+            }
+            else {
+                Alert.alert('개인 정보 수정','성공적으로 변경되었습니다.');
+                this.props.navigation.goBack();
+            }
+        })
+        .finally(() => {
+            this.setState({ loading: false });
+        });
     }
     
     render() {

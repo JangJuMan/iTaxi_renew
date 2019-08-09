@@ -31,11 +31,37 @@ export default class ChatRoom extends Component{
         taxiStore.getTaxiList();
         carpoolStore.getCarpoolList();
     }
-    render(){
+
+    getCarrier() {
         const { taxiStore } = this.props;
         const data = taxiStore.taxiId;
         // console.log(`carier info: ${this.props.navigation.state.params.Carrier}`);
         // console.log(`person info :${this.props.navigation.state.params.Person}`);
+        const full = data.num_carrier;
+        let empty = 4 - full;
+        const list = [];
+        
+        for(let i = 0; i < full ; i++) {
+            list.push(
+                <View>
+                    <Image style={styles.carrImg} source={fullcarrImg} />
+                </View>
+            )
+        }
+        for(let j = 0; j < empty ; j++) {
+            list.push(
+                <View>
+                    <Image style={styles.carrImg} source={emptycarrImg} />
+                </View>
+            )
+        }
+        return list;
+    }
+
+
+    render(){
+        const { taxiStore } = this.props;
+        const data = taxiStore.taxiId;
 
         return(
         <View>
@@ -44,11 +70,11 @@ export default class ChatRoom extends Component{
                     <View style={styles.calendar_time}>
                         <View style={styles.calendar}>
                             <Icon name="calendar" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:15}}>  07 / 31</Text>
+                            <Text style={{fontSize:vw(4)}}>  07 / 31</Text>
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:15}}>  {data.departure_time}</Text>
+                            <Text style={{fontSize:vw(4)}}>  {data.departure_time}</Text>
                         </View>
                     </View>
                     <View style={styles.destination}>
@@ -72,10 +98,7 @@ export default class ChatRoom extends Component{
                             <Text style={{padding:5}}>캐리어</Text>
                         </View>
                         <View style={{flexDirection:'row',margin:5}}>
-                            <Image style={styles.carrImg} source={emptycarrImg} />
-                            <Image style={styles.carrImg} source={emptycarrImg} />
-                            <Image style={styles.carrImg} source={fullcarrImg} />
-                            <Image style={styles.carrImg} source={fullcarrImg} />
+                            {this.getCarrier()}
                         </View>
                     </View>
                 </View>
@@ -121,29 +144,29 @@ export default class ChatRoom extends Component{
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>송민석    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                         </View>
                     </TouchableOpacity >
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>장주만    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>최진아    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>신영현    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={20}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={20}></Icon>
+                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -172,15 +195,25 @@ const styles=StyleSheet.create({
         justifyContent:'space-evenly',
         alignItems:'center',
     },
-        calendar:{
-            flexDirection:'row',
-        },
-        clock:{
-            flexDirection:'row',
-        },
-        
+    calendar:{
+        flexDirection:'row',
+    },
+    calendar_time:{
+        width:vw(17),
+        flexDirection:'column',
+        marginLeft:5,
+        paddingLeft:7,
+        justifyContent:'space-evenly',
+        alignItems:'center',
+    },
+    calendar:{
+        flexDirection:'row',
+    },
+    clock:{
+        flexDirection:'row',
+    },
     destination:{
-        flex:4,
+        width:vw(28),
     },
     destination_location: {
         flex: 3,
@@ -240,7 +273,7 @@ const styles=StyleSheet.create({
     },
     ButtonText: {
         color: 'white',
-        fontSize:15,
+        fontSize:vw(4),
     },
     profileButton:{
         height:vw(13),

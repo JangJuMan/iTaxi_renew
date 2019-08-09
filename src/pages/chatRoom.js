@@ -9,8 +9,6 @@ import Chatting from '../components/chatting';
 
 export default class ChatRoom extends Component{
     static navigationOptions = ({navigation}) =>{
-        // a = navigation.getParam('Carrier');
-        // b = naviagtion.getParam('Person');
         return{
             title: 'OOO 방장 (O/O)',
         };
