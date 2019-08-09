@@ -3,8 +3,8 @@ import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList, Button } 
 import { inject, observer } from 'mobx-react';
 import OC from 'open-color';
 import Swiper from 'react-native-swiper'
-
-import ListEntry from '../components/taxiElement';
+import RideSoon from '../components/nodateElement';
+import RideLog from '../components/taxiElement';
 
 @inject('taxiStore')
 @inject('carpoolStore')
@@ -43,7 +43,7 @@ export default class RiderLog extends Component{
                         this.props.navigation.navigate('Chat');
                     }}>
                     <View style={styles.top_highlighted_log}>
-                        <ListEntry time = '13:00' from="한동대학교" to="포항역"/>
+                        <RideSoon seat = '3' carrier= '4' time = '13:00' from="한동대학교" to="포항역"/>
                     </View>
                 </TouchableOpacity>
 
@@ -71,10 +71,6 @@ export default class RiderLog extends Component{
                 </View>
                 {/* 지난 탑승 내역들 */}                
                 <ScrollView>
-                    <View style={styles.past_log_container}>
-                        <Text style={styles.past_date_bar}>OO월 OO일 O요일</Text>
-                        <View style={styles.horizontal_past_date_bar}></View>
-                    </View>
                     <View style={styles.past_log_contents}>
                         <FlatList
                             data = {this.state.isTaxi ? taxiStore.taxiList : carpoolStore.carpoolList}
@@ -86,7 +82,7 @@ export default class RiderLog extends Component{
                                         taxiStore.taxiId = item;
                                         this.props.navigation.navigate('Chat');
                                     }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
+                                    <RideLog style = {{marginBottom: 20}} date = {item.departure_date} time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         
@@ -97,7 +93,6 @@ export default class RiderLog extends Component{
             </View>
 
             )
-       
     }
 }
 

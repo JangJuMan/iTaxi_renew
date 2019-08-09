@@ -22,8 +22,8 @@ export default class calculModal extends Component {
         let result = 0;
 
         result = Math.round(second / first);
-        //console.log('기업 ' + userStore.userId.phone + '으로 ' + result + '원 입금해주시면 됩니다.');
- 
+        console.log('기업 ' + userStore.userId.phone + '으로 ' + result + '원 입금해주시면 됩니다.');
+
 
     }
     render() {

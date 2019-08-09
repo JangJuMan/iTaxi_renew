@@ -34,7 +34,7 @@ class Top extends Component {
                 <View>
                 <View style={stylesTop.location_row}>
                     <TouchableOpacity>
-                        <Text style={stylesTop.text}>E1</Text>
+                        <Text style={stylesTop.text}>시외버스터미널</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity>
@@ -45,21 +45,21 @@ class Top extends Component {
                         <Text style={stylesTop.text}>포항공대</Text>
                     </TouchableOpacity>
                 </View>
-                
+
                 <View style={stylesTop.location_row}>
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>하나로마트</Text>
-                        </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={stylesTop.text}>E1</Text>
+                </TouchableOpacity>
 
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>커피유야</Text>
-                        </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={stylesTop.text}>육거리</Text>
+                </TouchableOpacity>
 
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>세차장</Text>
-                        </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text style={stylesTop.text}>그랜드할인마트</Text>
+                </TouchableOpacity>
                 </View>
-                </View>
+            </View>
             )
         else
             return null;
