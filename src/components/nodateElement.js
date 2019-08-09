@@ -30,10 +30,6 @@ export default class TaxiElement extends Component{
 
         return(
             <View>
-            <View style={styles.log_container}>
-                        <Text style={styles.date_of_logs}>{this.props.date}</Text>
-                        <View style={styles.horizontal_date_bar}></View>
-            </View>
             <View style={[styles.container, this.props.style]}>
                 
                 <View style={styles.time_seat_location}>

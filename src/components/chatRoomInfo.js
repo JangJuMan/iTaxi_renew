@@ -35,14 +35,6 @@ export default class ChatRoom extends Component{
         const { taxiStore } = this.props;
         const data = taxiStore.taxiId;
 
-       
-
-
-
-
-    
-
-
         return(
         <View>
             <View style={styles.chatInfo_Top}>

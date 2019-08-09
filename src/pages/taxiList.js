@@ -45,19 +45,14 @@ export default class TaxiList extends Component{
 
     render(){
         const {taxiStore} = this.props;
-
+        const data = taxiStore.taxiList;
         return(
-            
             <View style={styles.conatiner}>
                 <SearchMenu
                     style={{marginTop: 10, marginBottom: 10,}} />
                 <View style={styles.horizontal_divider} />
 
                 <ScrollView>
-                    <View style={styles.log_container}>
-                        <Text style={styles.date_of_logs}>OO월 OO일 O요일</Text>
-                        <View style={styles.horizontal_date_bar}></View>
-                    </View>
                     <View style={styles.log_contents}>
                     <FlatList
                             data = {taxiStore.taxiList}
@@ -70,6 +65,7 @@ export default class TaxiList extends Component{
                                 }}>
                                     <ListEntry
                                         style={[styles.list_entry, item.curr_people == item.num_people ? {backgroundColor: '#E6E6E6'} : null]}
+                                        date={item.departure_date}
                                         time={item.departure_time}
                                         from={item.departure_place}
                                         to={item.arrival_place}
@@ -78,9 +74,7 @@ export default class TaxiList extends Component{
                                 </TouchableOpacity>
                             </View>
                         }/>
-
                     </View>
-
                     
                         <Modal
                             transparent={true}
@@ -98,10 +92,7 @@ export default class TaxiList extends Component{
                             }/>
                     
                     
-                    <View style={styles.log_container}>
-                        <Text style={styles.date_of_logs}>OO월 OO일 O요일</Text>
-                        <View style={styles.horizontal_date_bar}></View>
-                    </View>
+                    
                     
                     
                     <View style={styles.log_contents}>
@@ -115,7 +106,7 @@ export default class TaxiList extends Component{
                                         this.setModalVisible(true);
                                         taxiStore.taxiId = item;
                                     }}>
-                                    <ListEntry style = {{marginBottom: 20}}time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}  seat={item.num_people} carrier={item.num_carrier}/>
+                                    <ListEntry style = {{marginBottom: 20}} date = {item.departure_date} time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}  seat={item.num_people} carrier={item.num_carrier}/>
                                 </TouchableOpacity>
                             </View>
                         }/>

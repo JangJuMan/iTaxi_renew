@@ -11,12 +11,12 @@ export default class ChatRoom extends Component{
     static navigationOptions = ({navigation}) =>{
         return{
             title: 'OOO 방장 (O/O)',
-            carrierNum : navigation.getParam('carrier', 0),
+            // carrierNum : navigation.getParam('carrier', 0),
         };
     };
 
     render(){
-        console.log(carrierNum);
+        // console.log(carrierNum);
         return(
             <View style={{flex:1}}>
                 <ChatRoomInfo navigation={this.props.navigation}/>

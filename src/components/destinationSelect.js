@@ -31,9 +31,10 @@ class Top extends Component {
     _renderAppend() {
         if (this.state.expand)
             return (
+                <View>
                 <View style={stylesTop.location_row}>
                     <TouchableOpacity>
-                        <Text style={stylesTop.text}>E1</Text>
+                        <Text style={stylesTop.text}>시외버스터미널</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity>
@@ -44,6 +45,21 @@ class Top extends Component {
                         <Text style={stylesTop.text}>포항공대</Text>
                     </TouchableOpacity>
                 </View>
+
+                <View style={stylesTop.location_row}>
+                <TouchableOpacity>
+                    <Text style={stylesTop.text}>E1</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                    <Text style={stylesTop.text}>육거리</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity>
+                    <Text style={stylesTop.text}>그랜드할인마트</Text>
+                </TouchableOpacity>
+                </View>
+            </View>
             )
         else
             return null;
