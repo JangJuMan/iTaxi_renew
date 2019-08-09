@@ -9,17 +9,17 @@ import Chatting from '../components/chatting';
 
 export default class ChatRoom extends Component{
     static navigationOptions = ({navigation}) =>{
+        // a = navigation.getParam('Carrier');
+        // b = naviagtion.getParam('Person');
         return{
             title: 'OOO 방장 (O/O)',
-            carrierNum : navigation.getParam('carrier', 0),
         };
     };
 
     render(){
-        console.log(carrierNum);
         return(
             <View style={{flex:1}}>
-                <ChatRoomInfo navigation={this.props.navigation}/>
+                <ChatRoomInfo navigation={this.props.navigation} />
                 <Chatting />
             </View>
         );

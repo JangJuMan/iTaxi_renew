@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,Button, TouchableOpacity,ScrollView,Image} from 'react-native';
+import { StyleSheet, Text, View,Button, TouchableOpacity,ScrollView,Image, Keyboard} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import TaxiElement from '../components/taxiElement';
 import { vw, vh } from 'react-native-expo-viewport-units';
-import { Directions } from 'react-native-gesture-handler';
+import { Directions, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../variable/assets';
 import { observer, inject } from 'mobx-react';
 import CalculModal from '../components/calculModal';
@@ -34,14 +34,8 @@ export default class ChatRoom extends Component{
     render(){
         const { taxiStore } = this.props;
         const data = taxiStore.taxiId;
-
-       
-
-
-
-
-    
-
+        // console.log(`carier info: ${this.props.navigation.state.params.Carrier}`);
+        // console.log(`person info :${this.props.navigation.state.params.Person}`);
 
         return(
         <View>
@@ -105,19 +99,20 @@ export default class ChatRoom extends Component{
                             </View>
                         </TouchableOpacity>
                         <Modal 
+                            animationType = {'fade'}
                             transparent={true}
                             visible={this.state.modalVisible}
                             onRequestClose={() => this.setModalVisible(false)}
                             render={
-                            <View style={styles.modalBackground}>
-                                <View style={styles.realModal}>
+                                <TouchableWithoutFeedback onPress={() => {
+                                    Keyboard.dismiss();
+                                }}>
                                     <CalculModal 
-                                        navigation={this.props.navigation}
+                                        // navigation={this.props.navigation}
                                         onOkButton = {() => this.setModalVisible(false)}
                                         onCancelButton = {() => this.setModalVisible(false)}/>
-                                </View>
-                             </View>
-            }/>
+                                </TouchableWithoutFeedback>
+                            }/>
                     </View>
                 </View>
             </View>
@@ -163,90 +158,90 @@ const styles=StyleSheet.create({
         height:vw(34),
         flexDirection:'row',
     },
-        chatInfo_Left:{
-            flex:5,
-            borderColor:'gray',
-            borderWidth:0.5,
+    chatInfo_Left:{
+        flex:5,
+        borderColor:'gray',
+        borderWidth:0.5,
+        flexDirection:'row',
+    },
+    calendar_time:{
+        flex:2,
+        flexDirection:'column',
+        margin:5,
+        paddingLeft:7,
+        justifyContent:'space-evenly',
+        alignItems:'center',
+    },
+        calendar:{
             flexDirection:'row',
         },
-            calendar_time:{
-                flex:2,
-                flexDirection:'column',
-                margin:5,
-                paddingLeft:7,
-                justifyContent:'space-evenly',
-                alignItems:'center',
-            },
-                calendar:{
-                    flexDirection:'row',
-                },
-                clock:{
-                    flexDirection:'row',
-                },
-                
-            destination:{
-                flex:4,
-            },
-                destination_location: {
-                    flex: 3,
-                    marginLeft: vw(3),
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                },
-        
-                    destination_image: {
-                        width: vw(6),
-                        height: vw(30),
-                        margin:5,
-                    },
-        
-                    destination_text_location: {
-                        flex: 1,
-                        flexDirection: 'column',
-                        justifyContent: 'space-evenly',
-                    },
-        
-                        destination_text: {
-                            color: 'gray',
-                            flexDirection:'row'
-                        },
-            carrier:{
-                flex:3,
-                flexDirection:'column',
-                justifyContent:'center',
-                alignItems:'center'
-            },
-                carrIcon:{
-                    width: vw(7),
-                    height: vw(7),
-                },
-                carrImg:{
-                    width: vw(5),
-                    height: vw(10),
-                },
-        chatInfo_Right:{
-            flex:2,
-            flexDirection:'column',
-            borderColor:'gray',
-            borderWidth:0.5,
-            justifyContent:'space-around'
+        clock:{
+            flexDirection:'row',
         },
-            Button:{
-                height:vw(10),
-                justifyContent:'center',
-                alignItems:'center',
-            },
-            ButtonInfo: {
-                paddingHorizontal: 20,
-                padding:10,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-            },
-                ButtonText: {
-                    color: 'white',
-                    fontSize:15,
-                },
+        
+    destination:{
+        flex:4,
+    },
+    destination_location: {
+        flex: 3,
+        marginLeft: vw(3),
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+
+    destination_image: {
+        width: vw(6),
+        height: vw(30),
+        margin:5,
+    },
+
+    destination_text_location: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+    },
+
+    destination_text: {
+        color: 'gray',
+        flexDirection:'row'
+    },
+    carrier:{
+        flex:3,
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    carrIcon:{
+        width: vw(7),
+        height: vw(7),
+    },
+    carrImg:{
+        width: vw(5),
+        height: vw(10),
+    },
+    chatInfo_Right:{
+        flex:2,
+        flexDirection:'column',
+        borderColor:'gray',
+        borderWidth:0.5,
+        justifyContent:'space-around'
+    },
+    Button:{
+        height:vw(10),
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    ButtonInfo: {
+        paddingHorizontal: 20,
+        padding:10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    ButtonText: {
+        color: 'white',
+        fontSize:15,
+    },
     profileButton:{
         height:vw(13),
         justifyContent:'center',
@@ -263,13 +258,12 @@ const styles=StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
     },
-        profileText: {
-            color: '#3FA9F5',
-        },
-
-        realModal: {
-            borderRadius: 10,
-            justifyContent: 'center',
-            alignItems: 'center',
-        },
+    profileText: {
+        color: '#3FA9F5',
+    },
+    realModal: {
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 })

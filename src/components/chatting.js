@@ -16,23 +16,24 @@ export default class ChatRoom extends Component {
         height: textHeight * 2,
     }
 
-    componentWillMount(){
-        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
-    }
+    // componentWillMount(){
+    //     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
+    // }
 
-    componentWillUnmount () {
-        this.keyboardDidShowListener.remove()
-    }
+    // componentWillUnmount () {
+    //     this.keyboardDidShowListener.remove()
+    // }
 
-    keyboardDidShow(e){
-        this.scrollToBottom();
-    }
+    // keyboardDidShow(e){
+    //     this.scrollToBottom();
+    // }
 
     componentWillReceiveProps(nextProps){
         if(nextProps.value === ''){ 
             this.setState({height: textHeight*2 , lines:1})
         }
     }
+
     onSubmitEdit = () => {
         this.setState({ sendingMsg: this.state.text })
         this.setState({ text: '' })
@@ -274,14 +275,15 @@ export default class ChatRoom extends Component {
                             const visibleHeight = textHeight * (visibleLines + 1)
                             this.setState({height: visibleHeight, lines:visibleLines})
                         }}
+                        onFocus = {() => {
+                            this.scrollToBottom();
+                        }}
                         underlineColorAndroid='transparent'
-
                         placeholder='메시지를 입력해주세요' />                        
                     <TouchableOpacity
                         style={styles.send_btn}
                         onPress={() => {
                             this.textInput.clear();
-                            //TODO: 임시방편임. textinput 자체가 빠르게 이어쓰면 이전에 있던 결과값에서 이어붙여지는 거 같아. 너무 에바임.. 더 좋은 방법이 필요함...
                             Keyboard.dismiss();
                             this.onSubmitEdit();
                         }}>
