@@ -5,6 +5,7 @@ import ModalControl from '../variable/modalControl';
 import OC from 'open-color';
 import { vw, vh }  from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
+import {CircleZero,CircleOne,CircleTwo,CircleThree} from '../variable/assets';
 
 /**
  * @props onOkButton      press enter room button (ok button)
@@ -15,48 +16,46 @@ import { observer, inject } from 'mobx-react';
 
 @observer
 export default class intoRoom extends Component{
-  constructor(props){
-      super(props);
-  }
+    constructor(props){
+    super(props);
+}
 
-  state={
+state={
     carrier:-1,
-  }
+}
 
-  carrier_clicked(value){
-      if(value === this.state.carrier){
-          this.setState({carrier:-1})
-      }
-      else{
-          this.setState({carrier:value})
-      }
-  }
+carrier_clicked(value){
+    if(value === this.state.carrier){
+        this.setState({carrier:-1})
+    }
+    else{
+        this.setState({carrier:value})
+    }
+}
 
-  componentDidMount() {
+componentDidMount() {
     const { taxiStore } = this.props;
     taxiStore.getTaxiList();
-  }
+}
     render(){
-      const { taxiStore }  = this.props;
-      const data = taxiStore.taxiId;
-      const heightColor = 'blue'
-      const unheightColor = '#4dabf7'
+    const { taxiStore }  = this.props;
+    const data = taxiStore.taxiId;
+    const heightColor = 'blue'
+    const unheightColor = '#4dabf7'
         return(
             <View style={styles.list}>
                 <View style={styles.top}>
                     <Text style={{color:'black',fontSize:15 }}>방들어가기</Text>
                 </View>
-              
                 <View style={styles.fromTo}>
-                  <View style={styles.location}>
+                    <View style={styles.location}>
                   {/* 출발지,도착지는 props로 받기 */}
-                      <Text style={styles.locationText}>{data.departure_place}</Text>
-                      
-                  </View>
-                      <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
-                  <View style={styles.location}>
+                    <Text style={styles.locationText}>{data.departure_place}</Text>
+                    </View>
+                    <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
+                    <View style={styles.location}>
                             <Text style={styles.locationText}>{data.arrival_place}</Text>
-                  </View>
+                </View>
                 </View>
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
@@ -105,26 +104,25 @@ export default class intoRoom extends Component{
                     <View style={{flex:1,}}></View>
                 </View>
                 <View style={styles.button}>
-                  <TouchableOpacity onPress={() => {
-                      this.props.onOkButton();
-                      this.props.navigation.navigate('Chat', carrier=this.state.carrier);
+                    <TouchableOpacity onPress={() => {
+                        this.props.onOkButton();
+                        this.props.navigation.navigate('Chat', carrier=this.state.carrier);
                     }}>
                     <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity onPress={() => {
-                      this.props.onCancelButton();
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.props.onCancelButton();
                       // ModalControl.modalVisible=false;
                       // this.props.navigation.goBack();
                     }}>
                     <Text style={{color:'#3FA9F5',fontSize:17 }}>취소</Text>
-                  </TouchableOpacity>
+                    </TouchableOpacity>
                 </View>
             </View>
         )
     }
-  }
-  
-  const styles=StyleSheet.create({
+}
+const styles=StyleSheet.create({
     list:{
         height:vw(90),
         backgroundColor:'white',
@@ -133,17 +131,17 @@ export default class intoRoom extends Component{
         shadowOpacity:0.3,
         elevation: 3,
         flexDirection:'column',
-      },
-      flextwo:{
+    },
+    flextwo:{
         flex:2,
         justifyContent:'center',
         alignItems:'center',
-      },
-      fromTo:{
+    },
+    fromTo:{
         flexDirection: 'row',
         padding: 10,
-      },
-          location: {
+    },
+    location: {
             borderRadius: 50,
             borderWidth: 1,
             borderColor: OC.gray[4],
@@ -158,23 +156,22 @@ export default class intoRoom extends Component{
                 color: '#3FA9F5',
                 fontSize:14
             },
-      top:{
+    top:{
         flex:1,
         justifyContent:'center',
         alignItems:'center'
-      },
-      
-      time_person_bag:{
+    },
+    time_person_bag:{
         flex:2,
         flexDirection:'row',
-      },
-      button:{
+    },
+    button:{
         flex:1,
         flexDirection:'row',
         justifyContent:'space-around',
         alignItems:'center',
         marginHorizontal: 50,
-      }
+    }
     })
 
 
