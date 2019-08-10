@@ -180,14 +180,14 @@ export default class setting extends Component{
 
                 <View style={styles.button}>
                     <TouchableOpacity onPress={() => {
-                        this.props.onOkButton(this.state.carrier, this.state.person);
-                    }}>
-                        <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
+                        this.props.onCancelButton();
+                        }}>
+                        <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                        this.props.onCancelButton();
-                    }}>
-                        <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
+                        this.props.onOkButton();
+                        }}>
+                        <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
                     </TouchableOpacity>
                 </View>
             </View>

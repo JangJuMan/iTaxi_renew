@@ -105,14 +105,14 @@ export default class intoRoom extends Component{
                 </View>
                 <View style={styles.button}>
                     <TouchableOpacity onPress={() => {
-                        this.props.onOkButton(this.state.carrier);
-                    }}>
-                    <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {
                         this.props.onCancelButton();
                         }}>
                     <Text style={{color:'#3FA9F5',fontSize:17 }}>취소</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.props.onOkButton(this.state.carrier);
+                    }}>
+                    <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
                     </TouchableOpacity>
                 </View>
             </View>

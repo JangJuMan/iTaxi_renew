@@ -3,11 +3,12 @@ import { StyleSheet, Text, View,Button, TouchableOpacity, ScrollView,Image, Keyb
 import Icon from 'react-native-vector-icons/AntDesign';
 import TaxiElement from '../components/taxiElement';
 import { vw, vh } from 'react-native-expo-viewport-units';
-import { Directions, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../variable/assets';
 import { observer, inject } from 'mobx-react';
 import CalculModal from '../components/calculModal';
 import Modal from '../elements/modal';
+import {Linking} from 'react-native'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 @inject('taxiStore')
 @inject('carpoolStore')
@@ -71,7 +72,7 @@ export default class ChatRoom extends Component{
                     <View style={styles.calendar_time}>
                         <View style={styles.calendar}>
                             <Icon name="calendar" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:vw(4)}}>  07 / 31</Text>
+                            <Text style={{fontSize:vw(4)}}>  {data.departure_date.substring(5)}</Text>
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
@@ -140,13 +141,15 @@ export default class ChatRoom extends Component{
             </View>
             <ScrollView horizontal={true} >
                 <View style={styles.profileButton}>
-                    <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
-                            <Text style={styles.profileText}>송민석    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            <Text style={styles.profileText}>신영현    </Text>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
+                                <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`sns: 010-5480-9072`)}>
+                                <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            </TouchableOpacity>
                         </View>
-                    </TouchableOpacity >
                     <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>장주만    </Text>
@@ -286,6 +289,7 @@ const styles=StyleSheet.create({
         borderWidth: 2,
         borderColor: '#3FA9F5',
         padding: 10,
+        paddingRight: 10,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
