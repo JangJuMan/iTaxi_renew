@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,Button, TouchableOpacity,ScrollView,Image, Keyboard} from 'react-native';
+import { StyleSheet, Text, View,Button, TouchableOpacity, ScrollView,Image, Keyboard} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import TaxiElement from '../components/taxiElement';
 import { vw, vh } from 'react-native-expo-viewport-units';
@@ -35,6 +35,7 @@ export default class ChatRoom extends Component{
     getCarrier() {
         const { taxiStore } = this.props;
         const data = taxiStore.taxiId;
+        // 이것처럼 꺼내서 쓸 수 있습니다.
         // console.log(`carier info: ${this.props.navigation.state.params.Carrier}`);
         // console.log(`person info :${this.props.navigation.state.params.Person}`);
         const full = data.num_carrier;
@@ -127,14 +128,12 @@ export default class ChatRoom extends Component{
                             visible={this.state.modalVisible}
                             onRequestClose={() => this.setModalVisible(false)}
                             render={
-                                <TouchableWithoutFeedback onPress={() => {
-                                    Keyboard.dismiss();
-                                }}>
+                                // 스크롤 뷰에서는 키보드가 다른 곳 클릭하면 자동으로 dismiss 되네 ..?
+                                <ScrollView>
                                     <CalculModal 
-                                        // navigation={this.props.navigation}
                                         onOkButton = {() => this.setModalVisible(false)}
                                         onCancelButton = {() => this.setModalVisible(false)}/>
-                                </TouchableWithoutFeedback>
+                                </ScrollView>
                             }/>
                     </View>
                 </View>

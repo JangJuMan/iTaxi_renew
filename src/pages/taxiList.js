@@ -6,7 +6,6 @@ import ListEntry from '../components/taxiElement';
 import EnterRoom from './going_into_room';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModalControl from '../variable/modalControl';
-import { vw }  from 'react-native-expo-viewport-units';
 import MakeRoom from '../pages/MakeRoom';
 import Modal from '../elements/modal'
 
@@ -24,25 +23,6 @@ export default class TaxiList extends Component{
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
-
-    // setCarrier(value){
-    //     if(value === -1){
-    //         this.state.carrierNum = 0;
-    //     }
-    //     else{
-    //         this.state.carrierNum = value;
-    //         // this.setState({carrierNum: value})
-    //     }
-    // }
-
-    // setPerson(value){
-    //     if(value === -1){
-    //         this.state.personNum = 0;
-    //     }
-    //     else{
-    //         this.state.personNum = value;
-    //     }
-    // }
 
     constructor(props) {
         super(props);
@@ -126,8 +106,6 @@ export default class TaxiList extends Component{
                         <View style={styles.realModal}>
                             <EnterRoom 
                                 onOkButton = {(CarrierInputFromGoingIntoRoom) => {
-                                    // console.log(`CarrierInputFromGoingIntoRoom = ${CarrierInputFromGoingIntoRoom}`)
-                                    // this.setCarrier(CarrierInputFromGoingIntoRoom)
                                     this.setModalVisible(false)
                                     this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromGoingIntoRoom})
                                 }}
@@ -148,11 +126,7 @@ export default class TaxiList extends Component{
                             <MakeRoom 
                                 navigation={this.props.navigation}
                                 onOkButton = {(CarrierInputFromMakeRoom, PersonInputFromMakeRoom) => {
-                                    // console.log(`CarrierInputFromMakeRoom = ${CarrierInputFromMakeRoom} / ${PersonInputFromMakeRoom}`)
-                                    // this.setCarrier(CarrierInputFromMakeRoom)
-                                    // this.setPerson(PersonInputFromMakeRoom)
                                     ModalControl.modalVisible_taxi=false
-                                    // console.log(`===== ${CarrierInputFromMakeRoom} / ${PersonInputFromMakeRoom}`)
                                     this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromMakeRoom, Person: PersonInputFromMakeRoom});
                                 }}
                                 onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>

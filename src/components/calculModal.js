@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, View, TouchableWithoutFeedback, StyleSheet, Text, TextInput, Keyboard } from 'react-native';
+import { View, StyleSheet, Text, TextInput, Keyboard, TouchableOpacity } from 'react-native';
 import { vw, vh } from 'react-native-expo-viewport-units';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { inject } from 'mobx-react';
 
 /** 
@@ -63,7 +62,7 @@ export default class calculModal extends Component {
                         onSubmitEditing = {() => {Keyboard.dismiss()}}
                     />
                 </View>
-                <View style = {{flex: 1, flexDirection: 'row', justifyContent: 'flex-end'}}>
+                <View style = {{ flexDirection: 'row', justifyContent: 'flex-end'}}>
                     <TouchableOpacity
                         onPress = {() => {
                             this.getresult(this.state.person, this.state.price);
