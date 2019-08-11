@@ -55,26 +55,26 @@ export default class TaxiList extends Component{
 
                 <ScrollView>
                     <View style={styles.log_contents}>
-                    <FlatList
-                            data = {taxiStore.taxiList}
-                            keyExtractor={(item, index) => item._id.toString()}
-                            renderItem = {({item}) => 
-                            <View>
-                                <TouchableOpacity onPress={() => {
-                                    taxiStore.taxiId = item;
-                                    this.setModalVisible(true);
-                                }}>
-                                    <ListEntry
-                                        style={[styles.list_entry, item.curr_people == item.num_people ? {backgroundColor: '#E6E6E6'} : null]}
-                                        date={item.departure_date}
-                                        time={item.departure_time}
-                                        from={item.departure_place}
-                                        to={item.arrival_place}
-                                        seat={item.num_people}
-                                        carrier={item.num_carrier}/>
-                                </TouchableOpacity>
-                            </View>
-                        }/>
+                        <FlatList
+                                data = {taxiStore.taxiList}
+                                keyExtractor={(item, index) => item._id.toString()}
+                                renderItem = {({item}) => 
+                                <View>
+                                    <TouchableOpacity onPress={() => {
+                                        taxiStore.taxiId = item;
+                                        this.setModalVisible(true);
+                                    }}>
+                                        <ListEntry
+                                            style={[styles.list_entry, item.curr_people == item.num_people ? {backgroundColor: '#E6E6E6'} : null]}
+                                            date={item.departure_date}
+                                            time={item.departure_time}
+                                            from={item.departure_place}
+                                            to={item.arrival_place}
+                                            seat={item.num_people}
+                                            carrier={item.num_carrier}/>
+                                    </TouchableOpacity>
+                                </View>
+                            }/>
                     </View>
 
                     <View style={styles.log_contents}>
@@ -150,8 +150,9 @@ const styles = StyleSheet.create({
     },
 
     log_contents:{
-        marginLeft: 24, 
-        marginRight: 24, 
+        // marginLeft: 24, 
+        // marginRight: 24, 
+        marginHorizontal: 24,
     },
     date_of_logs:{
         color: '#bbb',
