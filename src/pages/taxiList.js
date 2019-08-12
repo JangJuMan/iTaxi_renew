@@ -118,17 +118,6 @@ export default class TaxiList extends Component{
                 <Modal
                     animationType = {'fade'}
                     transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => this.setModalVisible(false)}
-                    render={
-                    <EnterRoom 
-                        navigation={this.props.navigation}
-                        onOkButton = {() => this.setModalVisible(false)}
-                        onCancelButton = {() => this.setModalVisible(false)}/>
-                    }/>
-
-                <Modal
-                    transparent={true}
                     visible={ModalControl.modalVisible_taxi}
                     onRequestClose={() => ModalControl.modalVisible_taxi=false}
                     render={
