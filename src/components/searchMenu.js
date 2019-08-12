@@ -5,9 +5,14 @@ import Calendar from '../elements/calendar';
 import SearchModal from './searchModal';
 import Icon from 'react-native-vector-icons/AntDesign';
 
+/**
+ * @props onSearch  Callback function when departure or destination is changed.
+ */
 export default class SearchMenu extends Component {
     state = {
         date: new Date(),
+        departure: "",
+        destination: "",
     }
 
     renderDays() {
@@ -26,9 +31,27 @@ export default class SearchMenu extends Component {
         return (
             <View style={[styles.container, this.props.style]}>
                 <View style={styles.search_from_to}>
-                    <SearchModal />
+                    <SearchModal
+                        onSelect={(location) => {
+                            this.setState({departure: location},
+                                () => this.props.onSearch(this.state.departure, this.state.destination));
+                        }}
+                        onSelectLog={(departure, destination) => {
+                            this.setState({departure, destination},
+                                () => this.props.onSearch(this.state.departure, this.state.destination));
+                        }}
+                        style={styles.search_modal} />
                     <Icon name="arrowright" size={35} color="gray" />
-                    <SearchModal />
+                    <SearchModal
+                        onSelect={(location) => {
+                            this.setState({departure: location},
+                                () => this.props.onSearch(this.state.departure, this.state.destination));
+                        }}
+                        onSelectLog={(departure, destination) => {
+                            this.setState({departure, destination},
+                                () => this.props.onSearch(this.state.departure, this.state.destination));
+                        }}
+                        style={styles.search_modal} />
                 </View>
 
                 <View style={styles.search_date}>
@@ -66,6 +89,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    search_modal: {
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     search_date: {
         marginTop: 10,

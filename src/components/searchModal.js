@@ -6,10 +6,14 @@ import OpenColor from 'open-color';
 import SelectDestination from './destinationSelect';
 import Modal from '../elements/modal';
 
-
+/**
+ * @props onSelect  Callback function when select the location
+ * @props onSelectLog   Callback function when select the log
+ */
 export default class SearchModal extends Component {
     state = {
         modalVisiable: false,
+        location: "선택"
     }
 
     setModalVisiable(visible) {
@@ -20,7 +24,7 @@ export default class SearchModal extends Component {
         return (
             <View style={[styles.container, this.props.style]}>
                 <TouchableOpacity style={styles.location_button} onPress={() => this.setModalVisiable(true)}>
-                    <Text>선택</Text>
+                    <Text>{this.state.location}</Text>
                     <Icon name="md-arrow-dropdown" size={vw(5)} color={OpenColor.gray[6]} />
                 </TouchableOpacity>
 
@@ -29,7 +33,15 @@ export default class SearchModal extends Component {
                     visible={this.state.modalVisiable}
                     onRequestClose={() => this.setModalVisiable(false)}
                     render={
-                        <SelectDestination onSubmit={() => this.setModalVisiable(false)} />
+                        <SelectDestination
+                            onSelectLocation={(location) => {
+                                this.setState({location});
+                                this.props.onSelect ? this.props.onSelect(location) : null;
+                            }}
+                            onSelectLog={(departure, destination) => {
+                                this.props.onSelectLog ? this.props.onSelectLog(departure, destination) : null;
+                            }}
+                            onSubmit={() => this.setModalVisiable(false)} />
                     } />
             </View>
         )
