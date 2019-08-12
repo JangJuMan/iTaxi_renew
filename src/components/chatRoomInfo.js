@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,Button, TouchableOpacity, ScrollView,Image, Keyboard} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView,Image,} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import TaxiElement from '../components/taxiElement';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../variable/assets';
 import { observer, inject } from 'mobx-react';
 import CalculModal from '../components/calculModal';
 import Modal from '../elements/modal';
-import {Linking} from 'react-native'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {Linking} from 'react-native';
+import Communications from 'react-native-communications';
 
 @inject('taxiStore')
 @inject('carpoolStore')
@@ -146,31 +145,37 @@ export default class ChatRoom extends Component{
                             <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
                                 <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
                             </TouchableOpacity>
-                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`sns: 010-5480-9072`)}>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={() => Communications.text('010-5480-9072')}>
                                 <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
                             </TouchableOpacity>
                         </View>
-                    <TouchableOpacity style={{paddingRight:10}}>
-                        <View style={styles.profileInfo}>
-                            <Text style={styles.profileText}>장주만    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{paddingRight:10}}>
-                        <View style={styles.profileInfo}>
-                            <Text style={styles.profileText}>최진아    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>신영현    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
+                                <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={() => Communications.text('010-5480-9072')}>
+                                <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            </TouchableOpacity>
                         </View>
-                    </TouchableOpacity>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>신영현    </Text>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
+                                <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={() => Communications.text('010-5480-9072')}>
+                                <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>신영현    </Text>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
+                                <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={() => Communications.text('010-5480-9072')}>
+                                <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            </TouchableOpacity>
+                        </View>
                 </View>
             </ScrollView>
         </View>
