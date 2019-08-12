@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Modal, Text, TouchableHighlight, View, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Swiper from 'react-native-swiper'
 import Calendar from '../elements/calendar';
-import SearchModal from './searchModal';
+import SearchModal from './modal/searchModal';
 import Icon from 'react-native-vector-icons/AntDesign';
-import NowDate from '../../stores/nowDate';
+import { inject } from 'mobx-react';
 
+@inject('dateStore')
 /**
  * @props onSearch  Callback function when departure or destination is changed.
  */
@@ -15,9 +16,18 @@ export default class SearchMenu extends Component {
         departure: "",
         destination: "",
     }
+    
+    constructor(props){
+        super(props);
+        const {dateStore} = this.props;
+        this.dateStore = dateStore;
+        dateStore.date = new Date()
+        console.log(`constroctor called : ${dateStore.date}`)
+    }
 
     renderDays() {
         let render = [];
+
         for(const index of Array(31).keys()) {
             render.push(
                 <View style={styles.slide}>
@@ -63,8 +73,10 @@ export default class SearchMenu extends Component {
                             loop={false}
                             showsPagination={false}
                             onIndexChanged={(index) => {
-                                NowDate.date = new Date(new Date().setDate(new Date().getDate() + index))
-                                console.log(new Date(new Date().setDate(new Date().getDate() + index)).format('yyyyMMdd'))
+                                const {dateStore} = this.props;
+                                dateStore.date = new Date(new Date().setDate(new Date().getDate() + index))
+                                // console.log(new Date(new Date().setDate(new Date().getDate() + index)).format('yyyyMMdd'))
+                                console.log(dateStore.date)
                             }}
                             ref={ref => this.swiper = ref} >
                             {this.renderDays()}

@@ -1,24 +1,31 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image, TouchableOpacity} from 'react-native';
-import {seatImg} from '../variable/assets';
+import {seatImg} from '../../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw, vh }  from 'react-native-expo-viewport-units';
-import SearchModal from '../components/searchModal';
+import SearchModal from './searchModal';
 import DatePicker from 'react-native-datepicker';
-import { observer } from 'mobx-react';
-import NowDate from '../../stores/nowDate';
+import { inject, observer } from 'mobx-react';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
 */
+@inject('dateStore')
 @observer
-export default class setting extends Component{
+export default class MakeRoom extends Component{
     state={
         person:-1,
         carrier:-1,
-        date: NowDate.date,
-        time: '00:00',
+        date: '',
+        time: `${new Date().getHours()}:`+`${new Date().getMinutes()}`
+    }
+
+    constructor(props){
+        super(props)
+        const {dateStore} = this.props;
+        this.dateStore = dateStore
+        this.state.date = `${this.dateStore.date.getFullYear()}-`+`${this.dateStore.date.getMonth() + 1}-` + `${this.dateStore.date.getDate()}`
     }
 
     person_clicked(value){
@@ -27,6 +34,7 @@ export default class setting extends Component{
         }
         else{
             this.setState({person:value})
+            console.log(new Date().getTime)
         }
     }
 

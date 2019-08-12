@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { vw, vh }  from 'react-native-expo-viewport-units';
 import OpenColor from 'open-color';
-import SelectDestination from './destinationSelect';
-import Modal from '../elements/modal';
+import SelectDestination from '../destinationSelect';
+import Modal from '../../elements/modal';
 
 /**
  * @props onSelect  Callback function when select the location
@@ -29,6 +29,7 @@ export default class SearchModal extends Component {
                 </TouchableOpacity>
 
                 <Modal
+                    animationType = {'fade'}
                     modalStyle={this.props.modalStyle}
                     transparent={true}
                     visible={this.state.modalVisiable}

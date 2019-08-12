@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, } from 'react-native';
-import SearchMenu from '../components/searchMenu';
-import ListEntry from '../components/taxiElement';
-import NewRoom from '../components/newRoom';
+import{ StyleSheet, View, TouchableOpacity, } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import EmptyList from '../components/emptyList';
-import MakeRoom from '../pages/MakeRoom';
+import MakeRoom from '../components/modal/MakeRoom';
 import ModalControl from '../variable/modalControl';
 import { observer } from 'mobx-react';
 import Modal from '../elements/modal';
