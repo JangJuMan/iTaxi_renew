@@ -23,6 +23,7 @@ export default class MyCalendar extends Component {
         </TouchableOpacity>
 
         <Modal
+          animationType = {'fade'}
           transparent={true}
           visible={this.state.visible}
           onRequestClose={() => this.setModalVisiable(false)}

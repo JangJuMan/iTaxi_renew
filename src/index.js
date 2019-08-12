@@ -49,7 +49,7 @@ const RideHistoryTab = createStackNavigator({
 
 const MyPageTab = createStackNavigator({
     Home: Setting,
-    Update: UpdateInfo,
+    // Update: UpdateInfo,
   }, {
   headerLayoutPreset:'center',
   defaultNavigationOptions: {
@@ -200,6 +200,9 @@ const navigator = createStackNavigator(
     },
     Chat: {
       screen: ChatRoom,
+    },
+    Update:{
+      screen: UpdateInfo,
     }
   },
   {

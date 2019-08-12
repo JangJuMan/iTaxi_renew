@@ -16,6 +16,8 @@ export default class TaxiList extends Component{
     state={
         modalVisible: false,
         dataReceive: false,
+        carrierNum : -1,
+        personNum : -1,
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -91,7 +93,28 @@ export default class TaxiList extends Component{
                     </View>
                 </ScrollView>
 
+                {/* going in to room */}
                 <Modal
+                    animationType = {'fade'}
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => this.setModalVisible(false)}
+                    render={
+                    <View style={styles.modalBackground}> 
+                        <View style={styles.realModal}>
+                            <EnterRoom 
+                                onOkButton = {(CarrierInputFromGoingIntoRoom) => {
+                                    this.setModalVisible(false)
+                                    this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromGoingIntoRoom})
+                                }}
+                                onCancelButton = {() => this.setModalVisible(false)}/>
+                        </View>
+                    </View>
+                }/>
+
+                {/* make new room */}
+                <Modal
+                    animationType = {'fade'}
                     transparent={true}
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}
@@ -111,7 +134,7 @@ export default class TaxiList extends Component{
                         navigation={this.props.navigation}
                         onOkButton = {() => {
                             ModalControl.modalVisible_taxi=false, 
-                            this.props.navigation.navigate('Chat');
+                            this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromMakeRoom, Person: PersonInputFromMakeRoom});
                         }}
                         onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>
                     }/>
