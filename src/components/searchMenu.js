@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper'
 import Calendar from '../elements/calendar';
 import SearchModal from './searchModal';
 import Icon from 'react-native-vector-icons/AntDesign';
+import NowDate from '../../stores/nowDate';
 
 export default class SearchMenu extends Component {
     state = {
@@ -32,13 +33,17 @@ export default class SearchMenu extends Component {
                 </View>
 
                 <View style={styles.search_date}>
-                    <View style={{ flex: 1 }}></View>
-                    <View style={{ flex: 5 }}>
+                    <View style={{ flex: 1 ,}}></View>
+                    <View style={{ flex: 5 ,}}>
                         <Swiper 
+                            style={{borderWidth:2,}}
                             showsButtons={true}
                             loop={false}
                             showsPagination={false}
-                            onIndexChanged={(index) => console.log(new Date(new Date().setDate(new Date().getDate() + index)).format('yyyyMMdd'))}
+                            onIndexChanged={(index) => {
+                                NowDate.date = new Date(new Date().setDate(new Date().getDate() + index))
+                                console.log(new Date(new Date().setDate(new Date().getDate() + index)).format('yyyyMMdd'))
+                            }}
                             ref={ref => this.swiper = ref} >
                             {this.renderDays()}
                         </Swiper>
@@ -46,7 +51,7 @@ export default class SearchMenu extends Component {
 
                     <View style={styles.calendar}>
                         <Calendar
-                            style={{ padding: 30 }}
+                            style={{ padding: 30, }}
                             onDayPress={(day) => { this.swiper.scrollBy(Math.ceil((new Date(day.dateString) - new Date()) / 86400000) - this.swiper.state.index); }}
                             render={
                                 <Icon name="calendar" color="#4dabf7" size={30} />
