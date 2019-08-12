@@ -3,10 +3,10 @@ import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Activity
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
-import EnterRoom from './going_into_room';
+import EnterRoom from '../components/going_into_room';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModalControl from '../variable/modalControl';
-import MakeRoom from '../pages/MakeRoom';
+import MakeRoom from '../components/modal/MakeRoom';
 import Modal from '../elements/modal'
 
 
@@ -72,6 +72,10 @@ export default class TaxiList extends Component{
 
                 <ScrollView>
                     <View style={styles.log_contents}>
+                        <View style={styles.log_container}>
+                            <Text style={styles.date_of_logs}>2019-08-01</Text>
+                            <View style={styles.horizontal_date_bar}></View>
+                        </View>
                         <FlatList
                             data = {taxiStore.taxiList}
                             keyExtractor={(item, index) => item._id.toString()}
@@ -102,16 +106,12 @@ export default class TaxiList extends Component{
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}
                     render={
-                    <View style={styles.modalBackground}> 
-                        <View style={styles.realModal}>
-                            <EnterRoom 
-                                onOkButton = {(CarrierInputFromGoingIntoRoom) => {
-                                    this.setModalVisible(false)
-                                    this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromGoingIntoRoom})
-                                }}
-                                onCancelButton = {() => this.setModalVisible(false)}/>
-                        </View>
-                    </View>
+                    <EnterRoom 
+                        onOkButton = {(CarrierInputFromGoingIntoRoom) => {
+                            this.setModalVisible(false)
+                            this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromGoingIntoRoom})
+                        }}
+                        onCancelButton = {() => this.setModalVisible(false)}/>
                 }/>
 
                 {/* make new room */}
@@ -170,6 +170,23 @@ const styles = StyleSheet.create({
             list_entry: {
                 marginBottom: 20,
             },
+
+    date_of_logs:{
+        color: '#bbb',
+        fontSize: 18,
+        padding: 10,
+        paddingLeft: 0,
+    },
+    horizontal_date_bar:{
+        borderBottomWidth: 1.0, 
+        borderBottomColor: '#0b0b0b25',
+        flexGrow: 1,
+    },
+    log_container:{
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        paddingTop: 10
+    },
 })
 
 

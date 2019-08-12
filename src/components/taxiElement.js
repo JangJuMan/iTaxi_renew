@@ -30,10 +30,6 @@ export default class TaxiElement extends Component{
 
         return(
             <View>
-                <View style={styles.log_container}>
-                    <Text style={styles.date_of_logs}>{this.props.date}</Text>
-                <View style={styles.horizontal_date_bar}></View>
-                </View>
                 <View style={[styles.container, this.props.style]}>
                     <View style={styles.time_seat_location}>
                         <Text style={styles.time}>
@@ -127,21 +123,5 @@ const styles=StyleSheet.create({
         alignSelf: 'flex-end',
         width: 40,
         height:60,
-    },
-    date_of_logs:{
-        color: '#bbb',
-        fontSize: 18,
-        padding: 10,
-        paddingLeft: 0,
-    },
-    horizontal_date_bar:{
-        borderBottomWidth: 1.0, 
-        borderBottomColor: '#0b0b0b25',
-        flexGrow: 1,
-    },
-    log_container:{
-        flexDirection: 'row', 
-        alignItems: 'center', 
-        paddingTop: 10
-    },
+    }
 });

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, } from 'react-native';
+import{ StyleSheet, Text, View, TouchableOpacity, } from 'react-native';
 
 import SearchMenu from './searchMenu';
 import NewRoom from './newRoom';
-import Icon from 'react-native-vector-icons/Ionicons';
-import MakeRoom from '../pages/MakeRoom';
+import MakeRoom from './modal/MakeRoom';
 import Modal from '../elements/modal';
 
 

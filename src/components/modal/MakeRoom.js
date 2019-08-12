@@ -1,24 +1,21 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image, TouchableOpacity} from 'react-native';
-import {seatImg} from '../variable/assets';
+import {seatImg} from '../../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw }  from 'react-native-expo-viewport-units';
-import SearchModal from '../components/searchModal';
+import SearchModal from './searchModal';
 import DatePicker from 'react-native-datepicker';
-import { observer } from 'mobx-react';
-import NowDate from '../../stores/nowDate';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
 */
-@observer
 export default class setting extends Component{
     state={
         person:-1,
         carrier:-1,
-        date: NowDate.date,
-        time: '00:00',
+        date: '2019-08-07',
+        time: '20:00',
     }
 
     person_clicked(value){

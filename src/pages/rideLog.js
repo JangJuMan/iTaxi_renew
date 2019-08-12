@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList, Button } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import OC from 'open-color';
-import Swiper from 'react-native-swiper'
-import RideSoon from '../components/nodateElement';
 import RideLog from '../components/taxiElement';
 
 @inject('taxiStore')
@@ -43,7 +41,7 @@ export default class RiderLog extends Component{
                         this.props.navigation.navigate('Chat');
                     }}>
                     <View style={styles.top_highlighted_log}>
-                        <RideSoon seat = '3' carrier= '4' time = '13:00' from="한동대학교" to="포항역"/>
+                        <RideLog seat = '3' carrier= '4' time = '13:00' from="한동대학교" to="포항역"/>
                     </View>
                 </TouchableOpacity>
 
@@ -151,6 +149,7 @@ const styles = StyleSheet.create({
     past_log_contents:{
         marginLeft: 24, 
         marginRight: 24, 
+        marginTop: 10,
     },
     past_date_bar:{
         color:'#bbb',

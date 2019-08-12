@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Image, Modal, Text, TouchableHighlight, View, Alert, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Swiper from 'react-native-swiper'
 import Calendar from '../elements/calendar';
-import SearchModal from './searchModal';
+import SearchModal from './modal/searchModal';
 import Icon from 'react-native-vector-icons/AntDesign';
 import NowDate from '../../stores/nowDate';
 
@@ -59,7 +59,6 @@ export default class SearchMenu extends Component {
                     <View style={{ flex: 1 ,}}></View>
                     <View style={{ flex: 5 ,}}>
                         <Swiper 
-                            style={{borderWidth:2,}}
                             showsButtons={true}
                             loop={false}
                             showsPagination={false}
