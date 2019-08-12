@@ -5,7 +5,7 @@ import { vw, vh }  from 'react-native-expo-viewport-units';
 import OpenColor from 'open-color';
 import SelectDestination from '../destinationSelect';
 import Modal from '../../elements/modal';
-
+import titleFont from '../../variable/assets';
 /**
  * @props onSelect  Callback function when select the location
  * @props onSelectLog   Callback function when select the log
@@ -24,7 +24,7 @@ export default class SearchModal extends Component {
         return (
             <View style={[styles.container, this.props.style]}>
                 <TouchableOpacity style={styles.location_button} onPress={() => this.setModalVisiable(true)}>
-                    <Text>{this.state.location}</Text>
+                    <Text style={styles.text}>{this.state.location}</Text>
                     <Icon name="md-arrow-dropdown" size={vw(5)} color={OpenColor.gray[6]} />
                 </TouchableOpacity>
 
@@ -70,19 +70,24 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    modalContent: {
-        position: 'absolute',
-        left: vw(10),
-        top: vh(10),
-        width: vw(80),
-        marginBottom: vh(20),
-        backgroundColor: '#FFFFFF',
-        shadowOffset: {
-            width: 1,
-            height: 1,
+        modalContent: {
+            position: 'absolute',
+            left: vw(10),
+            top: vh(10),
+            width: vw(80),
+            marginBottom: vh(20),
+            backgroundColor: '#FFFFFF',
+
+            shadowOffset: {
+                width: 1,
+                height: 1,
+            },
+            shadowColor:'#999999',
+            shadowOpacity:0.5,
+            elevation: 2,
         },
-        shadowColor:'#999999',
-        shadowOpacity:0.5,
-        elevation: 2,
+    text:{
+        fontFamily:titleFont,
+        fontWeight:"200"
     }
 });

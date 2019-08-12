@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text,StyleSheet,Image, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import ModalControl from '../variable/modalControl';
 import OC from 'open-color';
 import { vw, vh }  from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import {CircleZero,CircleOne,CircleTwo,CircleThree} from '../variable/assets';
 
 /**
  * @props onOkButton      press enter room button (ok button)

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image,Modal,TouchableHighlight,TouchableOpacity} from 'react-native';
+import { Text, View, StyleSheet} from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import {plusImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/Ionicons';
+import titleFont from '../variable/assets';
 
 
 export default class NewRoom extends Component{
@@ -49,11 +50,15 @@ const styles=StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         backgroundColor: 'white',
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     font_style:{
         color: '#777',
         marginTop: 10,
         fontSize: 16,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
 });
 

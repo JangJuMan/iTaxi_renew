@@ -7,6 +7,7 @@ import { vw, vh }  from 'react-native-expo-viewport-units';
 import SearchModal from './searchModal';
 import DatePicker from 'react-native-datepicker';
 import { inject, observer } from 'mobx-react';
+import titleFont from '../../variable/assets';
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
@@ -54,7 +55,7 @@ export default class MakeRoom extends Component{
         return(
             <View style={styles.list}>
                 <View style={styles.top}>
-                    <Text style={{color:'black',fontSize:15 }}>모집</Text>
+                    <Text style={{color:'black',fontSize:15,fontFamily:titleFont,fontWeight:"200" }}>모집</Text>
                 </View>
                 <View style={styles.fromTo}>
                     <View style={styles.location}>
@@ -71,7 +72,7 @@ export default class MakeRoom extends Component{
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray', }}>출발날짜 :</Text>
+                        <Text style={styles.leftText}>출발날짜 :</Text>
                     </View>
                     <View style={{flex:6,justifyContent:'center',alignItems:'center',}}>
                         <DatePicker
@@ -98,7 +99,7 @@ export default class MakeRoom extends Component{
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>출발시간 :</Text>
+                        <Text style={styles.leftText}>출발시간 :</Text>
                     </View>
                     <View style={{flex: 6,justifyContent: 'center',alignItems:'center',}}>
                         <DatePicker
@@ -128,7 +129,7 @@ export default class MakeRoom extends Component{
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>추가인원 :</Text>
+                        <Text style={styles.leftText}>추가인원 :</Text>
                     </View>
                     <View style={{flex: 6,justifyContent: 'space-evenly',alignItems:'center', flexDirection:'row'}}>
                         <TouchableOpacity style={{padding:5}}
@@ -157,7 +158,7 @@ export default class MakeRoom extends Component{
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>나의캐리어 :</Text>
+                        <Text style={styles.leftText}>나의캐리어 :</Text>
                     </View>
                     <View style={{flex: 6,justifyContent: 'space-evenly',alignItems:'center', flexDirection:'row'}}>
                         <TouchableOpacity style={{padding:5}}
@@ -195,12 +196,12 @@ export default class MakeRoom extends Component{
                     <TouchableOpacity onPress={() => {
                         this.props.onCancelButton();
                         }}>
-                        <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
+                        <Text style={styles.buttonText}>취소</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         this.props.onOkButton(this.state.carrier, this.state.person);
                         }}>
-                        <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
+                        <Text style={styles.buttonText}>방만들기</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -258,5 +259,16 @@ const styles=StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-around',
         alignItems:'center',
+    },
+        buttonText:{
+            color:'#4dabf7',
+            fontSize:17,
+            fontFamily:titleFont,
+            fontWeight:"200" 
+        },
+    leftText:{
+        color:'gray',
+        fontFamily:titleFont,
+        fontWeight:"200"
     }
 })

@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Image } from 'react-native';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import { carrierImgs, seatImgs, fromtoImg, } from '../variable/assets';
 import { observer, inject } from 'mobx-react';
+import titleFont from '../variable/assets';
 
 
 /**
@@ -118,6 +119,8 @@ const styles=StyleSheet.create({
     destination_text: {
         color: 'gray',
         margin: vw(2.4),
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     carrier: {
         flexGrow: 1,

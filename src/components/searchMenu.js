@@ -5,6 +5,8 @@ import Calendar from '../elements/calendar';
 import SearchModal from './modal/searchModal';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { inject } from 'mobx-react';
+import {titleFont,numFont} from '../variable/assets';
+
 
 @inject('dateStore')
 /**
