@@ -7,6 +7,7 @@ import Setting from './pages/settingscreen';
 import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
 import UpdateInfo from '../src/pages/updateInfo';
+import titleFont from '../src/variable/assets';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
@@ -14,6 +15,10 @@ const TaxiTab = createStackNavigator({
   headerLayoutPreset:'center',
   defaultNavigationOptions: {
     title: "조회 / 모집",
+    headerTitleStyle:{
+      fontFamily: titleFont,
+      fontWeight: "200"
+    }
   },
 });
 
@@ -23,6 +28,10 @@ const CarpoolTab = createStackNavigator({
     headerLayoutPreset:'center',
     defaultNavigationOptions:{
       title: "조회 / 모집",
+      headerTitleStyle:{
+        fontFamily: titleFont,
+        fontWeight: "200"
+      }
   }
 });
 
@@ -32,6 +41,10 @@ const RideHistoryTab = createStackNavigator({
     headerLayoutPreset:'center',
     defaultNavigationOptions: {
       title: "탑승 내역",
+      headerTitleStyle:{
+        fontFamily: titleFont,
+        fontWeight: "200"
+      }
   }
 });
 
@@ -41,6 +54,10 @@ const MyPageTab = createStackNavigator({
   headerLayoutPreset:'center',
   defaultNavigationOptions: {
     title: "설정",
+    headerTitleStyle:{
+      fontFamily: titleFont,
+      fontWeight: "200"
+    }
   }
 });
 

@@ -5,6 +5,7 @@ import SearchMenu from './searchMenu';
 import NewRoom from './newRoom';
 import MakeRoom from './modal/MakeRoom';
 import Modal from '../elements/modal';
+import titleFont from '../variable/assets';
 
 
 export default class EmptyList extends Component{
@@ -117,6 +118,8 @@ const styles = StyleSheet.create({
         color:'#bbb',
         fontSize:20,
         padding:10,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     horizontal_date_bar:{
         borderBottomWidth: 1.0, 

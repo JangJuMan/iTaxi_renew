@@ -5,6 +5,8 @@ import Calendar from '../elements/calendar';
 import SearchModal from './modal/searchModal';
 import Icon from 'react-native-vector-icons/AntDesign';
 import NowDate from '../../stores/nowDate';
+import {titleFont,numFont} from '../variable/assets';
+
 
 /**
  * @props onSearch  Callback function when departure or destination is changed.

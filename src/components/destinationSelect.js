@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { vh } from 'react-native-expo-viewport-units';
+import titleFont from '../variable/assets';
 
 class Top extends Component {
     constructor(props) {
@@ -121,6 +121,8 @@ const stylesTop = StyleSheet.create({
                 flex: 2,
                 borderBottomColor: 'gray',
                 borderBottomWidth: 1,
+                fontFamily:titleFont,
+                fontWeight:"200"
             },
             gpsIcon: {
                 marginTop: 10,
@@ -141,6 +143,8 @@ const stylesTop = StyleSheet.create({
                     fontSize: 14,
                     color: '#888C90',
                     margin: 10,
+                    fontFamily:titleFont,
+                    fontWeight:"200"
                 },
 
         arrow_down: {
@@ -199,6 +203,8 @@ const stylesBottom = StyleSheet.create({
                 color: '#888C90',
                 padding: 10,
                 alignSelf: 'flex-start',
+                fontFamily:titleFont,
+                fontWeight:"200"
             },
             line: {
                 flex: 3,
