@@ -298,6 +298,7 @@ const styles=StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
+        marginRight: 5,
     },
     profileText: {
         color: '#3FA9F5',

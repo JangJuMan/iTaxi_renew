@@ -3,7 +3,7 @@ import { View, Text,StyleSheet,Image, TouchableOpacity} from 'react-native';
 import {seatImg} from '../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
-import { vw }  from 'react-native-expo-viewport-units';
+import { vw, vh }  from 'react-native-expo-viewport-units';
 import SearchModal from '../components/searchModal';
 import DatePicker from 'react-native-datepicker';
 import { observer } from 'mobx-react';
@@ -51,11 +51,13 @@ export default class setting extends Component{
                 <View style={styles.fromTo}>
                     <View style={styles.location}>
                   {/* 출발지,도착지는 props로 받기 */}
-                        <SearchModal />
+                        <SearchModal 
+                            modalStyle={{top: vh(30)}} />
                     </View>
                         <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
                     <View style={styles.location}>
-                        <SearchModal />
+                        <SearchModal 
+                            modalStyle = {{top:vh(30)}} />
                     </View>
                 </View>
 
@@ -188,7 +190,7 @@ export default class setting extends Component{
                         <Text style={{color:'#4dabf7',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                        this.props.onOkButton();
+                        this.props.onOkButton(this.state.carrier, this.state.person);
                         }}>
                         <Text style={{color:'#4dabf7',fontSize:17 }}>방만들기</Text>
                     </TouchableOpacity>

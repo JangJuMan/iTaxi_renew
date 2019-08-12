@@ -59,7 +59,6 @@ export default class SearchMenu extends Component {
                     <View style={{ flex: 1 ,}}></View>
                     <View style={{ flex: 5 ,}}>
                         <Swiper 
-                            style={{borderWidth:2,}}
                             showsButtons={true}
                             loop={false}
                             showsPagination={false}
@@ -110,11 +109,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-        text: {
-            color: '#4dabf7',
-            fontSize: 14,
-            fontWeight: 'bold',
-        },
+    text: {
+        color: '#4dabf7',
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
     calendar: {
         flex: 1,
         justifyContent: 'center',

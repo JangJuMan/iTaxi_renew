@@ -29,6 +29,7 @@ export default class SearchModal extends Component {
                 </TouchableOpacity>
 
                 <Modal
+                    modalStyle={this.props.modalStyle}
                     transparent={true}
                     visible={this.state.modalVisiable}
                     onRequestClose={() => this.setModalVisiable(false)}
@@ -52,16 +53,15 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-        location_button: {
-            flex: 1,
-            flexDirection: 'row',
-            borderRadius: 50,
-            borderWidth: 1,
-            borderColor: OpenColor.gray[4],
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-        },
-
+    location_button: {
+        flex: 1,
+        flexDirection: 'row',
+        borderRadius: 50,
+        borderWidth: 1,
+        borderColor: OpenColor.gray[4],
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
     modalBackground: {
         width: vw(100),
         height: vh(100),
@@ -69,20 +69,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-        modalContent: {
-            position: 'absolute',
-            left: vw(10),
-            top: vh(10),
-            width: vw(80),
-            marginBottom: vh(20),
-            backgroundColor: '#FFFFFF',
-
-            shadowOffset: {
-                width: 1,
-                height: 1,
-            },
-            shadowColor:'#999999',
-            shadowOpacity:0.5,
-            elevation: 2,
-        }
+    modalContent: {
+        position: 'absolute',
+        left: vw(10),
+        top: vh(10),
+        width: vw(80),
+        marginBottom: vh(20),
+        backgroundColor: '#FFFFFF',
+        shadowOffset: {
+            width: 1,
+            height: 1,
+        },
+        shadowColor:'#999999',
+        shadowOpacity:0.5,
+        elevation: 2,
+    }
 });

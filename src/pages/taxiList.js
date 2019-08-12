@@ -123,7 +123,7 @@ export default class TaxiList extends Component{
                     render={
                     <MakeRoom 
                         navigation={this.props.navigation}
-                        onOkButton = {() => {
+                        onOkButton = {(CarrierInputFromMakeRoom, PersonInputFromMakeRoom) => {
                             ModalControl.modalVisible_taxi=false, 
                             this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromMakeRoom, Person: PersonInputFromMakeRoom});
                         }}
@@ -138,38 +138,38 @@ const styles = StyleSheet.create({
     conatiner: {
         flex: 1,
     },
-        search_menu: {
-            marginTop: 10,
-            marginBottom: 10,
-        },
-        horizontal_divider:{
-            borderBottomWidth: 1.0, 
-            borderBottomColor: '#0b0b0b25',
-        },
+    search_menu: {
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    horizontal_divider:{
+        borderBottomWidth: 1.0, 
+        borderBottomColor: '#0b0b0b25',
+    },
 
-        log_container:{
-            flexDirection: 'row', 
-            alignItems: 'center', 
-            paddingTop: 10
-        },
-            date_of_logs:{
-                color: '#bbb',
-                fontSize: 18,
-                padding: 10,
-            },
-            horizontal_date_bar:{
-                borderBottomWidth: 1.0, 
-                borderBottomColor: '#0b0b0b25',
-                flexGrow: 1,
-            },
+    log_container:{
+        flexDirection: 'row', 
+        alignItems: 'center', 
+        paddingTop: 10
+    },
+    date_of_logs:{
+        color: '#bbb',
+        fontSize: 18,
+        padding: 10,
+    },
+    horizontal_date_bar:{
+        borderBottomWidth: 1.0, 
+        borderBottomColor: '#0b0b0b25',
+        flexGrow: 1,
+    },
 
-        log_contents:{
-            marginLeft: 24, 
-            marginRight: 24, 
-        },
-            list_entry: {
-                marginBottom: 20,
-            },
+    log_contents:{
+        marginLeft: 24, 
+        marginRight: 24, 
+    },
+    list_entry: {
+        marginBottom: 20,
+    },
 })
 
 
