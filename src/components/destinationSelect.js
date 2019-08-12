@@ -44,7 +44,10 @@ class Top extends Component {
             let temp_row = [];
             rows.map(location => {
                 temp_row.push(
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {
+                        this.props.onSelect(location)
+                        this.setState({location})
+                    }}>
                         <Text style={stylesTop.text}>{location}</Text>
                     </TouchableOpacity>
                 )
@@ -73,6 +76,7 @@ class Top extends Component {
                         placeholder="직접입력"
                         borderBottomColor='#888C90'
                         onChangeText={(text) => this.setState({ text })}
+                        onSubmitEditing={({nativeEvent}) => this.props.onSelect(nativeEvent.text)}
                     />
                     <Icon
                         name="gps-not-fixed"
@@ -204,21 +208,35 @@ const stylesBottom = StyleSheet.create({
 });
 
 /**
+ * @props onSelectLocation  Callback function after press location
+ * @props onSelectLog   Callback function after press riding log
  * @props onSubmit  Callback function after press OK button
  */
 export default class SelectModal extends Component {
+    constructor(props) {
+        super(props);
+
+        let { onSubmit, onSelectLocation, onSelectLog } = this.props;
+        this.onSubmit = onSubmit;
+        this.onSelectLocation = onSelectLocation;
+        this.onSelectLog = onSelectLog;
+    }
+
     render() {
         return (
             <View style={[styles.container, this.props.style]}>
-                <Top style={{ marginBottom: 10, }}/>
+                <Top
+                    onSelect={this.onSelectLocation}
+                    style={{ marginBottom: 10, }}/>
                 <View style={styles.line} />
-                <Bottom style={{ marginBottom: 10, }} />
+                <Bottom
+                    onSelect={this.onSelectLog}
+                    style={{ marginBottom: 10, }} />
                 <TouchableOpacity style={styles.submit_btn}>
                     <Button
                         title="확인"
                         onPress={this.props.onSubmit} />
                 </TouchableOpacity>
-                
             </View>
         )
     }

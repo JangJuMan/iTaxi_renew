@@ -65,7 +65,9 @@ export default class TaxiList extends Component{
 
         return (
             <View style={styles.conatiner}>
-                <SearchMenu style={styles.search_menu} />
+                <SearchMenu
+                    onSearch={(departure, destination) => console.log(departure, destination)}
+                    style={styles.search_menu} />
                 <View style={styles.horizontal_divider} />
 
                 <ScrollView>
