@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, Keyboa
 import Icon from 'react-native-vector-icons/Ionicons';
 import OC from 'open-color';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import titleFont from '../variable/assets';
 
 
 const iosTextHeight = 13.5
@@ -323,6 +324,8 @@ const styles = StyleSheet.create({
     new_member_text: {
         fontSize: 15,
         fontWeight: 'bold',
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     i_say: {
         alignItems: 'flex-end',
@@ -335,7 +338,9 @@ const styles = StyleSheet.create({
     myname_text: {
         fontWeight: 'bold',
         color: 'blue',
-        marginBottom: 5
+        marginBottom: 5,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     my_time_container: {
         flexDirection: 'column-reverse',
@@ -350,6 +355,8 @@ const styles = StyleSheet.create({
         backgroundColor: OC.blue[5],
         borderWidth: 0.5,
         borderColor: OC.indigo[3],
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     they_say: {
         alignItems: 'flex-start',
@@ -362,11 +369,15 @@ const styles = StyleSheet.create({
         borderColor: '#bbb',
         borderWidth: 0.5,
         backgroundColor: 'white',
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     their_name_text: {
         fontWeight: 'bold',
         color: 'blue',
-        marginBottom: 5
+        marginBottom: 5,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     they_time_container: {
         flexDirection: 'column-reverse',
@@ -387,7 +398,9 @@ const styles = StyleSheet.create({
         borderRadius: 12,
     },
     input_text: {
-        flex: 8
+        flex: 8,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     input_text_line: {
         alignContent: 'center',
@@ -409,9 +422,13 @@ const styles = StyleSheet.create({
     },
     white_text: {
         color: 'white',
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     blue_text: {
         color: OC.blue[5],
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     i_say_msg_container: {
         flexDirection: 'row',

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View,Button, TouchableOpacity,ScrollView,Image, Keyboard} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView,Image,} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
-import TaxiElement from '../components/taxiElement';
-import { vw, vh } from 'react-native-expo-viewport-units';
-import { Directions, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { vw } from 'react-native-expo-viewport-units';
 import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../variable/assets';
 import { observer, inject } from 'mobx-react';
-import CalculModal from '../components/calculModal';
+import CalculModal from './modal/calculModal';
 import Modal from '../elements/modal';
+import {Linking} from 'react-native';
+import Communications from 'react-native-communications';
+import titleFont from '../variable/assets';
 
 @inject('taxiStore')
 @inject('carpoolStore')
@@ -35,6 +36,7 @@ export default class ChatRoom extends Component{
     getCarrier() {
         const { taxiStore } = this.props;
         const data = taxiStore.taxiId;
+        // 이것처럼 꺼내서 쓸 수 있습니다.
         // console.log(`carier info: ${this.props.navigation.state.params.Carrier}`);
         // console.log(`person info :${this.props.navigation.state.params.Person}`);
         const full = data.num_carrier;
@@ -71,11 +73,11 @@ export default class ChatRoom extends Component{
                     <View style={styles.calendar_time}>
                         <View style={styles.calendar}>
                             <Icon name="calendar" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:vw(4)}}>  {data.departure_date.substring(5)}</Text>
+                            <Text style={{fontSize:vw(4),fontFamily:titleFont,fontWeight:"200"}}>  {data.departure_date.substring(5)}</Text>
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:vw(4)}}>  {data.departure_time}</Text>
+                            <Text style={{fontSize:vw(4),fontFamily:titleFont,fontWeight:"200"}}>  {data.departure_time}</Text>
                         </View>
                     </View>
                     <View style={styles.destination}>
@@ -96,7 +98,7 @@ export default class ChatRoom extends Component{
                     <View style={styles.carrier}>
                         <View style={{flexDirection:'row',padding:3}}>
                             <Image style={styles.carrIcon} source={carrIcon} />
-                            <Text style={{padding:5}}>캐리어</Text>
+                            <Text style={{padding:5,fontFamily:titleFont,fontWeight:"200"}}>캐리어</Text>
                         </View>
                         <View style={{flexDirection:'row',margin:5}}>
                             {this.getCarrier()}
@@ -128,48 +130,54 @@ export default class ChatRoom extends Component{
                             visible={this.state.modalVisible}
                             onRequestClose={() => this.setModalVisible(false)}
                             render={
-                                <TouchableWithoutFeedback onPress={() => {
-                                    Keyboard.dismiss();
-                                }}>
+                                // 스크롤 뷰에서는 키보드가 다른 곳 클릭하면 자동으로 dismiss 되네 ..?
+                                <ScrollView>
                                     <CalculModal 
-                                        // navigation={this.props.navigation}
                                         onOkButton = {() => this.setModalVisible(false)}
                                         onCancelButton = {() => this.setModalVisible(false)}/>
-                                </TouchableWithoutFeedback>
+                                </ScrollView>
                             }/>
                     </View>
                 </View>
             </View>
             <ScrollView horizontal={true} >
                 <View style={styles.profileButton}>
-                    <TouchableOpacity style={{paddingRight:10}}>
-                        <View style={styles.profileInfo}>
-                            <Text style={styles.profileText}>송민석    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
-                        </View>
-                    </TouchableOpacity >
-                    <TouchableOpacity style={{paddingRight:10}}>
-                        <View style={styles.profileInfo}>
-                            <Text style={styles.profileText}>장주만    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{paddingRight:10}}>
-                        <View style={styles.profileInfo}>
-                            <Text style={styles.profileText}>최진아    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{paddingRight:10}}>
                         <View style={styles.profileInfo}>
                             <Text style={styles.profileText}>신영현    </Text>
-                            <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
-                            <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
+                                <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={() => Communications.text('010-5480-9072')}>
+                                <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            </TouchableOpacity>
                         </View>
-                    </TouchableOpacity>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>신영현    </Text>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
+                                <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={() => Communications.text('010-5480-9072')}>
+                                <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>신영현    </Text>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
+                                <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={() => Communications.text('010-5480-9072')}>
+                                <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.profileInfo}>
+                            <Text style={styles.profileText}>신영현    </Text>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={()=>Linking.openURL(`tel: 010-5480-9072`)}>
+                                <Icon name="phone" color='#3FA9F5' size={vw(4)}>   </Icon>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{paddingRight:10}} onPress={() => Communications.text('010-5480-9072')}>
+                                <Icon name="mail" color='#3FA9F5' size={vw(4)}></Icon>
+                            </TouchableOpacity>
+                        </View>
                 </View>
             </ScrollView>
         </View>
@@ -233,11 +241,15 @@ const styles=StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
 
     destination_text: {
         color: 'gray',
-        flexDirection:'row'
+        flexDirection:'row',
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     carrier:{
         flex:3,
@@ -275,6 +287,8 @@ const styles=StyleSheet.create({
     ButtonText: {
         color: 'white',
         fontSize:vw(4),
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     profileButton:{
         height:vw(13),
@@ -288,12 +302,16 @@ const styles=StyleSheet.create({
         borderWidth: 2,
         borderColor: '#3FA9F5',
         padding: 10,
+        paddingRight: 10,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
+        marginRight: 5,
     },
     profileText: {
         color: '#3FA9F5',
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     realModal: {
         borderRadius: 10,

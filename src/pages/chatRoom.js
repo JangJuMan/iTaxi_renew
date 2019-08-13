@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView , ScrollView, TextInput} from 'react-native';
+import { View, } from 'react-native';
 import ChatRoomInfo from '../components/chatRoomInfo';
 import Chatting from '../components/chatting';
 

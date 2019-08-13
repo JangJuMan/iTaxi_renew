@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { vh } from 'react-native-expo-viewport-units';
+import titleFont from '../variable/assets';
 
 class Top extends Component {
     constructor(props) {
@@ -10,6 +10,13 @@ class Top extends Component {
         this.state = { expand: true };
         this.rotateAnimation = new Animated.Value(1);
     }
+
+    locations = [
+        ['한동대학교', '포항역', '시외버스터미널'],
+        ['하나로마트', '커피유야', '그할마'],
+        ['고속버스터미널', '영일대', 'E1'],
+        ['육거리', '세차장'],
+    ]
 
     componentDidMount() {
         this.expand_collapse_Function();
@@ -28,41 +35,31 @@ class Top extends Component {
         this.animating();
     }
 
-    _renderAppend() {
-        if (this.state.expand)
-            return (
-                <View>
+    renderLocations() {
+        let list = [];
+        
+        this.locations.map((rows, index) => {
+            if (!this.state.expand && index >= 2) return null;
+
+            let temp_row = [];
+            rows.map(location => {
+                temp_row.push(
+                    <TouchableOpacity onPress={() => {
+                        this.props.onSelect(location)
+                        this.setState({location})
+                    }}>
+                        <Text style={stylesTop.text}>{location}</Text>
+                    </TouchableOpacity>
+                )
+            });
+            list.push(
                 <View style={stylesTop.location_row}>
-                    <TouchableOpacity>
-                        <Text style={stylesTop.text}>시외버스터미널</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Text style={stylesTop.text}>영일대</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Text style={stylesTop.text}>포항공대</Text>
-                    </TouchableOpacity>
+                    {temp_row}
                 </View>
-
-                <View style={stylesTop.location_row}>
-                <TouchableOpacity>
-                    <Text style={stylesTop.text}>E1</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity>
-                    <Text style={stylesTop.text}>육거리</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity>
-                    <Text style={stylesTop.text}>그랜드할인마트</Text>
-                </TouchableOpacity>
-                </View>
-            </View>
             )
-        else
-            return null;
+        });
+
+        return list;
     }
 
     render() {
@@ -79,6 +76,7 @@ class Top extends Component {
                         placeholder="직접입력"
                         borderBottomColor='#888C90'
                         onChangeText={(text) => this.setState({ text })}
+                        onSubmitEditing={({nativeEvent}) => this.props.onSelect(nativeEvent.text)}
                     />
                     <Icon
                         name="gps-not-fixed"
@@ -89,35 +87,7 @@ class Top extends Component {
                 </View>
 
                 <View style={stylesTop.location_table}>
-                    <View style={stylesTop.location_row}>
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>한동대학교</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>포항역</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>고속버스터미널</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    <View style={stylesTop.location_row}>
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>하나로마트</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>커피유야</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity>
-                            <Text style={stylesTop.text}>세차장</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                    {this._renderAppend()}
+                    {this.renderLocations()}
 
                     <TouchableOpacity 
                         activeOpacity = {0.7}
@@ -151,6 +121,8 @@ const stylesTop = StyleSheet.create({
                 flex: 2,
                 borderBottomColor: 'gray',
                 borderBottomWidth: 1,
+                fontFamily:titleFont,
+                fontWeight:"200"
             },
             gpsIcon: {
                 marginTop: 10,
@@ -171,6 +143,8 @@ const stylesTop = StyleSheet.create({
                     fontSize: 14,
                     color: '#888C90',
                     margin: 10,
+                    fontFamily:titleFont,
+                    fontWeight:"200"
                 },
 
         arrow_down: {
@@ -229,6 +203,8 @@ const stylesBottom = StyleSheet.create({
                 color: '#888C90',
                 padding: 10,
                 alignSelf: 'flex-start',
+                fontFamily:titleFont,
+                fontWeight:"200"
             },
             line: {
                 flex: 3,
@@ -238,21 +214,35 @@ const stylesBottom = StyleSheet.create({
 });
 
 /**
+ * @props onSelectLocation  Callback function after press location
+ * @props onSelectLog   Callback function after press riding log
  * @props onSubmit  Callback function after press OK button
  */
 export default class SelectModal extends Component {
+    constructor(props) {
+        super(props);
+
+        let { onSubmit, onSelectLocation, onSelectLog } = this.props;
+        this.onSubmit = onSubmit;
+        this.onSelectLocation = onSelectLocation;
+        this.onSelectLog = onSelectLog;
+    }
+
     render() {
         return (
             <View style={[styles.container, this.props.style]}>
-                <Top style={{ marginBottom: 10, }}/>
+                <Top
+                    onSelect={this.onSelectLocation}
+                    style={{ marginBottom: 10, }}/>
                 <View style={styles.line} />
-                <Bottom style={{ marginBottom: 10, }} />
+                <Bottom
+                    onSelect={this.onSelectLog}
+                    style={{ marginBottom: 10, }} />
                 <TouchableOpacity style={styles.submit_btn}>
                     <Button
                         title="확인"
                         onPress={this.props.onSubmit} />
                 </TouchableOpacity>
-                
             </View>
         )
     }

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList, Button } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import OC from 'open-color';
-import Swiper from 'react-native-swiper'
-import RideSoon from '../components/nodateElement';
 import RideLog from '../components/taxiElement';
+import titleFont from '../variable/assets';
 
 @inject('taxiStore')
 @inject('carpoolStore')
@@ -43,7 +42,7 @@ export default class RiderLog extends Component{
                         this.props.navigation.navigate('Chat');
                     }}>
                     <View style={styles.top_highlighted_log}>
-                        <RideSoon seat = '3' carrier= '4' time = '13:00' from="한동대학교" to="포항역"/>
+                        <RideLog seat = '3' carrier= '4' time = '13:00' from="한동대학교" to="포항역"/>
                     </View>
                 </TouchableOpacity>
 
@@ -102,7 +101,9 @@ const styles = StyleSheet.create({
         fontSize:18, 
         fontWeight: 'bold', 
         margin: 10, 
-        marginLeft: 24
+        marginLeft: 24,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     top_highlighted_log:{
         marginRight: 24, 
@@ -124,6 +125,8 @@ const styles = StyleSheet.create({
         color: '#a0a0a0', 
         fontWeight: 'bold', 
         marginLeft:14,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     taxi_carpool_font:{
         // color:'#89B2E9', 
@@ -132,6 +135,8 @@ const styles = StyleSheet.create({
         padding:5,
         paddingRight:15,
         paddingLeft:15,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     taxi_carpool_highlight_font:{
         color:OC.blue[5], 
@@ -142,6 +147,8 @@ const styles = StyleSheet.create({
         borderWidth:0.5,
         borderColor:OC.cyan[3],
         borderRadius: 7,
+        fontFamily:titleFont,
+        fontWeight:"200"
     },
     past_log_container:{
         flexDirection: 'row', 
@@ -151,6 +158,7 @@ const styles = StyleSheet.create({
     past_log_contents:{
         marginLeft: 24, 
         marginRight: 24, 
+        marginTop: 10,
     },
     past_date_bar:{
         color:'#bbb',

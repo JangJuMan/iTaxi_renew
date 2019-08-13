@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, Image } from 'react-native';
-import { vw } from 'react-native-expo-viewport-units';
+import { vw, vh } from 'react-native-expo-viewport-units';
 import { carrierImgs, seatImgs, fromtoImg, } from '../variable/assets';
 import { observer, inject } from 'mobx-react';
+import titleFont from '../variable/assets';
 
 
 /**
@@ -30,38 +31,32 @@ export default class TaxiElement extends Component{
 
         return(
             <View>
-            <View style={styles.log_container}>
-                        <Text style={styles.date_of_logs}>{this.props.date}</Text>
-                        <View style={styles.horizontal_date_bar}></View>
-            </View>
-            <View style={[styles.container, this.props.style]}>
-                
-                <View style={styles.time_seat_location}>
-                    <Text style={styles.time}>
-                        {this.props.time}
-                    </Text>
-                    
-                    <Image 
-                        style={styles.seat}
-                        source={seat_img}  />
-                </View>
-                <View style={styles.destination_location}>
-                    <Image
-                        style={styles.destination_image}
-                        source={fromtoImg} />
-                    <View style={styles.destination_text_location}>
-                        <Text style={styles.destination_text}>
-                            {this.props.from}
+                <View style={[styles.container, this.props.style]}>
+                    <View style={styles.time_seat_location}>
+                        <Text style={styles.time}>
+                            {this.props.time}
                         </Text>
-                        <Text style={styles.destination_text}>
-                            {this.props.to}
-                        </Text>
+                        <Image 
+                            style={styles.seat}
+                            source={seat_img}  />
                     </View>
+                    <View style={styles.destination_location}>
+                        <Image
+                            style={styles.destination_image}
+                            source={fromtoImg} />
+                        <View style={styles.destination_text_location}>
+                            <Text style={styles.destination_text}>
+                                {this.props.from}
+                            </Text>
+                            <Text style={styles.destination_text}>
+                                {this.props.to}
+                            </Text>
+                        </View>
+                    </View>
+                    <Image 
+                        style={styles.carrier}
+                        source={carrier_img} />
                 </View>
-                <Image 
-                    style={styles.carrier}
-                    source={carrier_img} />
-            </View>
             </View>
         )
     }
@@ -70,7 +65,6 @@ export default class TaxiElement extends Component{
 const styles=StyleSheet.create({
     container: {
         flexDirection: 'row',
-
         backgroundColor: 'white',
         shadowOffset: {
             width: 0,
@@ -79,72 +73,59 @@ const styles=StyleSheet.create({
         shadowColor:'gray',
         shadowOpacity:0.3,
         elevation: 3,
-
         padding: vw(2.4),
         paddingRight: 0,
         paddingBottom: vw(3.6),
+        borderRadius: 5,
+        marginHorizontal: vw(0.2),
+        marginTop: vh(0.2),
     },
 
-        time_seat_location: {
-            flex: 1,
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-        },
+    time_seat_location: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+    },
 
-            time: {
-                color: 'gray',
-                fontSize: vw(5),
-            },
+    time: {
+        color: 'gray',
+        fontSize: vw(5),
+    },
 
-            seat: {
-                width: vw(9.6),
-                height: vw(9.6),
-                marginTop: vw(2.4),
-            },
+    seat: {
+        width: vw(9.6),
+        height: vw(9.6),
+        marginTop: vw(2.4),
+    },
 
-        destination_location: {
-            flex: 3,
-            marginLeft: vw(4.8),
-            justifyContent: 'center',
-            flexDirection: 'row',
-        },
+    destination_location: {
+        flex: 3,
+        marginLeft: vw(4.8),
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
 
-            destination_image: {
-                width: vw(7.2),
-                height: vw(20),
-            },
+    destination_image: {
+        width: vw(7.2),
+        height: vw(20),
+    },
 
-            destination_text_location: {
-                flex: 1,
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-            },
+    destination_text_location: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+    },
 
-                destination_text: {
-                    color: 'gray',
-                    margin: vw(2.4),
-                },
-
-        carrier: {
-            flexGrow: 1,
-            alignSelf: 'flex-end',
-            width: 40,
-            height:60,
-        },
-        date_of_logs:{
-            color: '#bbb',
-            fontSize: 18,
-            padding: 10,
-            paddingLeft: 0,
-        },
-        horizontal_date_bar:{
-            borderBottomWidth: 1.0, 
-            borderBottomColor: '#0b0b0b25',
-            flexGrow: 1,
-        },
-        log_container:{
-            flexDirection: 'row', 
-            alignItems: 'center', 
-            paddingTop: 10
-        },
+    destination_text: {
+        color: 'gray',
+        margin: vw(2.4),
+        fontFamily:titleFont,
+        fontWeight:"200"
+    },
+    carrier: {
+        flexGrow: 1,
+        alignSelf: 'flex-end',
+        width: 40,
+        height:60,
+    }
 });

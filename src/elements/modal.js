@@ -15,7 +15,7 @@ export default class extends Component {
                     onPress={this.props.onRequestClose} >
                     <View style={styles.modalBackground} />
                 </TouchableWithoutFeedback>
-                <View style={styles.modalContent}>
+                <View style={[styles.modalContent, this.props.modalStyle]}>
                     {this.props.render}
                 </View>
             </Modal>
@@ -32,19 +32,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-        modalContent: {
-            position: 'absolute',
-            alignSelf: 'center',
-            top: vh(20),
-            maxHeight: vh(80),
-            backgroundColor: '#FFFFFF',
-
-            shadowOffset: {
-                width: 1,
-                height: 1,
-            },
-            shadowColor:'#999999',
-            shadowOpacity:0.5,
-            elevation: 2,
-        }
+    modalContent: {
+        position: 'absolute',
+        alignSelf: 'center',
+        top: vh(20),
+        maxHeight: vh(80),
+        backgroundColor: '#FFFFFF',
+        shadowOffset: {
+            width: 1,
+            height: 1,
+        },
+        shadowColor:'#999999',
+        shadowOpacity:0.5,
+        elevation: 2,
+    }
 })

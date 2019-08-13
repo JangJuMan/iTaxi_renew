@@ -1,56 +1,23 @@
 import React, { Component } from 'react';
-import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, Button,} from 'react-native';
+import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import {inject, observer} from 'mobx-react';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
-import EnterRoom from './going_into_room';
+import EnterRoom from '../components/going_into_room';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModalControl from '../variable/modalControl';
-import { vw }  from 'react-native-expo-viewport-units';
-import MakeRoom from '../pages/MakeRoom';
-import Modal from '../elements/modal'
-
+import MakeRoom from '../components/modal/MakeRoom';
+import Modal from '../elements/modal';
+import titleFont from '../variable/assets'
 
 @inject('taxiStore')
-
 @observer
 export default class TaxiList extends Component{
     state={
         modalVisible: false,
+        dataReceive: false,
         carrierNum : -1,
         personNum : -1,
-    }
-
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
-    // setCarrier(value){
-    //     if(value === -1){
-    //         this.state.carrierNum = 0;
-    //     }
-    //     else{
-    //         this.state.carrierNum = value;
-    //         // this.setState({carrierNum: value})
-    //     }
-    // }
-
-    // setPerson(value){
-    //     if(value === -1){
-    //         this.state.personNum = 0;
-    //     }
-    //     else{
-    //         this.state.personNum = value;
-    //     }
-    // }
-
-    constructor(props) {
-        super(props);
-    }
-
-    componentDidMount() {
-        const { taxiStore } = this.props;
-        taxiStore.getTaxiList();
     }
 
     static navigationOptions = ({ navigation }) => {
@@ -64,18 +31,52 @@ export default class TaxiList extends Component{
         };
     };
 
+    componentDidMount() {
+        this.getTaxiData();
+    }
+
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
+
+    getTaxiData = () => {
+        this.setState({ dataReceive: false });
+        const { taxiStore } = this.props;
+        taxiStore.getTaxiList().then(() => this.setState({ dataReceive: true }));
+    }
+
     render(){
-        const {taxiStore} = this.props;
-        const data = taxiStore.taxiList;
-        return(
+        const { taxiStore } = this.props;
+
+        if (!this.state.dataReceive) {
+            return (
+                <View style={styles.conatiner}>
+                    <SearchMenu style={{marginTop: 10, marginBottom: 10,}} />
+                    <View style={styles.horizontal_divider} />
+
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <ActivityIndicator
+                            size="large"
+                            color="blue" />
+                    </View>
+                </View>
+            )
+        }
+
+        return (
             <View style={styles.conatiner}>
                 <SearchMenu
-                    style={{marginTop: 10, marginBottom: 10,}} />
+                    onSearch={(departure, destination) => console.log(departure, destination)}
+                    style={styles.search_menu} />
                 <View style={styles.horizontal_divider} />
 
                 <ScrollView>
                     <View style={styles.log_contents}>
-                    <FlatList
+                        <View style={styles.log_container}>
+                            <Text style={styles.date_of_logs}>2019-08-01</Text>
+                            <View style={styles.horizontal_date_bar}></View>
+                        </View>
+                        <FlatList
                             data = {taxiStore.taxiList}
                             keyExtractor={(item, index) => item._id.toString()}
                             renderItem = {({item}) => 
@@ -96,23 +97,6 @@ export default class TaxiList extends Component{
                             </View>
                         }/>
                     </View>
-
-                    <View style={styles.log_contents}>
-                        <FlatList
-                            data = {taxiStore.taxiList}
-                            keyExtractor={(item, index) => item._id.toString()}
-                            renderItem = {({item}) => 
-                            <View>
-                                <TouchableOpacity 
-                                    onPress={() => {
-                                        this.setModalVisible(true);
-                                        taxiStore.taxiId = item;
-                                    }}>
-                                    <ListEntry style = {{marginBottom: 20}} date = {item.departure_date} time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place}  seat={item.num_people} carrier={item.num_carrier}/>
-                                </TouchableOpacity>
-                            </View>
-                        }/>
-                    </View>
                 </ScrollView>
 
                 {/* going in to room */}
@@ -122,18 +106,12 @@ export default class TaxiList extends Component{
                     visible={this.state.modalVisible}
                     onRequestClose={() => this.setModalVisible(false)}
                     render={
-                    <View style={styles.modalBackground}> 
-                        <View style={styles.realModal}>
-                            <EnterRoom 
-                                onOkButton = {(CarrierInputFromGoingIntoRoom) => {
-                                    // console.log(`CarrierInputFromGoingIntoRoom = ${CarrierInputFromGoingIntoRoom}`)
-                                    // this.setCarrier(CarrierInputFromGoingIntoRoom)
-                                    this.setModalVisible(false)
-                                    this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromGoingIntoRoom})
-                                }}
-                                onCancelButton = {() => this.setModalVisible(false)}/>
-                        </View>
-                    </View>
+                    <EnterRoom 
+                        onOkButton = {(CarrierInputFromGoingIntoRoom) => {
+                            this.setModalVisible(false)
+                            this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromGoingIntoRoom})
+                        }}
+                        onCancelButton = {() => this.setModalVisible(false)}/>
                 }/>
 
                 {/* make new room */}
@@ -143,70 +121,73 @@ export default class TaxiList extends Component{
                     visible={ModalControl.modalVisible_taxi}
                     onRequestClose={() => ModalControl.modalVisible_taxi=false}
                     render={
-                    <View style={styles.modalBackground}>
-                        <View style={styles.realModal}>
-                            <MakeRoom 
-                                navigation={this.props.navigation}
-                                onOkButton = {(CarrierInputFromMakeRoom, PersonInputFromMakeRoom) => {
-                                    // console.log(`CarrierInputFromMakeRoom = ${CarrierInputFromMakeRoom} / ${PersonInputFromMakeRoom}`)
-                                    // this.setCarrier(CarrierInputFromMakeRoom)
-                                    // this.setPerson(PersonInputFromMakeRoom)
-                                    ModalControl.modalVisible_taxi=false
-                                    // console.log(`===== ${CarrierInputFromMakeRoom} / ${PersonInputFromMakeRoom}`)
-                                    this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromMakeRoom, Person: PersonInputFromMakeRoom});
-                                }}
-                                onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>
-                        </View>
-                    </View>
-                }/>
+                    <MakeRoom 
+                        navigation={this.props.navigation}
+                        onOkButton = {(CarrierInputFromMakeRoom, PersonInputFromMakeRoom) => {
+                            ModalControl.modalVisible_taxi=false, 
+                            this.props.navigation.navigate('Chat', {Carrier: CarrierInputFromMakeRoom, Person: PersonInputFromMakeRoom});
+                        }}
+                        onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>
+                    }/>
             </View>
         );
     }
 }
 
-
 const styles = StyleSheet.create({
     conatiner: {
         flex: 1,
     },
-    
-    horizontal_divider:{
-        borderBottomWidth: 1.0, 
-        borderBottomColor: '#0b0b0b25',
-    },
+        search_menu: {
+            marginTop: 10,
+            marginBottom: 10,
+        },
+        horizontal_divider:{
+            borderBottomWidth: 1.0, 
+            borderBottomColor: '#0b0b0b25',
+        },
 
-    log_contents:{
-        marginLeft: 24, 
-        marginRight: 24, 
-    },
+        log_container:{
+            flexDirection: 'row', 
+            alignItems: 'center', 
+            paddingTop: 10
+        },
+            date_of_logs:{
+                color: '#bbb',
+                fontSize: 18,
+                padding: 10,
+                fontFamily:titleFont,
+                fontWeight:"200"
+            },
+            horizontal_date_bar:{
+                borderBottomWidth: 1.0, 
+                borderBottomColor: '#0b0b0b25',
+                flexGrow: 1,
+            },
+
+        log_contents:{
+            marginLeft: 24, 
+            marginRight: 24, 
+        },
+            list_entry: {
+                marginBottom: 20,
+            },
+
     date_of_logs:{
         color: '#bbb',
         fontSize: 18,
         padding: 10,
+        paddingLeft: 0,
     },
     horizontal_date_bar:{
         borderBottomWidth: 1.0, 
         borderBottomColor: '#0b0b0b25',
         flexGrow: 1,
     },
-
-    list_entry: {
-        marginBottom: 20,
-    },
-    
     log_container:{
         flexDirection: 'row', 
         alignItems: 'center', 
         paddingTop: 10
-    },
-    modalBackground: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    realModal: {
-        justifyContent: 'center',
-        alignItems: 'center',
     },
 })
 
