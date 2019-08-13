@@ -8,7 +8,7 @@ import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
 import UpdateInfo from '../src/pages/updateInfo';
 import titleFont from '../src/variable/assets';
-import FirstPage from '../src/pages/firstPage';
+import FirstPage from './pages/loginPage';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
