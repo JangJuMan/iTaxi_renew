@@ -52,14 +52,14 @@ const styles=StyleSheet.create({
         alignItems:'center',
         justifyContent:'center',
         backgroundColor: 'white',
-        fontFamily:titleFont,
+        fontFamily:'titleFont',
         fontWeight:"200"
     },
     font_style:{
         color: '#777',
         marginTop: 10,
         fontSize: 16,
-        fontFamily:titleFont,
+        fontFamily:'titleFont',
         fontWeight:"200"
     },
 });

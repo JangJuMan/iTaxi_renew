@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
             color: '#4dabf7',
             fontSize: 14,
             fontWeight: 'bold',
+            fontFamily: 'titleFont',
         },
     calendar: {
         flex: 1,

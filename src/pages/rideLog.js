@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import OC from 'open-color';
 import RideLog from '../components/taxiElement';
 import titleFont from '../variable/assets';
+import numFont from '../variable/assets';
 
 @inject('taxiStore')
 @inject('carpoolStore')
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold', 
         margin: 10, 
         marginLeft: 24,
-        fontFamily:titleFont,
+        fontFamily:'numFont',
         fontWeight:"200"
     },
     top_highlighted_log:{
@@ -125,7 +126,7 @@ const styles = StyleSheet.create({
         color: '#a0a0a0', 
         fontWeight: 'bold', 
         marginLeft:14,
-        fontFamily:titleFont,
+        fontFamily:'titleFont',
         fontWeight:"200"
     },
     taxi_carpool_font:{
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
         padding:5,
         paddingRight:15,
         paddingLeft:15,
-        fontFamily:titleFont,
+        fontFamily:'titleFont',
         fontWeight:"200"
     },
     taxi_carpool_highlight_font:{
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
         borderWidth:0.5,
         borderColor:OC.cyan[3],
         borderRadius: 7,
-        fontFamily:titleFont,
+        fontFamily:'titleFont',
         fontWeight:"200"
     },
     past_log_container:{

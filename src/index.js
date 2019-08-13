@@ -16,7 +16,7 @@ const TaxiTab = createStackNavigator({
   defaultNavigationOptions: {
     title: "조회 / 모집",
     headerTitleStyle:{
-      fontFamily: titleFont,
+      fontFamily: 'titleFont',
       fontWeight: "200"
     }
   },
@@ -29,7 +29,7 @@ const CarpoolTab = createStackNavigator({
     defaultNavigationOptions:{
       title: "조회 / 모집",
       headerTitleStyle:{
-        fontFamily: titleFont,
+        fontFamily: 'titleFont',
         fontWeight: "200"
       }
   }
@@ -42,7 +42,7 @@ const RideHistoryTab = createStackNavigator({
     defaultNavigationOptions: {
       title: "탑승 내역",
       headerTitleStyle:{
-        fontFamily: titleFont,
+        fontFamily: 'titleFont',
         fontWeight: "200"
       }
   }
@@ -55,7 +55,7 @@ const MyPageTab = createStackNavigator({
   defaultNavigationOptions: {
     title: "설정",
     headerTitleStyle:{
-      fontFamily: titleFont,
+      fontFamily: 'titleFont',
       fontWeight: "200"
     }
   }
