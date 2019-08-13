@@ -10,10 +10,6 @@ import titleFont from '../variable/assets';
 
 @observer
 export default class RiderLog extends Component{
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         isTaxi : true
     }
@@ -21,7 +17,7 @@ export default class RiderLog extends Component{
     componentDidMount() {
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
-        taxiStore.getTaxiList();
+        //taxiStore.getTaxiList();
         carpoolStore.getCarpoolList();
     }
 
@@ -30,11 +26,10 @@ export default class RiderLog extends Component{
     }
 
     render(){
-        // const check = 'taxi';
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
-            return (
-                <View style={{flex:1}}>
+        return (
+            <View style={{flex:1}}>
                 {/* 곧 탑승예정 */}
                 <Text style={styles.top_title}>곧 탑승 예정</Text>
                 <TouchableOpacity
@@ -78,7 +73,7 @@ export default class RiderLog extends Component{
                             <View>
                                 <TouchableOpacity
                                     onPress = {() => {
-                                        taxiStore.taxiId = item;
+                                        taxiStore.taxi = item;
                                         this.props.navigation.navigate('Chat');
                                     }}>
                                     <RideLog style = {{marginBottom: 20}} date = {item.departure_date} time = {item.departure_time} from = {item.departure_place} to = {item.arrival_place} seat={item.num_people} carrier={item.num_carrier}/>
@@ -90,8 +85,7 @@ export default class RiderLog extends Component{
                     
                 </ScrollView>
             </View>
-
-            )
+        )
     }
 }
 

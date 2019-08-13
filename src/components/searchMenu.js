@@ -24,7 +24,6 @@ export default class SearchMenu extends Component {
         const {dateStore} = this.props;
         this.dateStore = dateStore;
         dateStore.date = new Date()
-        console.log(`constroctor called : ${dateStore.date}`)
     }
 
     renderDays() {
@@ -75,10 +74,10 @@ export default class SearchMenu extends Component {
                             loop={false}
                             showsPagination={false}
                             onIndexChanged={(index) => {
+                                let selectedDate = new Date(new Date().setDate(new Date().getDate() + index));
+                                this.props.onDateChange(selectedDate);
                                 const {dateStore} = this.props;
-                                dateStore.date = new Date(new Date().setDate(new Date().getDate() + index))
-                                // console.log(new Date(new Date().setDate(new Date().getDate() + index)).format('yyyyMMdd'))
-                                console.log(dateStore.date)
+                                dateStore.date = selectedDate;
                             }}
                             ref={ref => this.swiper = ref} >
                             {this.renderDays()}

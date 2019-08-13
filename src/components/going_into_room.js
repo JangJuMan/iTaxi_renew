@@ -32,7 +32,7 @@ export default class intoRoom extends Component{
 
     componentDidMount() {
         const { taxiStore } = this.props;
-        taxiStore.getTaxiList();
+        //taxiStore.getTaxiList();
     }
     render(){
         const { taxiStore }  = this.props;
