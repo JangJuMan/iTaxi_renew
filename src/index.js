@@ -138,9 +138,6 @@ const TabNavigator = createMaterialTopTabNavigator({
 
 const navigator = createStackNavigator(
   {
-    First: {
-      screen: service
-    },
     Home:{
       screen: TabNavigator,
       navigationOptions:{
@@ -155,7 +152,7 @@ const navigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'First', 
+    initialRouteName: 'Home', 
   }
 )
 
