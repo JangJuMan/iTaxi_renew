@@ -8,6 +8,7 @@ import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
 import UpdateInfo from '../src/pages/updateInfo';
 import titleFont from '../src/variable/assets';
+import service from './pages/termsOfservice';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
@@ -137,6 +138,9 @@ const TabNavigator = createMaterialTopTabNavigator({
 
 const navigator = createStackNavigator(
   {
+    First: {
+      screen: service
+    },
     Home:{
       screen: TabNavigator,
       navigationOptions:{
@@ -151,7 +155,7 @@ const navigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Home', 
+    initialRouteName: 'First', 
   }
 )
 
