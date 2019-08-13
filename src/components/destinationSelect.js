@@ -10,6 +10,7 @@ class Top extends Component {
         this.state = { expand: true };
         this.rotateAnimation = new Animated.Value(1);
     }
+    
 
     locations = [
         ['한동대학교', '포항역', '시외버스터미널'],

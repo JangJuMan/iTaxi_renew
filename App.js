@@ -12,7 +12,7 @@ import NowDate from './stores/nowDate';
 const taxiStore = new TaxiStore();
 const userStore = new UserStore();
 const carpoolStore = new CarpoolStore();
-const dateStore = new NowDate()
+const dateStore = new NowDate();
 
 export default class App extends Component {
   render() {
