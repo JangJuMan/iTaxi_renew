@@ -38,7 +38,6 @@ export default class MakeRoom extends Component{
         }
         else{
             this.setState({person:value})
-            console.log(new Date().getTime)
         }
     }
 

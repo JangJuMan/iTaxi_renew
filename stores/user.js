@@ -43,7 +43,6 @@ export default class UserStore {
         try {
             let result = yield axios.get("http://203.252.99.145:8282" + "/user/cra");
             this.userId = result.data;
-            console.log(this.userId);
             this.state = "done";
           }
           catch (error) {
@@ -60,7 +59,6 @@ export default class UserStore {
         try {
             let result = yield axios.get("http://203.252.99.145:8282" + "/log/123/7");
             this.log = result.data;
-            console.log(this.log);
             this.state = "done";
           }
           catch (error) {
