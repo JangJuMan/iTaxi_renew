@@ -64,10 +64,19 @@ export default class intoRoom extends Component{
                     </View>
                     <View style={{flex:1,}}></View>
                 </View>
+                <View style={styles.time_person_bag}>
+                    <View style={styles.flextwo}>
+                        <Text style={{color:'gray' }}>현재 캐리어</Text>
+                    </View>
+                    <View style={{flex:5,justifyContent:'center',alignItems:'center',}}>
+                        <Text style={{color:'#3FA9F5',fontSize:25,}}>{data.num_carrier}</Text>
+                    </View>
+                    <View style={{flex:1,}}></View>
+                </View>
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={{color:'gray' }}>캐리어</Text>
+                        <Text style={{color:'gray' }}>내 캐리어</Text>
                     </View>
                     <View style={{flex:5,justifyContent:'space-evenly',alignItems:'center',flexDirection:'row',}}>
                         <TouchableOpacity style={{padding:5}}
@@ -119,7 +128,7 @@ export default class intoRoom extends Component{
 }
 const styles=StyleSheet.create({
     list:{
-        height:vw(90),
+        height:vw(100),
         backgroundColor:'white',
         width:vw(80),
         shadowColor:'gray',

@@ -14,8 +14,8 @@
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#3FA9F5",
+      "resizeMode":"cover",
     },
     "updates": {
       "fallbackToCacheTimeout": 0

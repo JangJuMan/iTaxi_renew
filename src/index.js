@@ -8,7 +8,8 @@ import Carpool from './pages/carpoolList'
 import ChatRoom from './pages/chatRoom';
 import UpdateInfo from '../src/pages/updateInfo';
 import titleFont from '../src/variable/assets';
-import service from './pages/termsOfservice';
+import Servicepage from './pages/termsOfservice';
+import FirstPage from './pages/loginPage';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
@@ -91,7 +92,7 @@ const TabNavigator = createMaterialTopTabNavigator({
   
 }, 
 {
-  initialRouteName: 'RideHistory',
+  initialRouteName: 'TaxiList',
   
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
@@ -138,6 +139,15 @@ const TabNavigator = createMaterialTopTabNavigator({
 
 const navigator = createStackNavigator(
   {
+    Service: {
+      screen: Servicepage,
+    },
+    First:{
+      screen: FirstPage,
+      navigationOptions:{
+        header:null,
+      }
+    },
     Home:{
       screen: TabNavigator,
       navigationOptions:{
@@ -152,7 +162,7 @@ const navigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Home', 
+    initialRouteName: 'First', 
   }
 )
 
