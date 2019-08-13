@@ -1,36 +1,36 @@
 import { observable, computed } from 'mobx';
 import { asyncAction } from 'mobx-utils';
 import axios from 'axios';
+import Moment from 'moment-timezone';
+
+import { DATABASE } from '../info';
 
 export default class TaxiStore {
 
     @observable taxiList = [];
-    @observable taxiId;
-
-    @observable state = "pending";
+    @observable taxi;
     errorData = "";
 
     @asyncAction
-    * getTaxiList(taxidate) {
-        this.state = "pending";
-
+    * getTaxiList(date) {
         try {
-            let result = yield axios.get("http://203.252.99.145:8282" + "/taxilist/20190801");
-            this.taxiList = result.data.data;
-            this.state = "done";
-          }
-          catch (error) {
+            let result = yield axios.get(`${DATABASE}/taxilist/${date}`);
+            this.taxiList = result.data.data.filter(item => {
+                if ((Moment.tz(`${item.departure_date} ${item.departure_time}`, 'Asia/Seoul').diff(Moment())) < 0)
+                    return false;
+                return true;
+            });
+        }
+        catch (error) {
             console.log(JSON.stringify(error));
             this.errorData = error.message;
-            this.state = "error";
-          }
-
+        }
     }
 
     @asyncAction
     * createTaxiList(date, time, d_place, a_place, host_id, name, people, carrier) {
       try {
-        let result = yield axios.post("http://203.252.99.145:8282" + "/taxi/" + _id, {
+        let response = yield axios.post(`${DATABASE}/taxi/${_id}`, {
           departure_date: date,
           departure_time: time,
           departure_place: d_place,
@@ -40,33 +40,23 @@ export default class TaxiStore {
           num_people: people,
           num_carrier: carrier
         });
-        console.log(result);
         this.taxiList.push(response);
-        this.state = 'done';
       }
       catch (error) {
         console.log(error);
         this.errorData = error.message;
-        this.state = 'error';
       }
     }
 
-
-
     @asyncAction
-    * getTaxiId() {
-        this.state = "pending";
-
+    * getTaxi(id) {
         try {
-            let result = yield axios.get("http://203.252.99.145:8282" + "/taxi/" + _id);
-            this.taxiId = result.data.data;
-            this.state = "done";
-          }
-          catch (error) {
+            let result = yield axios.get(`${DATABASE}/taxi/${id}`);
+            this.taxi = result.data;
+        }
+        catch (error) {
             console.log(JSON.stringify(error));
             this.errorData = error.message;
-            this.state = "error";
-          }
+        }
     }
-
 }

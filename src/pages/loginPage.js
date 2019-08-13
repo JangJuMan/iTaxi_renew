@@ -34,7 +34,7 @@ export default class App extends Component {
                     
                     <View style={styles.profileButton}>
                         <TouchableOpacity onPress={() => {
-                            this.props.navigation.navigate('Home')
+                            this.props.navigation.navigate('Service')
                         }}>
                         <View style={styles.changeInfo}>
                             <Text style={styles.changeInfoText}>Sign in(로그인)</Text>

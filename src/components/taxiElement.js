@@ -19,11 +19,6 @@ import titleFont from '../variable/assets';
 
 @observer
 export default class TaxiElement extends Component{
-    componentDidMount() {
-        const { taxiStore } = this.props;
-        taxiStore.getTaxiList();
-    }
-
     render(){
         const { seat, carrier } = this.props;
         const seat_img = (seat !== undefined) ? seatImgs[seat] : undefined;
