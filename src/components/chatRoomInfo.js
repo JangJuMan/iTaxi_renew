@@ -11,7 +11,7 @@ import Communications from 'react-native-communications';
 import titleFont from '../variable/assets';
 
 @inject('taxiStore')
-@inject('carpoolStore')
+// @inject('carpoolStore')
 
 @observer
 export default class ChatRoom extends Component{
@@ -28,9 +28,9 @@ export default class ChatRoom extends Component{
 
     componentDidMount() {
         const { taxiStore } = this.props;
-        const { carpoolStore } = this.props;
+        // const { carpoolStore } = this.props;
         taxiStore.getTaxiList();
-        carpoolStore.getCarpoolList();
+        // carpoolStore.getCarpoolList();
     }
 
     getCarrier() {
@@ -64,6 +64,7 @@ export default class ChatRoom extends Component{
     render(){
         const { taxiStore } = this.props;
         const data = taxiStore.taxiId;
+
 
         return(
         <View>

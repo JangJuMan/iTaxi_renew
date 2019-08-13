@@ -13,6 +13,9 @@ import titleFont from '../../variable/assets';
 *   @props onCancelButton    press cancel button
 */
 @inject('dateStore')
+@inject('taxiStore')
+@inject('userStore')
+
 @observer
 export default class MakeRoom extends Component{
     state={
@@ -51,6 +54,7 @@ export default class MakeRoom extends Component{
     render(){
         const heightColor = 'blue'
         const unheightColor = '#4dabf7'
+        const {taxiStore, userStore} = this.props;
 
         return(
             <View style={styles.list}>
@@ -199,7 +203,8 @@ export default class MakeRoom extends Component{
                         <Text style={styles.buttonText}>취소</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                        this.props.onOkButton(this.state.carrier, this.state.person);
+                        taxiStore.createTaxiList(this.state.date, this.state.time, '고속버스터미널', '커피유야', userStore.userId.student_id, userStore.userId.name, this.state.person, this.state.carrier)
+                        this.props.onOkButton();
                         }}>
                         <Text style={styles.buttonText}>방만들기</Text>
                     </TouchableOpacity>
