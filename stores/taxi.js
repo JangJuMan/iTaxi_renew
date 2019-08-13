@@ -34,8 +34,8 @@ export default class TaxiStore {
         this.state = "pending";
 
         try {
-            let result = yield axios.get("http://203.252.99.145:8282" + "/taxi/20190801");
-            this.taxiId = result.data.data;
+            let result = yield axios.get("http://203.252.99.145:8282" + "/taxi/5d43f682c67c295d9a48fe4f");
+            this.taxiId = result.data;
             this.state = "done";
           }
           catch (error) {

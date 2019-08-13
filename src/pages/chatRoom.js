@@ -3,9 +3,6 @@ import { View, } from 'react-native';
 import ChatRoomInfo from '../components/chatRoomInfo';
 import Chatting from '../components/chatting';
 
-// /**
-//  * @props carrier       number of carrier
-//  */
 
 export default class ChatRoom extends Component{
     static navigationOptions = ({navigation}) =>{

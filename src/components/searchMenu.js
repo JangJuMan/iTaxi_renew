@@ -32,7 +32,8 @@ export default class SearchMenu extends Component {
 
         for(const index of Array(31).keys()) {
             render.push(
-                <View style={styles.slide}>
+                // key = {index} 오류 거슬려서 잠깐 치우려고
+                <View style={styles.slide} key={index}>
                     <Text style={styles.text}>{new Date(new Date().setDate(this.state.date.getDate() + index)).format('MM-dd')}</Text>
                 </View>
             );
