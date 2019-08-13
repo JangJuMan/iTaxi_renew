@@ -5,7 +5,7 @@ import Moment from 'moment-timezone';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import EmptyList from '../components/emptyList';
-import EnterRoom from '../components/going_into_room';
+import EnterRoom from '../components/modal/enterRoom';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModalControl from '../variable/modalControl';
 import MakeRoom from '../components/modal/MakeRoom';

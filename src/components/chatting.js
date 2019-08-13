@@ -20,13 +20,6 @@ export default class ChatRoom extends Component {
         height: textHeight * 2,
     }
 
-    constructor(props){
-        super(props)
-        const { taxiStore } = this.props;
-        taxiStore.getTaxiId();
-        this.taxiStore = taxiStore
-    }
-
     componentWillReceiveProps(nextProps){
         if(nextProps.value === ''){ 
             this.setState({height: textHeight*2 , lines:1})
@@ -65,7 +58,7 @@ export default class ChatRoom extends Component {
                         onLayout={ev => this.scrollViewHeight}
                     >
                         <FlatList
-                            data={taxiStore.taxiId.chats}
+                            data={taxiStore.taxi.chats}
                             renderItem = {({item}) =>
                                 <View>
                                     <View style={styles.new_member_bar}>
@@ -89,7 +82,7 @@ export default class ChatRoom extends Component {
                             }/>
 
                         <FlatList
-                            data={taxiStore.taxiId.chats}
+                            data={taxiStore.taxi.chats}
                             renderItem = {({item}) =>
                                 <View>
                                     <View style={styles.they_say}>

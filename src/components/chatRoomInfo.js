@@ -26,16 +26,9 @@ export default class ChatRoom extends Component{
         this.setState({ modalVisible: visible });
     }
 
-    componentDidMount() {
-        const { taxiStore } = this.props;
-        // const { carpoolStore } = this.props;
-        taxiStore.getTaxiList();
-        // carpoolStore.getCarpoolList();
-    }
-
     getCarrier() {
         const { taxiStore } = this.props;
-        const data = taxiStore.taxiId;
+        const data = taxiStore.taxi;
         // 이것처럼 꺼내서 쓸 수 있습니다.
         // console.log(`carier info: ${this.props.navigation.state.params.Carrier}`);
         // console.log(`person info :${this.props.navigation.state.params.Person}`);
@@ -63,7 +56,7 @@ export default class ChatRoom extends Component{
 
     render(){
         const { taxiStore } = this.props;
-        const data = taxiStore.taxiId;
+        const data = taxiStore.taxi;
 
 
         return(

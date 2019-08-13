@@ -13,10 +13,7 @@ export default class ChatRoom extends Component{
     constructor(props){
         super(props)
         const { taxiStore } = this.props;
-        taxiStore.getTaxiId();
-        this.taxiStore = taxiStore
-        console.log(this.taxiStore.taxiId.host_name)
-        this.setState({roomTitle:this.taxiStore.taxiId.host_name})
+        this.setState({roomTitle:taxiStore.taxi.host_name})
     }
 
     static navigationOptions = ({navigation}) =>{
