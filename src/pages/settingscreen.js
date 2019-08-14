@@ -43,24 +43,29 @@ export default class Setting extends Component{
       ]
       
         return(
-          <View style={styles.contain}>
-              {
-                list.map((item, i) => (
-                  <ListItem
-                    // onPress = {() => {
-                    //   this.props.navigation.navigate('Notice')
-                    // }}
-                    onPress={()=>this.props.navigation.navigate(`${item.next}`)}
-                    style={styles.line}
-                    Component={TouchableOpacity}
-                    key={i}
-                    title={item.title}
-                    leftIcon={{ name: item.icon, color:'gray' }}
-                    chevron
-                  />
-                ))
-              }
+          <View>
+            <View style={styles.contain}>
+                {
+                  list.map((item, i) => (
+                    <ListItem
+                      // onPress = {() => {
+                      //   this.props.navigation.navigate('Notice')
+                      // }}
+                      onPress={()=>this.props.navigation.navigate(`${item.next}`)}
+                      style={styles.line}
+                      Component={TouchableOpacity}
+                      key={i}
+                      title={item.title}
+                      leftIcon={{ name: item.icon, color:'gray' }}
+                      chevron
+                    />
+                  ))
+                }
+            </View>
+            <View style={styles.bottom}>
+              <Text style={styles.cra}>Powered by CRA</Text>
           </View>
+        </View>
         )
   
   
