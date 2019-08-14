@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, FlatList, Text, View, Alert } from 'react-native';
-import { ListItem } from 'react-native-elements'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AppRegistry, StyleSheet, FlatList, Text, View, Alert ,TouchableOpacity} from 'react-native';
+import { ListItem } from 'react-native-elements';
 import { vw } from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import titleFont from '../variable/assets';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class Setting extends Component{
   
@@ -13,7 +10,7 @@ export default class Setting extends Component{
       const list = [
       {
         title: '공지사항',
-        icon: 'av-timer'
+        icon: 'list'
       },
       {
         title: '내정보',
@@ -35,18 +32,19 @@ export default class Setting extends Component{
       
         return(
           <View style={styles.contain}>
-            
-            
               {
                 list.map((item, i) => (
                   <ListItem
+                    style={styles.line}
+                    Component={TouchableOpacity}
                     key={i}
                     title={item.title}
-                    leftIcon={{ name: item.icon }}
+                    leftIcon={{ name: item.icon, color:'gray' }}
+                    chevron
+                    badge={{ value: 3, textStyle: { color: 'white' } }}
                   />
                 ))
               }
-            
           </View>
         )
   
@@ -56,8 +54,12 @@ export default class Setting extends Component{
   
   
 
-  const styles=StyleSheet.create({
-    contain: {
+const styles=StyleSheet.create({
+  contain: {
+
   },
-    
-    })
+    line: {
+      borderBottomWidth: 0.5,
+      borderBottomColor:'gray'
+    },
+})
