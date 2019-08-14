@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView, AppRegistry, Button, Alert, 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { vw } from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import titleFont from '../variable/assets';
+import titleFont from '../../variable/assets';
 
 
 class Profile_info extends Component {
@@ -28,7 +28,7 @@ class Profile_my extends Component {
 
 @inject('userStore')
 @observer
-export default class Setting extends Component {
+export default class myInfo extends Component {
     constructor(props) {
         super(props);
     }

@@ -1,34 +1,41 @@
-<<<<<<< HEAD
-=======
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, FlatList, Text, View, Alert ,TouchableOpacity} from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { vw } from 'react-native-expo-viewport-units';
-import { observer, inject } from 'mobx-react';
 
 export default class Setting extends Component{
+
   
     render(){ 
       const list = [
       {
         title: '공지사항',
-        icon: 'list'
+        icon: 'list',
+        next: "Notice"
       },
       {
         title: '내정보',
-        icon: 'mood'
+        icon: 'mood',
+        next:"Myinfo"
       },
       {
         title: '버전정보/개발자',
-        icon: 'info'
+        icon: 'info',
+        next:"Version"
       },
       {
-        title: '알림/버그제보',
-        icon: 'alarm'
+        title: '알림',
+        icon: 'alarm',
+        next:"Alarm"
+      },
+      {
+        title: '버그제보',
+        icon: 'bug-report',
+        next: "Bug"
       },
       {
         title: '이용약관',
-        icon: 'https'
+        icon: 'https',
+        next: "TermsOfservice"
       },
       ]
       
@@ -37,6 +44,10 @@ export default class Setting extends Component{
               {
                 list.map((item, i) => (
                   <ListItem
+                    // onPress = {() => {
+                    //   this.props.navigation.navigate('Notice')
+                    // }}
+                    onPress={()=>this.props.navigation.navigate(`${item.next}`)}
                     style={styles.line}
                     Component={TouchableOpacity}
                     key={i}
@@ -65,4 +76,3 @@ const styles=StyleSheet.create({
       borderBottomColor:'gray'
     },
 })
->>>>>>> 09c987f76b90d3dcfaab3f9bc408513c19e2ea33

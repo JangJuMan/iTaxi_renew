@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, Image, ScrollView, AppRegistry, Button, Alert, 
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import titleFont from '../variable/assets';
+import titleFont from '../../variable/assets';
 
 
-export default class Setting extends Component {
+export default class bug extends Component {
     constructor(props) {
         super(props);
     }
@@ -30,7 +30,7 @@ export default class Setting extends Component {
                 <View style={{ margin: vw(3) }}></View>
                 <View style={styles.firstbox}>
                     <ScrollView>
-                        <Text style={{ margin: vw(3) }}>
+                        <Text selectable ={true} style={{ margin: vw(3) }}>
                             효과적인 제보를 위해 아래 양식을 맞추어 {'\n'}메일로 보내주시기 바랍니다.{'\n\n'}
 
                             분류: (버그 제보 / 건의사항){'\n\n'}
