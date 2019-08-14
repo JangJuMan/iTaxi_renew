@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text,StyleSheet,Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
-import { vw, vh }  from 'react-native-expo-viewport-units';
+import { vw }  from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
 
 /**
  * @props onOkButton      press enter room button (ok button)
  * @props onCancelButton  press cancel button
  */
-
 @inject('taxiStore')
 @observer
 export default class intoRoom extends Component{
-    constructor(props){
-        super(props);
-    }
-
     state={
         carrier:-1,
     }
@@ -30,13 +25,9 @@ export default class intoRoom extends Component{
         }
     }
 
-    componentDidMount() {
-        const { taxiStore } = this.props;
-        taxiStore.getTaxiList();
-    }
     render(){
         const { taxiStore }  = this.props;
-        const data = taxiStore.taxiId;
+        const data = taxiStore.taxi;
         const heightColor = 'blue'
         const unheightColor = '#4dabf7'
         return(
@@ -48,7 +39,6 @@ export default class intoRoom extends Component{
                 <View style={styles.fromTo}>
                     <View style={styles.location}>
                         <Text style={styles.locationText}>{data.departure_place}</Text>
-                        
                     </View>
                         <Icon style={styles.arrow} name="arrow-right" size={vw(7)} color="gray" />
                     <View style={styles.location}>
@@ -114,12 +104,12 @@ export default class intoRoom extends Component{
                     <TouchableOpacity onPress={() => {
                         this.props.onCancelButton();
                         }}>
-                    <Text style={{color:'#3FA9F5',fontSize:17 }}>취소</Text>
+                    <   Text style={{color:'#3FA9F5',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         this.props.onOkButton(this.state.carrier);
                     }}>
-                    <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
+                        <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
                     </TouchableOpacity>
                 </View>
             </View>

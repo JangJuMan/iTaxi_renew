@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import EmptyList from '../components/emptyList';
 import MakeRoom from '../components/modal/MakeRoom';
 import ModalControl from '../variable/modalControl';
+import SearchMenu from '../components/searchMenu';
 import { observer } from 'mobx-react';
 import Modal from '../elements/modal';
 
@@ -27,6 +28,11 @@ export default class ListView extends Component{
     render(){
         return(
             <View style={styles.container}>
+                {/* 중단 수평선 */}
+                <SearchMenu 
+                    style={{marginTop: 10, marginBottom: 10}}/>
+                <View style={[styles.horizontal_divider]} />
+
                 <EmptyList 
                     navigation={this.props.navigation}/>
                 <Modal
@@ -35,17 +41,13 @@ export default class ListView extends Component{
                     visible={ModalControl.modalVisible_carpool}
                     onRequestClose={() => ModalControl.modalVisible_carpool=false}
                     render={
-                    <View style={styles.modalBackground}>
-                        <View style={styles.realModal}>
-                            <MakeRoom 
-                                navigation={this.props.navigation}
-                                onOkButton = {() => {
-                                    ModalControl.modalVisible_carpool=false,
-                                    this.props.navigation.navigate('Chat');
-                                }}
-                                onCancelButton = {() => ModalControl.modalVisible_carpool=false}/>
-                        </View>
-                    </View>
+                        <MakeRoom 
+                            navigation={this.props.navigation}
+                            onOkButton = {() => {
+                                ModalControl.modalVisible_carpool=false,
+                                this.props.navigation.navigate('Chat');
+                            }}
+                            onCancelButton = {() => ModalControl.modalVisible_carpool=false}/>
                     }/>
             </View>
         );
@@ -56,13 +58,8 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
     },
-    modalBackground: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    realModal: {
-        justifyContent: 'center',
-        alignItems: 'center',
+    horizontal_divider:{
+        borderBottomWidth: 1.0, 
+        borderBottomColor: '#0b0b0b25', 
     },
 })

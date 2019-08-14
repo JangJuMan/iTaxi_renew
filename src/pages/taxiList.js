@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
-import {inject, observer} from 'mobx-react';
+import { inject, observer } from 'mobx-react';
+import moment from 'moment-timezone';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
-import EnterRoom from '../components/going_into_room';
+import EmptyList from '../components/emptyList';
+import EnterRoom from '../components/modal/enterRoom';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModalControl from '../variable/modalControl';
 import MakeRoom from '../components/modal/MakeRoom';
@@ -16,6 +18,7 @@ export default class TaxiList extends Component{
     state={
         modalVisible: false,
         dataReceive: false,
+        currentDate: moment(),
         carrierNum : -1,
         personNum : -1,
     }
@@ -32,17 +35,17 @@ export default class TaxiList extends Component{
     };
 
     componentDidMount() {
-        this.getTaxiData();
+        this.getTaxiData(moment().tz('Asia/Seoul').format('YYYYMMDD'));
     }
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
     }
 
-    getTaxiData = () => {
+    getTaxiData = date => {
         this.setState({ dataReceive: false });
         const { taxiStore } = this.props;
-        taxiStore.getTaxiList().then(() => this.setState({ dataReceive: true }));
+        taxiStore.getTaxiList(date).then(() => this.setState({ dataReceive: true }));
     }
 
     render(){
@@ -67,37 +70,54 @@ export default class TaxiList extends Component{
             <View style={styles.conatiner}>
                 <SearchMenu
                     onSearch={(departure, destination) => console.log(departure, destination)}
+                    onDateChange={(date) => {
+                        this.setState({ currentDate: date });
+                        taxiStore.getTaxiList(date.format('YYYYMMDD'));
+                    }}
                     style={styles.search_menu} />
                 <View style={styles.horizontal_divider} />
 
-                <ScrollView>
+                {
+                    taxiStore.taxiList.length > 0 &&
+                    <ScrollView>
+                        <View style={styles.log_contents}>
+                            <View style={styles.log_container}>
+                                <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
+                                <View style={styles.horizontal_date_bar}></View>
+                            </View>
+                            <FlatList
+                                data={taxiStore.taxiList}
+                                keyExtractor={(item, index) => item._id.toString()}
+                                renderItem = {({item}) => 
+                                <View>
+                                    <TouchableOpacity onPress={() => {
+                                        taxiStore.taxi = item;
+                                        this.setModalVisible(true);
+                                    }}>
+                                        <ListEntry
+                                            style={[styles.list_entry, item.curr_people == item.num_people ? {backgroundColor: '#E6E6E6'} : null]}
+                                            date={item.departure_date}
+                                            time={item.departure_time}
+                                            from={item.departure_place}
+                                            to={item.arrival_place}
+                                            seat={item.num_people}
+                                            carrier={item.num_carrier}/>
+                                    </TouchableOpacity>
+                                </View>
+                            }/>
+                        </View>
+                    </ScrollView>
+                }
+                {
+                    taxiStore.taxiList.length == 0 &&
                     <View style={styles.log_contents}>
                         <View style={styles.log_container}>
-                            <Text style={styles.date_of_logs}>2019-08-01</Text>
+                            <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
                             <View style={styles.horizontal_date_bar}></View>
                         </View>
-                        <FlatList
-                            data = {taxiStore.taxiList}
-                            keyExtractor={(item, index) => item._id.toString()}
-                            renderItem = {({item}) => 
-                            <View>
-                                <TouchableOpacity onPress={() => {
-                                    taxiStore.taxiId = item;
-                                    this.setModalVisible(true);
-                                }}>
-                                    <ListEntry
-                                        style={[styles.list_entry, item.curr_people == item.num_people ? {backgroundColor: '#E6E6E6'} : null]}
-                                        date={item.departure_date}
-                                        time={item.departure_time}
-                                        from={item.departure_place}
-                                        to={item.arrival_place}
-                                        seat={item.num_people}
-                                        carrier={item.num_carrier}/>
-                                </TouchableOpacity>
-                            </View>
-                        }/>
+                        <EmptyList navigation={this.props.navigation}/>
                     </View>
-                </ScrollView>
+                }
 
                 {/* going in to room */}
                 <Modal

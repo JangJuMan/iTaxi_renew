@@ -1,33 +1,24 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Keyboard, Platform, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Dimensions, KeyboardAvoidingView, Keyboard, Platform, ScrollView, Button, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import OC from 'open-color';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import titleFont from '../variable/assets';
-
+import { inject, observer } from 'mobx-react';
 
 const iosTextHeight = 13.5
 const androidTextHeight = 13.5
 const textHeight = Platform.OS === 'ios' ? iosTextHeight : androidTextHeight;
 
+@inject('taxiStore')
+// @inject('carrpoolStore')
+@observer
 export default class ChatRoom extends Component {
     state = {
         text: '',
         sendingMsg: '',
         height: textHeight * 2,
     }
-
-    // componentWillMount(){
-    //     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this))
-    // }
-
-    // componentWillUnmount () {
-    //     this.keyboardDidShowListener.remove()
-    // }
-
-    // keyboardDidShow(e){
-    //     this.scrollToBottom();
-    // }
 
     componentWillReceiveProps(nextProps){
         if(nextProps.value === ''){ 
@@ -41,16 +32,23 @@ export default class ChatRoom extends Component {
     }
 
     scrollToBottom(){
-        this.refs.scrollView.scrollToEnd({duration: 2000});
+        this.refs.scrollView.scrollToEnd({duration: 500});
+    }
+
+    convertTime(value){
+        value = String(value).split(' ');
+        time = value[1].split(':');
+        result = `${time[0]}:${time[1]}`
+        return result
     }
 
     render() {
+        const {taxiStore} = this.props;
         contentHeight = 0
         scrollViewHeight = 0
 
         return (
             <View style={styles.container}>
-            {/* <KeyboardAvoidingView style={styles.container} behavior='position' contentContainerStyle={{ flex: 1 }}  >   */}
                 <View style={{ backgroundColor: '#EEEEEE', flex: 10, }}>
                     <ScrollView 
                         style={styles.chatting_scroll}
@@ -59,7 +57,49 @@ export default class ChatRoom extends Component {
                         onContentSizeChange={(w,h) => this.contentHeight = h}
                         onLayout={ev => this.scrollViewHeight}
                     >
+                        <FlatList
+                            data={taxiStore.taxi.chats}
+                            renderItem = {({item}) =>
+                                <View>
+                                    <View style={styles.new_member_bar}>
+                                        <Text style={styles.new_member_text}>{item.content}</Text> 
+                                    </View>
+                                    <View style={styles.i_say}>
+                                        <View style={styles.flex_row}>
+                                            <Icon style={{}} name="ios-ribbon" size={20} />
+                                            <Text style={styles.myname_text}>{item.user_name}</Text> 
+                                        </View>
+                                        <View style={styles.i_say_msg_container}>
+                                            <View style={styles.my_time_container}>
+                                                <Text style={styles.mytime}>{this.convertTime(item.date_time)}</Text> 
+                                            </View>
+                                            <View style={styles.i_say_text}>
+                                                <Text style={styles.white_text}>{item.content.trim()}</Text>  
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View>
+                            }/>
 
+                        <FlatList
+                            data={taxiStore.taxi.chats}
+                            renderItem = {({item}) =>
+                                <View>
+                                    <View style={styles.they_say}>
+                                        <Text style={styles.their_name_text}>{item.user_name}</Text>
+                                        <View style={styles.they_say_msg_container}>
+                                            <View style={styles.they_say_text}>
+                                                <Text>{item.content.trim()}</Text>
+                                            </View>
+                                            <View style={styles.they_time_container}>
+                                                <Text style={styles.they_time}>{this.convertTime(item.date_time)}</Text>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View>
+                            }/>
+
+                        {/* 내가 말하는 부분
                         <View style={styles.new_member_bar}>
                             <Text style={styles.new_member_text}>장주만 (님)이 입장하셨습니다.</Text>
                         </View>
@@ -79,10 +119,12 @@ export default class ChatRoom extends Component {
                             </View>
                         </View>
 
+                        입장 메시지
                         <View style={styles.new_member_bar}>
                             <Text style={styles.new_member_text}>팀원1 (님)이 입장하셨습니다.</Text>
                         </View>
 
+                        상대가 말하는 부분
                         <View style={styles.they_say}>
                             <Text style={styles.their_name_text}>팀원1</Text>
                             <View style={styles.they_say_msg_container}>
@@ -93,169 +135,8 @@ export default class ChatRoom extends Component {
                                     <Text style={styles.they_time}>오후 3:17</Text>
                                 </View>
                             </View>
-                        </View>
+                        </View> */}
 
-
-                        <View style={styles.i_say}>
-                            <View style={styles.flex_row}>
-                                <Icon style={{}} name="ios-ribbon" size={20} />
-                                <Text style={styles.myname_text}>장주만</Text>
-                            </View>
-                            <View style={styles.i_say_msg_container}>
-                                <View style={styles.my_time_container}>
-                                    <Text style={styles.mytime}>오후 3:17</Text>
-                                </View>
-                                <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                            </View>
-                        </View>
-
-
-                        <View style={styles.they_say}>
-                            <Text style={styles.their_name_text}>팀원1</Text>
-                            <View style={styles.they_say_msg_container}>
-                                <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                                <View style={styles.they_time_container}>
-                                    <Text style={styles.they_time}>오후 3:17</Text>
-                                </View>
-                            </View>
-                        </View>
-
-
-                        <View style={styles.i_say}>
-                            <View style={styles.flex_row}>
-                                <Icon style={{}} name="ios-ribbon" size={20} />
-                                <Text style={styles.myname_text}>장주만</Text>
-                            </View>
-                            <View style={styles.i_say_msg_container}>
-                                <View style={styles.my_time_container}>
-                                    <Text style={styles.mytime}>오후 3:17</Text>
-                                </View>
-                                <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                            </View>
-                        </View>
-
-                        <View style={styles.they_say}>
-                            <Text style={styles.their_name_text}>팀원1</Text>
-                            <View style={styles.they_say_msg_container}>
-                                <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                                <View style={styles.they_time_container}>
-                                    <Text style={styles.they_time}>오후 3:17</Text>
-                                </View>
-                            </View>
-                        </View>
-
-
-                        <View style={styles.i_say}>
-                            <View style={styles.flex_row}>
-                                <Icon style={{}} name="ios-ribbon" size={20} />
-                                <Text style={styles.myname_text}>장주만</Text>
-                            </View>
-                            <View style={styles.i_say_msg_container}>
-                                <View style={styles.my_time_container}>
-                                    <Text style={styles.mytime}>오후 3:17</Text>
-                                </View>
-                                <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                            </View>
-                        </View>
-
-
-                        <View style={styles.they_say}>
-                            <Text style={styles.their_name_text}>팀원1</Text>
-                            <View style={styles.they_say_msg_container}>
-                                <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                                <View style={styles.they_time_container}>
-                                    <Text style={styles.they_time}>오후 3:17</Text>
-                                </View>
-                            </View>
-                        </View>
-
-
-                        <View style={styles.i_say}>
-                            <View style={styles.flex_row}>
-                                <Icon style={{}} name="ios-ribbon" size={20} />
-                                <Text style={styles.myname_text}>장주만</Text>
-                            </View>
-                            <View style={styles.i_say_msg_container}>
-                                <View style={styles.my_time_container}>
-                                    <Text style={styles.mytime}>오후 3:17</Text>
-                                </View>
-                                <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                            </View>
-                        </View>
-
-                        <View style={styles.new_member_bar}>
-                            <Text style={styles.new_member_text}>팀원2 (님)이 입장하셨습니다.</Text>
-                        </View>
-
-                        <View style={styles.they_say}>
-                            <Text style={styles.their_name_text}>팀원1</Text>
-                            <View style={styles.they_say_msg_container}>
-                                <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                                <View style={styles.they_time_container}>
-                                    <Text style={styles.they_time}>오후 3:17</Text>
-                                </View>
-                            </View>
-                        </View>
-
-
-                        <View style={styles.i_say}>
-                            <View style={styles.flex_row}>
-                                <Icon style={{}} name="ios-ribbon" size={20} />
-                                <Text style={styles.myname_text}>장주만</Text>
-                            </View>
-                            <View style={styles.i_say_msg_container}>
-                                <View style={styles.my_time_container}>
-                                    <Text style={styles.mytime}>오후 3:17</Text>
-                                </View>
-                                <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                            </View>
-                        </View>
-
-                        <View style={styles.they_say}>
-                            <Text style={styles.their_name_text}>팀원1</Text>
-                            <View style={styles.they_say_msg_container}>
-                                <View style={styles.they_say_text}>
-                                    <Text>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                                <View style={styles.they_time_container}>
-                                    <Text style={styles.they_time}>오후 3:17</Text>
-                                </View>
-                            </View>
-                        </View>
-
-
-                        <View style={styles.i_say}>
-                            <View style={styles.flex_row}>
-                                <Icon style={{}} name="ios-ribbon" size={20} />
-                                <Text style={styles.myname_text}>장주만</Text>
-                            </View>
-                            <View style={styles.i_say_msg_container}>
-                                <View style={styles.my_time_container}>
-                                    <Text style={styles.mytime}>오후 3:17</Text>
-                                </View>
-                                <View style={styles.i_say_text}>
-                                    <Text style={styles.white_text}>{this.state.sendingMsg.trim()}</Text>
-                                </View>
-                            </View>
-                        </View>
                     </ScrollView>
                 </View>
                 <View style={styles.message_container}>
@@ -292,7 +173,6 @@ export default class ChatRoom extends Component {
                     </TouchableOpacity>
                 </View>
                 <KeyboardSpacer topSpacing={0}/>
-            {/* </KeyboardAvoidingView> */}
             </View>
         );
     }
@@ -340,7 +220,8 @@ const styles = StyleSheet.create({
         color: 'blue',
         marginBottom: 5,
         fontFamily:titleFont,
-        fontWeight:"200"
+        marginRight: 4,
+        fontWeight: "200"
     },
     my_time_container: {
         flexDirection: 'column-reverse',
@@ -375,6 +256,7 @@ const styles = StyleSheet.create({
     their_name_text: {
         fontWeight: 'bold',
         color: 'blue',
+        marginLeft:4,
         marginBottom: 5,
         fontFamily:titleFont,
         fontWeight:"200"

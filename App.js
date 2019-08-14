@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import MainPage from './src/index';
-// import MainPage from './src/pages/chatRoom';
 import { Provider } from 'mobx-react';
+import MainPage from './src/index';
+
 import TaxiStore from './stores/taxi';
 import UserStore from './stores/user';
 import CarpoolStore from './stores/carpool';
-
-import DateFormat from './src/functions/dateFormat'
 import NowDate from './stores/nowDate';
 
 const taxiStore = new TaxiStore();
