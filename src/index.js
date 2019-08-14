@@ -16,6 +16,7 @@ import VersionScreen from '../src/pages/setting/version';
 import AlarmScreen from '../src/pages/setting/alarm';
 import BugScreen from '../src/pages/setting/bug';
 import TermScreen from '../src/pages/setting/service';
+import detailNoticeScreen from '../src/pages/setting/detailNotice';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
@@ -183,6 +184,9 @@ const navigator = createStackNavigator(
     },
     TermsOfservice: {
       screen: TermScreen,
+    },
+    detailNotice:{
+      screen:detailNoticeScreen,
     }
 
   },

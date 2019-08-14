@@ -36,6 +36,12 @@ export default class Setting extends Component{
               {
                 list.map((item, i) => (
                   <ListItem
+                    onPress = {() => {
+                      this.props.navigation.navigate('detailNotice',{
+                        date: item.subtitle,
+                        title: item.title,
+                      } )
+                    }}
                     style={styles.line}
                     Component={TouchableOpacity}
                     key={i}

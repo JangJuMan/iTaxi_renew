@@ -12,7 +12,10 @@ export default class App extends Component {
             <View style={{height:vh(50),justifyContent:'center',alignItems:'stretch',flexDirection:'column',marginTop:vw(25)}}>
                 <View style={styles.top}>
                 <Image style={styles.logo} source={mainLogo}></Image>
-                <Text style={styles.text}>iTaxi</Text>
+                <View style={{flexDirection:'column'}}>
+                    <Text style={styles.text}>iTaxi</Text>
+                    <Text style={styles.cra}>Powered by CRA</Text>
+                </View>
                 </View>
 
                 <View style={styles.info}>
@@ -63,7 +66,10 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:vw(20),
-        margin:15,
+        color: '#3FA9F5',
+    },
+    cra:{
+        fontSize:vw(5),
         color: '#3FA9F5',
     },
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, FlatList, Text, View, Alert ,TouchableOpacity} from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { vw, vh } from 'react-native-expo-viewport-units';
 
 export default class Setting extends Component{
-
-  
+    
     render(){ 
       const list = [
       {
@@ -40,24 +40,26 @@ export default class Setting extends Component{
       ]
       
         return(
-          <View style={styles.contain}>
-              {
-                list.map((item, i) => (
-                  <ListItem
-                    // onPress = {() => {
-                    //   this.props.navigation.navigate('Notice')
-                    // }}
-                    onPress={()=>this.props.navigation.navigate(`${item.next}`)}
-                    style={styles.line}
-                    Component={TouchableOpacity}
-                    key={i}
-                    title={item.title}
-                    leftIcon={{ name: item.icon, color:'gray' }}
-                    chevron
-                    badge={{ value: 3, textStyle: { color: 'white' } }}
-                  />
-                ))
-              }
+          <View>
+            <View>
+                {
+                  list.map((item, i) => (
+                    <ListItem
+                      onPress={()=>this.props.navigation.navigate(`${item.next}`)}
+                      style={styles.line}
+                      Component={TouchableOpacity}
+                      key={i}
+                      title={item.title}
+                      leftIcon={{ name: item.icon, color:'gray' }}
+                      chevron
+                      badge={{ value: 3, textStyle: { color: 'white' } }}
+                    />
+                  ))
+                }
+            </View>
+            <View style={styles.bottom}>
+              <Text style={styles.cra}>Powered by CRA</Text>
+            </View>
           </View>
         )
   
@@ -74,5 +76,14 @@ const styles=StyleSheet.create({
     line: {
       borderBottomWidth: 0.5,
       borderBottomColor:'gray'
+    },
+    bottom:{
+      padding:vw(2),
+      justifyContent:'flex-end',
+      alignItems:'flex-end'
+    },
+      cra:{
+        fontSize:vw(4),
+        color: '#3FA9F5',
     },
 })
