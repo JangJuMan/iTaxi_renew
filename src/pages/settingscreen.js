@@ -10,56 +10,56 @@ export default class Setting extends Component{
       {
         title: '공지사항',
         icon: 'list',
-        next: "Notice"
+        next: "Notice",
       },
       {
         title: '내정보',
         icon: 'mood',
-        next:"Myinfo"
+        next:"Myinfo",
+
       },
       {
         title: '버전정보/개발자',
         icon: 'info',
-        next:"Version"
+        next:"Version",
+
       },
       {
         title: '알림',
         icon: 'alarm',
-        next:"Alarm"
+        next:"Alarm",
       },
       {
         title: '버그제보',
         icon: 'bug-report',
-        next: "Bug"
+        next: "Bug",
       },
       {
         title: '이용약관',
         icon: 'https',
-        next: "TermsOfservice"
+        next: "TermsOfservice",
+
       },
       ]
       
         return(
-          <View>
-            <View>
-                {
-                  list.map((item, i) => (
-                    <ListItem
-                      onPress={()=>this.props.navigation.navigate(`${item.next}`)}
-                      style={styles.line}
-                      Component={TouchableOpacity}
-                      key={i}
-                      title={item.title}
-                      leftIcon={{ name: item.icon, color:'gray' }}
-                      chevron
-                      badge={{ value: 3, textStyle: { color: 'white' } }}
-                    />
-                  ))
-                }
-            </View>
-            <View style={styles.bottom}>
-              <Text style={styles.cra}>Powered by CRA</Text>
-            </View>
+          <View style={styles.contain}>
+              {
+                list.map((item, i) => (
+                  <ListItem
+                    // onPress = {() => {
+                    //   this.props.navigation.navigate('Notice')
+                    // }}
+                    onPress={()=>this.props.navigation.navigate(`${item.next}`)}
+                    style={styles.line}
+                    Component={TouchableOpacity}
+                    key={i}
+                    title={item.title}
+                    leftIcon={{ name: item.icon, color:'gray' }}
+                    chevron
+                  />
+                ))
+              }
           </View>
         )
   

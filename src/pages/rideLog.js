@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity,FlatList, Button } from 'react-native';
 import { inject, observer } from 'mobx-react';
+import moment from 'moment-timezone';
 import OC from 'open-color';
 import RideLog from '../components/taxiElement';
 import titleFont from '../variable/assets';
@@ -18,7 +19,7 @@ export default class RiderLog extends Component{
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
         //taxiStore.getTaxiList();
-        carpoolStore.getCarpoolList();
+        carpoolStore.getCarpoolList(moment().tz('Asia/Seoul').format('YYYYMMDD'));
     }
 
     changeColor = (value) => {

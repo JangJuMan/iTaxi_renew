@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, FlatList, Text, View, Alert ,TouchableOpacity} from 'react-native';
+import { AppRegistry, StyleSheet, FlatList, Text, View, Alert, TouchableOpacity } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { vw } from 'react-native-expo-viewport-units';
-import { observer, inject } from 'mobx-react';
+import { observable } from 'mobx';
 
 export default class Setting extends Component{
   
@@ -57,19 +57,20 @@ export default class Setting extends Component{
               }
           </View>
         )
-  
-  
+
+
     }
-  }
-  
-  
+}
 
-const styles=StyleSheet.create({
-  contain: {
 
-  },
+
+const styles = StyleSheet.create({
+    contain: {
+
+    },
     line: {
-      borderBottomWidth: 0.5,
-      borderBottomColor:'gray'
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'gray'
     },
 })
+

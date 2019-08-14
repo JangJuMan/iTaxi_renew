@@ -18,6 +18,7 @@ export default class TaxiList extends Component{
     state={
         modalVisible: false,
         dataReceive: false,
+        delayedRender: false,
         currentDate: moment(),
         carrierNum : -1,
         personNum : -1,
@@ -43,42 +44,51 @@ export default class TaxiList extends Component{
     }
 
     getTaxiData = date => {
-        this.setState({ dataReceive: false });
         const { taxiStore } = this.props;
-        taxiStore.getTaxiList(date).then(() => this.setState({ dataReceive: true }));
+        this.setState({ dataReceive: false },
+            () => {
+                setTimeout(() => {
+                    if (!this.state.dataReceive) this.setState({ delayedRender: true });
+                }, 300);
+                taxiStore.getTaxiList(date)
+                    .then(() => this.setState({ dataReceive: true, delayedRender: false }));
+            });
     }
 
     render(){
         const { taxiStore } = this.props;
-
-        if (!this.state.dataReceive) {
-            return (
-                <View style={styles.conatiner}>
-                    <SearchMenu style={{marginTop: 10, marginBottom: 10,}} />
-                    <View style={styles.horizontal_divider} />
-
-                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <ActivityIndicator
-                            size="large"
-                            color="blue" />
-                    </View>
-                </View>
-            )
-        }
-
         return (
             <View style={styles.conatiner}>
                 <SearchMenu
                     onSearch={(departure, destination) => console.log(departure, destination)}
                     onDateChange={(date) => {
-                        this.setState({ currentDate: date });
-                        taxiStore.getTaxiList(date.format('YYYYMMDD'));
+                        this.setState({ dataReceive: false, currentDate: date }, () => {
+                            taxiStore.getTaxiList(date.format('YYYYMMDD'))
+                            .then(() => {
+                                this.setState({ dataReceive: true });
+                            })
+                        });
                     }}
                     style={styles.search_menu} />
                 <View style={styles.horizontal_divider} />
 
-                {
-                    taxiStore.taxiList.length > 0 &&
+                {!this.state.dataReceive && this.state.delayedRender &&
+                    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                        <ActivityIndicator
+                            size="large"
+                            color="blue" />
+                    </View>
+                }
+                {this.state.dataReceive && taxiStore.taxiList.length == 0 &&
+                    <View style={styles.log_contents}>
+                        <View style={styles.log_container}>
+                            <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
+                            <View style={styles.horizontal_date_bar}></View>
+                        </View>
+                        <EmptyList navigation={this.props.navigation}/>
+                    </View>
+                }
+                {this.state.dataReceive && taxiStore.taxiList.length > 0 &&
                     <ScrollView>
                         <View style={styles.log_contents}>
                             <View style={styles.log_container}>
@@ -107,16 +117,6 @@ export default class TaxiList extends Component{
                             }/>
                         </View>
                     </ScrollView>
-                }
-                {
-                    taxiStore.taxiList.length == 0 &&
-                    <View style={styles.log_contents}>
-                        <View style={styles.log_container}>
-                            <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
-                            <View style={styles.horizontal_date_bar}></View>
-                        </View>
-                        <EmptyList navigation={this.props.navigation}/>
-                    </View>
                 }
 
                 {/* going in to room */}
@@ -149,8 +149,9 @@ export default class TaxiList extends Component{
                         }}
                         onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>
                     }/>
+
             </View>
-        );
+        )
     }
 }
 
