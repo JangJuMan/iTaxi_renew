@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, FlatList, Text, View, Alert, TouchableOpacity } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { vw } from 'react-native-expo-viewport-units';
-import { observer, inject } from 'mobx-react';
+import { observable } from 'mobx';
 
 export default class Setting extends Component {
-
     render() {
         const list = [
             {
@@ -29,8 +28,6 @@ export default class Setting extends Component {
                 title: '사랑해요',
             },
         ]
-
-
         return (
             <View style={styles.contain}>
                 {

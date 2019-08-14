@@ -1,43 +1,43 @@
-<<<<<<< HEAD
-=======
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, FlatList, Text, View, Alert ,TouchableOpacity} from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { observer, inject } from 'mobx-react';
 
 export default class Setting extends Component{
-
-  
     render(){ 
       const list = [
       {
         title: '공지사항',
         icon: 'list',
-        next: "Notice"
+        next: "Notice",
       },
       {
         title: '내정보',
         icon: 'mood',
-        next:"Myinfo"
+        next:"Myinfo",
+
       },
       {
         title: '버전정보/개발자',
         icon: 'info',
-        next:"Version"
+        next:"Version",
+
       },
       {
         title: '알림',
         icon: 'alarm',
-        next:"Alarm"
+        next:"Alarm",
       },
       {
         title: '버그제보',
         icon: 'bug-report',
-        next: "Bug"
+        next: "Bug",
       },
       {
         title: '이용약관',
         icon: 'https',
-        next: "TermsOfservice"
+        next: "TermsOfservice",
+
       },
       ]
       
@@ -56,7 +56,6 @@ export default class Setting extends Component{
                     title={item.title}
                     leftIcon={{ name: item.icon, color:'gray' }}
                     chevron
-                    badge={{ value: 3, textStyle: { color: 'white' } }}
                   />
                 ))
               }
@@ -78,4 +77,3 @@ const styles=StyleSheet.create({
       borderBottomColor:'gray'
     },
 })
->>>>>>> 0eb9b7dbbd8eb219cfcaa03d2a68bb0ea369d9a6

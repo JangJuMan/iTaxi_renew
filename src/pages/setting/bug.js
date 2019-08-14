@@ -46,7 +46,7 @@ export default class bug extends Component {
                             {'\t'}- 내용: {'\n'}
                             {'\t'}- 원하는 기대효과(Expected behavior):
         
-                  </Text>
+                        </Text>
                     </ScrollView>
                 </View>
                 <View style={{ margin: vw(3) }}></View>
