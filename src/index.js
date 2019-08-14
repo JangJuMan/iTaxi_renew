@@ -10,6 +10,12 @@ import UpdateInfo from '../src/pages/updateInfo';
 import titleFont from '../src/variable/assets';
 import Servicepage from './pages/termsOfservice';
 import FirstPage from './pages/loginPage';
+import NoticeScreen from '../src/pages/setting/notice'
+import MyinfoScreen from '../src/pages/setting/myInfo';
+import VersionScreen from '../src/pages/setting/version';
+import AlarmScreen from '../src/pages/setting/alarm';
+import BugScreen from '../src/pages/setting/bug';
+import TermScreen from '../src/pages/setting/service';
 
 const TaxiTab = createStackNavigator({
     Home: ListView,
@@ -159,7 +165,26 @@ const navigator = createStackNavigator(
     },
     Update:{
       screen: UpdateInfo,
+    },
+    Notice:{
+      screen: NoticeScreen,
+    },
+    Myinfo: {
+      screen: MyinfoScreen,
+    },
+    Version: {
+      screen: VersionScreen,
+    },
+    Alarm: {
+      screen: AlarmScreen,
+    },
+    Bug: {
+      screen: BugScreen,
+    },
+    TermsOfservice: {
+      screen: TermScreen,
     }
+
   },
   {
     initialRouteName: 'First', 

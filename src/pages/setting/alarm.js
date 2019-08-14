@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, Image, ScrollView, AppRegistry, Button, Alert, 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { vw } from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import titleFont from '../variable/assets';
+import titleFont from '../../variable/assets';
 
 
-export default class Setting extends Component {
+export default class alarm extends Component {
     constructor(props) {
         super(props);
     }
@@ -60,22 +60,6 @@ export default class Setting extends Component {
 
 
 const styles = StyleSheet.create({
-    changeInfo: {
-        borderRadius: 30,
-        borderWidth: 1,
-        borderColor: '#3FA9F5',
-        paddingLeft: 10,
-        paddingRight: 10,
-        flex: 0.9,
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-    },
-    changeInfoText: {
-        color: '#3FA9F5',
-        fontFamily: titleFont,
-        fontWeight: "200"
-    },
     switch: {
         justifyContent: 'center',
         alignItems: 'center',
@@ -83,7 +67,7 @@ const styles = StyleSheet.create({
     AlarmTop: {
         height: vw(5),
         marginLeft: 10,
-        marginTop: vw(10),
+        marginTop: vw(2),
         flexDirection: 'row',
         alignItems: 'flex-start'
     },

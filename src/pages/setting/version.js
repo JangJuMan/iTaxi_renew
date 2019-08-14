@@ -3,17 +3,17 @@ import { View, Text, StyleSheet, Image, ScrollView, AppRegistry, Button, Alert, 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { vw } from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import titleFont from '../variable/assets';
+import titleFont from '../../variable/assets';
 
 
-export default class Setting extends Component {
+export default class version extends Component {
     constructor(props) {
         super(props);
     }
     render() { 
         return (
 
-            <View style={{ marginTop: vw(10) }}>
+            <View style={{ marginTop: vw(2) }}>
                 <View style={styles.versionTop}>
                     <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: titleFont, fontWeight: "200" }}>Version</Text>
                     <View style={{ borderBottomWidth: 1, margin: 9, borderBottomColor: '#CCCCCC', flexGrow: 1, }}></View>
