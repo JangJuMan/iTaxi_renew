@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         },
 
     log_contents:{
-        marginLeft: 24, 
-        marginRight: 24, 
+        // marginLeft: 24, 
+        // marginRight: 24, 
     },
 })

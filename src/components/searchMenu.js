@@ -5,13 +5,13 @@ import Calendar from '../elements/calendar';
 import SearchModal from './modal/searchModal';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { inject } from 'mobx-react';
-import {titleFont,numFont} from '../variable/assets';
+import moment from 'moment-timezone';
 
 
-@inject('dateStore')
 /**
  * @props onSearch  Callback function when departure or destination is changed.
  */
+@inject('dateStore')
 export default class SearchMenu extends Component {
     state = {
         date: new Date(),
@@ -31,9 +31,8 @@ export default class SearchMenu extends Component {
 
         for(const index of Array(31).keys()) {
             render.push(
-                // key = {index} 오류 거슬려서 잠깐 치우려고
                 <View style={styles.slide} key={index}>
-                    <Text style={styles.text}>{new Date(new Date().setDate(this.state.date.getDate() + index)).format('MM-dd')}</Text>
+                    <Text style={styles.text}>{moment().add(index, 'd').tz('Asia/Seoul').format('MM-DD')}</Text>
                 </View>
             );
         }
@@ -75,7 +74,7 @@ export default class SearchMenu extends Component {
                             loop={false}
                             showsPagination={false}
                             onIndexChanged={(index) => {
-                                let selectedDate = new Date(new Date().setDate(new Date().getDate() + index));
+                                let selectedDate = moment().add(index, 'd').tz('Asia/Seoul');
                                 this.props.onDateChange(selectedDate);
                                 const {dateStore} = this.props;
                                 dateStore.date = selectedDate;
