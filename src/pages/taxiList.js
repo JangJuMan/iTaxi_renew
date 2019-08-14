@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
-import {inject, observer} from 'mobx-react';
-import Moment from 'moment-timezone';
+import { inject, observer } from 'mobx-react';
+import moment from 'moment-timezone';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import EmptyList from '../components/emptyList';
@@ -18,7 +18,7 @@ export default class TaxiList extends Component{
     state={
         modalVisible: false,
         dataReceive: false,
-        currentDate: new Date(),
+        currentDate: moment(),
         carrierNum : -1,
         personNum : -1,
     }
@@ -35,7 +35,7 @@ export default class TaxiList extends Component{
     };
 
     componentDidMount() {
-        this.getTaxiData(new Date().format('yyyyMMdd'));
+        this.getTaxiData(moment().tz('Asia/Seoul').format('YYYYMMDD'));
     }
 
     setModalVisible(visible) {
@@ -72,7 +72,7 @@ export default class TaxiList extends Component{
                     onSearch={(departure, destination) => console.log(departure, destination)}
                     onDateChange={(date) => {
                         this.setState({ currentDate: date });
-                        taxiStore.getTaxiList(date.format('yyyyMMdd'));
+                        taxiStore.getTaxiList(date.format('YYYYMMDD'));
                     }}
                     style={styles.search_menu} />
                 <View style={styles.horizontal_divider} />
@@ -82,7 +82,7 @@ export default class TaxiList extends Component{
                     <ScrollView>
                         <View style={styles.log_contents}>
                             <View style={styles.log_container}>
-                                <Text style={styles.date_of_logs}>{this.state.currentDate.format('yyyy-MM-dd')}</Text>
+                                <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
                                 <View style={styles.horizontal_date_bar}></View>
                             </View>
                             <FlatList
@@ -112,7 +112,7 @@ export default class TaxiList extends Component{
                     taxiStore.taxiList.length == 0 &&
                     <View style={styles.log_contents}>
                         <View style={styles.log_container}>
-                            <Text style={styles.date_of_logs}>{this.state.currentDate.format('yyyy-MM-dd')}</Text>
+                            <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
                             <View style={styles.horizontal_date_bar}></View>
                         </View>
                         <EmptyList navigation={this.props.navigation}/>
