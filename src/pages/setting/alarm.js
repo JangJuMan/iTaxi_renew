@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView, AppRegistry, Button, Alert, 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { vw } from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import titleFont from '../../variable/assets';
+
 
 
 export default class alarm extends Component {
@@ -25,12 +25,12 @@ export default class alarm extends Component {
 
             <View>
                 <View style={styles.AlarmTop}>
-                    <Text style={{fontSize:15,color:'#3FA9F5',fontFamily:titleFont,fontWeight:"200"}}>Alarm</Text>
+                    <Text style={{fontSize:15,color:'#3FA9F5',fontFamily: "titleFont",fontWeight:"200"}}>Alarm</Text>
                     <View style={{borderBottomWidth:1,margin:9, borderBottomColor: '#CCCCCC', flexGrow: 1,}}></View>
                 </View>
                 <View style={styles.AlarmBottom}>
                     <View style={styles.chatAlarm}>
-                        <Text style={{ fontSize: 16, color: 'black', fontFamily: titleFont, fontWeight: "200", paddingTop: vw(3) }}>채팅 알람</Text>
+                        <Text style={{ fontSize: 16, color: 'black', fontFamily: "titleFont", fontWeight: "200", paddingTop: vw(3) }}>채팅 알람</Text>
                         {/* switch버튼 */}
                         <View style={styles.switch}>
                             <Switch
@@ -40,7 +40,7 @@ export default class alarm extends Component {
                     </View>
                     <View style = {{margin: vw(2)}}></View>
                     <View style={styles.alertAlarm}>
-                        <Text style={{ fontSize: 16, color: 'black', fontFamily: titleFont, fontWeight: "200",paddingTop: vw(3)  }}>공지 알람</Text>
+                        <Text style={{ fontSize: 16, color: 'black', fontFamily: "titleFont", fontWeight: "200",paddingTop: vw(3)  }}>공지 알람</Text>
                         {/* switch버튼 */}
                         <View style={styles.switch}>
                             <Switch

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, TouchableOpacity, Animated, Easing } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import titleFont from '../variable/assets';
+
 
 class Top extends Component {
     constructor(props) {
@@ -38,23 +38,27 @@ class Top extends Component {
 
     renderLocations() {
         let list = [];
+        let index = 0;
         
         this.locations.map((rows, index) => {
             if (!this.state.expand && index >= 2) return null;
 
             let temp_row = [];
+            let temp_index = 0;
             rows.map(location => {
                 temp_row.push(
-                    <TouchableOpacity onPress={() => {
-                        this.props.onSelect(location)
-                        this.setState({location})
-                    }}>
+                    <TouchableOpacity 
+                        key={temp_index++}
+                        onPress={() => {
+                            this.props.onSelect(location)
+                            this.setState({location})
+                        }}>
                         <Text style={stylesTop.text}>{location}</Text>
                     </TouchableOpacity>
                 )
             });
             list.push(
-                <View style={stylesTop.location_row}>
+                <View key={index++} style={stylesTop.location_row}>
                     {temp_row}
                 </View>
             )
@@ -122,7 +126,7 @@ const stylesTop = StyleSheet.create({
                 flex: 2,
                 borderBottomColor: 'gray',
                 borderBottomWidth: 1,
-                fontFamily:titleFont,
+                fontFamily: "titleFont",
                 fontWeight:"200"
             },
             gpsIcon: {
@@ -144,7 +148,7 @@ const stylesTop = StyleSheet.create({
                     fontSize: 14,
                     color: '#888C90',
                     margin: 10,
-                    fontFamily:titleFont,
+                    fontFamily: "titleFont",
                     fontWeight:"200"
                 },
 
@@ -204,7 +208,7 @@ const stylesBottom = StyleSheet.create({
                 color: '#888C90',
                 padding: 10,
                 alignSelf: 'flex-start',
-                fontFamily:titleFont,
+                fontFamily: "titleFont",
                 fontWeight:"200"
             },
             line: {

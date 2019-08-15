@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, Image, ScrollView, AppRegistry, Button, Alert, 
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { vw } from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import titleFont from '../../variable/assets';
+
 
 
 class Profile_info extends Component {
     render() {
         return (
             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', }}>
-                <Text style={{ fontSize: 16, color: '#999999', fontFamily: titleFont, fontWeight: "200" }}>{this.props.info} {'\n'}</Text>
+                <Text style={{ fontSize: 16, color: '#999999', fontFamily: "titleFont", fontWeight: "200" }}>{this.props.info} {'\n'}</Text>
             </View>
         );
     }
@@ -20,7 +20,7 @@ class Profile_my extends Component {
     render() {
         return (
             <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', }}>
-                <Text style={{ fontSize: 16, color: 'black', fontFamily: titleFont, fontWeight: "200" }}>{this.props.info} {'\n'}</Text>
+                <Text style={{ fontSize: 16, color: 'black', fontFamily: "titleFont", fontWeight: "200" }}>{this.props.info} {'\n'}</Text>
             </View>
         );
     }
@@ -43,7 +43,7 @@ export default class myInfo extends Component {
         return (
             <View>
                 <View style={styles.profileTop}>
-                    <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: titleFont, fontWeight: "200" }}>Profile</Text>
+                    <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: "titleFont", fontWeight: "200" }}>Profile</Text>
                     <View style={{ borderBottomWidth: 1, margin: 9, borderBottomColor: '#CCCCCC', flexGrow: 1 }}></View>
                 </View>
                 <View style={styles.profileBottom}>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     },
     changeInfoText: {
         color: '#3FA9F5',
-        fontFamily: titleFont,
+        fontFamily: "titleFont",
         fontWeight: "200"
     },
     switch: {

@@ -3,7 +3,7 @@ import { View, Text, Button,StyleSheet,ScrollView,TouchableOpacity,Input,TextInp
 import { createBottomTabNavigator, createAppContainer, createStackNavigator, createMaterialTopTabNavigator } from 'react-navigation';
 import { vw, vh }  from 'react-native-expo-viewport-units';
 import { inject, observer } from 'mobx-react';
-import titleFont from '../variable/assets';
+
 
 @inject('userStore')
 
@@ -39,7 +39,7 @@ export default class Info extends Component{
     render() {
         return (
             <View style={styles.info}>
-                <Text style={{fontSize:14,marginLeft:9,color:'gray',fontFamily:titleFont,fontWeight:"200"}}>휴대폰 번호</Text>
+                <Text style={{fontSize:14,marginLeft:9,color:'gray',fontFamily: "titleFont",fontWeight:"200"}}>휴대폰 번호</Text>
                 <TextInput
                     style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1}}
                     placeholder="정보를 입력하시오"
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     },
         changeInfoText: {
             color: '#3FA9F5',
-            fontFamily:titleFont,
+            fontFamily: "titleFont",
             fontWeight:"200"
         },
         profileButton:{

@@ -7,7 +7,7 @@ import { vw, vh } from 'react-native-expo-viewport-units';
 import SearchModal from './searchModal';
 import DatePicker from 'react-native-datepicker';
 import { inject, observer } from 'mobx-react';
-import titleFont from '../../variable/assets';
+
 import moment from 'moment-timezone'
 import 'moment/min/locales'
 /** 
@@ -67,7 +67,7 @@ export default class MakeRoom extends Component {
         return (
             <View style={styles.list}>
                 <View style={styles.top}>
-                    <Text style={{ color: 'black', fontSize: 15, fontFamily: titleFont, fontWeight: "200" }}>모집</Text>
+                    <Text style={{ color: 'black', fontSize: 15, fontFamily: "titleFont", fontWeight: "200" }}>모집</Text>
                 </View>
                 <View style={styles.fromTo}>
                     <View style={styles.location}>
@@ -287,12 +287,12 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#4dabf7',
         fontSize: 17,
-        fontFamily: titleFont,
+        fontFamily: "titleFont",
         fontWeight: "200"
     },
     leftText: {
         color: 'gray',
-        fontFamily: titleFont,
+        fontFamily: "titleFont",
         fontWeight: "200"
     }
 })

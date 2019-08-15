@@ -5,7 +5,7 @@ import { vw, vh }  from 'react-native-expo-viewport-units';
 import OpenColor from 'open-color';
 import SelectDestination from '../destinationSelect';
 import Modal from '../../elements/modal';
-import titleFont from '../../variable/assets';
+
 /**
  * @props onSelect  Callback function when select the location
  * @props onSelectLog   Callback function when select the log
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
             elevation: 2,
         },
     text:{
-        fontFamily:titleFont,
+        fontFamily: "titleFont",
         fontWeight:"200"
     }
 });

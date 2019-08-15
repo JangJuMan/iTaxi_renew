@@ -8,7 +8,7 @@ import CalculModal from './modal/calculModal';
 import Modal from '../elements/modal';
 import {Linking} from 'react-native';
 import Communications from 'react-native-communications';
-import titleFont from '../variable/assets';
+
 
 @inject('taxiStore')
 // @inject('carpoolStore')
@@ -66,11 +66,11 @@ export default class ChatRoom extends Component{
                     <View style={styles.calendar_time}>
                         <View style={styles.calendar}>
                             <Icon name="calendar" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:vw(4),fontFamily:titleFont,fontWeight:"200"}}>  {data.departure_date.substring(5)}</Text>
+                            <Text style={{fontSize:vw(4),fontFamily: "titleFont",fontWeight:"200"}}>  {data.departure_date.substring(5)}</Text>
                         </View>
                         <View style={styles.clock}>
                             <Icon name="clockcircleo" color='#3FA9F5' size={20}></Icon>
-                            <Text style={{fontSize:vw(4),fontFamily:titleFont,fontWeight:"200"}}>  {data.departure_time}</Text>
+                            <Text style={{fontSize:vw(4),fontFamily: "titleFont",fontWeight:"200"}}>  {data.departure_time}</Text>
                         </View>
                     </View>
                     <View style={styles.destination}>
@@ -91,7 +91,7 @@ export default class ChatRoom extends Component{
                     <View style={styles.carrier}>
                         <View style={{flexDirection:'row',padding:3}}>
                             <Image style={styles.carrIcon} source={carrIcon} />
-                            <Text style={{padding:5,fontFamily:titleFont,fontWeight:"200"}}>캐리어</Text>
+                            <Text style={{padding:5,fontFamily: "titleFont",fontWeight:"200"}}>캐리어</Text>
                         </View>
                         <View style={{flexDirection:'row',margin:5}}>
                             {this.getCarrier()}
@@ -234,14 +234,14 @@ const styles=StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-evenly',
-        fontFamily:titleFont,
+        fontFamily: "titleFont",
         fontWeight:"200"
     },
 
     destination_text: {
         color: 'gray',
         flexDirection:'row',
-        fontFamily:titleFont,
+        fontFamily: "titleFont",
         fontWeight:"200"
     },
     carrier:{
@@ -280,7 +280,7 @@ const styles=StyleSheet.create({
     ButtonText: {
         color: 'white',
         fontSize:vw(4),
-        fontFamily:titleFont,
+        fontFamily: "titleFont",
         fontWeight:"200"
     },
     profileButton:{
@@ -303,7 +303,7 @@ const styles=StyleSheet.create({
     },
     profileText: {
         color: '#3FA9F5',
-        fontFamily:titleFont,
+        fontFamily: "titleFont",
         fontWeight:"200"
     },
     realModal: {

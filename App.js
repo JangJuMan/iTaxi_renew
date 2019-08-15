@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Provider } from 'mobx-react';
 import MainPage from './src/index';
 
+import * as Font from 'expo-font';
+import { titleFont, numFont } from './src/variable/assets';
+
 import TaxiStore from './stores/taxi';
 import UserStore from './stores/user';
 import CarpoolStore from './stores/carpool';
@@ -13,6 +16,13 @@ const carpoolStore = new CarpoolStore();
 const dateStore = new NowDate();
 
 export default class App extends Component {
+  componentWillMount() {
+    Font.loadAsync({
+      "titleFont": titleFont,
+      "numFont": numFont,
+    });
+  }
+
   render() {
     return (
       <Provider 

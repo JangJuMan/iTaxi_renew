@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, ScrollView, AppRegistry, Button, Alert, 
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import { observer, inject } from 'mobx-react';
-import titleFont from '../../variable/assets';
+
 
 
 export default class bug extends Component {
@@ -14,16 +14,16 @@ export default class bug extends Component {
         return (
             <View>
                 <View style={styles.contactTop}>
-                    <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: titleFont, fontWeight: "200" }}>Contact Us(버그신고및 문의)</Text>
+                    <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: "titleFont", fontWeight: "200" }}>Contact Us(버그신고및 문의)</Text>
                     <View style={{ borderBottomWidth: 1, margin: 9, borderBottomColor: '#CCCCCC', flexGrow: 1, }}></View>
                 </View>
                 <View style={styles.contactBottom}>
-                    <Text style={{ fontSize: 16, color: 'black', fontFamily: titleFont, fontWeight: "200" }}>cra.handong.service@gmail.com</Text>
+                    <Text style={{ fontSize: 16, color: 'black', fontFamily: "titleFont", fontWeight: "200" }}>cra.handong.service@gmail.com</Text>
                 </View>
 
 
                 <View style={styles.contactTop}>
-                    <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: titleFont, fontWeight: "200" }}>문의 양식</Text>
+                    <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: "titleFont", fontWeight: "200" }}>문의 양식</Text>
                     <View style={{ borderBottomWidth: 1, margin: 9, borderBottomColor: '#CCCCCC', flexGrow: 1, }}></View>
                 </View>
 
