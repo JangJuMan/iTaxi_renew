@@ -11,10 +11,8 @@ export default class version extends Component {
         super(props);
     }
     render() { 
-        let a=3;
         const {navigation}=this.props;
         const date= navigation.getParam('date','');
-        console.log(date);
         const title =navigation.getParam('title','');
         return (
 
