@@ -139,7 +139,8 @@ const styles=StyleSheet.create({
     flextwo:{
         flex:2,
         justifyContent:'center',
-        alignItems:'center',
+        // alignItems:'center',
+        alignItems:'flex-end',
     },
     fromTo:{
         flexDirection: 'row',
@@ -168,6 +169,7 @@ const styles=StyleSheet.create({
     time_person_bag:{
         flex:2,
         flexDirection:'row',
+        justifyContent:'space-between',
     },
     button:{
         flex:1,

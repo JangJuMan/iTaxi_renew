@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment-timezone';
+import 'moment/min/locales'
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import EmptyList from '../components/emptyList';
@@ -29,7 +30,7 @@ export default class TaxiList extends Component{
             headerRight: (
                 <TouchableOpacity
                     onPress={() => ModalControl.modalVisible_taxi=true}>
-                    <Icon style={{marginRight:10, color:'dodgerblue'}}name="ios-add-circle-outline" size={30}/>
+                    <Icon style={{marginRight:10, color:'dodgerblue'}}name="ios-add-circle-outline" size={35}/>
                 </TouchableOpacity>
             ),
         };
@@ -82,7 +83,7 @@ export default class TaxiList extends Component{
                 {this.state.dataReceive && taxiStore.taxiList.length == 0 &&
                     <View style={styles.log_contents}>
                         <View style={styles.log_container}>
-                            <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
+                            <Text style={styles.date_of_logs}>{this.state.currentDate.locale('ko').format('YYYY-MM-DD dddd')}</Text>
                             <View style={styles.horizontal_date_bar}></View>
                         </View>
                         <EmptyList navigation={this.props.navigation}/>
@@ -92,7 +93,7 @@ export default class TaxiList extends Component{
                     <ScrollView>
                         <View style={styles.log_contents}>
                             <View style={styles.log_container}>
-                                <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
+                                <Text style={styles.date_of_logs}>{this.state.currentDate.locale('ko').format('YYYY-MM-DD dddd')}</Text>
                                 <View style={styles.horizontal_date_bar}></View>
                             </View>
                             <FlatList
@@ -149,7 +150,6 @@ export default class TaxiList extends Component{
                         }}
                         onCancelButton = {() => ModalControl.modalVisible_taxi=false}/>
                     }/>
-
             </View>
         )
     }

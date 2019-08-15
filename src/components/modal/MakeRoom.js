@@ -8,6 +8,8 @@ import SearchModal from './searchModal';
 import DatePicker from 'react-native-datepicker';
 import { inject, observer } from 'mobx-react';
 import titleFont from '../../variable/assets';
+import moment from 'moment-timezone'
+import 'moment/min/locales'
 /** 
 *   @props onOkButton        press make room button (ok button)
 *   @props onCancelButton    press cancel button
@@ -23,7 +25,7 @@ export default class MakeRoom extends Component {
         person: -1,
         carrier: -1,
         date: '',
-        time: `${new Date().getHours()}:` + `${new Date().getMinutes()}`,
+        time: moment().tz('Asia/Seoul'),
         people_flag: false,
         carrier_flag: false,
 
@@ -31,9 +33,9 @@ export default class MakeRoom extends Component {
 
     constructor(props) {
         super(props)
-        const { dateStore } = this.props;
+        const {dateStore} = this.props;
         this.dateStore = dateStore
-        this.state.date = `${this.dateStore.date.getFullYear()}-` + `${this.dateStore.date.getMonth() + 1}-` + `${this.dateStore.date.getDate()}`
+        this.state.date = dateStore.nowDate
     }
 
     person_clicked(value) {
@@ -69,7 +71,6 @@ export default class MakeRoom extends Component {
                 </View>
                 <View style={styles.fromTo}>
                     <View style={styles.location}>
-                        {/* 출발지,도착지는 props로 받기 */}
                         <SearchModal
                             modalStyle={{ top: vh(30) }} />
                     </View>
@@ -113,7 +114,6 @@ export default class MakeRoom extends Component {
                     </View>
                     <View style={{ flex: 6, justifyContent: 'center', alignItems: 'center', }}>
                         <DatePicker
-                            // style = {{margin: 10}}
                             customStyles={{
                                 dateInput: {
                                     borderWidth: 0,

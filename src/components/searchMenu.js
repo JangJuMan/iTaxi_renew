@@ -14,16 +14,18 @@ import moment from 'moment-timezone';
 @inject('dateStore')
 export default class SearchMenu extends Component {
     state = {
-        date: new Date(),
+        date: moment(),
         departure: "",
         destination: "",
     }
     
-    constructor(props){
-        super(props);
+    componentDidMount(){
+        this.getDate()
+    }
+
+    getDate(){
         const {dateStore} = this.props;
-        this.dateStore = dateStore;
-        dateStore.date = new Date()
+        dateStore.nowDate = this.state.date
     }
 
     renderDays() {
@@ -77,7 +79,7 @@ export default class SearchMenu extends Component {
                                 let selectedDate = moment().add(index, 'd').tz('Asia/Seoul');
                                 this.props.onDateChange(selectedDate);
                                 const {dateStore} = this.props;
-                                dateStore.date = selectedDate;
+                                dateStore.nowDate = selectedDate;
                             }}
                             ref={ref => this.swiper = ref} >
                             {this.renderDays()}

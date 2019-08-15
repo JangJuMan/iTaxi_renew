@@ -4,16 +4,16 @@ import ChatRoomInfo from '../components/chatRoomInfo';
 import Chatting from '../components/chatting';
 import { inject } from 'mobx-react';
 
-@inject('taxiStore')
+// @inject('taxiStore')
 export default class ChatRoom extends Component{
-    state = {
-        roomTitle: ''
-    }
+    // state = {
+    //     roomTitle: ''
+    // }
 
     constructor(props){
         super(props)
-        const { taxiStore } = this.props;
-        this.setState({roomTitle:taxiStore.taxi.host_name})
+        // const { taxiStore } = this.props;
+        // this.setState({roomTitle:taxiStore.taxi.host_name})
     }
 
     static navigationOptions = ({navigation}) =>{

@@ -20,7 +20,7 @@ export default class CarpoolList extends Component{
             headerRight: (
                 <TouchableOpacity
                     onPress={() => ModalControl.modalVisible_carpool=true}>
-                    <Icon style={{marginRight:10, color:'dodgerblue'}}name="ios-add-circle-outline" size={30}/>
+                    <Icon style={{marginRight:10, color:'dodgerblue'}}name="ios-add-circle-outline" size={35}/>
                 </TouchableOpacity>
             ),
         };
