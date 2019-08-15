@@ -14,14 +14,18 @@ import { observer, inject } from 'mobx-react';
 export default class intoRoom extends Component{
     state={
         carrier:-1,
+        carrier_flag : false,
     }
 
     carrier_clicked(value){
         if(value === this.state.carrier){
-            this.setState({carrier:-1})
+            this.setState({carrier:-1});
+            this.setState({carrier_flag : false});
+
         }
         else{
-            this.setState({carrier:value})
+            this.setState({carrier:value});
+            this.setState({carrier_flag : true});
         }
     }
 
@@ -107,7 +111,13 @@ export default class intoRoom extends Component{
                     <   Text style={{color:'#3FA9F5',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
-                        this.props.onOkButton(this.state.carrier);
+                        if(this.state.carrier_flag) {
+                            this.props.onOkButton(this.state.carrier);
+                        }
+                        else {
+                            alert('캐리어를 선택해주세요.');
+                        }
+
                     }}>
                         <Text style={{color:'#3FA9F5',fontSize:17 }}>확인</Text>
                     </TouchableOpacity>
