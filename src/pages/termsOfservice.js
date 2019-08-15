@@ -65,7 +65,16 @@ export default class service extends Component {
                 />
                 <TouchableOpacity 
                     style = {styles.button}
-                    onPress = {()=> this.props.navigation.navigate('Home')}>
+                    onPress = {()=> {
+                        if(this.state.checked && this.state.s_checked) {
+                            this.props.navigation.navigate('Home')
+                        }
+                        else {
+                            alert('모두 동의해주세요.');
+                        }
+                    
+                    }}
+                >
                     <Text style = {styles.buttontext}>확인</Text>
                 </TouchableOpacity>
                 

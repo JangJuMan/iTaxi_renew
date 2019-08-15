@@ -32,8 +32,8 @@ export default class intoRoom extends Component{
     render(){
         const { taxiStore }  = this.props;
         const data = taxiStore.taxi;
-        const heightColor = 'blue'
-        const unheightColor = '#4dabf7'
+        const heightColor = '#4dabf7'
+        const unheightColor = '#CCCCCC'
         return(
             <View style={styles.list}>
                 <View style={styles.top}>

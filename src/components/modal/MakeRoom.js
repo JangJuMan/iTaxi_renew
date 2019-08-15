@@ -58,8 +58,8 @@ export default class MakeRoom extends Component {
     }
 
     render() {
-        const heightColor = 'blue'
-        const unheightColor = '#4dabf7'
+        const heightColor = '#4dabf7'
+        const unheightColor = '#CCCCCC'
         const { taxiStore, userStore } = this.props;
 
         return (
@@ -177,28 +177,28 @@ export default class MakeRoom extends Component {
                                 this.carrier_clicked(0);
                             }}
                         >
-                            <Icon name="numeric-0-circle-outline" size={30} color={this.state.carrier === 0 ? 'blue' : '#4dabf7'} />
+                            <Icon name="numeric-0-circle-outline" size={30} color={this.state.carrier === 0 ? heightColor : unheightColor} />
                         </TouchableOpacity>
                         <TouchableOpacity style={{ padding: 5 }}
                             onPress={() => {
                                 this.carrier_clicked(1);
                             }}
                         >
-                            <Icon name="numeric-1-circle-outline" size={30} color={this.state.carrier === 1 ? 'blue' : '#4dabf7'} />
+                            <Icon name="numeric-1-circle-outline" size={30} color={this.state.carrier === 1 ? heightColor : unheightColor} />
                         </TouchableOpacity>
                         <TouchableOpacity style={{ padding: 5 }}
                             onPress={() => {
                                 this.carrier_clicked(2);
                             }}
                         >
-                            <Icon name="numeric-2-circle-outline" size={30} color={this.state.carrier === 2 ? 'blue' : '#4dabf7'} />
+                            <Icon name="numeric-2-circle-outline" size={30} color={this.state.carrier === 2 ? heightColor : unheightColor} />
                         </TouchableOpacity>
                         <TouchableOpacity style={{ padding: 5 }}
                             onPress={() => {
                                 this.carrier_clicked(3);
                             }}
                         >
-                            <Icon name="numeric-3-circle-outline" size={30} color={this.state.carrier === 3 ? 'blue' : '#4dabf7'} />
+                            <Icon name="numeric-3-circle-outline" size={30} color={this.state.carrier === 3 ? heightColor : unheightColor} />
                         </TouchableOpacity>
                     </View>
                 </View>
