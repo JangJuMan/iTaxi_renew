@@ -1,54 +1,143 @@
 import React, { Component } from 'react';
-import{ StyleSheet, View, Text, Button,Image,TextInput,TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import{ StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
+import { CheckBox } from 'react-native-elements';
 import { mainLogo } from '../variable/assets';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import * as FileSystem from 'expo-file-system';
+import { inject } from 'mobx-react';
+import Modal from '../elements/modal';
 
+@inject('userStore')
 export default class App extends Component {
+    state = { 
+        isAutoLogin: false,
+        isLoading: false,
+        id: "",
+        pw: "",
+    }
+    loginInfoFileUri = FileSystem.cacheDirectory + "loginInfo";
+    termAgreeFileUri = FileSystem.cacheDirectory + "termInfo";
+
+    componentDidMount() {
+        this.autoLogin();
+    }
+
+    async autoLogin() {
+        const info = await FileSystem.getInfoAsync(this.loginInfoFileUri);
+        if (info.exists) {
+            this.setState({ isLoading: true });
+            FileSystem.readAsStringAsync(this.loginInfoFileUri)
+                .then(content => {
+                    const data = JSON.parse(content);
+                    this.login(data.id, data.password);
+                })
+        }
+    }
+
+    async setAutoLogin() {
+        const loginData = {
+            "id": this.state.id,
+            "password": this.state.pw
+        }
+        
+        await FileSystem.writeAsStringAsync(this.loginInfoFileUri, JSON.stringify(loginData));
+    }
+
+    async resetAutoLogin() {
+        await FileSystem.deleteAsync(this.loginInfoFileUri);
+    }
+
+    async checkTerms() {
+        const info = await FileSystem.getInfoAsync(this.termAgreeFileUri);
+        return info.exists;
+    }
+
+    login(id, pw) {
+        const { userStore } = this.props;
+        this.setState({ isLoading: true },
+            () => {
+                userStore.login(id, pw)
+                    .then(() => {
+                        this.setState({ isLoading: false }, () => {
+                            if (this.checkTerms())
+                                this.props.navigation.navigate('Service');
+                            else
+                                this.props.navigation.navigate('Home');
+                        });
+                    })
+                    .catch(error => {
+                        this.setState({ isLoading: false },
+                            () => Alert.alert(
+                                "Login Failed",
+                                error.message
+                            ));
+                    })
+            });
+    }
+
     render() {
         return (
-        // <KeyboardAvoidingView behavior='position' contentContainerStyle={{flex:1}} >
-        <View>
-            <View style={{height:vh(50),justifyContent:'center',alignItems:'stretch',flexDirection:'column',marginTop:vw(25)}}>
-                <View style={styles.top}>
-                <Image style={styles.logo} source={mainLogo}></Image>
-                <View style={{flexDirection:'column'}}>
-                    <Text style={styles.text}>iTaxi</Text>
-                    <Text style={styles.cra}>Powered by CRA</Text>
-                </View>
-                </View>
-
-                <View style={styles.info}>
-                    <Text style={{fontSize:14,marginLeft:9,color:'gray',}}>Hisnet ID</Text>
-                    <TextInput
-                        style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1,margin:10}}
-                        placeholder="Your hisnet ID"
-                        onChangeText={(text) => this.setState({id: text})}
-                    />
-
-                    <Text style={{fontSize:14,marginLeft:9,color:'gray',}}>Hisnet PW</Text>
-                    <TextInput
-                        secureTextEntry={true}
-                        style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1,margin:10}}
-                        placeholder="Your hisnet PW"
-                        onChangeText={(text) => this.setState({pw: text})}
-                    />
-                    
-                    
-                    <View style={styles.profileButton}>
-                        <TouchableOpacity onPress={() => {
-                            this.props.navigation.navigate('Service')
-                        }}>
-                        <View style={styles.changeInfo}>
-                            <Text style={styles.changeInfoText}>Sign in(로그인)</Text>
-                        </View>
-                        </TouchableOpacity>
+            <View>
+                <View style={{height:vh(50),justifyContent:'center',alignItems:'stretch',flexDirection:'column',marginTop:vw(25)}}>
+                    <View style={styles.top}>
+                    <Image style={styles.logo} source={mainLogo}></Image>
+                    <View style={{flexDirection:'column'}}>
+                        <Text style={styles.text}>iTaxi</Text>
+                        <Text style={styles.cra}>Powered by CRA</Text>
                     </View>
+                    </View>
+
+                    <View style={styles.info}>
+                        <Text style={{fontSize:14,marginLeft:9,color:'gray',}}>Hisnet ID</Text>
+                        <TextInput
+                            style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1,margin:10}}
+                            placeholder="Your hisnet ID"
+                            onChangeText={(text) => this.setState({id: text})}
+                        />
+
+                        <Text style={{fontSize:14,marginLeft:9,color:'gray',}}>Hisnet PW</Text>
+                        <TextInput
+                            secureTextEntry={true}
+                            style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1,margin:10}}
+                            placeholder="Your hisnet PW"
+                            onChangeText={(text) => this.setState({pw: text})}
+                        />
+                        
+                        <View>
+                            <CheckBox
+                                center
+                                title="자동 로그인"
+                                onPress={() => this.setState({ isAutoLogin: !this.state.isAutoLogin })}
+                                checked={this.state.isAutoLogin} />
+                        </View>
+                        
+                        <View style={styles.profileButton}>
+                            <TouchableOpacity onPress={() => {
+                                this.state.isAutoLogin ? this.setAutoLogin() : this.resetAutoLogin();
+                                this.login();
+                            }}>
+                            <View style={styles.changeInfo}>
+                                <Text style={styles.changeInfoText}>Sign in(로그인)</Text>
+                            </View>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <KeyboardSpacer topSpacing={0}/>
                 </View>
-                <KeyboardSpacer topSpacing={0}/>
+
+                <Modal
+                    transparent={true}
+                    visible={this.state.isLoading}
+                    render={
+                    <ActivityIndicator
+                        style={{margin: 10, borderRadius: 10}}
+                        animating={this.state.isLoading}
+                        size={"large"}
+                        color={"blue"} />
+                    }/>
             </View>
-        </View>
-    )
+        )
     }
 }
 
