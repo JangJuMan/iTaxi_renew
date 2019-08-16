@@ -1,41 +1,37 @@
 import React, { Component } from 'react';
-import{ StyleSheet, View, Text, Button,Image,TextInput,TouchableOpacity, KeyboardAvoidingView} from 'react-native';
+import { Alert, Image,Button, Text, TouchableOpacity, TextInput, View, StyleSheet } from 'react-native';
 import { mainLogo } from '../variable/assets';
 import { vw, vh } from 'react-native-expo-viewport-units';
-import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 export default class App extends Component {
+
+
     render() {
-        return (
-        // <KeyboardAvoidingView behavior='position' contentContainerStyle={{flex:1}} >
-        <View>
-            <View style={{height:vh(50),justifyContent:'center',alignItems:'stretch',flexDirection:'column',marginTop:vw(25)}}>
-                <View style={styles.top}>
-                <Image style={styles.logo} source={mainLogo}></Image>
-                <View style={{flexDirection:'column'}}>
-                    <Text style={styles.text}>iTaxi</Text>
-                    <Text style={styles.cra}>Powered by CRA</Text>
-                </View>
-                </View>
+    return (
+    <View style={styles.container}>
+        <View style={styles.top}>
+            <Image style={styles.logo} source={mainLogo}></Image>
+            <View style={{flexDirection:'column'}}>
+                <Text style={styles.text}>iTaxi</Text>
+                <Text style={styles.cra}>Powered by CRA</Text>
+            </View>
+        </View>
 
-                <View style={styles.info}>
-                    <Text style={{fontSize:14,marginLeft:9,color:'gray',}}>Hisnet ID</Text>
-                    <TextInput
-                        style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1,margin:10}}
-                        placeholder="Your hisnet ID"
-                        onChangeText={(text) => this.setState({id: text})}
-                    />
-
-                    <Text style={{fontSize:14,marginLeft:9,color:'gray',}}>Hisnet PW</Text>
-                    <TextInput
-                        secureTextEntry={true}
-                        style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1,margin:10}}
-                        placeholder="Your hisnet PW"
-                        onChangeText={(text) => this.setState({pw: text})}
-                    />
-                    
-                    
-                    <View style={styles.profileButton}>
+        <TextInput
+            keyboardType = 'email-address'
+            onChangeText={(email) => this.setState({ email })}
+            placeholder='Hisnet ID'
+            style={styles.input}
+        />
+        <TextInput
+            onChangeText={(password) => this.setState({ password })}
+            placeholder='Hisnet PW'
+            secureTextEntry={true}
+            style={styles.input}
+        />
+            
+        
+            <View style={styles.profileButton}>
                         <TouchableOpacity onPress={() => {
                             this.props.navigation.navigate('Service')
                         }}>
@@ -44,18 +40,23 @@ export default class App extends Component {
                         </View>
                         </TouchableOpacity>
                     </View>
-                </View>
-                <KeyboardSpacer topSpacing={0}/>
-            </View>
-        </View>
-    )
-    }
+        
+    </View>
+    );
+}
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        justifyContent:'flex-start',
+        alignItems:'center',
+        flexDirection:'column',
+        marginTop:vw(25)
+    },
     top:{
         flexDirection:'row',
-        margin:15,
+        margin:10,
         justifyContent:'center',
         alignItems:'center',
     },
@@ -71,12 +72,6 @@ const styles = StyleSheet.create({
     cra:{
         fontSize:vw(5),
         color: '#3FA9F5',
-    },
-
-    info: {
-        height:vh(15),
-        padding:20,
-        
     },
     changeInfo: {
         borderRadius: 30,
@@ -97,4 +92,15 @@ const styles = StyleSheet.create({
             justifyContent:'center',
             alignItems:'center'
         },
-})
+
+    input: {
+        width: 200,
+        fontFamily: 'Baskerville',
+        fontSize: 20,
+        height: 44,
+        padding: 10,
+        borderWidth: 1,
+        borderColor: '#3FA9F5',
+        marginVertical: 10,
+    },
+});
