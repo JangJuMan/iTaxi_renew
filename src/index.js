@@ -162,6 +162,7 @@ const navigator = createStackNavigator(
     },
     Chat: {
       screen: ChatRoom,
+      
     },
     Update:{
       screen: UpdateInfo,

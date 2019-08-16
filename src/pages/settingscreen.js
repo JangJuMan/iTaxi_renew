@@ -7,8 +7,19 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 export default class Setting extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
+      
       headerRight: (
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress = {() => Alert.alert(
+            '로그아웃',
+            '로그아웃 하시겠습니까?',
+            [
+              {text: '취소', onPress: () => console.log('cancel')},
+              {text: '확인', onPress: () => navigation.navigate("First")}
+            ],
+            )
+          }
+        >
           <Icon style = {{marginRight: vw(3), color: '#3FA9F5'}} name = "logout" size = {vw(8.5)} />
         </TouchableOpacity>
       ),

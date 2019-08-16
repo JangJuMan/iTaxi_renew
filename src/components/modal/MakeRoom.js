@@ -40,12 +40,10 @@ export default class MakeRoom extends Component {
 
     person_clicked(value) {
         if (value === this.state.person) {
-            this.setState({ person: -1 });
-            this.setState({people_flag : false});
+            this.setState({ person: -1, people_flag : false });
         }
         else {
-            this.setState({ person: value });
-            this.setState({people_flag : true});
+            this.setState({ person: value, people_flag : true });
         }
     }
 
@@ -54,8 +52,7 @@ export default class MakeRoom extends Component {
             this.setState({ carrier: -1, carrier_flag: false });
         }
         else {
-            this.setState({ carrier: value })
-            this.setState({carrier_flag : true});
+            this.setState({ carrier: value, carrier_flag : true });
         }
     }
 

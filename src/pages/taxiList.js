@@ -111,7 +111,7 @@ export default class TaxiList extends Component{
                                             time={item.departure_time}
                                             from={item.departure_place}
                                             to={item.arrival_place}
-                                            seat={item.num_people}
+                                            seat={item.curr_people}
                                             carrier={item.num_carrier}/>
                                     </TouchableOpacity>
                                 </View>
