@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
 import { seatImg } from '../../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
@@ -212,12 +212,12 @@ export default class MakeRoom extends Component {
                     <TouchableOpacity onPress={() => {
 
                         if (this.state.carrier_flag && this.state.people_flag) {
-                            taxiStore.createTaxiList(this.state.date, this.state.time, '고속버스터미널', '커피유야', userStore.userId.student_id, userStore.userId.name, this.state.person, this.state.carrier)
+                            taxiStore.createTaxiList(this.state.date, this.state.time, '고속버스터미널', '커피유야', userStore.userId.student_id, this.state.person, this.state.carrier)
                             this.props.onOkButton();
 
                         }
                         else {
-                            alert('추가인원과 캐리어를 선택해주세요.');
+                            Alert.alert('','추가인원과 캐리어를 선택해주세요.');
                         }
 
 

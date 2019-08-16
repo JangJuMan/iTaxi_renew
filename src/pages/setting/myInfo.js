@@ -29,17 +29,17 @@ class Profile_my extends Component {
 @inject('userStore')
 @observer
 export default class myInfo extends Component {
-    constructor(props) {
-        super(props);
-    }
+
     componentDidMount() {
         const { userStore } = this.props;
-        userStore.getUserId();
+        userStore.getUserId() ; //(user_id)
+
     }
 
     render() {
         const { userStore } = this.props;
         const data = userStore.userId;
+        console.log(data);
         return (
             <View>
                 <View style={styles.profileTop}>
@@ -48,32 +48,32 @@ export default class myInfo extends Component {
                 </View>
                 <View style={styles.profileBottom}>
                     <View style={{ flex: 3 }}>
-                        <Profile_info info='학번' />
-                        <Profile_info info='한글이름' />
-                        <Profile_info info='Email' />
-                        <Profile_info info='휴대폰 번호' />
-                        <Profile_info info='계좌 은행' />
-                        <Profile_info info='계좌 번호' />
+                        <Profile_info info = '학번' />
+                        <Profile_info info = '한글이름' />
+                        <Profile_info info = 'Email' />
+                        <Profile_info info = '휴대폰 번호' />
+                        <Profile_info info = '계좌 은행' />
+                        <Profile_info info = '계좌 번호' />
                     </View>
 
                     <View style={{ flex: 5 }}>
-                        <Profile_my info={data.student_id} />
-                        <Profile_my info={data.name} />
-                        <Profile_my info={data.student_id + '@handong.edu'} />
-                        <Profile_my info={data.phone} />
-                        <Profile_my info='기업' />
-                        <Profile_my info={data.phone} />
+                        <Profile_my info = {data.student_id} />
+                        <Profile_my info = {data.name} />
+                        <Profile_my info = {data.email} />
+                        <Profile_my info = {data.phone_number} />
+                        <Profile_my info = {data.bank} />
+                        <Profile_my info = {data.account} />
                     </View>
+                    
 
                 </View>
                 <View style={styles.profileButton}>
                     <TouchableOpacity onPress={() => {
                         this.props.navigation.navigate('Update',
                             {
-                                student_id: data.student_id,
-                                // name: data.name,
-                                // user_id: data.user_id,
-                                // phone: data.phone
+                                //bank: data.bank,
+                                //account: data.account,
+                                phone_number: data.phone_number
                             })
                     }}>
                         <View style={styles.changeInfo}>

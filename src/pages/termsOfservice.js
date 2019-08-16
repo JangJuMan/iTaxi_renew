@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { vh, vw } from 'react-native-expo-viewport-units';
 import * as FileSystem from 'expo-file-system';
@@ -76,7 +76,7 @@ export default class service extends Component {
                             this.props.navigation.navigate('Home');
                         }
                         else {
-                            alert('모두 동의해주세요.');
+                            Alert.alert('모두 동의해주세요.');
                         }
                     }}
                 >

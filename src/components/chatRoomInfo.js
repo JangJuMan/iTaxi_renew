@@ -27,12 +27,16 @@ export default class ChatRoom extends Component{
     }
 
     getCarrier() {
+        const {navigation} = this.props;
+        const add_carrier = navigation.getParam('Carrier','');
+        console.log(add_carrier);
+        
         const { taxiStore } = this.props;
         const data = taxiStore.taxi;
         // 이것처럼 꺼내서 쓸 수 있습니다.
         // console.log(`carier info: ${this.props.navigation.state.params.Carrier}`);
         // console.log(`person info :${this.props.navigation.state.params.Person}`);
-        const full = data.num_carrier;
+        const full = data.num_carrier+ add_carrier;
         let empty = 4 - full;
         const list = [];
         
@@ -57,7 +61,6 @@ export default class ChatRoom extends Component{
     render(){
         const { taxiStore } = this.props;
         const data = taxiStore.taxi;
-
 
         return(
         <View>

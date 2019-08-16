@@ -14,14 +14,14 @@ export default class Info extends Component{
         const { navigation } = this.props;
 
     
-        this.state = { loading: false, phone: navigation.getParam('phone', 0)};
+        this.state = { loading: false, phone_number: navigation.getParam('phone_number', 0)};
     }
 
     submit() {
         const { userStore } = this.props;
         this.setState({ loading: true });
                 
-        userStore.updateUser(this.state.phone)
+        userStore.updateUser(this.state.phone_number)
         .then(result => {
             if (userStore.state == "error") {
                 alert("Error: ", userStore.errorData);
@@ -40,10 +40,11 @@ export default class Info extends Component{
         return (
             <View style={styles.info}>
                 <Text style={{fontSize:14,marginLeft:9,color:'gray',fontFamily: "titleFont",fontWeight:"200"}}>휴대폰 번호</Text>
+                <Text>{phone_number}</Text>
                 <TextInput
                     style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1}}
                     placeholder="정보를 입력하시오"
-                    onChangeText={(text) => this.setState({phone: text})}
+                    onChangeText={(text) => this.setState({phone_number: text})}
                     //value={'${this.phone}'}
                     keyboardType={'numeric'}
                 />

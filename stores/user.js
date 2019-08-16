@@ -27,18 +27,18 @@ export default class UserStore {
     }
 
     @asyncAction
-    * updateUser(phone) {
+    * updateUser(phone_number) {
         try {
-            let result = yield axios.patch("http://203.252.99.145:8282" + '/user/cra' , {
+            let result = yield axios.patch(`${DATABASE}/user/${user_id}`, {
                 // student_id: student_id,
                 // name: name,
                 // user_id: user_id,
-                phone: phone,
+                phone_number: phone_number,
             });
             // this.userId.student_id = student_id;
             // this.userId.name = name;
             // this.userId.user_id = user_id;
-            this.user.phone = phone;
+            this.userId.phone_number = phone_number;
         }
         catch (error) {
             console.log(error);
@@ -49,7 +49,8 @@ export default class UserStore {
     @asyncAction
     * getUserId() {
         try {
-            let result = yield axios.get("http://203.252.99.145:8282" + "/user/cra");
+            let result = yield axios.get(`${DATABASE}/user/cra`);
+            console.log("Result: ", result);
             this.userId = result.data;
         }
         catch (error) {
@@ -59,9 +60,9 @@ export default class UserStore {
     }
 
     @asyncAction
-    * getLog() {
+    * getLog(user_id) {
         try {
-            let result = yield axios.get("http://203.252.99.145:8282" + "/log/123/7");
+            let result = yield axios.get(`${DATABASE}/log/${user_id}`);
             this.log = result.data;
         }
         catch (error) {

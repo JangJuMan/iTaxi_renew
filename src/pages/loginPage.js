@@ -60,10 +60,10 @@ export default class App extends Component {
                 userStore.login(id, pw)
                     .then(() => {
                         this.setState({ isLoading: false }, () => {
-                            if (this.checkTerms())
-                                this.props.navigation.navigate('Service');
-                            else
-                                this.props.navigation.navigate('Home');
+                            // if (this.checkTerms())
+                            //     this.props.navigation.navigate('Service');
+                            // else
+                            //     this.props.navigation.navigate('Home');
                         });
                     })
                     .catch(error => {
@@ -72,6 +72,11 @@ export default class App extends Component {
                                 "Login Failed",
                                 error.message
                             ));
+                    }).finally(() => {
+                        if (this.checkTerms())
+                            this.props.navigation.navigate('Service');
+                        else
+                            this.props.navigation.navigate('Home');
                     })
             });
     }
@@ -126,7 +131,7 @@ export default class App extends Component {
                     <KeyboardSpacer topSpacing={0}/>
                 </View>
 
-                <Modal
+                {/* <Modal
                     transparent={true}
                     visible={this.state.isLoading}
                     render={
@@ -135,7 +140,7 @@ export default class App extends Component {
                         animating={this.state.isLoading}
                         size={"large"}
                         color={"blue"} />
-                    }/>
+                    }/> */}
             </View>
         )
     }

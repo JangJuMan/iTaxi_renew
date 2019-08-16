@@ -28,15 +28,14 @@ export default class TaxiStore {
     }
 
     @asyncAction
-    * createTaxiList(date, time, d_place, a_place, host_id, name, people, carrier) {
+    * createTaxiList(date, time, d_place, a_place, user_id, people, carrier) {
         try {
             let response = yield axios.post(`${DATABASE}/taxi/${_id}`, {
                 departure_date: date,
                 departure_time: time,
                 departure_place: d_place,
                 arrival_place: a_place,
-                host_id: host_id,
-                host_name: name,
+                user_id: user_id,
                 num_people: people,
                 num_carrier: carrier
             });

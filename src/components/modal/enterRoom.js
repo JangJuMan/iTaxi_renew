@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw }  from 'react-native-expo-viewport-units';
@@ -115,7 +115,7 @@ export default class intoRoom extends Component{
                             this.props.onOkButton(this.state.carrier);
                         }
                         else {
-                            alert('캐리어를 선택해주세요.');
+                            Alert.alert('','캐리어를 선택해주세요.');
                         }
 
                     }}>
