@@ -37,6 +37,7 @@ export default class SearchModal extends Component {
                     render={
                         <SelectDestination
                             onSelectLocation={(location) => {
+                                this.setModalVisiable(false);
                                 this.setState({location});
                                 this.props.onSelect ? this.props.onSelect(location) : null;
                             }}
