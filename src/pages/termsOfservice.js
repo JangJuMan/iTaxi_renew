@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { vh, vw } from 'react-native-expo-viewport-units';
+import * as FileSystem from 'expo-file-system';
 
 
 export default class service extends Component {
@@ -9,7 +10,7 @@ export default class service extends Component {
         checked: false,
         s_checked: false,
     }
-
+    termAgreeFileUri = FileSystem.cacheDirectory + "termInfo";
 
     static navigationOptions = ({ navigation }) => {
         return {
@@ -21,6 +22,10 @@ export default class service extends Component {
             
         };
     };
+
+    async setAgreeTerm() {
+        await FileSystem.writeAsStringAsync(this.termAgreeFileUri, "Agree");
+    }
     
     render() {
         return(
@@ -67,12 +72,12 @@ export default class service extends Component {
                     style = {styles.button}
                     onPress = {()=> {
                         if(this.state.checked && this.state.s_checked) {
-                            this.props.navigation.navigate('Home')
+                            this.setAgreeTerm();
+                            this.props.navigation.navigate('Home');
                         }
                         else {
                             alert('모두 동의해주세요.');
                         }
-                    
                     }}
                 >
                     <Text style = {styles.buttontext}>확인</Text>
