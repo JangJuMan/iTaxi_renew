@@ -77,7 +77,7 @@ export default class CarpoolList extends Component{
                 {this.state.dataReceive && carpoolStore.carpoolList.length == 0 &&
                     <View style={styles.log_contents}>
                         <View style={styles.log_container}>
-                            <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
+                            <Text style={styles.date_of_logs}>{this.state.currentDate.locale('ko').format('YYYY-MM-DD dddd')}</Text>
                             <View style={styles.horizontal_date_bar}></View>
                         </View>
                         <EmptyList navigation={this.props.navigation}/>
@@ -87,7 +87,7 @@ export default class CarpoolList extends Component{
                     <ScrollView>
                         <View style={styles.log_contents}>
                             <View style={styles.log_container}>
-                                <Text style={styles.date_of_logs}>{this.state.currentDate.format('YYYY-MM-DD')}</Text>
+                                <Text style={styles.date_of_logs}>{this.state.currentDate.locale('ko').format('YYYY-MM-DD dddd')}</Text>
                                 <View style={styles.horizontal_date_bar}></View>
                             </View>
                             <FlatList
