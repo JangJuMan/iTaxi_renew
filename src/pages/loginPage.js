@@ -52,7 +52,7 @@ export default class App extends Component {
         const info = await FileSystem.getInfoAsync(this.termAgreeFileUri);
         return info.exists;
     }
-    
+
     login(id, pw) {
         const { userStore } = this.props;
         this.setState({ isLoading: true },
@@ -85,23 +85,29 @@ export default class App extends Component {
                 <Text style={styles.cra}>Powered by CRA</Text>
             </View>
         </View>
-        <TextInput
-            keyboardType = 'email-address'
-            onChangeText={(id) => this.setState({ id })}
-            placeholder='Hisnet ID'
-            style={styles.input}
-        />
-        <TextInput
-            onChangeText={(password) => this.setState({ password })}
-            placeholder='Hisnet PW'
-            secureTextEntry={true}
-            style={styles.input}
-        />
+        <View style={styles.textinput}>
+            <Text style={{fontSize:14,marginLeft:9,color:'gray',}}>Hisnet ID</Text>
+            <TextInput
+                style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC',width:vw(90)}}
+                placeholder="Your hisnet ID"
+                onChangeText={(text) => this.setState({id: text})}
+            />
+
+            <Text style={{fontSize:14,marginLeft:9,color:'gray',}}>Hisnet PW</Text>
+            <TextInput
+                secureTextEntry={true}
+                style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC',width:vw(90)}}
+                placeholder="Your hisnet PW"
+                onChangeText={(text) => this.setState({pw: text})}
+            />
+        </View>
         <CheckBox
             center
             title="자동 로그인"
             onPress={() => this.setState({ isAutoLogin: !this.state.isAutoLogin })}
-            checked={this.state.isAutoLogin} />
+            checked={this.state.isAutoLogin}
+            size = {vw(6)}
+            />
         <View style={styles.profileButton}>
             <TouchableOpacity onPress={() => {
                 this.state.isAutoLogin ? this.setAutoLogin() : this.resetAutoLogin();
@@ -112,6 +118,7 @@ export default class App extends Component {
                 </View>
             </TouchableOpacity>
         </View>
+        <KeyboardSpacer topSpacing={0}/>
     </View>
     );
 }
@@ -119,10 +126,10 @@ export default class App extends Component {
 const styles = StyleSheet.create({
     container: {
         flex:1,
-        justifyContent:'flex-start',
+        justifyContent:'center',
         alignItems:'center',
         flexDirection:'column',
-        marginTop:vw(25)
+        marginTop:vw(17)
     },
         top:{
             flexDirection:'row',
@@ -143,20 +150,18 @@ const styles = StyleSheet.create({
                     fontSize:vw(5),
                     color: '#3FA9F5',
                 },
-        input: {
-            width: 200,
-            fontFamily: 'Baskerville',
-            fontSize: 20,
-            height: 44,
-            padding: 10,
-            borderWidth: 1,
-            borderColor: '#3FA9F5',
-            marginVertical: 10,
+        textinput:{
+            flexDirection:'column',
+            justifyContent:'flex-start',
+            alignItems:'flex-start',
+            width:vw(90)
         },
         profileButton:{
             height:vw(15),
             justifyContent:'center',
-            alignItems:'center'
+            alignItems:'center',
+            margin:vw(3)
+            
         },
             changeInfo: {
                 borderRadius: 30,
@@ -168,8 +173,9 @@ const styles = StyleSheet.create({
                 flexDirection: 'row',
                 justifyContent: 'space-evenly',
                 alignItems: 'center',
+                backgroundColor:'#3FA9F5'
             },
                 changeInfoText: {
-                    color: '#3FA9F5',
+                    color: 'white',
                 },
 });
