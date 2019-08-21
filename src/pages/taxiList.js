@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import{ StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList, ActivityIndicator } from 'react-native';
 import { inject, observer } from 'mobx-react';
 import moment from 'moment-timezone';
-import 'moment/min/locales'
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import EmptyList from '../components/emptyList';
 import EnterRoom from '../components/modal/enterRoom';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ModalControl from '../variable/modalControl';
+import ModalControl from '../../variable/modalControl';
 import MakeRoom from '../components/modal/MakeRoom';
 import Modal from '../elements/modal';
-import titleFont from '../variable/assets'
 
 @inject('taxiStore')
 @observer

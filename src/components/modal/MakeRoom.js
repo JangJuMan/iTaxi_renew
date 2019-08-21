@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
-import { seatImg } from '../../variable/assets';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw, vh } from 'react-native-expo-viewport-units';

@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import EmptyList from '../components/emptyList';
 import EnterRoom from '../components/modal/enterRoom';
 import MakeRoom from '../components/modal/MakeRoom';
-import ModalControl from '../variable/modalControl';
+import ModalControl from '../../variable/modalControl';
 import SearchMenu from '../components/searchMenu';
 import Modal from '../elements/modal';
 
