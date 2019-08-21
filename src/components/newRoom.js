@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet} from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
-import {plusImg} from '../variable/assets';
+import {plusImg} from '../../variable/assets';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 

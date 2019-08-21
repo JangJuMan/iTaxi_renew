@@ -1,8 +1,8 @@
-const ASSET_DIR = "../../assets/";
-const seat1 = require('../../assets/Final-oneblue.png');
-const seat2 = require('../../assets/Final-twoblue.png');
-const seat3 = require('../../assets/Final-threeblue.png');
-const seat4 = require('../../assets/Final-fourblue.png');
+const ASSET_DIR = "../assets/";
+const seat1 = require(ASSET_DIR + 'Final-oneblue.png');
+const seat2 = require(ASSET_DIR + 'Final-twoblue.png');
+const seat3 = require(ASSET_DIR + 'Final-threeblue.png');
+const seat4 = require(ASSET_DIR + 'Final-fourblue.png');
 export const seatImgs = [undefined, seat1, seat2, seat3, seat4];
 
 

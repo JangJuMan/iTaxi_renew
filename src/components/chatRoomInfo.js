@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView,Image,} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import { vw } from 'react-native-expo-viewport-units';
-import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../variable/assets';
+import {carrIcon,emptycarrImg,fullcarrImg,fromtoIcon} from '../../variable/assets';
 import { observer, inject } from 'mobx-react';
 import CalculModal from './modal/calculModal';
 import Modal from '../elements/modal';

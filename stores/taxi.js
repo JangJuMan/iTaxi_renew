@@ -15,22 +15,18 @@ export default class TaxiStore {
     * getTaxiList(date) {
         try {
             let result = yield axios.get(`${DATABASE}/taxilist/${date}`);
-            this.taxiList = result.data.data.filter(item => {
-                if ((Moment.tz(`${item.departure_date} ${item.departure_time}`, 'Asia/Seoul').diff(Moment())) < 0)
-                    return false;
-                return true;
-            });
+            this.taxiList = result.data.data;
         }
         catch (error) {
-            console.log(JSON.stringify(error));
-            this.errorData = error.message;
+            throw error
         }
     }
 
     @asyncAction
     * createTaxiList(date, time, d_place, a_place, user_id, people, carrier) {
         try {
-            let response = yield axios.post(`${DATABASE}/taxi/${_id}`, {
+            let response = yield axios.post(`${DATABASE}/taxilist/${date}`, {
+                
                 departure_date: date,
                 departure_time: time,
                 departure_place: d_place,

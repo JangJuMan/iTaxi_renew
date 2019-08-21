@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import{ StyleSheet, View, Text, Image, TextInput, TouchableOpacity, Alert, Keyboard, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { CheckBox } from 'react-native-elements';
-import { mainLogo } from '../variable/assets';
+import { mainLogo } from '../../variable/assets';
 import { vw } from 'react-native-expo-viewport-units';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { inject } from 'mobx-react';
