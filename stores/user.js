@@ -14,7 +14,7 @@ export default class UserStore {
     async autoLogin() {
         const info = await FileSystem.getInfoAsync(this.loginInfoFileUri);
         if (info.exists) {
-            FileSystem.readAsStringAsync(this.loginInfoFileUri)
+            return FileSystem.readAsStringAsync(this.loginInfoFileUri)
                 .then(content => {
                     const data = JSON.parse(content);
                     return data;
