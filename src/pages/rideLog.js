@@ -30,7 +30,7 @@ export default class RiderLog extends Component{
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
         return (
-            <View style={{flex:1}}>
+            <View style={{}}>
                 {/* 곧 탑승예정 */}
                 <Text style={styles.top_title}>곧 탑승 예정</Text>
                 <TouchableOpacity

@@ -54,7 +54,7 @@ export default class App extends Component {
                             if (!loginData.term)
                                 this.props.navigation.navigate('Service');
                             else
-                                this.props.navigation.navigate('Home');
+                                this.props.navigation.replace('Home');
                         });
                     })
                     .catch(error => {

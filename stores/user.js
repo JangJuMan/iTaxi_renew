@@ -5,9 +5,6 @@ import * as FileSystem from 'expo-file-system';
 import { DATABASE } from '../info';
 
 export default class UserStore {
-    userId = "";
-    user = null;
-    rideLof = [];
 
     loginInfoFileUri = FileSystem.cacheDirectory + "loginInfo";
 
