@@ -3,14 +3,14 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Alert} from 'reac
 import { CheckBox } from 'react-native-elements';
 import { vh, vw } from 'react-native-expo-viewport-units';
 import * as FileSystem from 'expo-file-system';
+import { inject } from 'mobx-react';
 
-
+@inject('userStore')
 export default class service extends Component {
     state = {
         checked: false,
         s_checked: false,
     }
-    termAgreeFileUri = FileSystem.cacheDirectory + "termInfo";
 
     static navigationOptions = ({ navigation }) => {
         return {
@@ -19,23 +19,25 @@ export default class service extends Component {
                     <Text style = {styles.headtext}>약관 동의</Text>
                 </View>
             ),
-            
         };
     };
 
-    async setAgreeTerm() {
-        await FileSystem.writeAsStringAsync(this.termAgreeFileUri, "Agree");
+    setAgreeTerm() {
+        const { userStore } = this.props;
+        userStore.updateUser({
+            term: true
+        }).then(() => this.props.navigation.navigate('Home'))
+        .catch(error => Alert.alert('Error', error.message))
     }
-    
+
     render() {
         return(
-            <View style  = {styles.container}>
-                
+            <View style={styles.container}>
                 <View>
                     <Text style = {styles.text}>이용약관</Text>
                         <View style = {styles.block}>
                             <View style = {styles.box}>
-                                <ScrollView>
+                                <ScrollView style={{padding: 5}}>
                                     <Text>{this.userpromise}</Text>
                                 </ScrollView>
                             </View>
@@ -55,7 +57,7 @@ export default class service extends Component {
                     <Text style = {styles.text}>개인정보 보호를 위한 동의 사항</Text>
                         <View style = {styles.block}>
                             <View style = {styles.box}>
-                                <ScrollView>
+                                <ScrollView style={{padding: 5}}>
                                     <Text>{this.userinfo}</Text>
                                 </ScrollView>
                             </View>
@@ -71,13 +73,10 @@ export default class service extends Component {
                 <TouchableOpacity 
                     style = {styles.button}
                     onPress = {()=> {
-                        if(this.state.checked && this.state.s_checked) {
+                        if(this.state.checked && this.state.s_checked)
                             this.setAgreeTerm();
-                            this.props.navigation.navigate('Home');
-                        }
-                        else {
+                        else
                             Alert.alert('모두 동의해주세요.');
-                        }
                     }}
                 >
                     <Text style = {styles.buttontext}>확인</Text>
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
         height: vh(70),
     },
     head: {
-        height: vh(10),
+        height: vh(8),
         //marginTop: vh(3),
         backgroundColor: '#3FA9F5',
         justifyContent: 'center',

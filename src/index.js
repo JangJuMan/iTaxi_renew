@@ -192,6 +192,9 @@ const navigator = createStackNavigator(
   },
   {
     initialRouteName: 'First', 
+    defaultNavigationOptions: {
+        gesturesEnabled: false,
+    },
   }
 )
 
