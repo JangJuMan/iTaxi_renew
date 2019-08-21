@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import{ StyleSheet, View, Text, Image, TextInput, TouchableOpacity, Alert, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import{ StyleSheet, View, Text, Image, TextInput, TouchableOpacity, Alert, Keyboard, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import { mainLogo } from '../variable/assets';
 import { vw } from 'react-native-expo-viewport-units';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { inject } from 'mobx-react';
+import Modal from '../elements/modal';
 
 @inject('userStore')
 export default class App extends Component {
@@ -19,17 +20,26 @@ export default class App extends Component {
         const { userStore } = this.props;
         let result = await userStore.autoLogin();
         if (result) {
-            this.setState({ isAutoLogin: true }, () => {
-                this.login(result.id, result.password);
+            this.setState({ isAutoLogin: true, id: result.id, pw: result.password }, () => {
+                this.login();
             })
         }
     }
 
-    login(id, pw) {
+    login() {
         const { userStore } = this.props;
         this.setState({ isLoading: true },
             () => {
-                userStore.login(id, pw)
+                if (!(this.state.id && this.state.pw)) {
+                    this.setState({ isLoading: false }, () =>
+                        Alert.alert(
+                            "로그인 오류",
+                            "아이디와 비밀번호를 모두 입력해주세요"
+                        ));
+                    return;
+                }
+
+                userStore.login(this.state.id, this.state.pw)
                     .then(loginData => {
                         // Todo : encrypt id/pw data
                         if (this.state.isAutoLogin)
@@ -95,7 +105,7 @@ export default class App extends Component {
                     />
                 <View style={styles.profileButton}>
                     <TouchableOpacity onPress={() => {
-                        this.login(this.state.id, this.state.pw);
+                        this.login();
                     }}>
                         <View style={styles.changeInfo}>
                             <Text style={styles.changeInfoText}>Sign in(로그인)</Text>
@@ -103,6 +113,15 @@ export default class App extends Component {
                     </TouchableOpacity>
                 </View>
                 <KeyboardSpacer topSpacing={0}/>
+                <Modal
+                    transparent={true}
+                    visible={this.state.isLoading}
+                    modalStyle={styles.modalStyle}
+                    render={
+                    <ActivityIndicator
+                        color='blue'
+                        size='large' />
+                    } />
             </View>
         </TouchableWithoutFeedback>
         );
@@ -170,4 +189,9 @@ const styles = StyleSheet.create({
                 changeInfoText: {
                     color: 'white',
                 },
+        
+        modalStyle: {
+            padding: 15,
+            borderRadius: 10,
+        },
 });
