@@ -15,19 +15,24 @@ export default class App extends Component {
         pw: "",
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const { userStore } = this.props;
-        userStore.autoLogin();
+        let result = await userStore.autoLogin();
+        if (result) {
+            this.setState({ isAutoLogin: true }, () => {
+                this.login(result.id, result.password);
+            })
+        }
     }
 
-    login() {
+    login(id, pw) {
         const { userStore } = this.props;
         this.setState({ isLoading: true },
             () => {
-                userStore.login(this.state.id, this.state.pw)
+                userStore.login(id, pw)
                     .then(loginData => {
                         // Todo : encrypt id/pw data
-                        if (this.isAutoLogin)
+                        if (this.state.isAutoLogin)
                             userStore.setAutoLogin({
                                 'id': this.state.id,
                                 'password': this.state.pw,
@@ -90,7 +95,7 @@ export default class App extends Component {
                     />
                 <View style={styles.profileButton}>
                     <TouchableOpacity onPress={() => {
-                        this.login();
+                        this.login(this.state.id, this.state.pw);
                     }}>
                         <View style={styles.changeInfo}>
                             <Text style={styles.changeInfoText}>Sign in(로그인)</Text>
