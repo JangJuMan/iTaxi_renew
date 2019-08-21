@@ -15,21 +15,6 @@ export default class service extends Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            // header: (
-            //     <View style = {styles.head}>
-            //         <Text style = {styles.headtext}>약관 동의</Text>
-            //     </View>
-            // ),
-            // headerLeft:(
-            //     <View style = {styles.head}>
-            //         <Text style = {styles.headtext}>약관 동의</Text>
-            //     </View>
-            // ),
-            // header:(
-            //     <View style = {styles.head}>
-            //         <Text style = {styles.headtext}>약관 동의</Text>
-            //     </View>
-            // )
             headerTitle:(
                 <View style={{ alignItems: 'center', flex:1}}>
                     <Text style={{ color: 'white',  fontWeight: 'bold', fontSize: vw(6),}}>
@@ -41,13 +26,11 @@ export default class service extends Component {
                 backgroundColor: '#3FA9F5',
             },
             headerRight:(
-                <View style={{}}>
-
-                </View>
+                <View></View>
             ),
             headerLeft:(
                 <TouchableOpacity 
-                    onPress = {() => { this.props.navigation.goBack()}}>
+                    onPress = {() => { navigation.goBack() }}>
                     <Icon style={{marginLeft:10, color:'white'}} name="arrowleft" size={25}/>
                 </TouchableOpacity>
             )
