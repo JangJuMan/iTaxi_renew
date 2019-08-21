@@ -1,5 +1,5 @@
 import React from 'react';
-import { createAppContainer, createStackNavigator, createMaterialTopTabNavigator} from 'react-navigation';
+import { createAppContainer, createStackNavigator, createMaterialTopTabNavigator, View, Text} from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ListView from './pages/taxiList';
 import RiderLog from './pages/rideLog';
@@ -147,6 +147,13 @@ const navigator = createStackNavigator(
   {
     Service: {
       screen: Servicepage,
+      navigationOptions:{
+        // title:"이용 약관",
+        // headerTitleStyle:{
+        //   color:'blue'
+        // }
+        
+      }
     },
     First:{
       screen: FirstPage,

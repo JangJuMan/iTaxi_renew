@@ -4,6 +4,7 @@ import { CheckBox } from 'react-native-elements';
 import { vh, vw } from 'react-native-expo-viewport-units';
 import * as FileSystem from 'expo-file-system';
 import { inject } from 'mobx-react';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 @inject('userStore')
 export default class service extends Component {
@@ -14,11 +15,42 @@ export default class service extends Component {
 
     static navigationOptions = ({ navigation }) => {
         return {
-            header: (
-                <View style = {styles.head}>
-                    <Text style = {styles.headtext}>약관 동의</Text>
+            // header: (
+            //     <View style = {styles.head}>
+            //         <Text style = {styles.headtext}>약관 동의</Text>
+            //     </View>
+            // ),
+            // headerLeft:(
+            //     <View style = {styles.head}>
+            //         <Text style = {styles.headtext}>약관 동의</Text>
+            //     </View>
+            // ),
+            // header:(
+            //     <View style = {styles.head}>
+            //         <Text style = {styles.headtext}>약관 동의</Text>
+            //     </View>
+            // )
+            headerTitle:(
+                <View style={{ alignItems: 'center', flex:1}}>
+                    <Text style={{ color: 'white',  fontWeight: 'bold', fontSize: vw(6),}}>
+                        약관 동의
+                    </Text>
                 </View>
             ),
+            headerStyle:{
+                backgroundColor: '#3FA9F5',
+            },
+            headerRight:(
+                <View style={{}}>
+
+                </View>
+            ),
+            headerLeft:(
+                <TouchableOpacity 
+                    onPress = {() => { this.props.navigation.goBack()}}>
+                    <Icon style={{marginLeft:10, color:'white'}} name="arrowleft" size={25}/>
+                </TouchableOpacity>
+            )
         };
     };
 

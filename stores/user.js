@@ -39,6 +39,7 @@ export default class UserStore {
                 id: id,
                 password: password
             });
+            console.log(result)
             this.userId = result.data._id;
             return result.data;
         }
