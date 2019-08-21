@@ -26,7 +26,7 @@ export default class service extends Component {
         const { userStore } = this.props;
         userStore.updateUser({
             term: true
-        }).then(() => this.props.navigation.navigate('Home'))
+        }).then(() => this.props.navigation.replace('Home'))
         .catch(error => Alert.alert('Error', error.message))
     }
 
