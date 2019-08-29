@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, Platform } from 'react-native';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import { carrierImgs, seatImgs, fromtoImg, } from '../../variable/assets';
 import { observer, inject } from 'mobx-react';
@@ -108,17 +108,17 @@ const styles=StyleSheet.create({
     destination_text_location: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around'
     },
 
     destination_text: {
         color: 'gray',
         margin: vw(2.4),
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     carrier: {
-        flexGrow: 1,
+        flexGrow:1,
         alignSelf: 'flex-end',
         width: 40,
         height:60,

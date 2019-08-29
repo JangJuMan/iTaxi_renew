@@ -30,8 +30,7 @@ export default class RiderLog extends Component{
         const { taxiStore } = this.props;
         const { carpoolStore } = this.props;
         return (
-            <View style={{}}>
-                {/* 곧 탑승예정 */}
+            <View style={{flex:1}}>
                 <Text style={styles.top_title}>곧 탑승 예정</Text>
                 <TouchableOpacity
                     onPress = {() => {
@@ -42,7 +41,6 @@ export default class RiderLog extends Component{
                     </View>
                 </TouchableOpacity>
 
-                {/* 중단 수평선 */}
                 <View style={styles.past_log}>
                     <Text style={styles.past_log_title}>지난탑승내역</Text>
                     <View style={{flexDirection: 'row'}}>
@@ -64,7 +62,7 @@ export default class RiderLog extends Component{
                         </TouchableOpacity>   
                     </View>
                 </View>
-                {/* 지난 탑승 내역들 */}                
+
                 <ScrollView>
                     <View style={styles.past_log_contents}>
                         <FlatList
@@ -97,7 +95,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold', 
         margin: 10, 
         marginLeft: 24,
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     top_highlighted_log:{
@@ -120,7 +118,7 @@ const styles = StyleSheet.create({
         color: '#a0a0a0', 
         fontWeight: 'bold', 
         marginLeft:14,
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     taxi_carpool_font:{
@@ -130,7 +128,7 @@ const styles = StyleSheet.create({
         padding:5,
         paddingRight:15,
         paddingLeft:15,
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     taxi_carpool_highlight_font:{
@@ -142,7 +140,7 @@ const styles = StyleSheet.create({
         borderWidth:0.5,
         borderColor:OC.cyan[3],
         borderRadius: 7,
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     past_log_container:{

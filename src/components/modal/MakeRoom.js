@@ -79,7 +79,7 @@ export default class MakeRoom extends Component {
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={styles.leftText}>출발날짜 :</Text>
+                        <Text style={styles.leftText}>출발날짜</Text>
                     </View>
                     <View style={{ flex: 6, justifyContent: 'center', alignItems: 'center', }}>
                         <DatePicker
@@ -106,7 +106,7 @@ export default class MakeRoom extends Component {
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={styles.leftText}>출발시간 :</Text>
+                        <Text style={styles.leftText}>출발시간</Text>
                     </View>
                     <View style={{ flex: 6, justifyContent: 'center', alignItems: 'center', }}>
                         <DatePicker
@@ -135,7 +135,7 @@ export default class MakeRoom extends Component {
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={styles.leftText}>추가인원 :</Text>
+                        <Text style={styles.leftText}>추가인원</Text>
                     </View>
                     <View style={{ flex: 6, justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row' }}>
                         <TouchableOpacity style={{ padding: 5 }}
@@ -165,7 +165,7 @@ export default class MakeRoom extends Component {
 
                 <View style={styles.time_person_bag}>
                     <View style={styles.flextwo}>
-                        <Text style={styles.leftText}>나의캐리어 :</Text>
+                        <Text style={styles.leftText}>나의캐리어</Text>
                     </View>
                     <View style={{ flex: 6, justifyContent: 'space-evenly', alignItems: 'center', flexDirection: 'row' }}>
                         <TouchableOpacity style={{ padding: 5 }}
