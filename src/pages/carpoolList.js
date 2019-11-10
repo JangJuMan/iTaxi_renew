@@ -30,7 +30,7 @@ export default class CarpoolList extends Component{
         dataReceive: true,
         currentDate: moment(),
         modalVisible: false,
-        delayedRender: false,
+        delayedRender: true,
     }
 
     componentDidMount() {
@@ -46,7 +46,7 @@ export default class CarpoolList extends Component{
         this.setState({ dataReceive: false },
             () => {
                 setTimeout(() => {
-                    if (!this.state.dataReceive) this.setState({ delayedRender: true });
+                    if (!this.state.dataReceive) this.setState({ delayedRender: false });
                 }, 300);
                 carpoolStore.getCarpoolList(date)
                     .then(() => this.setState({ dataReceive: true, delayedRender: false }));
