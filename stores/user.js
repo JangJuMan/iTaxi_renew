@@ -35,6 +35,8 @@ export default class UserStore {
             let result = await axios.post(`${DATABASE}/user`, {
                 id: id,
                 password: password
+            }).catch(error => {
+                console.log("error: %o", error);
             });
             console.log(result)
             this.userId = result.data._id;

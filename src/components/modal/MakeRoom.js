@@ -21,8 +21,8 @@ import 'moment/min/locales'
 export default class MakeRoom extends Component {
 
     state = {
-        person: -1,
-        carrier: -1,
+        person: 1,
+        carrier: 0,
         date: '',
         time: moment().tz('Asia/Seoul'),
         people_flag: false,
