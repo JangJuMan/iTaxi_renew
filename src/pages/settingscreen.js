@@ -4,6 +4,8 @@ import { ListItem } from 'react-native-elements';
 import { vw, vh } from 'react-native-expo-viewport-units';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import userStore from '../../stores/user'
+
 export default class Setting extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -15,7 +17,9 @@ export default class Setting extends Component {
             '로그아웃 하시겠습니까?',
             [
               {text: '취소', onPress: () => console.log('cancel')},
-              {text: '확인', onPress: () => navigation.navigate("First")}
+              {text: '확인', onPress: () => {
+                userStore.resetAutoLogin().then(() => navigation.navigate("First"))
+              }}
             ],
             )
           }

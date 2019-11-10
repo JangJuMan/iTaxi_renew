@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Alert, Platform, DatePickerIOS } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import OC from 'open-color';
 import { vw, vh } from 'react-native-expo-viewport-units';
@@ -27,7 +27,6 @@ export default class MakeRoom extends Component {
         time: moment().tz('Asia/Seoul'),
         people_flag: false,
         carrier_flag: false,
-
     }
 
     constructor(props) {
@@ -35,6 +34,14 @@ export default class MakeRoom extends Component {
         const {dateStore} = this.props;
         this.dateStore = dateStore
         this.state.date = dateStore.nowDate
+        // For IOS DatePicker
+        this.state = {chosenDate: new Date()};
+        this.setDate = this.setDate.bind(this);
+    }
+
+    // For IOS DatePicker
+    setDate(newDate){
+        this.setState({chosenDate: newDate});
     }
 
     person_clicked(value) {
@@ -91,6 +98,8 @@ export default class MakeRoom extends Component {
                             showIcon={false}
                             onDateChange={(date) => { this.setState({ date: date }); }}
                             androidMode="spinner"
+                            textColor="#000000"
+                            
                             customStyles={{
                                 dateInput: {
                                     borderWidth: 0,
@@ -98,9 +107,14 @@ export default class MakeRoom extends Component {
                                 dateText: {
                                     color: '#4dabf7',
                                     fontSize: 23,
+                                },
+                                datePicker:{
+                                    
+                                },
+                                datePickerCon: {
+                                    backgroundColor: '#A1A1A1'
                                 }
-                            }}
-                        />
+                            }} />
                     </View>
                 </View>
 

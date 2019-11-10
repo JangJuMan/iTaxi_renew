@@ -6,9 +6,12 @@ import { DATABASE } from '../info';
 
 export default class UserStore {
 
-    loginInfoFileUri = FileSystem.cacheDirectory + "loginInfo";
+    static loginInfoFileUri = FileSystem.cacheDirectory + "loginInfo";
+    static user_id = "";
+    static user;
+    static log;
 
-    async autoLogin() {
+    static async autoLogin() {
         const info = await FileSystem.getInfoAsync(this.loginInfoFileUri);
         if (info.exists) {
             return FileSystem.readAsStringAsync(this.loginInfoFileUri)
@@ -20,17 +23,17 @@ export default class UserStore {
         return null;
     }
 
-    async setAutoLogin(loginData) {
+    static async setAutoLogin(loginData) {
         await FileSystem.writeAsStringAsync(this.loginInfoFileUri, JSON.stringify(loginData));
     }
 
-    async resetAutoLogin() {
+    static async resetAutoLogin() {
         const info = await FileSystem.getInfoAsync(this.loginInfoFileUri);
         if (info.exists)
             await FileSystem.deleteAsync(this.loginInfoFileUri);
     }
 
-    async login(id, password) {
+    static async login(id, password) {
         try {
             let result = await axios.post(`${DATABASE}/user`, {
                 id: id,
@@ -47,7 +50,7 @@ export default class UserStore {
         }
     }
 
-    async getUser() {
+    static async getUser() {
         try {
             let result = await axios.get(`${DATABASE}/user/${this.userId}`);
             this.user = result.data;
@@ -58,7 +61,7 @@ export default class UserStore {
         }
     }
 
-    async updateUser(data) {
+    static async updateUser(data) {
         try {
             let result = await axios.patch(`${DATABASE}/user/${this.userId}`, data);
             this.user = result.data;
@@ -70,7 +73,7 @@ export default class UserStore {
 
     // TODO
     @asyncAction
-    * getLog() {
+    static * getLog() {
         try {
             let result = yield axios.get(`${DATABASE}/log/${user_id}`);
             this.log = result.data; 

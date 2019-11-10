@@ -10,6 +10,9 @@ import UserStore from './stores/user';
 import CarpoolStore from './stores/carpool';
 import NowDate from './stores/nowDate';
 
+import { ApplicationProvider } from 'react-native-ui-kitten';
+import { mapping, light } from '@eva-design/eva';
+
 const taxiStore = new TaxiStore();
 const userStore = new UserStore();
 const carpoolStore = new CarpoolStore();
@@ -25,14 +28,16 @@ export default class App extends Component {
 
   render() {
     return (
-      <Provider 
-        userStore = {userStore}
-        taxiStore = {taxiStore}
-        carpoolStore = {carpoolStore}  
-        dateStore = {dateStore}
-      >
-        <MainPage />
-      </Provider>
+      <ApplicationProvider mapping={mapping} theme={light}>
+        <Provider 
+          userStore = {userStore}
+          taxiStore = {taxiStore}
+          carpoolStore = {carpoolStore}  
+          dateStore = {dateStore}
+        >
+          <MainPage />
+        </Provider>
+      </ApplicationProvider>
     )
   }
 }

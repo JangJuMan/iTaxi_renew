@@ -6,6 +6,7 @@ import { vw } from 'react-native-expo-viewport-units';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { inject } from 'mobx-react';
 import Modal from '../elements/modal';
+import userStore from '../../stores/user';
 
 @inject('userStore')
 export default class App extends Component {
@@ -18,9 +19,8 @@ export default class App extends Component {
 
     async componentDidMount() {
         // for DEBUG
-        this.props.navigation.replace('Home');
+        //this.props.navigation.replace('Home');
 
-        const { userStore } = this.props;
         let result = await userStore.autoLogin();
         if (result) {
             this.setState({ isAutoLogin: true, id: result.id, pw: result.password }, () => {
@@ -30,7 +30,6 @@ export default class App extends Component {
     }
 
     login() {
-        const { userStore } = this.props;
         this.setState({ isLoading: true },
             () => {
                 if (!(this.state.id && this.state.pw)) {
