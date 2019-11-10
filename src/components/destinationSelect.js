@@ -243,11 +243,13 @@ export default class SelectModal extends Component {
                 <Bottom
                     onSelect={this.onSelectLog}
                     style={{ marginBottom: 10, }} />
-                <TouchableOpacity style={styles.submit_btn}>
+                {/* <TouchableOpacity style={styles.submit_btn}>
                     <Button
                         title="확인"
-                        onPress={this.props.onSubmit} />
-                </TouchableOpacity>
+                        onPress={()=> {
+                            this.props.onSubmit()
+                        }} />
+                </TouchableOpacity> */}
             </View>
         )
     }

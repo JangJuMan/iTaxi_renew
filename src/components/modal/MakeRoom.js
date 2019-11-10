@@ -25,13 +25,13 @@ export default class MakeRoom extends Component {
         carrier: 0,
         date: '',
         time: moment().tz('Asia/Seoul'),
-        people_flag: false,
-        carrier_flag: false,
+        people_flag: true,
+        carrier_flag: true,
 
     }
 
     constructor(props) {
-        super(props)
+        super(props) 
         const {dateStore} = this.props;
         this.dateStore = dateStore
         this.state.date = dateStore.nowDate

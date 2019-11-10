@@ -44,7 +44,10 @@ export default class SearchModal extends Component {
                             onSelectLog={(departure, destination) => {
                                 this.props.onSelectLog ? this.props.onSelectLog(departure, destination) : null;
                             }}
-                            onSubmit={() => this.setModalVisiable(false)} />
+                            onSubmit={(value) => {
+                                this.setModalVisiable(false);
+                                
+                            }} />
                     } />
             </View>
         )

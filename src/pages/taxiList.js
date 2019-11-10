@@ -5,6 +5,7 @@ import moment from 'moment-timezone';
 import SearchMenu from '../components/searchMenu';
 import ListEntry from '../components/taxiElement';
 import EmptyList from '../components/emptyList';
+import ConnectError from '../components/data404';
 import EnterRoom from '../components/modal/enterRoom';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ModalControl from '../../variable/modalControl';
@@ -17,7 +18,8 @@ export default class TaxiList extends Component{
     state={
         modalVisible: false,
         dataReceive: false,
-        delayedRender: false,
+        delayedRender: true,
+        connectionError: false,
         currentDate: moment(),
         carrierNum : -1,
         personNum : -1,
@@ -47,8 +49,8 @@ export default class TaxiList extends Component{
         this.setState({ dataReceive: false },
             () => {
                 setTimeout(() => {
-                    if (!this.state.dataReceive) this.setState({ delayedRender: true });
-                }, 300);
+                    if (!this.state.dataReceive) this.setState({ delayedRender: false, connectionError: true });
+                }, 5000);
                 taxiStore.getTaxiList(date)
                     .then(() => this.setState({ dataReceive: true, delayedRender: false }));
             });
@@ -71,6 +73,11 @@ export default class TaxiList extends Component{
                     style={styles.search_menu} />
                 <View style={styles.horizontal_divider} />
 
+                {!this.state.dataReceive && this.state.connectionError &&
+                    <View style={styles.log_contents}>
+                        <ConnectError navigation={this.props.navigation}/>
+                    </View>
+                }
                 {!this.state.dataReceive && this.state.delayedRender &&
                     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                         <ActivityIndicator
