@@ -29,5 +29,5 @@ export const fullcarrImg = require(ASSET_DIR + "Final_carrier_gray.gif");
 export const  fromtoIcon= require(ASSET_DIR + "Final-fromtoBlue.gif");
 export const mainLogo=require(ASSET_DIR+ "FinalMainLogo.png");
 
-export const titleFont=require(ASSET_DIR+ "NotoSansCJKkr-Regular.otf");
+// export const titleFont=require(ASSET_DIR+ "NotoSansCJKkr-Regular.otf");
 export const numFont = require(ASSET_DIR+"08SeoulNamsanB_0.ttf");

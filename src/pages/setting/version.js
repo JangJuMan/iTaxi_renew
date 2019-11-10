@@ -15,18 +15,18 @@ export default class version extends Component {
 
             <View style={{ marginTop: vw(2) }}>
                 <View style={styles.versionTop}>
-                    <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: "titleFont", fontWeight: "200" }}>Version</Text>
+                    <Text style={{ fontSize: 15, color: '#3FA9F5', /*fontFamily: "titleFont", */fontWeight: "200" }}>Version</Text>
                     <View style={{ borderBottomWidth: 1, margin: 9, borderBottomColor: '#CCCCCC', flexGrow: 1, }}></View>
                 </View>
                 <View style={styles.versionBottom}>
-                    <Text style={{ fontSize: 16, color: 'black', fontFamily: "titleFont", fontWeight: "200" }}>2.0.0-alpha</Text>
+                    <Text style={{ fontSize: 16, color: 'black', /*fontFamily: "titleFont",*/ fontWeight: "200" }}>2.0.0-alpha</Text>
                 </View>
                 <View style={styles.versionTop}>
-                    <Text style={{ fontSize: 15, color: '#3FA9F5', fontFamily: "titleFont", fontWeight: "200" }}>Developer</Text>
+                    <Text style={{ fontSize: 15, color: '#3FA9F5', /*fontFamily: "titleFont",*/ fontWeight: "200" }}>Developer</Text>
                     <View style={{ borderBottomWidth: 1, margin: 9, borderBottomColor: '#CCCCCC', flexGrow: 1, }}></View>
                 </View>
                 <View style={styles.versionBottom}>
-                    <Text style={{ fontSize: 16, color: 'black', fontFamily: "titleFont", fontWeight: "200" }}>CRA</Text>
+                    <Text style={{ fontSize: 16, color: 'black', /*fontFamily: "titleFont",*/ fontWeight: "200" }}>CRA</Text>
                 </View>
             </View>
         )

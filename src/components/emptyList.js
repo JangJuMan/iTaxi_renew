@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
             color:'#bbb',
             fontSize:20,
             padding:10,
-            fontFamily: "titleFont",
+            // fontFamily: "titleFont",
             fontWeight:"200"
         },
 

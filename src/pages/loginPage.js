@@ -17,6 +17,9 @@ export default class App extends Component {
     }
 
     async componentDidMount() {
+        // for DEBUG
+        this.props.navigation.replace('Home');
+
         const { userStore } = this.props;
         let result = await userStore.autoLogin();
         if (result) {

@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
             elevation: 2,
         },
     text:{
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     }
 });

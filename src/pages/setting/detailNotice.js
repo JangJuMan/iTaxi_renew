@@ -19,14 +19,14 @@ export default class version extends Component {
 
             <View style={{ marginTop: vw(2) }}>
                 <View style={styles.versionTop}>
-                    <Text style={{ fontSize: vw(5), color: '#999999', fontFamily: "titleFont", fontWeight: "200" }}>{date}</Text>
+                    <Text style={{ fontSize: vw(5), color: '#999999', /*fontFamily: "titleFont",*/ fontWeight: "200" }}>{date}</Text>
                     <View style={{ borderBottomWidth: 1, margin: 9, borderBottomColor: '#CCCCCC', flexGrow: 1, }}></View>
                 </View>
                 <View style={styles.versionBottom}>
-                    <Text style={{ fontSize:vw(6), color: 'black', fontFamily: "titleFont", fontWeight: "200" }}>#{title}</Text>
+                    <Text style={{ fontSize:vw(6), color: 'black',/* fontFamily: "titleFont",*/ fontWeight: "200" }}>#{title}</Text>
                 </View>
                 <View style={styles.box}>
-                    <Text style={{ fontSize:vw(5), color: '#999999', fontFamily: "titleFont", fontWeight: "200",textAlign:'center' }}>{content}</Text>
+                    <Text style={{ fontSize:vw(5), color: '#999999', /*fontFamily: "titleFont", */fontWeight: "200",textAlign:'center' }}>{content}</Text>
                 </View>
 
             </View>

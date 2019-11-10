@@ -126,7 +126,7 @@ const stylesTop = StyleSheet.create({
                 flex: 2,
                 borderBottomColor: 'gray',
                 borderBottomWidth: 1,
-                fontFamily: "titleFont",
+                // fontFamily: "titleFont",
                 fontWeight:"200"
             },
             gpsIcon: {
@@ -148,7 +148,7 @@ const stylesTop = StyleSheet.create({
                     fontSize: 14,
                     color: '#888C90',
                     margin: 10,
-                    fontFamily: "titleFont",
+                    // fontFamily: "titleFont",
                     fontWeight:"200"
                 },
 
@@ -208,7 +208,7 @@ const stylesBottom = StyleSheet.create({
                 color: '#888C90',
                 padding: 10,
                 alignSelf: 'flex-start',
-                fontFamily: "titleFont",
+                // fontFamily: "titleFont",
                 fontWeight:"200"
             },
             line: {

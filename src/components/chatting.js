@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     new_member_text: {
         fontSize: 15,
         fontWeight: 'bold',
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     i_say: {
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'blue',
         marginBottom: 5,
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         marginRight: 4,
         fontWeight: "200"
     },
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
         backgroundColor: OC.blue[5],
         borderWidth: 0.5,
         borderColor: OC.indigo[3],
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     they_say: {
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
         borderColor: '#bbb',
         borderWidth: 0.5,
         backgroundColor: 'white',
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     their_name_text: {
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
         color: 'blue',
         marginLeft:4,
         marginBottom: 5,
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     they_time_container: {
@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
     },
     input_text: {
         flex: 8,
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     input_text_line: {
@@ -304,12 +304,12 @@ const styles = StyleSheet.create({
     },
     white_text: {
         color: 'white',
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     blue_text: {
         color: OC.blue[5],
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     i_say_msg_container: {

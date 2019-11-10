@@ -3,7 +3,7 @@ import { Provider } from 'mobx-react';
 import MainPage from './src/index';
 
 import * as Font from 'expo-font';
-import { titleFont, numFont } from './variable/assets';
+import { /*titleFont,*/ numFont } from './variable/assets';
 
 import TaxiStore from './stores/taxi';
 import UserStore from './stores/user';
@@ -18,7 +18,7 @@ const dateStore = new NowDate();
 export default class App extends Component {
   componentWillMount() {
     Font.loadAsync({
-      "titleFont": titleFont,
+      // "titleFont": titleFont,
       "numFont": numFont,
     });
   }

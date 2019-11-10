@@ -39,7 +39,7 @@ export default class Info extends Component{
     render() {
         return (
             <View style={styles.info}>
-                <Text style={{fontSize:14,marginLeft:9,color:'gray',fontFamily: "titleFont",fontWeight:"200"}}>휴대폰 번호</Text>
+                <Text style={{fontSize:14,marginLeft:9,color:'gray', /*fontFamily: "titleFont",*/ fontWeight:"200"}}>휴대폰 번호</Text>
                 <Text>{phone_number}</Text>
                 <TextInput
                     style={{height: 40, borderBottomWidth:1, borderBottomColor: '#CCCCCC', flexGrow: 1}}
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     },
         changeInfoText: {
             color: '#3FA9F5',
-            fontFamily: "titleFont",
+            // fontFamily: "titleFont",
             fontWeight:"200"
         },
         profileButton:{

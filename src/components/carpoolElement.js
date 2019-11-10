@@ -114,7 +114,7 @@ const styles=StyleSheet.create({
     destination_text: {
         color: 'gray',
         margin: vw(2.4),
-        fontFamily: "titleFont",
+        // fontFamily: "titleFont",
         fontWeight:"200"
     },
     carrier: {
