@@ -25,14 +25,8 @@ export default class MakeRoom extends Component {
         carrier: 0,
         date: '',
         time: moment().tz('Asia/Seoul'),
-<<<<<<< HEAD
-        people_flag: false,
-        carrier_flag: false,
-=======
         people_flag: true,
         carrier_flag: true,
-
->>>>>>> 2a3c57fc4b90a9cfe42fbb8f4bc61c6f4dad49da
     }
 
     constructor(props) {
@@ -40,14 +34,6 @@ export default class MakeRoom extends Component {
         const {dateStore} = this.props;
         this.dateStore = dateStore
         this.state.date = dateStore.nowDate
-        // For IOS DatePicker
-        this.state = {chosenDate: new Date()};
-        this.setDate = this.setDate.bind(this);
-    }
-
-    // For IOS DatePicker
-    setDate(newDate){
-        this.setState({chosenDate: newDate});
     }
 
     person_clicked(value) {
@@ -115,7 +101,7 @@ export default class MakeRoom extends Component {
                                     fontSize: 23,
                                 },
                                 datePicker:{
-                                    
+
                                 },
                                 datePickerCon: {
                                     backgroundColor: '#A1A1A1'
@@ -137,6 +123,9 @@ export default class MakeRoom extends Component {
                                 dateText: {
                                     color: '#4dabf7',
                                     fontSize: 23,
+                                },
+                                datePickerCon: {
+                                    backgroundColor: '#A1A1A1'
                                 }
                             }}
                             date={this.state.time}
