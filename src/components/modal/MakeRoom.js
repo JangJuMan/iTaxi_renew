@@ -217,7 +217,8 @@ export default class MakeRoom extends Component {
                     <TouchableOpacity onPress={() => {
 
                         if (this.state.carrier_flag && this.state.people_flag) {
-                            taxiStore.createTaxiList(this.state.date, this.state.time, '고속버스터미널', '커피유야', userStore.userId.student_id, this.state.person, this.state.carrier)
+                            // taxiStore.createTaxiList(this.state.date, this.state.time, '고속버스터미널', '커피유야', userStore.userId.student_id, this.state.person, this.state.carrier)
+                            taxiStore.createTaxiList(this.state.date, this.state.time, '고속버스터미널', '커피유야', userStore.userId, this.state.person, this.state.carrier)
                             this.props.onOkButton();
 
                         }

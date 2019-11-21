@@ -13,7 +13,7 @@ export default class CarpoolStore {
     * getCarpoolList(date) {
         try {
             let result = yield axios.get(`${DATABASE}/carpoollist/${date}`);
-            this.carpoolList = result.data.data;
+            this.carpoolList = result.data;
           }
           catch (error) {
             console.log(JSON.stringify(error));

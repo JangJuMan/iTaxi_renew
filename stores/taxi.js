@@ -15,7 +15,7 @@ export default class TaxiStore {
     * getTaxiList(date) {
         try {
             let result = yield axios.get(`${DATABASE}/taxilist/${date}`);
-            this.taxiList = result.data.data;
+            this.taxiList = result.data;
         }
         catch (error) {
             throw error
