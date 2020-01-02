@@ -35,8 +35,12 @@ export default class TaxiStore {
                 num_people: people,
                 num_carrier: carrier
             });
-            this.taxiList.push(response);
-            console.log("OK!")
+            this.taxiList.push(response.data);
+            this.taxi = response.data
+            console.log("\n=====\nKO!")
+            console.log(response.data)
+            console.log("\n=====\nOK!")
+            console.log("\n", this.taxiList)
         }
         catch (error) {
             console.log(error);

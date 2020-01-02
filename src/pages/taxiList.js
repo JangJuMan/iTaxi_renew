@@ -102,7 +102,8 @@ export default class TaxiList extends Component{
                                 <View style={styles.horizontal_date_bar}></View>
                             </View>
                             <FlatList
-                                data={taxiStore.taxiList.sort((a, b) => a.departure_time.localeCompare(b.departure_time))}
+                                // data={taxiStore.taxiList.slice().sort((a, b) => a.departure_time.localeCompare(b.departure_time))}
+                                data={taxiStore.taxiList.slice().sort((a, b) => a.departure_time.localeCompare(b.departure_time))}
                                 keyExtractor={(item, index) => item.departure_time}
                                 renderItem = {({item}) => 
                                 <View>

@@ -62,7 +62,7 @@ export default class ChatRoom extends Component{
     render(){
         const { taxiStore } = this.props;
         const data = taxiStore.taxi;
-        console.log(this.props.taxiStore);
+        // console.log(this.props.taxiStore);
 
         return(
         <View>

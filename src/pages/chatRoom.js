@@ -3,7 +3,8 @@ import { View, SafeAreaView} from 'react-native';
 import ChatRoomInfo from '../components/chatRoomInfo';
 import Chatting from '../components/chatting';
 import { inject } from 'mobx-react';
-
+import TaxiStore from '../../stores/taxi';
+// 
 @inject('taxiStore')
 export default class ChatRoom extends Component{
     // state = {
