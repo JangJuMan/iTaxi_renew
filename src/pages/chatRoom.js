@@ -4,7 +4,7 @@ import ChatRoomInfo from '../components/chatRoomInfo';
 import Chatting from '../components/chatting';
 import { inject } from 'mobx-react';
 
-// @inject('taxiStore')
+@inject('taxiStore')
 export default class ChatRoom extends Component{
     // state = {
     //     roomTitle: ''
@@ -24,6 +24,7 @@ export default class ChatRoom extends Component{
     };
 
     render(){
+        // console.log(this.props);
         return(
             <SafeAreaView style={{flex:1}}>
                 <ChatRoomInfo navigation={this.props.navigation} />

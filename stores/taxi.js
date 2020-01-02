@@ -25,8 +25,8 @@ export default class TaxiStore {
     @asyncAction
     * createTaxiList(date, time, d_place, a_place, user_id, people, carrier) {
         try {
+            console.log(date, time, d_place, a_place, user_id, people, carrier)
             let response = yield axios.post(`${DATABASE}/taxilist/${date}`, {
-                
                 departure_date: date,
                 departure_time: time,
                 departure_place: d_place,
@@ -36,6 +36,7 @@ export default class TaxiStore {
                 num_carrier: carrier
             });
             this.taxiList.push(response);
+            console.log("OK!")
         }
         catch (error) {
             console.log(error);

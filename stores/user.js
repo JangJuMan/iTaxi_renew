@@ -43,6 +43,8 @@ export default class UserStore {
             });
             console.log(result)
             this.userId = result.data._id;
+            // userId 전달을 위해
+            this.user_id = result.data._id;
             return result.data;
         }
         catch (error) {
@@ -71,7 +73,7 @@ export default class UserStore {
         }
     }
 
-    // TODO
+    // TODO:
     @asyncAction
     static * getLog() {
         try {

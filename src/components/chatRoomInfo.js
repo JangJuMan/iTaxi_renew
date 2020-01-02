@@ -26,6 +26,7 @@ export default class ChatRoom extends Component{
         this.setState({ modalVisible: visible });
     }
 
+
     getCarrier() {
         const {navigation} = this.props;
         const add_carrier = navigation.getParam('Carrier','');
@@ -61,6 +62,7 @@ export default class ChatRoom extends Component{
     render(){
         const { taxiStore } = this.props;
         const data = taxiStore.taxi;
+        console.log(this.props.taxiStore);
 
         return(
         <View>

@@ -108,7 +108,7 @@ export default class intoRoom extends Component{
                     <TouchableOpacity onPress={() => {
                         this.props.onCancelButton();
                         }}>
-                    <   Text style={{color:'#3FA9F5',fontSize:17 }}>취소</Text>
+                        <Text style={{color:'#3FA9F5',fontSize:17 }}>취소</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => {
                         if(this.state.carrier_flag) {

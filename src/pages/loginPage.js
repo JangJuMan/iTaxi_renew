@@ -15,6 +15,8 @@ export default class App extends Component {
         isLoading: false,
         id: "",
         pw: "",
+        // new
+        user_id: "",
     }
 
     async componentDidMount() {
@@ -48,6 +50,7 @@ export default class App extends Component {
                             userStore.setAutoLogin({
                                 'id': this.state.id,
                                 'password': this.state.pw,
+                                
                             });
                         else
                             userStore.resetAutoLogin();
@@ -55,8 +58,10 @@ export default class App extends Component {
                         this.setState({ isLoading: false }, () => {
                             if (!loginData.term)
                                 this.props.navigation.navigate('Service');
-                            else
+                            else{
                                 this.props.navigation.replace('Home');
+                                this.state.user_id = userStore.userID;
+                            }
                         });
                     })
                     .catch(error => {
